@@ -22,11 +22,10 @@ import { getMonochromaticGradient } from "@/lib/gradient";
  * @param params - The route parameters including the slug
  * @returns Metadata object with title and description
  */
-
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   try {
     // Get slug from params
-    const slug = params.slug;
+    const { slug } = await params;
 
     // Try to fetch the article data
     const post = await getPostBySlug(slug);
@@ -105,10 +104,10 @@ export async function generateStaticParams() {
  * @param props.params.slug - The unique identifier for the article
  * @returns React component for the article page
  */
-export default async function ArticlePage({ params }: { params: { slug: string } }) {
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   try {
     // Get slug from params
-    const slug = params.slug;
+    const { slug } = await params;
 
     // Try to fetch the article data
     const post = await getPostBySlug(slug);

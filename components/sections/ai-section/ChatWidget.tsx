@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { AI } from "@/components/AI";
+import { AI } from "@/components/sections/ai-section/AI";
 import { MessageCircle, Send, X } from "lucide-react";
 
 export function ChatWidget() {
