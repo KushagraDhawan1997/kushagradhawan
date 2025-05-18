@@ -44,7 +44,7 @@ export function ContactTestimonial() {
     <ContentWrapper borderLeft={true} borderRight={true} extendBorders={true} extendAmount={12} className="h-full">
       <Card className="backdrop-blur-sm border-border/10 h-full bg-gradient-to-bl from-card to-muted/10">
         <CardContent className="flex flex-col gap-4 h-full">
-          <p className="text-foreground/80 text-base md:text-lg leading-relaxed flex-grow">{randomTestimonial.shortTestimonial}</p>
+          <p className="text-foreground/80 text-base md:text-lg leading-relaxed flex-grow">{randomTestimonial.fullTestimonial}</p>
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10">
               <AvatarFallback className="text-primary">{randomTestimonial.author.name.charAt(0)}</AvatarFallback>

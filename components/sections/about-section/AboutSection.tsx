@@ -57,9 +57,6 @@ export function AboutSection() {
         {/* Call-to-action buttons */}
         <div className="flex flex-col sm:flex-row gap-2">
           <Button asChild variant="default" size="lg" className="w-fit">
-            <Link href="/resume">View Full Resume</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg" className="w-fit">
             <Link href="/articles/building-products-that-scale" aria-label="Read my article about building products that scale">
               Read about scalable products
             </Link>
