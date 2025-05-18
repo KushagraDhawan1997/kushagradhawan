@@ -69,9 +69,9 @@ export const testimonials: Testimonial[] = [
     fullTestimonial:
       "Working with Kush changed our team's problem-solving approach. He applies design principles to project planning, stakeholder communication, and breaking down complex challenges. He communicates effectively with both developers on technical details and executives on business value, keeping everyone aligned on core objectives.",
     author: {
-      name: "Raj Mehta",
-      designation: "Product Manager",
-      company: "Adobe",
+      name: "Gopi Krishna",
+      designation: "Product Designer",
+      company: "Womp",
     },
     position: "standard",
     gridArea: "t7",

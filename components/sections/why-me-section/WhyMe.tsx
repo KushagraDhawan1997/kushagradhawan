@@ -38,7 +38,7 @@ export function WhyMe() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-8">
       {whyMeItems.map((item, index) => (
-        <ContentWrapper key={index} extendBorders={true} extendAmount={12} borderLeft={false} borderRight={true} className="relative transition-all duration-300 hover:bg-card/30 hover:shadow-lg hover:rounded-md group">
+        <ContentWrapper key={index} extendBorders={true} extendAmount={12} borderLeft={false} borderRight={true} className="relative transition-all duration-300 hover:bg-card/30 group">
           <div className="absolute inset-0 overflow-hidden opacity-40 group-hover:opacity-50 transition-opacity duration-300 group-hover:rounded-md">
             <div
               className={cn(
@@ -58,7 +58,7 @@ export function WhyMe() {
               </IconContainer>
               <h3 className="text-lg font-bold group-hover:text-primary transition-colors duration-300">{item.title}</h3>
             </div>
-            <p className="text-sm text-muted-foreground">{item.description}</p>
+            <p className="text-base text-muted-foreground">{item.description}</p>
           </div>
         </ContentWrapper>
       ))}
