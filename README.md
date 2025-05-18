@@ -1,4 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kushagra Dhawan - Personal Website
+
+This is a personal website for Kushagra Dhawan, a product manager and designer. The site is built with Next.js, Tailwind CSS, and shadcn UI components, with a focus on social proof and testimonials to create a compelling personal brand.
+
+## Project Overview
+
+The goal of this website is to create a personal portfolio that stands out from typical personal sites by focusing heavily on "selling" Kushagra through social proof and testimonials. The site aims to appeal to human emotions and showcase Kushagra's impact as a product leader.
+
+### What's Built So Far
+
+- **Hero Section**: A clean, minimalist hero section with Kushagra's name and a bold headline "I build products people love."
+- **Testimonial Wall**: A grid of testimonials from colleagues and clients that highlight Kushagra's skills and impact.
+- **Visual Design**: Subtle dot pattern background with soft gradient overlay for visual interest.
+
+### Planned Structure
+
+The complete site will include:
+
+1. **Hero Section** ✅ - Bold headline with testimonial wall
+2. **About / My Mission** - Personal story and approach to product management
+3. **Case Studies / Wins** - Showcasing specific product successes and impact
+4. **Deep Dive** - More detailed information about skills and expertise
+5. **Contact / CTA** - Clear call to action to connect
+
+## Technical Stack
+
+- **Framework**: [Next.js](https://nextjs.org)
+- **UI Components**: [shadcn UI](https://ui.shadcn.com/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com)
+- **Animation**: Motion library for subtle effects
 
 ## Getting Started
 
@@ -16,9 +45,12 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/` - Next.js app router pages and layouts
+- `components/` - Reusable React components
+  - `SocialProofHero.tsx` - The hero section with testimonials
+- `public/` - Static assets
 
 ## Learn More
 
@@ -26,8 +58,6 @@ To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
 ## Deploy on Vercel
 

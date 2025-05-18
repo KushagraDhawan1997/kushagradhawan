@@ -1,0 +1,1 @@
+export { BeliefSection } from "./BeliefSection";
