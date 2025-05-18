@@ -8,6 +8,7 @@ import { ThemeSpotlight } from "@/components/generic";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { Footer } from "@/components/ui/footer";
 import "highlight.js/styles/github-dark.css";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -96,6 +97,7 @@ export default function RootLayout({
           <DecorativeLines />
           <Navbar />
           <main>{children}</main>
+          <Analytics />
           <Footer />
         </ThemeProvider>
       </body>
