@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { Sun, Moon, Monitor } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 /**
@@ -113,9 +114,17 @@ export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLElement
       <div className="w-full max-w-7xl mx-auto px-6 flex h-16 items-center justify-between">
         {/* Left side: Logo */}
         <div className="flex items-center">
-          {/* Site title/logo */}
-          <Link href="/" className="text-sm font-bold" aria-label="Kushagra Dhawan - Homepage">
-            Kushagra Dhawan
+          {/* Site logo */}
+          <Link href="/" className="flex items-center gap-2" aria-label="Kushagra Dhawan - Homepage">
+            <div className="relative w-6 h-6 overflow-hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" className="text-foreground">
+                <path
+                  d="M211,103.43l-70.13,28,49.47,63.61a8,8,0,1,1-12.63,9.82L128,141,78.32,204.91a8,8,0,0,1-12.63-9.82l49.47-63.61L45,103.43A8,8,0,0,1,51,88.57l69,27.61V40a8,8,0,0,1,16,0v76.18l69-27.61A8,8,0,1,1,211,103.43Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <span className="text-sm font-bold">Kushagra Dhawan</span>
           </Link>
         </div>
 

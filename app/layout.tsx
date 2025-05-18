@@ -19,13 +19,17 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Generate a data URL for the SVG favicon
+const svgIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path d="M211,103.43l-70.13,28,49.47,63.61a8,8,0,1,1-12.63,9.82L128,141,78.32,204.91a8,8,0,0,1-12.63-9.82l49.47-63.61L45,103.43A8,8,0,0,1,51,88.57l69,27.61V40a8,8,0,0,1,16,0v76.18l69-27.61A8,8,0,1,1,211,103.43Z" fill="black"></path></svg>`;
+const iconDataURL = `data:image/svg+xml;base64,${Buffer.from(svgIcon).toString("base64")}`;
+
 export const metadata: Metadata = {
   title: {
-    default: "Kushagra Dhawan | Product Builder and Designer",
+    default: "Kushagra Dhawan | Product Manager and Design Lead",
     template: "%s | Kushagra Dhawan",
   },
-  description: "Product builder and designer specializing in creating innovative digital products. Expert in design systems, user experience, and product development.",
-  keywords: ["Kushagra Dhawan", "product design", "designer", "developer", "UX", "UI", "product builder", "engineering"],
+  description: "Product leader with engineering background, specializing in scaling products and building high-performance teams. Expert in making complex technology accessible to users.",
+  keywords: ["Kushagra Dhawan", "product strategy", "technical leadership", "cross-functional teams", "product management", "design leadership", "product scaling", "AI integration", "startup leadership"],
   authors: [{ name: "Kushagra Dhawan" }],
   creator: "Kushagra Dhawan",
   publisher: "Kushagra Dhawan",
@@ -33,26 +37,31 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: iconDataURL,
+    apple: iconDataURL,
+    shortcut: iconDataURL,
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://kushagradhawan.com",
-    title: "Kushagra Dhawan | Product Builder and Designer",
-    description: "Product builder and designer specializing in creating innovative digital products and solutions.",
+    title: "Kushagra Dhawan | Product Manager and Design Lead",
+    description: "Technical product leader combining engineering, design, and product strategy to scale products and build high-performance teams.",
     siteName: "Kushagra Dhawan",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Kushagra Dhawan - Product Builder and Designer",
+        alt: "Kushagra Dhawan - Product Manager and Design Lead",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kushagra Dhawan | Product Builder and Designer",
-    description: "Product builder and designer specializing in creating innovative digital products and solutions.",
+    title: "Kushagra Dhawan | Product Manager and Design Lead",
+    description: "Technical product leader combining engineering, design, and product strategy to scale products and build high-performance teams.",
     images: ["/og-image.jpg"],
   },
   robots: {
