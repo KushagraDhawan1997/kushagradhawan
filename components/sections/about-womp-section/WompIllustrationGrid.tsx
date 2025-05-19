@@ -104,11 +104,11 @@ export function WompIllustrationGrid({ isMobile = false }: WompIllustrationGridP
 
   if (isMobile) {
     return (
-      <div className="grid grid-cols-1 md:hidden">
-        {/* Display only first 3 items on mobile */}
-        {processedMedia.slice(0, 3).map((media, i) => (
+      <div className="grid grid-cols-2 gap-2 md:hidden">
+        {/* Display all 6 items on mobile in 2 columns */}
+        {processedMedia.map((media, i) => (
           <ContentWrapper key={i} borderLeft={true} borderRight={true} extendBorders={true} extendAmount={12} className="mb-0">
-            <div className="h-56 w-full rounded-md overflow-hidden relative">
+            <div className="h-40 sm:h-48 w-full rounded-md overflow-hidden relative">
               {media.type === "video" ? (
                 <LazyVideo
                   src={media.path}
@@ -143,9 +143,9 @@ export function WompIllustrationGrid({ isMobile = false }: WompIllustrationGridP
     );
   }
 
-  // Desktop view with 6 items in a 3x2 grid
+  // Desktop view with responsive grid
   return (
-    <div className="hidden md:grid md:grid-cols-3 md:grid-rows-2 gap-2 rounded-md">
+    <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 md:grid-rows-auto gap-2 rounded-md">
       {processedMedia.map((media, i) => (
         <WompMediaItem
           key={i}
