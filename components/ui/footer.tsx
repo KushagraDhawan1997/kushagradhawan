@@ -22,17 +22,8 @@ export function Footer() {
           <div className="text-sm text-foreground/60">© {currentYear} Kushagra Dhawan. All rights reserved.</div>
 
           <div className="flex flex-wrap gap-6 text-sm text-foreground/60">
-            <Link href="/privacy" className="hover:text-foreground/80 transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:text-foreground/80 transition-colors">
-              Terms of Service
-            </Link>
             <Link href="/sitemap.xml" className="hover:text-foreground/80 transition-colors">
               Sitemap
-            </Link>
-            <Link href="https://github.com/kushagradhawan/kushagradhawan" className="hover:text-foreground/80 transition-colors">
-              Source
             </Link>
           </div>
         </div>
