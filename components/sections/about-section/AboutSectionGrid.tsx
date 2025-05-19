@@ -21,7 +21,7 @@ export function AboutSectionGrid({ onOpenCapability, isMobile = false }: AboutSe
     <div
       className="hidden lg:grid gap-2"
       style={{
-        gridTemplateColumns: "1fr 1fr 1fr",
+        gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)",
         gridTemplateRows: "auto auto",
         gridTemplateAreas: `
           "c1 c2 c3"
