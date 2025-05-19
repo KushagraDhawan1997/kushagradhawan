@@ -43,7 +43,7 @@ type TestimonialCardProps = {
 export function TestimonialCard({ testimonial, onClick, isMobile = false }: TestimonialCardProps) {
   // Determine height classes based on card position
   const getHeightClasses = () => {
-    if (isMobile) return "";
+    if (isMobile) return "h-full"; // Use full height on mobile
 
     return testimonial.position === "tall"
       ? "h-full min-h-[320px]" // Set minimum height for tall cards
@@ -58,7 +58,7 @@ export function TestimonialCard({ testimonial, onClick, isMobile = false }: Test
   };
 
   return (
-    <ContentWrapper borderLeft={true} borderRight={true} extendBorders={true} extendAmount={8} className={!isMobile ? "h-full" : ""}>
+    <ContentWrapper borderLeft={true} borderRight={true} extendBorders={true} extendAmount={8} className="h-full">
       <div className={`group cursor-pointer h-full`} onClick={() => onClick(testimonial)}>
         <Card className={`backdrop-blur-sm border-border/10 hover:shadow-lg transition-all duration-300 bg-gradient-to-bl from-card to-muted/10 flex flex-col ${getHeightClasses()}`}>
           {/* Testimonial content */}

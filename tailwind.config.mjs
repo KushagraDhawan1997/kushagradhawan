@@ -28,10 +28,6 @@ const config = {
     container: {
       center: true, // Center containers
       padding: "2rem", // Default padding
-      // Screen-specific settings
-      screens: {
-        "2xl": "1400px", // Max width for 2xl screens
-      },
     },
     // Extensions to the base theme
     extend: {

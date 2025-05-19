@@ -68,7 +68,7 @@ export function HeroSection() {
         </div>
 
         {/* Call-to-action buttons */}
-        <div className="flex flex-col sm:flex-row gap-2">
+        <div className="flex flex-row gap-2">
           <Button asChild variant="default" size="lg" className="w-fit">
             <Link href="#contact">Get in Touch</Link>
           </Button>
@@ -79,10 +79,13 @@ export function HeroSection() {
           </Button>
         </div>
 
-        {/* Mobile view: stack all cards */}
-        <div className="grid grid-cols-1 gap-2 md:hidden">
+        {/* Mobile view: horizontal scroll for cards */}
+        <div className="flex overflow-x-auto space-x-4 pb-4 md:hidden snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] h-[300px]">
           {testimonials.map((testimonial) => (
-            <TestimonialCard key={testimonial.id} testimonial={testimonial} onClick={handleOpenTestimonial} isMobile={true} />
+            <div key={testimonial.id} className="flex-shrink-0 w-72 snap-start h-full">
+              {/* Card width: 288px */}
+              <TestimonialCard testimonial={testimonial} onClick={handleOpenTestimonial} isMobile={true} />
+            </div>
           ))}
         </div>
 
