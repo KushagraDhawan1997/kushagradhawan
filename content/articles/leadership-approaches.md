@@ -1,7 +1,7 @@
 ---
 title: "Five Leadership Approaches for Building Exceptional Products"
 description: "Behind every great product is a leadership approach that balances vision, execution, and team dynamics. These practical methods drive successful products and high-performing teams."
-date: "2023-11-11"
+date: "2025-05-05"
 author: "Kushagra Dhawan"
 featured: true
 image: "/articles/leadership-approaches-hero.jpg"

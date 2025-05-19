@@ -1,7 +1,7 @@
 ---
 title: "Product Philosophy: Building Things That Matter"
 description: "Four pillars for successful product development: shipping fast for user insights, balancing data with intuition, protecting creative processes, and building for both today and tomorrow."
-date: "2023-11-15"
+date: "2025-05-10"
 author: "Kushagra Dhawan"
 featured: true
 image: "/articles/product-philosophy-hero.jpg"

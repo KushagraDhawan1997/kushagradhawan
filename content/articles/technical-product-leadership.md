@@ -1,7 +1,7 @@
 ---
 title: "Solving Complex Product Challenges: Technical Leadership"
 description: "Building successful products requires more than vision—it demands expertise in navigating complex technical decisions while keeping user needs at the center."
-date: "2023-10-18"
+date: "2025-05-01"
 author: "Kushagra Dhawan"
 featured: true
 image: "/articles/technical-leadership-hero.jpg"

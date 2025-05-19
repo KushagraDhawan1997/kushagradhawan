@@ -1,7 +1,7 @@
 ---
 title: "About Me: Working at the Intersection"
 description: "I work at the intersection of design, engineering, and product strategy, specializing in AI integration and scaling early-stage startups."
-date: "2023-12-10"
+date: "2025-05-15"
 author: "Kushagra Dhawan"
 featured: true
 image: "/articles/about-me-hero.jpg"
