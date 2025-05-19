@@ -80,7 +80,7 @@ export function HeroSection() {
         </div>
 
         {/* Mobile view: horizontal scroll for cards */}
-        <div className="flex overflow-x-auto space-x-4 pb-4 md:hidden snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] h-[300px]">
+        <div className="flex overflow-x-auto space-x-2 pb-4 md:hidden snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] h-[300px]">
           {testimonials.map((testimonial) => (
             <div key={testimonial.id} className="flex-shrink-0 w-72 snap-start h-full">
               {/* Card width: 288px */}

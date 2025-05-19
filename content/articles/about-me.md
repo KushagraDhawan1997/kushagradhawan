@@ -17,7 +17,7 @@ I'm a Product Manager and Design Lead specializing in early-stage startups. My e
 
 At Womp3D, I've led product and design since joining as the first design hire in 2021. I built the foundation for what would become a significant player in the 3D design space. After establishing the product direction and design systems, I progressed to Design Lead in 2022, building the design team and coordinating with engineering to integrate new features.
 
-Currently, I serve as Product Manager and Design Lead, focusing on building Womp's AI Suite with GenAI, LLM, and MCP technologies to democratize 3D design. Under my leadership, we've scaled from 0 to 500K users and generated $27K in monthly recurring revenue.
+Currently, I serve as Product Manager and Design Lead, focusing on building Womp's AI Suite with GenAI, LLM, and MCP technologies to democratize 3D design. Under my leadership, we've scaled from 0 to 500K users and built a sustainable subscription business.
 
 Before Womp3D, I worked at WishboxStudio as a UX Designer and Junior Designer, where I managed client projects and balanced business needs with technical constraints.
 

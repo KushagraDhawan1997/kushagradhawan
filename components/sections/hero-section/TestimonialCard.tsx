@@ -60,7 +60,7 @@ export function TestimonialCard({ testimonial, onClick, isMobile = false }: Test
   return (
     <ContentWrapper borderLeft={true} borderRight={true} extendBorders={true} extendAmount={8} className="h-full">
       <div className={`group cursor-pointer h-full`} onClick={() => onClick(testimonial)}>
-        <Card className={`backdrop-blur-sm border-border/10 hover:shadow-lg transition-all duration-300 bg-gradient-to-bl from-card to-muted/10 flex flex-col ${getHeightClasses()}`}>
+        <Card className={`backdrop-blur-sm border-border/10 hover:shadow-lg transition-all duration-300 bg-gradient-to-bl from-card to-muted/10 flex flex-col h-full ${getHeightClasses()}`}>
           {/* Testimonial content */}
           <CardContent className="flex flex-col flex-grow">
             <p className={`text-foreground/80 ${getContentClasses()}`}>{testimonial.shortTestimonial}</p>
