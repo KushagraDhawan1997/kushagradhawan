@@ -6,7 +6,7 @@ author: "Kushagra Dhawan"
 featured: true
 image: "/articles/leadership-approaches-hero.jpg"
 alt: "Product leader collaborating with team members on whiteboard"
-canonical: "https://kushagradhawan.com/articles/leadership-approaches-article"
+canonical: "https://kushagradhawan.com/articles/leadership-approaches"
 tags: ["leadership", "product-management", "team-building", "execution", "ai-integration", "decision-making", "startup"]
 keywords: ["leadership approaches", "high-performance teams", "results-driven leadership", "AI-powered execution", "startup-speed decision making", "product leadership", "team collaboration", "cross-functional teams"]
 ---

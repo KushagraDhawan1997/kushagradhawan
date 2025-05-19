@@ -60,7 +60,7 @@ export function TeamLeadershipSection() {
             <Link href="#contact">Get in Touch</Link>
           </Button>
           <Button asChild variant="outline" size="lg" className="w-fit">
-            <Link href="/articles/leadership-approaches-article" aria-label="Read my article on leadership approaches for building exceptional products">
+            <Link href="/articles/leadership-approaches" aria-label="Read my article on leadership approaches for building exceptional products">
               Read about leadership approaches
             </Link>
           </Button>
