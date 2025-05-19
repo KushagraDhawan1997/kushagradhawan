@@ -11,10 +11,9 @@ export function GlobeIllustration() {
   });
 
   return (
-    <div className="md:h-auto h-[300px] w-full flex items-center justify-center" ref={ref}>
+    <div className="w-full h-full flex items-center justify-center" ref={ref}>
       {inView ? (
         <Globe
-          className="my-auto"
           config={{
             width: 600,
             height: 600,
@@ -43,7 +42,7 @@ export function GlobeIllustration() {
         />
       ) : (
         // Placeholder when not in view to maintain layout
-        <div className="w-full h-full bg-gradient-to-br from-primary/5 to-primary/10 rounded-full opacity-30" />
+        <div className="aspect-square h-full rounded-full bg-gradient-to-br from-primary/5 to-primary/10 opacity-30" />
       )}
     </div>
   );
