@@ -9,7 +9,7 @@ type AboutSectionGridProps = {
 export function AboutSectionGrid({ onOpenCapability, isMobile = false }: AboutSectionGridProps) {
   if (isMobile) {
     return (
-      <div className="grid grid-cols-1 gap-2 md:hidden">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:hidden gap-2">
         {capabilities.map((capability) => (
           <AboutSectionCard key={capability.title} capability={capability} onClick={onOpenCapability} isMobile={true} illustrationSize={capability.illustrationPlaceholder ? capability.illustrationSize || "medium" : undefined} />
         ))}
@@ -19,7 +19,7 @@ export function AboutSectionGrid({ onOpenCapability, isMobile = false }: AboutSe
 
   return (
     <div
-      className="hidden md:grid gap-2"
+      className="hidden lg:grid gap-2"
       style={{
         gridTemplateColumns: "1fr 1fr 1fr",
         gridTemplateRows: "auto auto",

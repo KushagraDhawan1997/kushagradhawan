@@ -46,11 +46,11 @@ export function StandardSectionCard<T>({ title, description, illustration, illus
     if (isMobile) {
       switch (illustrationSize) {
         case "small":
-          return "h-[160px]";
+          return "h-[160px] sm:h-[160px] md:h-[160px] lg:h-[160px]";
         case "medium":
-          return "h-[320px]";
+          return "h-[320px] sm:h-[280px] md:h-[280px] lg:h-[320px]";
         case "large":
-          return "h-[480px]";
+          return "h-[480px] sm:h-[320px] md:h-[320px] lg:h-[480px]";
       }
     } else {
       switch (illustrationSize) {
@@ -77,15 +77,15 @@ export function StandardSectionCard<T>({ title, description, illustration, illus
 
   // Wrap with ContentWrapper and onClick handler
   return (
-    <ContentWrapper borderLeft={true} borderRight={true} extendBorders={true} extendAmount={12} className={!isMobile ? "h-full" : ""}>
-      <div className={cn("group cursor-pointer", !isMobile ? "h-full" : "")} onClick={() => onClick(item)}>
+    <ContentWrapper borderLeft={true} borderRight={true} extendBorders={true} extendAmount={12} className={!isMobile ? "h-full" : "sm:h-full"}>
+      <div className={cn("group cursor-pointer", !isMobile ? "h-full" : "sm:h-full")} onClick={() => onClick(item)}>
         {useSpecialBackground ? (
-          <Card className={cn("backdrop-blur-sm border-border/10 hover:shadow-lg transition-all duration-300 relative z-0 bg-transparent", !isMobile ? "h-full" : "", className)}>
+          <Card className={cn("backdrop-blur-sm border-border/10 hover:shadow-lg transition-all duration-300 relative z-0 bg-transparent", !isMobile ? "h-full" : "sm:h-full", className)}>
             {backgroundComponent && <div className="absolute inset-0 -z-10 w-full h-full">{backgroundComponent}</div>}
             {cardContent}
           </Card>
         ) : (
-          <Card className={cn("backdrop-blur-sm border-border/10 hover:shadow-lg transition-all duration-300 bg-gradient-to-bl from-card to-muted/10 flex flex-col", !isMobile ? "h-full" : "", className)}>{cardContent}</Card>
+          <Card className={cn("backdrop-blur-sm border-border/10 hover:shadow-lg transition-all duration-300 bg-gradient-to-bl from-card to-muted/10 flex flex-col", !isMobile ? "h-full" : "sm:h-full", className)}>{cardContent}</Card>
         )}
       </div>
     </ContentWrapper>
