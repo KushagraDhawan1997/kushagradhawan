@@ -43,7 +43,7 @@ export function TechIconsGrid() {
     // Function to set icon size based on window width
     const handleResize = () => {
       if (typeof window !== "undefined") {
-        if (window.innerWidth >= 640 && window.innerWidth < 768) {
+        if (window.innerWidth >= 640 && window.innerWidth < 1280) {
           setIconSize("sm");
           setIconClass("w-4 h-4");
         } else {
