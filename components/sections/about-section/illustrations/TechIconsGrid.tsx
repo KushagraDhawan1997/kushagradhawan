@@ -1,3 +1,6 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
 import {
   siReact,
   siNextdotjs,
@@ -33,6 +36,33 @@ import {
 import { IconContainer } from "@/components/ui/icon-container";
 
 export function TechIconsGrid() {
+  const [iconSize, setIconSize] = useState<"sm" | "md">("md");
+  const [iconClass, setIconClass] = useState("w-5 h-5");
+
+  useEffect(() => {
+    // Function to set icon size based on window width
+    const handleResize = () => {
+      if (typeof window !== "undefined") {
+        if (window.innerWidth >= 640 && window.innerWidth < 768) {
+          setIconSize("sm");
+          setIconClass("w-4 h-4");
+        } else {
+          setIconSize("md");
+          setIconClass("w-5 h-5");
+        }
+      }
+    };
+
+    // Set initial size
+    handleResize();
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const techIcons = [
     { icon: siReact, name: "React" },
     { icon: siNextdotjs, name: "Next.js" },
@@ -71,8 +101,8 @@ export function TechIconsGrid() {
       <div className="grid grid-cols-6 gap-2 w-fit mx-auto">
         {techIcons.map((tech, index) => (
           <div key={index}>
-            <IconContainer size="md">
-              <svg role="img" viewBox="0 0 24 24" className="w-5 h-5 text-foreground/80" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <IconContainer size={iconSize}>
+              <svg role="img" viewBox="0 0 24 24" className={`${iconClass} text-foreground/80`} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d={tech.icon.path} />
               </svg>
             </IconContainer>
