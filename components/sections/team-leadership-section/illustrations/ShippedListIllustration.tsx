@@ -24,7 +24,7 @@ interface ShippedFeature {
 export function ShippedListIllustration({ isMobile = false, illustrationSize = "medium", loop = true, delay = 1500, resetDelay = 1000, fadeOutDuration = 500 }: ShippedListIllustrationProps) {
   const { ref, inView } = useInView({
     triggerOnce: false,
-    rootMargin: "-100px",
+    rootMargin: "100px",
     threshold: 0.1,
   });
 

@@ -12,7 +12,7 @@ export function TeamLeadershipBeam() {
   // Use intersection observer with 20% margin for better UX
   const { ref: inViewRef, inView } = useInView({
     triggerOnce: false,
-    rootMargin: "-100px",
+    rootMargin: "100px",
     threshold: 0.1,
   });
 

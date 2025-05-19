@@ -13,7 +13,7 @@ type TeamIllustrationProps = {
 export function TeamIllustration({ isMobile = false, illustrationSize = "medium" }: TeamIllustrationProps) {
   const { ref, inView } = useInView({
     triggerOnce: false,
-    rootMargin: "-100px",
+    rootMargin: "100px",
     threshold: 0.1,
   });
 
