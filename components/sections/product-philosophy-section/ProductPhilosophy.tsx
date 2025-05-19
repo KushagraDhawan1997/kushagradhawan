@@ -10,6 +10,7 @@ import { ContentWrapper } from "@/components/generic/ui/content-wrapper";
 import { cn } from "@/lib/utils";
 import { Meteors } from "@/components/magicui/meteors";
 import { principles } from "./philosophyData";
+import { ChevronDownIcon } from "lucide-react";
 
 /**
  * ProductPhilosophy - A showcase of the product methodology and guiding principles
@@ -27,7 +28,16 @@ import { principles } from "./philosophyData";
 
 export function ProductPhilosophy() {
   const [activePrinciple, setActivePrinciple] = useState(principles[0]);
+  const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
   const gradientText = getMonochromaticGradient();
+
+  const toggleMobileExpand = (title: string) => {
+    if (expandedMobile === title) {
+      setExpandedMobile(null);
+    } else {
+      setExpandedMobile(title);
+    }
+  };
 
   return (
     <SectionWrapper noBorderTop className="relative z-20 overflow-hidden">
@@ -46,16 +56,22 @@ export function ProductPhilosophy() {
         </Button>
 
         {/* Mobile view: accordion-like stacked list */}
-        <div className="block md:hidden space-y-6">
+        <div className="block md:hidden space-y-2">
           {principles.map((principle) => (
             <ContentWrapper key={principle.title} borderLeft={true} borderRight={true} extendBorders={true} extendAmount={24}>
               <Card className="backdrop-blur-sm border-border/10 hover:shadow-lg transition-all duration-300 bg-gradient-to-bl from-card to-muted/10">
-                <CardContent className="flex flex-col gap-3 py-6">
-                  <CardTitle className="text-primary text-base font-medium">{principle.title}</CardTitle>
-                  <p className="text-foreground/80 text-base">{principle.description}</p>
-                  <div className="mt-4">
-                    <p className="text-foreground/80 text-sm whitespace-pre-line">{principle.expandedContent}</p>
+                <CardContent className="flex flex-col gap-3">
+                  <div className="flex justify-between items-center cursor-pointer" onClick={() => toggleMobileExpand(principle.title)}>
+                    <CardTitle className="text-primary text-base font-medium">{principle.title}</CardTitle>
+                    <ChevronDownIcon className={cn("h-5 w-5 text-muted-foreground transition-transform duration-200", expandedMobile === principle.title ? "transform rotate-180" : "")} />
                   </div>
+                  <p className="text-foreground/80 text-base">{principle.description}</p>
+                  {expandedMobile === principle.title && (
+                    <div className="mt-4">
+                      <div className="h-px bg-border/50 w-full my-3"></div>
+                      <p className="text-foreground/80 text-base whitespace-pre-line">{principle.expandedContent}</p>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </ContentWrapper>
