@@ -1,34 +1,60 @@
-import { Metadata } from "next";
-import Link from "next/link";
-import { SectionWrapper } from "@/components/generic/ui/section-wrapper";
-import { Button } from "@/components/ui/button";
-import { getMonochromaticGradient } from "@/lib/gradient";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Page Not Found | Kushagra Dhawan",
-  description: "Sorry, the page you are looking for does not exist or has been moved.",
-  robots: {
-    index: false,
-    follow: true,
-  },
-};
+import { useEffect } from "react";
+import Link from "next/link";
+import {
+  Section,
+  Container,
+  Flex,
+  Heading,
+  Text,
+  Button,
+} from "@kushagradhawan/kookie-ui";
+import { getMonochromaticGradient } from "@/lib/gradient";
 
 export default function NotFound() {
   const gradientText = getMonochromaticGradient();
+
+  useEffect(() => {
+    document.title = "Page Not Found | Kushagra Dhawan";
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute(
+        "content",
+        "Sorry, the page you are looking for does not exist or has been moved."
+      );
+    }
+  }, []);
+
   return (
-    <SectionWrapper>
-      <div className="max-w-3xl mx-auto text-center py-20 grid gap-4">
-        <blockquote className={`text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-none pb-4 ${gradientText}`}>Lost in the site?</blockquote>
-        <figcaption className="text-base text-muted-foreground font-medium">Sorry, the page you are looking for doesn&apos;t exist or has been moved.</figcaption>
-        <div className="flex flex-col md:flex-row gap-4 justify-center mt-8">
-          <Button asChild size="lg" aria-label="Return to the homepage">
-            <Link href="/">Go to Homepage</Link>
-          </Button>
-          <Button asChild size="lg" variant="secondary" aria-label="Browse all articles">
-            <Link href="/articles">Browse Articles</Link>
-          </Button>
-        </div>
-      </div>
-    </SectionWrapper>
+    <Section>
+      <Container size="4">
+        <Flex direction="column" gap="6" p="6" align="center">
+          <Heading size="9" weight="medium">
+            404
+          </Heading>
+          <Heading
+            size="8"
+            weight="medium"
+            className={gradientText}
+            style={{ textAlign: "center" }}
+          >
+            I'm lost in these memories <br />
+            Living behind my own illusion
+          </Heading>
+
+          <Flex gap="4" align="center" mt="6">
+            <Button size="3" highContrast asChild>
+              <Link href="/">Homepage</Link>
+            </Button>
+
+            <Button size="3" variant="classic" highContrast asChild>
+              <Link href="/articles">Articles</Link>
+            </Button>
+          </Flex>
+        </Flex>
+      </Container>
+    </Section>
   );
 }

@@ -1,5 +1,13 @@
 export interface WhyMeItem {
-  iconName: "Briefcase" | "Code" | "Zap" | "Handshake" | "LineChart" | "Ban" | "Clock" | "Users";
+  iconName:
+    | "Briefcase"
+    | "Code"
+    | "Zap"
+    | "Handshake"
+    | "LineChart"
+    | "Ban"
+    | "Clock"
+    | "Users";
   title: string;
   description: string;
 }
@@ -7,32 +15,38 @@ export interface WhyMeItem {
 export const whyMeItems: WhyMeItem[] = [
   {
     iconName: "Briefcase",
-    title: "Skip Expensive Hiring Mistakes",
-    description: "Combine PM, designer, and tech lead roles in one person. End the 'that's impossible' conflicts between teams. Features get built as designed when your PM understands technical implementation.",
+    title: "One Person, Many Hats",
+    description:
+      "I’ve had to play PM, designer, and tech lead at once. It cuts down misalignment because I can see trade-offs across roles. But juggling everything is messy — I drop things, I overextend — and I’m still learning how to balance it better.",
   },
   {
     iconName: "LineChart",
-    title: "Prioritize User Behavior Over Opinions",
-    description: "Early-stage products need intuition alongside analytics. I focus on how users actually interact with products, not just what they claim in surveys. This approach drove Womp's growth by addressing real usage patterns.",
+    title: "Behavior Over Opinions",
+    description:
+      "At Womp, I’ve seen users say one thing and do another. Watching how they actually use the product reveals more than surveys. But it’s not always clear — interpreting behavior is tricky, and I get it wrong often before I get it right.",
   },
   {
     iconName: "Ban",
-    title: "Maintain Product Focus",
-    description: "Building features just because competitors have them dilutes your product. I've declined user requests that would add clutter. This discipline kept Womp focused while competitors added complexity that slowed them down.",
+    title: "Saying No, Even When It Hurts",
+    description:
+      "Every new feature adds clutter. I’ve had to say no more than yes, even when it’s uncomfortable. Sometimes I regret those calls, but a focused product that solves a few problems well beats a bloated one that solves none clearly.",
   },
   {
     iconName: "Zap",
-    title: "Ship Quickly Without Breaking Things",
-    description: "Speed and quality aren't mutually exclusive. I ship rapidly while maintaining product integrity through thoughtful architecture and development practices, not by sacrificing reliability.",
+    title: "Learning Through Shipping",
+    description:
+      "Most things we ship at Womp aren’t elegant. They’re meant to teach us. Shipping fast creates real feedback; debating endlessly doesn’t. The balance with quality is still hard — I don’t think we’ve mastered it — but the learning has been worth the mess.",
   },
   {
     iconName: "Clock",
-    title: "Resolve Debates With Working Software",
-    description: "Working prototypes end discussions faster than meetings. I build testable versions while others schedule alignment calls. Real user interaction with functional software resolves product questions definitively.",
+    title: "Prototypes Answer Faster",
+    description:
+      "I’ve found rough prototypes resolve debates better than meetings. Even imperfect builds give direction. It’s not always practical — some things need planning — but more often than not, building early saves weeks of talk.",
   },
   {
     iconName: "Handshake",
-    title: "Bridge Technical and Product Needs",
-    description: "Computer science background provides clear understanding of technical possibilities and constraints. This prevents unrealistic requirements and helps teams focus on building what matters.",
+    title: "Between Tech and Product",
+    description:
+      "My CS background helps me know what’s feasible, but I don’t stop at constraints. I try to translate them into product terms so decisions stay user-focused. I don’t always get it right, but bridging the gap keeps us from chasing dead ends.",
   },
 ];

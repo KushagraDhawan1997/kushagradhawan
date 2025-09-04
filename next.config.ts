@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
 
 const securityHeaders = [
   {
@@ -30,6 +31,14 @@ const securityHeaders = [
     value: "camera=(), microphone=(), geolocation=()",
   },
 ];
+
+const withMDX = createMDX({
+  options: {
+    // Use string plugin names so options remain serializable under Turbopack
+    remarkPlugins: ["remark-frontmatter", "remark-mdx-frontmatter"],
+    rehypePlugins: [],
+  },
+});
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -90,4 +99,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withMDX(nextConfig);

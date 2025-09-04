@@ -1,0 +1,121 @@
+---
+title: "Building Products That Scale"
+description: "Scaling isn't about growth charts or vanity metrics. It's about whether the product can actually handle more people without collapsing under its own weight. The hard part is that complexity doesn't scale gracefully."
+date: "2025-08-27"
+author: "Kushagra Dhawan"
+featured: true
+image: "/articles/scaling-hero.jpg"
+alt: "Building products that scale through design, technology, and smart trade-offs"
+canonical: "https://kushagradhawan.com/articles/building-products-that-scale"
+tags:
+  [
+    "product-development",
+    "scaling",
+    "design-systems",
+    "technology",
+    "ai",
+    "engineering",
+    "leadership",
+  ]
+keywords:
+  [
+    "product scaling",
+    "complexity management",
+    "design patterns",
+    "technology trade-offs",
+    "AI integration",
+    "pixel streaming",
+    "real-time rendering",
+    "product leadership",
+  ]
+---
+
+When I think about scaling, I'm not thinking about user acquisition or revenue growth. I'm thinking about whether the product can actually serve more people without becoming a mess. Whether the team can build faster without sacrificing quality. Whether the system can evolve without breaking everything that came before.
+
+Most products fail at scaling not because they can't handle the technical load, but because they can't handle the complexity load. The more features you add, the more edge cases you discover, the more decisions you have to make. Complexity compounds in ways that are hard to predict and even harder to manage.
+
+## The Math of Easy
+
+Take Blender. It's powerful, but it's hard. Why? Because there's so much to do. The more tools you add, the harder a system gets. There's a kind of baseline difficulty baked into any product — a minimum level of complexity proportional to what it can do.
+
+This baseline isn't arbitrary. It's the irreducible complexity of the problem you're solving. You can't make a 3D modeling tool that's as simple as a calculator, because 3D modeling is inherently more complex than arithmetic. The question isn't whether you can eliminate complexity — it's whether you can manage it well.
+
+Most products are harder than that baseline. The job is to close that gap: make the product as easy as it can possibly be. Not easier, because that's impossible. But not harder either. The goal is to get as close to that theoretical minimum as you can.
+
+So how do you make a complex product easier?
+
+**Design patterns.** You lean on patterns people already know. Reuse what works, test it, refine it. When someone sees a button, they shouldn't have to learn what it does — they should already know. When they see a dialog, it should behave like every other dialog they've used. Patterns reduce cognitive load by making the unfamiliar feel familiar.
+
+**Reduce tools.** The 80/20 principle applies: if 20% of tools do 80% of the work, then maybe you don't need the other 80%. This isn't about removing features for the sake of simplicity — it's about removing features that don't add enough value to justify their complexity cost. Every tool you keep needs to earn its place.
+
+**Better technology.** Sometimes new tech shifts the baseline. It doesn't erase complexity, but it moves the line. What used to require expert knowledge can now be automated. What used to take hours can now take minutes. Technology doesn't solve the scaling problem, but it can change the terms of the problem.
+
+At [Womp](https://womp.com), we've done all three. We've built consistent design patterns, we've focused on the tools that matter most, and we've leveraged new technology to shift what's possible.
+
+## Shifts in Technology
+
+One example: rendering. In 3D tools, people often feel a disconnect between the working scene and the final render. You build something in the viewport, but when you render it, it looks completely different. The lighting is off, the materials don't match, the composition feels wrong. We wanted to remove that gap.
+
+So we introduced live rendering with real-time ray tracing. But making it easy meant making it run on any hardware. That's why we chose pixel streaming — the 3D part runs on our servers, and the user just sees a video.
+
+This was a significant architectural decision. Instead of asking users to have powerful GPUs, we moved the computational work to our infrastructure. Users only need good internet, not good hardware. But it also gave us new challenges: server proximity, latency, streaming limits. It solved one problem but created others.
+
+That's the nature of scaling — you're always moving the trade-offs around. You can't eliminate complexity, but you can choose where it lives. You can move it from the client to the server, from the user to the system, from the present to the future. The key is making sure the trade-offs you're making are the right ones for your users and your business.
+
+## Shipping Under Pressure
+
+We've also struggled with speed. Limited resources mean we often ship fast, even if that means relying on non-standard patterns. Those decisions are usually mine. I make the call because someone has to, and because speed has been our survival strategy.
+
+This isn't ideal, but it's reality. When you're a small team trying to compete with established players, you can't always afford to do things the "right" way. You have to ship features that work, even if they don't follow best practices. You have to make compromises that you know you'll have to fix later.
+
+But speed leaves scars. Non-standard patterns pile up. Technical debt accumulates. The codebase becomes harder to understand and modify. I've had to shift from just shipping to thinking harder about what quality means long-term.
+
+The design system I built — and started integrating at Womp — came out of this tension. By giving design direct control over the design layer, and letting engineering focus only on the app layer, we can ship fast and consistent. That balance didn't come from theory; it came from hard trade-offs under pressure.
+
+The goal isn't to eliminate the pressure — it's to build systems that can handle the pressure without breaking. Systems that let you move fast when you need to, but also let you slow down when you need to.
+
+## The Role of AI
+
+Now we're stepping into AI. To me, this is the real leveler. You shouldn't need to master a complex piece of software if AI can generate the thing for you. That's where I want us to be aggressive.
+
+AI doesn't erase complexity, but it shifts the baseline lower. It means you can scale to more people without teaching them every detail. Instead of asking users to climb the same steep learning curve, you give them shortcuts that were impossible before.
+
+At Womp, this means using AI to help users create 3D content without needing to understand the underlying tools. Instead of learning how to model, texture, and light a scene, users can describe what they want and let AI handle the technical details. The complexity is still there, but it's hidden behind a more intuitive interface.
+
+Scaling Womp without AI feels impossible. The learning curve is too steep, the tools are too complex, the barrier to entry is too high. Scaling Womp with AI feels difficult, but achievable. It's not about making 3D design easy — it's about making it accessible.
+
+## My Role in All This
+
+Where do I fit? Mostly in deciding:
+
+**What to ship.** Which features matter now, which can wait. This isn't just about prioritization — it's about understanding what will actually help users and what will just add complexity. Every feature we add needs to justify its existence.
+
+**How to ship.** What trade-offs we accept in quality, speed, or architecture. Sometimes we ship fast and fix later. Sometimes we take longer to get it right. The key is being intentional about these decisions, not just reactive.
+
+**How it behaves.** The UX decisions that make something feel "easy" or not. This is where design patterns matter most. A feature can be technically perfect but still feel hard to use if the interaction design is wrong.
+
+**How it looks.** The design details that make complexity feel manageable. Visual hierarchy, spacing, typography — these aren't just aesthetic choices, they're tools for managing cognitive load.
+
+My design team executes on these decisions. What I'm still working on — and struggling with — is helping them think more independently. I want them to generate these solutions, not just carry out mine. But it's been hard.
+
+I realize some of my ideas only came because I sit at the intersection of design and code. For example, the idea of separating design and application layers in Womp came from me, because I had to carry responsibility for both speed and quality. It came from understanding code, product, and design together. That's not easy to replicate in others.
+
+The challenge is building a team that can think across these boundaries without needing to be experts in everything. That's what I'm still figuring out.
+
+## Learning to Ship Myself
+
+Recently I've started writing frontend code again — mostly superficial UI work. It's helped me catch assumptions I used to make when I only designed. Talking to engineers is easier when I've touched the same pain points myself. Even small contributions in code make me more grounded in what's real.
+
+This isn't about becoming a better engineer — it's about becoming a better designer and product leader. When you understand the constraints that engineers work under, you can make better decisions about what to ask for. When you've felt the pain of implementing your own designs, you can create designs that are easier to implement.
+
+It's also about staying connected to the reality of building products. It's easy to get lost in strategy and planning when you're not actually building things. Writing code keeps me grounded in what's possible, what's hard, and what's worth the effort.
+
+## Closing
+
+Scaling isn't glamorous. It's about lowering complexity to its theoretical minimum, then finding ways to push that line down further with technology and design. It's about shipping under constraints, carrying trade-offs, and trying to learn faster than you break things.
+
+At Womp, we're still figuring this out. Pixel streaming solved some problems, created others. AI feels like the path forward, but we're only at the start. My role is to keep pushing — deciding what we ship, how much, and how it should behave — while trying to grow a team that can think beyond me.
+
+The work is never done. Every solution creates new problems. Every success reveals new challenges. But that's what building products that scale really is — not a destination, but a process of continuous adaptation and improvement.
+
+It's not solved. It's not easy. But that's what makes it worth doing.

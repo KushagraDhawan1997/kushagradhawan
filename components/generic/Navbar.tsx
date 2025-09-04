@@ -1,157 +1,271 @@
 "use client";
 
-/**
- * Navbar Component
- *
- * This component provides the main navigation for the site.
- * It includes the site title, navigation links, theme toggle, and a contact button.
- * The navbar is sticky and includes styling for the active page.
- */
-
 import * as React from "react";
-import { useEffect, useState, useRef, useCallback } from "react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { useTheme } from "next-themes";
-import { Sun, Moon, Monitor } from "lucide-react";
+import {
+  useEffect,
+  useState,
+  useRef,
+  useCallback,
+  useLayoutEffect,
+} from "react";
+import {
+  Button,
+  Box,
+  Flex,
+  Avatar,
+  Text,
+  IconButton,
+  DropdownMenu,
+  useThemeContext,
+} from "@kushagradhawan/kookie-ui";
+import { Link as KookieLink } from "@kushagradhawan/kookie-ui";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { Sun, Moon, Monitor, Mail } from "lucide-react";
 
 /**
- * ThemeToggle component
+ * ThemeToggle Component
  *
- * Provides a button to cycle between light, dark, and system themes.
- * Uses icons to visually indicate the current theme.
- * Handles hydration by not rendering until after mount.
+ * A dropdown menu that allows switching between system, light, and dark themes
+ * using KookieUI's theme context. Persists theme choice in localStorage.
  *
- * @returns React component for toggling the theme
+ * @returns React component for theme switching
  */
 function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { appearance, onAppearanceChange } = useThemeContext();
   const [mounted, setMounted] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState<"system" | "light" | "dark">(
+    "system"
+  );
 
-  // Only show the toggle after mounting to prevent hydration mismatch
+  // Only render after mounting to avoid hydration issues
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  /**
-   * Cycles through the available themes (light → dark → system)
-   */
-  const cycleTheme = () => {
-    if (theme === "light") setTheme("dark");
-    else if (theme === "dark") setTheme("system");
-    else setTheme("light");
+  // Initialize theme from localStorage or system preference
+  useEffect(() => {
+    if (!mounted) return;
+
+    const savedTheme = localStorage.getItem("kookie-theme") as
+      | "system"
+      | "light"
+      | "dark"
+      | null;
+
+    if (savedTheme) {
+      setCurrentTheme(savedTheme);
+      if (savedTheme === "system") {
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        onAppearanceChange(prefersDark ? "dark" : "light");
+      } else {
+        onAppearanceChange(savedTheme);
+      }
+    } else {
+      // Default to system preference
+      setCurrentTheme("system");
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      onAppearanceChange(prefersDark ? "dark" : "light");
+      localStorage.setItem("kookie-theme", "system");
+    }
+  }, [mounted, onAppearanceChange]);
+
+  const handleThemeChange = (theme: "system" | "light" | "dark") => {
+    setCurrentTheme(theme);
+    localStorage.setItem("kookie-theme", theme);
+
+    if (theme === "system") {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      onAppearanceChange(prefersDark ? "dark" : "light");
+    } else {
+      onAppearanceChange(theme);
+    }
   };
 
-  // If not mounted yet, render an empty button to maintain layout
+  // Don't render until mounted to avoid hydration mismatch
   if (!mounted) {
-    return <Button variant="ghost" size="icon" className="mr-2 relative invisible" />;
+    return <div style={{ width: "40px", height: "40px" }} />;
   }
 
+  const getThemeIcon = () => {
+    switch (currentTheme) {
+      case "light":
+        return <Sun />;
+      case "dark":
+        return <Moon />;
+      case "system":
+      default:
+        return <Monitor />;
+    }
+  };
+
   return (
-    <Button variant="ghost" size="icon" aria-label="Toggle theme" onClick={cycleTheme} className="mr-2 relative">
-      {/* Light theme icon - visible when theme is light */}
-      <Sun className={cn("size-4 transition-all absolute", theme === "light" ? "scale-100 rotate-0 opacity-100" : "scale-0 rotate-90 opacity-0")} />
-
-      {/* Dark theme icon - visible when theme is dark */}
-      <Moon className={cn("size-4 transition-all absolute", theme === "dark" ? "scale-100 rotate-0 opacity-100" : "scale-0 rotate-90 opacity-0")} />
-
-      {/* System theme icon - visible when theme is system or not set */}
-      <Monitor className={cn("size-4 transition-all absolute", theme === "system" || !theme ? "scale-100 rotate-0 opacity-100" : "scale-0 rotate-90 opacity-0")} />
-
-      {/* Screen reader text that describes the current action */}
-      <span className="sr-only">{theme === "light" ? "Switch to dark theme" : theme === "dark" ? "Switch to system theme" : "Switch to light theme"}</span>
-    </Button>
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger>
+        <IconButton variant="classic" size="2" aria-label="Theme selector">
+          {getThemeIcon()}
+        </IconButton>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content highContrast align="end">
+        <DropdownMenu.Item onClick={() => handleThemeChange("system")}>
+          <Flex align="center" gap="2">
+            <Monitor />
+            System
+          </Flex>
+        </DropdownMenu.Item>
+        <DropdownMenu.Item onClick={() => handleThemeChange("light")}>
+          <Flex align="center" gap="2">
+            <Sun />
+            Light
+          </Flex>
+        </DropdownMenu.Item>
+        <DropdownMenu.Item onClick={() => handleThemeChange("dark")}>
+          <Flex align="center" gap="2">
+            <Moon />
+            Dark
+          </Flex>
+        </DropdownMenu.Item>
+      </DropdownMenu.Content>
+    </DropdownMenu.Root>
   );
 }
 
 /**
- * NavLink component
+ * NavLink Component
  *
- * Simple navigation link with active state styling
+ * A navigation link that highlights when active and provides proper accessibility.
  * Uses standard browser scrolling when linking to page sections
  */
-function NavLink({ href, children, ariaLabel }: { href: string; children: React.ReactNode; ariaLabel?: string }) {
+function NavLink({
+  href,
+  children,
+  ariaLabel,
+}: {
+  href: string;
+  children: React.ReactNode;
+  ariaLabel?: string;
+}) {
   const pathname = usePathname();
-  const isActive = pathname === href || pathname.startsWith(`${href}/`);
+  const [mounted, setMounted] = useState(false);
 
-  // For anchor links, determine if we need to prepend the homepage URL
-  // when we're not on the homepage
-  let linkHref = href;
-  if (href.startsWith("#") && pathname !== "/") {
-    linkHref = "/" + href;
+  // Only render after mounting to avoid hydration issues
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Handle anchor links on the same page
+  const linkHref = href.startsWith("#") ? `/${pathname}${href}` : href;
+
+  // Don't render until mounted to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <KookieLink
+        href={linkHref}
+        size="2"
+        weight="regular"
+        color="gray"
+        aria-label={
+          ariaLabel || (typeof children === "string" ? children : undefined)
+        }
+      >
+        <Flex align="center" gap="2">
+          {children}
+        </Flex>
+      </KookieLink>
+    );
   }
 
+  const isActive = pathname === href || pathname.startsWith(`${href}/`);
+
   return (
-    <Link
+    <KookieLink
       href={linkHref}
-      className={cn("text-sm px-3 py-2 rounded-md transition-colors", isActive ? "text-foreground font-medium" : "text-foreground/60 hover:text-foreground hover:bg-primary/5")}
-      aria-label={ariaLabel || (typeof children === "string" ? children : undefined)}
+      size="2"
+      weight={isActive ? "medium" : "regular"}
+      color={isActive ? undefined : "gray"}
+      aria-label={
+        ariaLabel || (typeof children === "string" ? children : undefined)
+      }
     >
-      {children}
-    </Link>
+      <Flex align="center" gap="2">
+        {children}
+      </Flex>
+    </KookieLink>
   );
 }
 
 /**
- * Navbar component
+ * Navbar Component
  *
- * Main navigation component for the site. Includes site branding,
- * navigation links, theme toggle, and contact button.
+ * The main navigation component that provides:
+ * - Site logo and branding
+ * - Navigation links to different sections
+ * - Theme toggle functionality
+ * - Contact button
+ * - Responsive design considerations
  *
- * @param props - Component props
- * @param props.className - Optional additional CSS classes
+ * @param className - Additional CSS classes for styling
+ * @param props - Additional HTML attributes
  * @returns React component for the site navigation
  */
-export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
+export function Navbar({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLElement>) {
   // Get the current path to highlight active links
   const pathname = usePathname();
 
   return (
-    <header className={cn("sticky top-0 z-50 w-full border-b border-dashed border-foreground/20 bg-background/10 backdrop-blur-sm", className)} {...props}>
-      <div className="w-full max-w-7xl mx-auto px-6 flex h-16 items-center justify-between">
+    <Box
+      position="sticky"
+      top="0"
+      style={{ zIndex: 50 }}
+      width="100%"
+      {...props}
+    >
+      <Flex width="100%" height="64px" align="center" justify="between" px="4">
         {/* Left side: Logo */}
-        <div className="flex items-center">
-          {/* Site logo */}
-          <Link href="/" className="flex items-center gap-2" aria-label="Kushagra Dhawan - Homepage">
-            <div className="relative w-6 h-6 overflow-hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" className="text-foreground">
-                <path
-                  d="M211,103.43l-70.13,28,49.47,63.61a8,8,0,1,1-12.63,9.82L128,141,78.32,204.91a8,8,0,0,1-12.63-9.82l49.47-63.61L45,103.43A8,8,0,0,1,51,88.57l69,27.61V40a8,8,0,0,1,16,0v76.18l69-27.61A8,8,0,1,1,211,103.43Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-            <span className="text-sm font-bold">Kushagra Dhawan</span>
-          </Link>
-        </div>
+        <Link href="/" aria-label="Kushagra Dhawan - Homepage">
+          <Flex align="center" gap="2">
+            <Avatar
+              color="gray"
+              size="1"
+              src="/logo-dark-large.png"
+              fallback="KD"
+            />
+            <Text size="4" weight="medium">
+              Kush.
+            </Text>
+          </Flex>
+        </Link>
 
-        {/* Right side: Navigation links, theme toggle, and contact button */}
-        <div className="flex items-center gap-4">
-          {/* Navigation links */}
-          <nav className="hidden md:flex items-center space-x-1">
-            <NavLink href="#about" ariaLabel="Learn about Kushagra Dhawan's background and experience">
-              About Me
-            </NavLink>
-            <NavLink href="#about-womp" ariaLabel="Discover Kushagra's work at Womp">
-              Womp
-            </NavLink>
-            <NavLink href="#team-leadership" ariaLabel="Learn about Kushagra's leadership philosophy">
-              Leadership
-            </NavLink>
-            <NavLink href="/articles" ariaLabel="Read articles by Kushagra Dhawan">
-              Articles
-            </NavLink>
-          </nav>
+        {/* Right side: Navigation links, theme toggle and contact button */}
+        <Flex align="center" gap={{ initial: "4", md: "6" }}>
+          <NavLink href="/articles">Articles</NavLink>
 
-          <ThemeToggle />
-          <Button size="sm" variant="outline" asChild aria-label="Contact Kushagra Dhawan">
-            <Link href={pathname === "/" ? "#contact" : "/#contact"}>Get in Touch</Link>
-          </Button>
-        </div>
-      </div>
-    </header>
+          <Flex gap="2">
+            <ThemeToggle />
+            <Button
+              size="2"
+              highContrast
+              asChild
+              variant="classic"
+              aria-label="Contact Kushagra Dhawan"
+            >
+              <Link href={pathname === "/" ? "#contact" : "/#contact"}>
+                <Mail />
+                Contact
+              </Link>
+            </Button>
+          </Flex>
+        </Flex>
+      </Flex>
+    </Box>
   );
 }

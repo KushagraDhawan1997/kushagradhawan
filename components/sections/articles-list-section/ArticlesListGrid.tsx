@@ -1,6 +1,6 @@
 import { ArticleCard } from "./ArticleCard";
+import { Grid } from "@kushagradhawan/kookie-ui";
 
-// Define necessary props directly
 export interface ArticleProps {
   title: string;
   description: string;
@@ -9,32 +9,16 @@ export interface ArticleProps {
   tags?: string[];
 }
 
-// We don't need gridArea anymore, but keeping the interface name for compatibility
-export interface ArticleWithGrid extends ArticleProps {
-  // Removing gridArea property since we're using a simple grid
-}
-
 interface ArticlesListGridProps {
-  posts: ArticleWithGrid[];
-  isMobile?: boolean;
+  posts: ArticleProps[];
 }
 
-export function ArticlesListGrid({ posts, isMobile = false }: ArticlesListGridProps) {
-  if (isMobile) {
-    return (
-      <div className="grid grid-cols-1 gap-2 md:hidden">
-        {posts.map((post) => (
-          <ArticleCard key={post.slug} post={post} isMobile={true} />
-        ))}
-      </div>
-    );
-  }
-
+export function ArticlesListGrid({ posts }: ArticlesListGridProps) {
   return (
-    <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-2">
+    <Grid gap="4" columns={{ initial: "1", md: "2", lg: "3" }}>
       {posts.map((post) => (
         <ArticleCard key={post.slug} post={post} />
       ))}
-    </div>
+    </Grid>
   );
 }

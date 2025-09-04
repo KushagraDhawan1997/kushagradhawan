@@ -6,9 +6,3 @@
  */
 
 export * from "./StartupSolutionsSection";
-export * from "./StartupSolutionsSectionCard";
-export * from "./StartupSolutionsSectionGrid";
-export * from "./StartupSolutionsSectionDialog";
-export * from "./startup-solutions-section-data";
-export * from "./illustrations/EngineeringProductThinking";
-export * from "./illustrations/CrossFunctionalTeamIllustration";

@@ -7,5 +7,4 @@
  */
 
 export * from "./ContactSection";
-export * from "./ContactTestimonial";
 export * from "./contactData";

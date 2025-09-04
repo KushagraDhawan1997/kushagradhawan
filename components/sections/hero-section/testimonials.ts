@@ -52,9 +52,10 @@ export type Testimonial = {
 export const testimonials: Testimonial[] = [
   {
     id: 1,
-    shortTestimonial: "Kush brings order to complex projects through systematic thinking and calm leadership.",
+    shortTestimonial:
+      "Kush pays close attention to detail and sets up systems that actually work.",
     fullTestimonial:
-      "Kush makes projects run smoothly even under pressure. When deadlines tighten and work gets chaotic, he determines what needs to happen in what order. His systems help both current projects and future team processes. He pays attention to details without becoming perfectionist, and maintains calm when stress levels rise around him.",
+      "Kushagra is meticulous about the little things and keeps projects organized. He sets up systems and processes so that teams can work smoothly without getting lost in chaos. He can design, code, and handle the less glamorous work like documentation and project coordination. Most of all, he tries to keep things moving with calm reasoning even when it’s stressful. He’s not perfect, but he’s the kind of person who keeps trying to solve problems piece by piece.",
     author: {
       name: "Shruti Bhatia",
       designation: "Assistant Manager",
@@ -65,9 +66,10 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: 7,
-    shortTestimonial: "Kush applies design thinking beyond interfaces to transform how teams approach problems.",
+    shortTestimonial:
+      "Kush applies design thinking beyond just screens and interfaces.",
     fullTestimonial:
-      "Working with Kush changed our team's problem-solving approach. He applies design principles to project planning, stakeholder communication, and breaking down complex challenges. He communicates effectively with both developers on technical details and executives on business value, keeping everyone aligned on core objectives.",
+      "I’ve been working with Kush for over two years now as part of his design team at Womp. He brings design thinking not just into interfaces, but into how the team plans and communicates. He talks to engineers about technical details, and business folks about what matters to them — which helps us not get stuck in silos. Day to day, he helps me focus on what’s important, and I’ve learned a lot working directly with him.",
     author: {
       name: "Gopi Krishna",
       designation: "Product Designer",
@@ -78,9 +80,10 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: 2,
-    shortTestimonial: "Kush understands engineering, design, business, and product simultaneously, creating solutions that work for everyone.",
+    shortTestimonial:
+      "Kush balances design, product, and engineering trade-offs.",
     fullTestimonial:
-      "Kush stands out through his understanding of multiple disciplines. Unlike specialists, he grasps engineering constraints, design principles, business requirements, and user needs simultaneously. His decisions work because he considers all perspectives. He collaborates patiently and goes beyond expectations to ensure product success.",
+      "I’ve been working with Kushagra for over three years now at Womp. He leads our design team and keeps the product moving forward every day. He’s patient when explaining things, but also practical about trade-offs between design, engineering, and business needs. He doesn’t always get it right, but he’s open to discussion and learning along the way. I’ve grown a lot as a designer working closely with him.",
     author: {
       name: "Praneeth Potnuru",
       designation: "Product Designer",
@@ -91,9 +94,9 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: 3,
-    shortTestimonial: "Kush teaches problem-solving frameworks while working, not just solving immediate issues.",
+    shortTestimonial: "Kush is a fast learner who shares what he knows.",
     fullTestimonial:
-      "Kush learns new concepts quickly and explains them clearly to others. He focuses on important details without getting lost in minutiae. His most valuable trait is teaching while working—collaborating with him means learning his approach. Teams improve their problem-solving abilities because he provides frameworks for addressing complex challenges.",
+      "I worked with Kushagra and would recommend him to anyone building product. He learns quickly and breaks problems down logically. He’s detail-oriented, teaches by example, and knows how to work in a team. His energy makes it easier to get through tough work. He’s not trying to be perfect, but he tries to figure things out alongside the team, and that makes him reliable to work with.",
     author: {
       name: "Maitri Patel",
       designation: "Design Lead",
@@ -104,9 +107,10 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: 4,
-    shortTestimonial: "Kush bridges communication gaps between technical and business teams.",
+    shortTestimonial:
+      "Kush pushes for clear team communication and even jumps into frontend when needed.",
     fullTestimonial:
-      "Kush helps different teams communicate effectively. He facilitates discussions between frontend, backend, design, and QA, making technical conversations accessible to everyone. He explains why technical decisions matter to business stakeholders and helps them understand implementation constraints. Organizations run more smoothly with his involvement.",
+      "I still work with Kush at Womp, and he leads design while helping us engineers understand the product better. He encourages communication between teams (front-end, graphics, back-end, QA), and makes sure we’re not just coding blindly. When I’m moving fast, he sometimes contributes frontend code himself to polish design details — which saves a lot of time. He also finds simpler UX fixes instead of over-engineering things, which keeps us moving. He’s not above the messy work, and that helps a lot.",
     author: {
       name: "Anuj Verma",
       designation: "Software Engineer",
@@ -117,9 +121,10 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: 5,
-    shortTestimonial: "Kush identifies hidden potential in team members and creates growth opportunities.",
+    shortTestimonial:
+      "Kush has been consistent over the years and keeps picking up new skills.",
     fullTestimonial:
-      "Kush helps team members exceed their perceived capabilities. He identifies strengths people don't recognize in themselves and creates opportunities to develop them. His leadership enables people to tackle and succeed at challenges they wouldn't have attempted otherwise. Having evolved from managing university projects to leading design departments, he brings this growth mindset to everyone he works with.",
+      "I’ve known Kushagra since 2018, first as a senior at university and later as he managed design at Wishbox studio. It’s 2025 now, so it’s been well over six years. He keeps showing up with the same curiosity, learning new skills and trying to get the best out of whoever he’s working with. He’s not flashy, but he’s steady, and he genuinely cares about design and technology. That’s what I’ve valued most about working with him.",
     author: {
       name: "Chanakya Kilaru",
       designation: "Frontend Engineer",
@@ -130,9 +135,10 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: 6,
-    shortTestimonial: "Kush creates solutions that satisfy user needs, technical constraints, and business goals simultaneously.",
+    shortTestimonial:
+      "Kush works at the intersection of user needs, engineering, and business.",
     fullTestimonial:
-      "Kush approaches product challenges strategically, creating user value while respecting technical and business constraints. He brings clarity to complex projects and directs team focus to what matters most. His combination of strategic vision and technical understanding makes ambitious goals achievable. He transforms complicated requirements into clear, actionable steps.",
+      "When problems get complicated, Kush helps break them down into simpler steps. He cares about users, but he also listens to engineering and business constraints so things are realistic. He’s not trying to be a visionary — he just keeps things practical and clear so the team can make progress without getting lost in the big picture.",
     author: {
       name: "Lahari Kasarla",
       designation: "Engagement Manager",

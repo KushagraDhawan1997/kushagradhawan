@@ -1,0 +1,122 @@
+---
+title: "About KookieUI"
+description: "KookieUI didn't start with a vision. It started with building. A design system that sits on top of Radix, encoding patterns where primitives stop."
+date: "2025-08-27"
+author: "Kushagra Dhawan"
+featured: true
+image: "/articles/kookie-ui-hero.jpg"
+alt: "KookieUI design system built on top of Radix primitives"
+canonical: "https://kushagradhawan.com/articles/about-kookie-ui"
+tags:
+  [
+    "design-systems",
+    "kookie-ui",
+    "radix",
+    "product-development",
+    "engineering",
+    "design",
+  ]
+keywords:
+  [
+    "design system",
+    "ui components",
+    "radix primitives",
+    "design patterns",
+    "component library",
+    "accessibility",
+    "theming",
+    "product development",
+  ]
+---
+
+import { Flex, Badge } from "@kushagradhawan/kookie-ui";
+
+
+<Flex direction="row" align="center" gap="1">
+  <Badge highContrast>Coming Soon</Badge>
+  <Badge highContrast color="orange">Beta</Badge>
+</Flex>
+
+I was using Radix every day, and it did a lot of things right. Radix gave me primitives that were accessible out of the box, strong defaults, and a toolkit that let me move fast. The components worked reliably, the API felt intuitive, and I could trust that what I built would actually function for users. But as soon as I tried to rely on it for a real product, I found myself needing more. Not because Radix was wrong, but because it only went so far.
+
+That's where KookieUI began. I didn't want to replace Radix or outdo it. I wanted to build on top of it — to fill in the gaps, to systematize the parts that felt scattered, and to introduce patterns Radix never set out to cover. It wasn't about fixing something broken; it was about extending something that was already working well.
+
+## Where Radix Stopped and I Continued
+
+Radix is a UI toolkit. That's its strength and its limit. It gives you parts, not patterns.
+
+When I started using it for real applications, I noticed things that didn't quite hold together. These weren't bugs or failures — they were just natural limits of what Radix was designed to do:
+
+- **Variants weren't unified.** A "surface" card looked different from a "surface" button. The shadows didn't mean the same thing across components, and the visual language felt inconsistent. Some components had "classic" variants, others didn't, and there was no clear rule for when to use what.
+
+- **Theming stopped halfway.** Radix had a panelBackground token, which was a great idea, but it only applied to cards and tables. Dialogs, popovers, dropdowns — they all ignored it completely. There was no way to override it component by component, so you'd end up with some surfaces that matched your theme and others that didn't.
+
+- **Sizing didn't align.** Each component had its own scale: cards went up to 5, buttons to 4, dropdowns to 3, selects to 2, avatars to 12. Put a size-1 button inside a size-1 card, and they didn't look related at all. The proportions felt arbitrary rather than systematic.
+
+- **Motion felt uneven.** Some transitions, like segmented controls, felt smooth and polished. Others, like tabs, just snapped instantly with no easing. There was no consistent motion language across the system.
+
+- **Accessibility was strong, but uneven in the details.** The core accessibility was excellent — screen readers worked, keyboard navigation was solid. But icon buttons didn't enforce aria-labels, tooltips had to be wrapped manually every time, and icons weren't sized consistently across components.
+
+None of these are "flaws." Radix did exactly what it promised: give me primitives. But primitives aren't enough for a system that teams can trust blindly. That's where KookieUI came in.
+
+## What KookieUI Tries To Be
+
+KookieUI isn't a new toolkit. It's a design system that sits on top of one. Where
+Radix stops at components, KookieUI tries to encode patterns.
+
+**Patterns before parts.** I don't start with buttons or cards. I start with spacing, radius, shadow, color, typography, and motion. These rules apply everywhere, and components inherit them instead of reinventing them. When you use a size-2 button, it uses the same spacing scale as a size-2 card. When you apply a "surface" variant, it means the same thing across every component.
+
+**Material instead of panelBackground.** panelBackground never felt right to me — it was too specific, too tied to one particular use case. I replaced it with material — a system that defines how components render against whatever background they sit on. It's more flexible and more intentional.
+
+- At the theme level, you can decide: translucent or solid. This affects how the entire system feels.
+- At the component level, you can override defaults. A dialog might need to be more opaque than a dropdown.
+- Dialogs, panels, and buttons each get defaults that convey depth and elevation in a way that feels intentional, not accidental.
+
+**Unified tokens.** Sizes, radii, typography weights, and color scales all match across components. No one-off ladders, no magic numbers buried in code. If you see a size-3 anywhere in the system, it means the same thing everywhere. This consistency makes the system predictable and learnable.
+
+**Accessibility enforced.** Icon buttons require labels — no exceptions. Tooltips are native, not something you have to remember to wrap. Screen reader and keyboard support from Radix stays in place, but KookieUI extends it with the details that matter in day-to-day use. The accessibility isn't just there; it's impossible to get wrong.
+
+**Extended patterns and components.** I added toggle buttons, toggle icon buttons, more typography weights, and layout primitives like shell, split view, and sidebars. Even new-age patterns like an AI chat bar fit inside the same rules. The goal isn't to add more components for the sake of it, but to fill gaps where the existing patterns didn't quite work.
+
+KookieUI is less about adding more components and more about making the existing ones behave consistently — as if they were designed together, not assembled separately.
+
+## Using KookieUI at Womp
+
+KookieUI is still my personal project. I didn't build it as "Womp's design system."
+But as I worked on it, I realized I could use it inside Womp to solve real problems.
+
+We're still early in that process. Some areas of the product run on KookieUI, many don't yet. Migration takes time. But even in this half-and-half state, it's already helping.
+
+Here's what changes when you have a system like this:
+
+- **Speed.** Engineers don't rebuild design details; they just consume them. Update the dependency, and the new design flows in automatically. No more "can you make this button look like the other buttons?" conversations. The system handles consistency, so engineers can focus on functionality.
+
+- **Principles in code.** Instead of writing documentation about spacing or motion, those rules live in the system itself. They're defaults, not reminders. When someone uses a component, they get the right spacing automatically. When they need to override it, the system guides them toward the right choices.
+
+- **Direct contribution.** I don't stop at design files. I can push design changes directly into KookieUI, which means my team can move faster without losing polish. A design improvement I make on Monday can be in production by Tuesday, without waiting for engineering cycles or risking implementation drift.
+
+- **Clear ownership.** Through KookieUI, the design team controls the design layer. If something looks wrong, it's because the system didn't encode it yet. That responsibility belongs to me and my team, not to engineers guessing at our intent. It's not about blame; it's about clarity.
+
+It's not a clean migration. It's uneven. Some areas look and feel more coherent than others. But the trend is clear: KookieUI gives us a way for design to lead instead of just suggest.
+
+## What I'm Still Learning
+
+KookieUI is not finished. It probably never will be. I'm still figuring out:
+
+- How to extend the system with new patterns without turning it into a rigid framework. Every new component I add has to fit the existing rules, but sometimes the rules need to evolve. It's a constant balancing act between consistency and flexibility.
+
+- How to refine motion and interaction so every component feels equally polished. Some components have smooth, thoughtful transitions. Others still feel a bit mechanical. Getting the motion language right across the entire system is harder than I expected.
+
+- How to keep the system flexible enough to evolve but dependable enough to trust. Teams need to know that when they use a component, it will work predictably. But they also need to know that the system can grow with their needs.
+
+Some days it feels like I'm adding too much structure — like I'm over-engineering something that should be simpler. Other days it feels like there are still too many gaps, like I'm not providing enough guidance. That tension is part of the work, and I'm learning to live with it.
+
+## Closing Thought
+
+Radix gave me a toolkit. KookieUI is my attempt to turn it into a system.
+
+It isn't about proving Radix wrong. It isn't about building the "best" design system. It's about noticing where I needed more, and then building it. It's about codifying rules so design intent doesn't get lost in translation between design and engineering. It's about giving the design team — through me — a way to own how design shows up in the product, not just how it looks in Figma.
+
+KookieUI is still early, still uneven, still in progress. Some parts feel mature and stable, others are still experimental. But step by step, it's making Womp faster, more consistent, and more deliberate. The team can move quicker because they're not reinventing design decisions. The product feels more cohesive because the system enforces consistency. And I can iterate on design without waiting for engineering cycles.
+
+That's enough reason for me to keep building.

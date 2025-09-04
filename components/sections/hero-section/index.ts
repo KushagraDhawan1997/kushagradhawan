@@ -7,5 +7,4 @@
 
 export { HeroSection } from "./HeroSection";
 export { TestimonialCard } from "./TestimonialCard";
-export { TestimonialDialog } from "./TestimonialDialog";
 export { testimonials, type Testimonial, type Author } from "./testimonials";

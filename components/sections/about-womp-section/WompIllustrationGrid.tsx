@@ -1,12 +1,8 @@
 "use client";
 
-import { ContentWrapper } from "@/components/generic/ui/content-wrapper";
+import { Box, Flex, Grid } from "@kushagradhawan/kookie-ui";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-
-type WompIllustrationGridProps = {
-  isMobile?: boolean;
-};
 
 type MediaItem = {
   path: string;
@@ -18,7 +14,7 @@ type MediaItem = {
 // Set this to true to use optimized files, true to use optimized files (when available)
 const USE_OPTIMIZED = true;
 
-export function WompIllustrationGrid({ isMobile = false }: WompIllustrationGridProps) {
+export function WompIllustrationGrid() {
   // Using the original media files
   const wompMedia: MediaItem[] = [
     {
@@ -56,7 +52,11 @@ export function WompIllustrationGrid({ isMobile = false }: WompIllustrationGridP
   const [isMobileDevice, setIsMobileDevice] = useState(false);
 
   useEffect(() => {
-    setIsMobileDevice(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+    setIsMobileDevice(
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    );
   }, []);
 
   // Function to get optimized path if available
@@ -89,7 +89,9 @@ export function WompIllustrationGrid({ isMobile = false }: WompIllustrationGridP
 
     // If it's an original path but we want to use optimized thumbnails
     if (videoPath.includes("/final/")) {
-      return videoPath.replace("/final/", "/optimized/").replace(".mp4", ".jpg");
+      return videoPath
+        .replace("/final/", "/optimized/")
+        .replace(".mp4", ".jpg");
     }
 
     return videoPath + "?poster";
@@ -102,50 +104,9 @@ export function WompIllustrationGrid({ isMobile = false }: WompIllustrationGridP
     poster: media.type === "video" ? getThumbnailPath(media.path) : undefined,
   }));
 
-  if (isMobile) {
-    return (
-      <div className="grid grid-cols-2 gap-2 md:hidden">
-        {/* Display all 6 items on mobile in 2 columns */}
-        {processedMedia.map((media, i) => (
-          <ContentWrapper key={i} borderLeft={true} borderRight={true} extendBorders={true} extendAmount={12} className="mb-0">
-            <div className="h-40 sm:h-48 w-full rounded-md overflow-hidden relative">
-              {media.type === "video" ? (
-                <LazyVideo
-                  src={media.path}
-                  originalSrc={wompMedia[i].path} // Provide original source as fallback
-                  poster={media.poster}
-                  lowQuality={isMobileDevice}
-                />
-              ) : (
-                <Image
-                  src={media.path}
-                  alt={`Womp 3D Design illustration ${i + 1}`}
-                  fill
-                  className="object-cover grayscale hover:grayscale-0 transition-all duration-300"
-                  priority={i < 2}
-                  loading={i < 2 ? "eager" : "lazy"}
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  quality={isMobileDevice ? 60 : 75}
-                  onError={() => {
-                    // If the optimized image fails to load, attempt to fallback to original
-                    const img = document.getElementById(`womp-img-${i}`) as HTMLImageElement;
-                    if (img && USE_OPTIMIZED) {
-                      img.src = wompMedia[i].path;
-                    }
-                  }}
-                  id={`womp-img-${i}`}
-                />
-              )}
-            </div>
-          </ContentWrapper>
-        ))}
-      </div>
-    );
-  }
-
-  // Desktop view with responsive grid
+  // Single responsive grid for all devices
   return (
-    <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 md:grid-rows-auto gap-2 rounded-md">
+    <Grid gap="3" columns={{ initial: "1", sm: "2", md: "3" }}>
       {processedMedia.map((media, i) => (
         <WompMediaItem
           key={i}
@@ -155,44 +116,75 @@ export function WompIllustrationGrid({ isMobile = false }: WompIllustrationGridP
           lowQuality={isMobileDevice}
         />
       ))}
-    </div>
+    </Grid>
   );
 }
 
 // Helper component for individual media items
-function WompMediaItem({ index, media, originalMedia, lowQuality = false }: { index: number; media: MediaItem; originalMedia: MediaItem; lowQuality?: boolean }) {
+function WompMediaItem({
+  index,
+  media,
+  originalMedia,
+  lowQuality = false,
+}: {
+  index: number;
+  media: MediaItem;
+  originalMedia: MediaItem;
+  lowQuality?: boolean;
+}) {
   return (
-    <ContentWrapper borderLeft={true} borderRight={true} extendBorders={true} extendAmount={8} className="h-full">
-      <div className="aspect-[16/10] w-full overflow-hidden relative rounded-md">
-        {media.type === "video" ? (
-          <LazyVideo
-            src={media.path}
-            originalSrc={originalMedia.path} // Provide original source as fallback
-            poster={media.poster}
-            lowQuality={lowQuality}
-          />
-        ) : (
-          <Image
-            src={media.path}
-            alt={`Womp 3D Design illustration ${index + 1}`}
-            fill
-            className="object-cover grayscale hover:grayscale-0 hover:scale-105 transition-all duration-300"
-            priority={index < 1}
-            loading={index < 1 ? "eager" : "lazy"}
-            sizes="(max-width: 768px) 100vw, 33vw"
-            quality={lowQuality ? 60 : 75}
-            onError={() => {
-              // If the optimized image fails to load, fallback to original
-              const img = document.getElementById(`womp-desktop-img-${index}`) as HTMLImageElement;
-              if (img && USE_OPTIMIZED) {
-                img.src = originalMedia.path;
-              }
-            }}
-            id={`womp-desktop-img-${index}`}
-          />
-        )}
-      </div>
-    </ContentWrapper>
+    <Box
+      height="100%"
+      style={{
+        aspectRatio: "16/10",
+        width: "100%",
+        overflow: "hidden",
+        position: "relative",
+        borderRadius: "var(--radius-5)",
+      }}
+    >
+      {media.type === "video" ? (
+        <LazyVideo
+          src={media.path}
+          originalSrc={originalMedia.path} // Provide original source as fallback
+          poster={media.poster}
+          lowQuality={lowQuality}
+        />
+      ) : (
+        <Image
+          src={media.path}
+          alt={`Womp 3D Design illustration ${index + 1}`}
+          fill
+          style={{
+            objectFit: "cover",
+            filter: "grayscale(1)",
+            transition: "all 0.3s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.filter = "grayscale(0)";
+            e.currentTarget.style.transform = "scale(1.05)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.filter = "grayscale(1)";
+            e.currentTarget.style.transform = "scale(1)";
+          }}
+          priority={index < 1}
+          loading={index < 1 ? "eager" : "lazy"}
+          sizes="(max-width: 768px) 50vw, 33vw"
+          quality={lowQuality ? 60 : 75}
+          onError={() => {
+            // If the optimized image fails to load, fallback to original
+            const img = document.getElementById(
+              `womp-desktop-img-${index}`
+            ) as HTMLImageElement;
+            if (img && USE_OPTIMIZED) {
+              img.src = originalMedia.path;
+            }
+          }}
+          id={`womp-desktop-img-${index}`}
+        />
+      )}
+    </Box>
   );
 }
 
@@ -216,11 +208,17 @@ function LazyVideo({
   const [isSafari, setIsSafari] = useState(false);
 
   // Use a lower resolution for mobile devices if available
-  const videoSrc = useFallback ? originalSrc : lowQuality && src.endsWith(".mp4") ? `${src.replace(".mp4", "_low.mp4")}` : src;
+  const videoSrc = useFallback
+    ? originalSrc
+    : lowQuality && src.endsWith(".mp4")
+    ? `${src.replace(".mp4", "_low.mp4")}`
+    : src;
 
   // Detect Safari browser
   useEffect(() => {
-    const isSafariBrowser = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    const isSafariBrowser = /^((?!chrome|android).)*safari/i.test(
+      navigator.userAgent
+    );
     setIsSafari(isSafariBrowser);
   }, []);
 
@@ -257,7 +255,10 @@ function LazyVideo({
       // Set up error handler for Safari
       videoRef.current.onerror = () => {
         if (USE_OPTIMIZED && !useFallback) {
-          console.log("Safari: Video failed to load, using fallback:", originalSrc);
+          console.log(
+            "Safari: Video failed to load, using fallback:",
+            originalSrc
+          );
           setUseFallback(true);
           if (videoRef.current) {
             videoRef.current.src = originalSrc;
@@ -309,7 +310,10 @@ function LazyVideo({
             if (isSafari) {
               // Add a small timeout before trying again
               setTimeout(() => {
-                if (videoRef.current) videoRef.current.play().catch((err) => console.log("Retry failed:", err));
+                if (videoRef.current)
+                  videoRef.current
+                    .play()
+                    .catch((err) => console.log("Retry failed:", err));
               }, 300);
             }
           });
@@ -321,20 +325,40 @@ function LazyVideo({
         videoRef.current.pause();
       }
     }
-  }, [isInView, isLoaded, videoSrc, hasPlayed, originalSrc, useFallback, isSafari]);
-
-  // Add console logs for debugging
-  useEffect(() => {
-    console.log("Video source:", videoSrc);
-    console.log("Poster:", poster);
-  }, [videoSrc, poster]);
+  }, [
+    isInView,
+    isLoaded,
+    videoSrc,
+    hasPlayed,
+    originalSrc,
+    useFallback,
+    isSafari,
+  ]);
 
   return (
     <>
       {!isLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center bg-muted/10">
-          <div className="w-6 h-6 border-2 border-primary/30 border-t-primary rounded-full animate-spin"></div>
-        </div>
+        <Flex
+          position="absolute"
+          inset="0"
+          align="center"
+          justify="center"
+          style={{
+            backgroundColor: "var(--gray-3)",
+            opacity: 0.1,
+          }}
+        >
+          <Box
+            width="24px"
+            height="24px"
+            style={{
+              border: "2px solid var(--gray-6)",
+              borderTop: "2px solid var(--accent-9)",
+              borderRadius: "100%",
+              animation: "spin 1s linear infinite",
+            }}
+          />
+        </Flex>
       )}
       <video
         ref={videoRef}
@@ -345,7 +369,22 @@ function LazyVideo({
         preload="metadata"
         controls={false}
         onLoadedData={() => setIsLoaded(true)}
-        className={`h-full w-full object-cover grayscale hover:grayscale-0 hover:scale-105 transition-all duration-300 ${isLoaded ? "opacity-100" : "opacity-0"}`}
+        style={{
+          height: "100%",
+          width: "100%",
+          objectFit: "cover",
+          filter: "grayscale(1)",
+          transition: "all 0.3s ease",
+          opacity: isLoaded ? 1 : 0,
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.filter = "grayscale(0)";
+          e.currentTarget.style.transform = "scale(1.05)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.filter = "grayscale(1)";
+          e.currentTarget.style.transform = "scale(1)";
+        }}
       />
     </>
   );

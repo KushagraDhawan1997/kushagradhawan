@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * FAQ Section Component
  *
@@ -6,9 +8,9 @@
  */
 
 import React from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@kushagradhawan/kookie-ui";
 import Link from "next/link";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Accordion } from "@kushagradhawan/kookie-ui";
 import { getMonochromaticGradient } from "@/lib/gradient";
 import { SectionWrapper } from "@/components/generic/ui/section-wrapper";
 import { faqs } from "./faqData";
@@ -34,24 +36,37 @@ export function FAQSection() {
       <div className="max-w-7xl mx-auto px-6 grid grid-flow-row gap-16">
         {/* Title and subtitle */}
         <div className="max-w-3xl mx-auto text-center grid grid-flow-row gap-4">
-          <blockquote className={`text-4xl md:text-6xl font-extrabold leading-[1.1] ${gradientText}`}>Frequently Asked Questions</blockquote>
-          <p className="text-base text-muted-foreground font-medium">Common questions about my approach to product development, leadership philosophy, and working process.</p>
+          <blockquote
+            className={`text-4xl md:text-6xl font-extrabold leading-[1.1] ${gradientText}`}
+          >
+            Frequently Asked Questions
+          </blockquote>
+          <p className="text-base text-muted-foreground font-medium">
+            Common questions about my approach to product development,
+            leadership philosophy, and working process.
+          </p>
         </div>
 
         {/* Accordion with expandable FAQ items */}
         <div className="max-w-2xl w-full mx-auto">
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion.Root type="single" className="w-full">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-xl font-bold text-primary hover:no-underline">{faq.question}</AccordionTrigger>
-                <AccordionContent className="text-foreground/80 text-base whitespace-pre-line">{faq.answer}</AccordionContent>
-              </AccordionItem>
+              <Accordion.Item key={index} value={`item-${index}`}>
+                <Accordion.Header>
+                  <Accordion.Trigger className="text-xl font-bold text-primary hover:no-underline">
+                    {faq.question}
+                  </Accordion.Trigger>
+                </Accordion.Header>
+                <Accordion.Content className="text-foreground/80 text-base whitespace-pre-line">
+                  {faq.answer}
+                </Accordion.Content>
+              </Accordion.Item>
             ))}
-          </Accordion>
+          </Accordion.Root>
         </div>
 
         {/* Call-to-action button */}
-        <Button asChild variant="outline" size="lg" className="mx-auto">
+        <Button asChild variant="outline" size="4" className="mx-auto">
           <Link href="#contact">Have Another Question?</Link>
         </Button>
       </div>

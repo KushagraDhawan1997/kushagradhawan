@@ -5,7 +5,4 @@
  * It includes the main AboutWompSection component, statistics, illustrations, and dialog components.
  */
 
-export * from "./AboutWompSection";
-export * from "./WompStats";
-export * from "./WompIllustrationGrid";
-export * from "./wompData";
+export * from "./AboutKookieUISection";

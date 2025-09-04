@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Button } from "@kushagradhawan/kookie-ui";
+import { Input } from "@kushagradhawan/kookie-ui";
+import { Popover, PopoverContent, PopoverTrigger } from "@kushagradhawan/kookie-ui";
 import { AI } from "@/components/sections/ai-section/AI";
 import { MessageCircle, Send, X } from "lucide-react";
 

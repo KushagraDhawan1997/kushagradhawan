@@ -4,13 +4,13 @@ import { AboutWompSection } from "../components/sections/about-womp-section";
 import { BeliefSection } from "../components/sections/belief-section";
 import { ProductPhilosophy } from "../components/sections/product-philosophy-section";
 import { StartupSolutionsSection } from "../components/sections/startup-solutions-section";
-import { TeamLeadershipSection } from "../components/sections/team-leadership-section";
-import { FAQSection } from "../components/sections/faq-section";
+import { AboutKookieUISection } from "@/components/sections/about-kookie-ui-section";
 import type { Metadata } from "next";
 
 // Enhanced metadata for home page
 export const metadata: Metadata = {
-  description: "Kushagra Dhawan is a product builder and designer specializing in creating innovative digital experiences, design systems, and product solutions.",
+  description:
+    "Kushagra Dhawan is a product builder and designer specializing in creating innovative digital experiences, design systems, and product solutions.",
   alternates: {
     canonical: "/",
   },
@@ -25,8 +25,18 @@ export default function Home() {
     name: "Kushagra Dhawan",
     url: "https://kushagradhawan.com",
     jobTitle: "Product Builder and Designer",
-    knowsAbout: ["Product Design", "UI/UX", "Design Systems", "Web Development", "Product Strategy"],
-    sameAs: ["https://twitter.com/username", "https://linkedin.com/in/username", "https://github.com/username"],
+    knowsAbout: [
+      "Product Design",
+      "UI/UX",
+      "Design Systems",
+      "Web Development",
+      "Product Strategy",
+    ],
+    sameAs: [
+      "https://twitter.com/username",
+      "https://linkedin.com/in/username",
+      "https://github.com/username",
+    ],
   };
 
   // Professional Service structured data
@@ -34,13 +44,19 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "Kushagra Dhawan - Product Design Services",
-    description: "Professional product design and development services specializing in creating innovative digital products and user experiences.",
+    description:
+      "Professional product design and development services specializing in creating innovative digital products and user experiences.",
     url: "https://kushagradhawan.com",
     founder: {
       "@type": "Person",
       name: "Kushagra Dhawan",
     },
-    serviceType: ["Product Design", "UX Design", "Design Systems", "Product Strategy"],
+    serviceType: [
+      "Product Design",
+      "UX Design",
+      "Design Systems",
+      "Product Strategy",
+    ],
   };
 
   return (
@@ -60,13 +76,12 @@ export default function Home() {
       />
 
       <HeroSection />
-      <AboutSection />
+      <BeliefSection />
       <AboutWompSection />
+      <AboutKookieUISection />
+      <AboutSection />
       <ProductPhilosophy />
       <StartupSolutionsSection />
-      <BeliefSection />
-      <TeamLeadershipSection />
-      <FAQSection />
     </>
   );
 }

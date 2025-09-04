@@ -1,16 +1,60 @@
 "use client";
 
 import React, { useState } from "react";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import {
+  Box,
+  Button,
+  Card,
+  Container,
+  Dialog,
+  Flex,
+  Grid,
+  Heading,
+  Section,
+  Separator,
+  Text,
+  VisuallyHidden,
+} from "@kushagradhawan/kookie-ui";
 import Link from "next/link";
-import { getMonochromaticGradient } from "@/lib/gradient";
-import { SectionWrapper } from "@/components/generic/ui/section-wrapper";
-import { ContentWrapper } from "@/components/generic/ui/content-wrapper";
-import { cn } from "@/lib/utils";
-import { Meteors } from "@/components/magicui/meteors";
 import { principles } from "./philosophyData";
-import { ChevronDownIcon } from "lucide-react";
+import { Mail } from "lucide-react";
+
+// Principle card with dialog functionality for mobile
+function PrincipleCard({ principle }: { principle: (typeof principles)[0] }) {
+  return (
+    <Dialog.Root>
+      <Dialog.Trigger>
+        <Card size="3" variant="soft" asChild style={{ cursor: "pointer" }}>
+          <button>
+            <Flex direction="column" gap="4" height="100%" p="2">
+              <Heading weight="medium" size="3">
+                {principle.title}
+              </Heading>
+              <Text size="3" color="gray">
+                {principle.description}
+              </Text>
+            </Flex>
+          </button>
+        </Card>
+      </Dialog.Trigger>
+
+      <Dialog.Content>
+        <VisuallyHidden>
+          <Dialog.Title>{principle.title}</Dialog.Title>
+        </VisuallyHidden>
+
+        <Flex direction="column" gap="6">
+          <Heading size="6" weight="medium">
+            {principle.title}
+          </Heading>
+          <Text size="3" style={{ whiteSpace: "pre-line" }}>
+            {principle.expandedContent}
+          </Text>
+        </Flex>
+      </Dialog.Content>
+    </Dialog.Root>
+  );
+}
 
 /**
  * ProductPhilosophy - A showcase of the product methodology and guiding principles
@@ -28,83 +72,99 @@ import { ChevronDownIcon } from "lucide-react";
 
 export function ProductPhilosophy() {
   const [activePrinciple, setActivePrinciple] = useState(principles[0]);
-  const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
-  const gradientText = getMonochromaticGradient();
-
-  const toggleMobileExpand = (title: string) => {
-    if (expandedMobile === title) {
-      setExpandedMobile(null);
-    } else {
-      setExpandedMobile(title);
-    }
-  };
 
   return (
-    <SectionWrapper noBorderTop className="relative z-20 overflow-hidden">
-      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-        <Meteors number={20} angle={235} maxDuration={10} />
-      </div>
+    <Section>
+      <Container size="4">
+        <Flex direction="column" gap="9" p="6">
+          {/* Header */}
+          <Flex direction="column" gap="4">
+            <Heading size="8" weight="medium">
+              Things I've Learned (So Far)
+            </Heading>
+            <Text size="4" color="gray">
+              Building at Womp has taught me a few things about users, tech, and
+              business. I'm still learning every day, and most of this is work
+              in progress.
+            </Text>
+          </Flex>
 
-      <div className="max-w-7xl mx-auto px-6 grid grid-flow-row gap-16">
-        <div className="max-w-3xl grid grid-flow-row gap-4">
-          <blockquote className={`text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-none pb-4 ${gradientText}`}>Product methodologies that drive results.</blockquote>
-          <figcaption className="text-lg text-muted-foreground font-medium">Practical approaches to product development that balance user needs, technical possibilities, and business goals.</figcaption>
-        </div>
+          {/* Call-to-action button */}
+          <Flex direction="row" gap="2">
+            <Button asChild variant="solid" size="3" highContrast>
+              <a href="#contact" aria-label="Go to contact section">
+                <Mail />
+                Contact
+              </a>
+            </Button>
+            <Button asChild variant="classic" size="3" highContrast>
+              <Link href="/articles/product-philosophy">
+                Product Philosophy
+              </Link>
+            </Button>
+          </Flex>
 
-        <Button asChild variant="default" size="lg" className="w-fit">
-          <Link href="/articles/product-philosophy">Read My Product Philosophy</Link>
-        </Button>
+          {/* Mobile view: Cards with dialogs */}
+          <Box display={{ initial: "block", md: "none" }}>
+            <Flex direction="column" gap="4">
+              {principles.map((principle) => (
+                <PrincipleCard key={principle.title} principle={principle} />
+              ))}
+            </Flex>
+          </Box>
 
-        {/* Mobile view: accordion-like stacked list */}
-        <div className="block md:hidden space-y-2">
-          {principles.map((principle) => (
-            <ContentWrapper key={principle.title} borderLeft={true} borderRight={true} extendBorders={true} extendAmount={24}>
-              <Card className="backdrop-blur-sm border-border/10 hover:shadow-lg transition-all duration-300 bg-gradient-to-bl from-card to-muted/10">
-                <CardContent className="flex flex-col gap-3">
-                  <div className="flex justify-between items-center cursor-pointer" onClick={() => toggleMobileExpand(principle.title)}>
-                    <CardTitle className="text-primary text-base font-medium">{principle.title}</CardTitle>
-                    <ChevronDownIcon className={cn("h-5 w-5 text-muted-foreground transition-transform duration-200", expandedMobile === principle.title ? "transform rotate-180" : "")} />
-                  </div>
-                  <p className="text-foreground/80 text-base">{principle.description}</p>
-                  {expandedMobile === principle.title && (
-                    <div className="mt-4">
-                      <div className="h-px bg-border/50 w-full my-3"></div>
-                      <p className="text-foreground/80 text-base whitespace-pre-line">{principle.expandedContent}</p>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </ContentWrapper>
-          ))}
-        </div>
+          {/* Desktop view: sidebar + content panel */}
+          <Grid
+            display={{ initial: "none", md: "grid" }}
+            columns="360px 1fr"
+            gap="3"
+          >
+            {/* Left sidebar with principles list */}
+            <Flex direction="column" gap="3">
+              {principles.map((principle, index) => (
+                <Card
+                  key={principle.title}
+                  asChild
+                  size="2"
+                  variant="soft"
+                  style={{ cursor: "pointer" }}
+                >
+                  <button
+                    onClick={() => setActivePrinciple(principle)}
+                    data-state={
+                      principle.title === activePrinciple.title
+                        ? "open"
+                        : "closed"
+                    }
+                    style={{ width: "100%", textAlign: "left" }}
+                  >
+                    <Flex direction="column" gap="1" p="3">
+                      <Heading size="2" weight="medium">
+                        {principle.title}
+                      </Heading>
+                      <Text size="2" color="gray">
+                        {principle.description}
+                      </Text>
+                    </Flex>
+                  </button>
+                </Card>
+              ))}
+            </Flex>
 
-        {/* Desktop view: sidebar + content panel */}
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-[360px_1fr] gap-2">
-          {/* Left sidebar with principles list */}
-          <ContentWrapper borderLeft={true} borderRight={true} extendBorders={true} extendAmount={12}>
-            {principles.map((principle, index) => (
-              <div
-                key={principle.title}
-                className={cn("cursor-pointer p-4 transition-all duration-200", "border-b border-border/50", principle.title === activePrinciple.title ? "bg-primary/5" : "hover:bg-primary/5")}
-                onClick={() => setActivePrinciple(principle)}
-              >
-                <h3 className={cn("text-sm font-medium mb-1", principle.title === activePrinciple.title ? "text-primary" : "text-foreground/80")}>{principle.title}</h3>
-                <p className="text-sm text-foreground/60">{principle.description}</p>
-              </div>
-            ))}
-          </ContentWrapper>
-
-          {/* Right content panel */}
-          <ContentWrapper className="h-full relative" borderLeft={true} borderRight={true} borderTop={true} extendBorders={true} extendAmount={12}>
-            <Card className="h-full backdrop-blur-sm border-border/10 bg-gradient-to-bl from-card/50 to-muted/40 relative overflow-hidden">
-              <CardContent className="h-full">
-                <h2 className="text-primary text-base font-medium mb-4 relative z-10">{activePrinciple.title}</h2>
-                <p className="text-foreground/70 text-base whitespace-pre-line">{activePrinciple.expandedContent}</p>
-              </CardContent>
+            {/* Right content panel */}
+            <Card size="3" variant="classic">
+              <Flex direction="column" gap="3" p="2">
+                <Heading size="4" weight="medium">
+                  {activePrinciple.title}
+                </Heading>
+                <Text color="gray" size="3" style={{ whiteSpace: "pre-line" }}>
+                  {activePrinciple.expandedContent}
+                </Text>
+              </Flex>
             </Card>
-          </ContentWrapper>
-        </div>
-      </div>
-    </SectionWrapper>
+          </Grid>
+        </Flex>
+      </Container>
+    </Section>
   );
 }

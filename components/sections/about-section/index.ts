@@ -6,10 +6,5 @@
  */
 
 export * from "./AboutSection";
-export * from "./AboutSectionCard";
-export * from "./AboutSectionGrid";
-export * from "./AboutSectionDialog";
 export * from "./about-section-data";
-export * from "./illustrations/TechIconsGrid";
 export * from "./illustrations/GlobeIllustration";
-export * from "./illustrations/TeamLeadershipBeam";

@@ -8,12 +8,69 @@
  * The section uses a responsive layout with different designs for mobile and desktop.
  */
 
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
+import React from "react";
+import {
+  Button,
+  Card,
+  Container,
+  Dialog,
+  Flex,
+  Grid,
+  Heading,
+  Section,
+  Text,
+  VisuallyHidden,
+} from "@kushagradhawan/kookie-ui";
 import Link from "next/link";
-import { getMonochromaticGradient } from "@/lib/gradient";
-import { SectionWrapper } from "@/components/generic/ui/section-wrapper";
-import { AboutSectionGrid, AboutSectionDialog, type Capability } from ".";
+import { GlobeIllustration } from "./illustrations/GlobeIllustration";
+import { capabilities, type Capability } from "./about-section-data";
+import { Users, Target, Code2, Mail } from "lucide-react";
+
+// Simple capability card with dialog functionality
+function CapabilityCard({
+  capability,
+  children,
+}: {
+  capability: Capability;
+  children?: React.ReactNode;
+}) {
+  return (
+    <Dialog.Root>
+      <Dialog.Trigger>
+        <Card size="3" variant="soft" asChild style={{ cursor: "pointer" }}>
+          <button>
+            <Flex direction="column" gap="4" height="100%" p="2">
+              {children}
+              <Flex direction="column" gap="2">
+                <Heading weight="medium" size="3">
+                  {capability.title}
+                </Heading>
+                <Text size="3" color="gray">
+                  {capability.description}
+                </Text>
+              </Flex>
+            </Flex>
+          </button>
+        </Card>
+      </Dialog.Trigger>
+
+      <Dialog.Content>
+        <VisuallyHidden>
+          <Dialog.Title>{capability.title}</Dialog.Title>
+        </VisuallyHidden>
+
+        <Flex direction="column" gap="6">
+          <Heading size="6" weight="medium">
+            {capability.title}
+          </Heading>
+          <Text size="3" style={{ whiteSpace: "pre-line" }}>
+            {capability.expandedContent}
+          </Text>
+        </Flex>
+      </Dialog.Content>
+    </Dialog.Root>
+  );
+}
 
 /**
  * AboutSection Component
@@ -29,49 +86,84 @@ import { AboutSectionGrid, AboutSectionDialog, type Capability } from ".";
  * @returns React component for the about section
  */
 export function AboutSection() {
-  // State for managing capability dialog
-  const [open, setOpen] = useState(false);
-  const [selectedCapability, setSelectedCapability] = useState<Capability | null>(null);
-
-  // Get gradient styling for headline text
-  const gradientText = getMonochromaticGradient();
-
-  /**
-   * Handles opening a capability dialog
-   * @param capability - The capability to display in the dialog
-   */
-  const handleOpenCapability = (capability: Capability) => {
-    setSelectedCapability(capability);
-    setOpen(true);
-  };
+  // Get the specific capabilities we want to display
+  const scalingProducts = capabilities.find(
+    (c) => c.title === "Scaling Products"
+  );
+  const teamLeadership = capabilities.find(
+    (c) => c.title === "Team Leadership"
+  );
+  const productStrategy = capabilities.find(
+    (c) => c.title === "Product Strategy"
+  );
+  const engineeringDesign = capabilities.find(
+    (c) => c.title === "Engineering & Design"
+  );
 
   return (
-    <SectionWrapper id="about" noBorderTop>
-      <div className="max-w-7xl mx-auto px-6 grid grid-flow-row gap-16">
-        {/* Header with title and subtitle */}
-        <div className="max-w-3xl grid grid-flow-row gap-4">
-          <blockquote className={`text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-none pb-4 ${gradientText}`}>Crafting experiences worth fighting for.</blockquote>
-          <figcaption className="text-lg text-muted-foreground font-medium">Bridging creative vision and technical execution to deliver meaningful, user-centered experiences.</figcaption>
-        </div>
+    <Section>
+      <Container size="4">
+        <Flex direction="column" gap="9" p="6">
+          {/* Header with title and subtitle */}
+          <Flex direction="column" gap="4">
+            <Heading size="8" weight="medium">
+              Shipping Products That Scale
+            </Heading>
+            <Text size="4" color="gray">
+              I combine product strategy, design thinking, and engineering
+              skills to build products that actually help people—faster, more
+              consistently, and at scale.
+            </Text>
+          </Flex>
 
-        {/* Call-to-action buttons */}
-        <div className="flex flex-col sm:flex-row gap-2">
-          <Button asChild variant="default" size="lg" className="w-fit">
-            <Link href="/articles/building-products-that-scale" aria-label="Read my article about building products that scale">
-              Read about scalable products
-            </Link>
-          </Button>
-        </div>
+          {/* Call-to-action buttons */}
+          <Flex direction="row" gap="2">
+            <Button variant="solid" size="3" highContrast>
+              <Mail />
+              Contact
+            </Button>
+            <Button asChild variant="classic" size="3" highContrast>
+              <Link
+                href="/articles/building-products-that-scale"
+                aria-label="Read my article about building products that scale"
+              >
+                Read about Scale
+              </Link>
+            </Button>
+          </Flex>
 
-        {/* Mobile view capabilities grid */}
-        <AboutSectionGrid onOpenCapability={handleOpenCapability} isMobile={true} />
+          {/* Simple 2-column grid */}
+          <Grid gap="3" columns={{ initial: "1", sm: "2" }}>
+            {/* Left: Scaling Products card with globe */}
+            {scalingProducts && (
+              <CapabilityCard capability={scalingProducts}>
+                <GlobeIllustration />
+              </CapabilityCard>
+            )}
 
-        {/* Desktop view capabilities grid */}
-        <AboutSectionGrid onOpenCapability={handleOpenCapability} />
+            {/* Right: Three capability cards */}
+            <Flex direction="column" gap="3">
+              {teamLeadership && (
+                <CapabilityCard capability={teamLeadership}>
+                  <Users />
+                </CapabilityCard>
+              )}
 
-        {/* Dialog for displaying detailed capability information */}
-        <AboutSectionDialog open={open} onOpenChange={setOpen} selectedCapability={selectedCapability} />
-      </div>
-    </SectionWrapper>
+              {productStrategy && (
+                <CapabilityCard capability={productStrategy}>
+                  <Target />
+                </CapabilityCard>
+              )}
+
+              {engineeringDesign && (
+                <CapabilityCard capability={engineeringDesign}>
+                  <Code2 />
+                </CapabilityCard>
+              )}
+            </Flex>
+          </Grid>
+        </Flex>
+      </Container>
+    </Section>
   );
 }

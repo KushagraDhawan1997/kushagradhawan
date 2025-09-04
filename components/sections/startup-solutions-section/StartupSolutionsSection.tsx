@@ -8,83 +8,126 @@
  * The section uses a responsive layout with different designs for mobile and desktop.
  */
 
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
+import React from "react";
+import {
+  Box,
+  Button,
+  Card,
+  Container,
+  Flex,
+  Grid,
+  Heading,
+  Section,
+  Text,
+} from "@kushagradhawan/kookie-ui";
 import Link from "next/link";
-import { getMonochromaticGradient } from "@/lib/gradient";
-import { SectionWrapper } from "@/components/generic/ui/section-wrapper";
-// import { StartupSolutionsSectionGrid, StartupSolutionsSectionDialog } from ".";
-import { type Solution } from ".";
-import { WhyMe } from "@/components/sections/why-me-section/WhyMe";
+import { whyMeItems } from "@/components/sections/why-me-section/whyMeData";
+import {
+  Briefcase,
+  Code,
+  Zap,
+  Handshake,
+  LineChart,
+  Ban,
+  Clock,
+  Users,
+  Mail,
+} from "lucide-react";
 
 /**
  * StartupSolutionsSection Component
  *
  * Features:
- * - A headline that emphasizes technical depth in product leadership
- * - A descriptive subtitle framing the value proposition
- * - A call-to-action button for consulting services
- * - A bento-style grid of expertise areas with varying card sizes
- * - Clickable cards that open dialogs with expanded content
- * - Different layouts for mobile and desktop views
- * - WhyMe component showcasing key professional advantages
+ * - A headline that emphasizes building teams that can ship fast
+ * - A descriptive subtitle connecting Womp experience to KookieUI enablement
+ * - Call-to-action buttons for contact and article reading
+ * - A responsive grid of 6 key professional advantages with icons
+ * - Integrated WhyMe content showcasing core strengths for team building
  *
  * @returns React component for the startup solutions section
  */
 export function StartupSolutionsSection() {
-  // State for managing dialog
-  const [open, setOpen] = useState(false);
-  const [selectedSolution, setSelectedSolution] = useState<Solution | null>(null);
-
-  // Get gradient styling for headline text
-  const gradientText = getMonochromaticGradient();
-
-  /**
-   * Handles opening a solution dialog
-   * @param solution - The solution to display in the dialog
-   */
-  const handleOpenSolution = (solution: Solution) => {
-    setSelectedSolution(solution);
-    setOpen(true);
-  };
-
   return (
-    <SectionWrapper noBorderTop>
-      <div className="max-w-7xl mx-auto px-6 grid grid-flow-row gap-16">
-        {/* Title and subtitle */}
-        <div className="max-w-3xl grid grid-flow-row gap-4">
-          <blockquote className={`text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-none pb-4 ${gradientText}`}>Technical Product Leadership.</blockquote>
-          <figcaption className="text-lg text-muted-foreground font-medium">
-            Bringing engineering depth to product leadership, bridging technical capabilities with strategic vision to build products that users love and engineers can actually deliver.
-          </figcaption>
-        </div>
+    <Section>
+      <Container size="4">
+        <Flex direction="column" gap="9" p="6">
+          {/* Header */}
+          <Flex direction="column" gap="4">
+            <Heading size="8" weight="medium">
+              How I Help Startups Move Faster
+            </Heading>
+            <Text size="4" color="gray">
+              I try to combine technical depth with product strategy to help
+              teams ship quality products quickly—though I'm still learning how
+              to do this well.
+            </Text>
+          </Flex>
 
-        {/* Call-to-action buttons */}
-        <div className="flex flex-col sm:flex-row gap-2">
-          <Button asChild variant="default" size="lg" className="w-fit">
-            <Link href="#contact">Get in Touch</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg" className="w-fit">
-            <Link href="/articles/technical-product-leadership" aria-label="Read my article on technical product leadership">
-              Explore technical leadership
-            </Link>
-          </Button>
-        </div>
+          {/* Call-to-action buttons */}
+          <Flex direction="row" gap="2" wrap="wrap">
+            <Button asChild variant="solid" size="3" highContrast>
+              <Link href="#contact">
+                <Mail />
+                Contact
+              </Link>
+            </Button>
 
-        {/* WhyMe component - 8 key professional advantages */}
-        <div className="w-full">
-          <WhyMe />
-        </div>
+            <Button asChild variant="classic" highContrast size="3">
+              <Link
+                href="/articles/leadership-approaches"
+                aria-label="Read my article on technical product leadership"
+              >
+                Leadership Approach
+              </Link>
+            </Button>
+          </Flex>
 
-        {/* Mobile view: stack all cards */}
-        {/* <StartupSolutionsSectionGrid onOpenSolution={handleOpenSolution} isMobile={true} /> */}
+          {/* WhyMe Grid - Key professional advantages */}
+          <Grid gap="4" columns={{ initial: "1", sm: "2", md: "3" }}>
+            {whyMeItems.map((item, index) => {
+              // Function to get the icon component based on icon name
+              const getIconComponent = (iconName: string) => {
+                switch (iconName) {
+                  case "Briefcase":
+                    return <Briefcase />;
+                  case "Code":
+                    return <Code />;
+                  case "Zap":
+                    return <Zap />;
+                  case "Handshake":
+                    return <Handshake />;
+                  case "LineChart":
+                    return <LineChart />;
+                  case "Ban":
+                    return <Ban />;
+                  case "Clock":
+                    return <Clock />;
+                  case "Users":
+                    return <Users />;
+                  default:
+                    return null;
+                }
+              };
 
-        {/* Desktop/Tablet view: bento grid layout */}
-        {/* <StartupSolutionsSectionGrid onOpenSolution={handleOpenSolution} /> */}
-
-        {/* Solution Dialog for displaying detailed information */}
-        {/* <StartupSolutionsSectionDialog open={open} onOpenChange={setOpen} selectedSolution={selectedSolution} /> */}
-      </div>
-    </SectionWrapper>
+              return (
+                <Card key={index} size="3" variant="classic">
+                  <Flex direction="column" gap="3" p="4">
+                    <Flex direction="column" gap="4">
+                      {getIconComponent(item.iconName)}
+                      <Heading size="3" weight="medium">
+                        {item.title}
+                      </Heading>
+                    </Flex>
+                    <Text size="3" color="gray">
+                      {item.description}
+                    </Text>
+                  </Flex>
+                </Card>
+              );
+            })}
+          </Grid>
+        </Flex>
+      </Container>
+    </Section>
   );
 }

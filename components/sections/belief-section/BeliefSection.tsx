@@ -1,34 +1,78 @@
 "use client";
 
-import { SectionWrapper } from "@/components/generic/ui/section-wrapper";
-import { getMonochromaticGradient, getBlueGradient } from "@/lib/gradient";
-import { LampEffect } from "@/components/ui/lamp";
+import {
+  Container,
+  Flex,
+  Heading,
+  Section,
+  Text,
+  Link,
+} from "@kushagradhawan/kookie-ui";
 
-/**
- * BeliefSection - Displays a personal belief regarding AI and product development
- *
- * This component renders the author's perspective on leveraging AI
- * in product development and how it changes competitive dynamics.
- */
 export function BeliefSection() {
-  const gradientText = getMonochromaticGradient();
-  const blueGradient = getBlueGradient();
-
   return (
-    <SectionWrapper noBorderTop className="relative overflow-hidden z-0">
-      {/* Lamp positioned at the absolute top of section with negative margin to ensure no gap */}
-      {/* <div className="absolute top-0 left-0 right-0 h-40 -z-0">
-        <LampEffect className="opacity-100" />
-      </div> */}
-
-      <div className="max-w-7xl mx-auto px-6 z-10">
-        {/* Content with just enough space for the lamp effect */}
-        <blockquote className={`max-w-4xl text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-none pb-2 ${gradientText}`}>
-          I build better products by leveraging <span className={blueGradient}>AI</span>. Modern tools and APIs like <span className={blueGradient}>AI SDK</span> have transformed development speed. The differentiator today isn't{" "}
-          <span className={blueGradient}>large-scale tech</span>—it's having the right idea and executing it well. <span className={blueGradient}>Speed</span> matters even more now, but it must pair with sound judgment. Knowing what to
-          build quickly creates the real <span className={blueGradient}>competitive advantage</span>.
-        </blockquote>
-      </div>
-    </SectionWrapper>
+    <Section>
+      <Container size="4">
+        <Flex direction="column" gap="6" p="6">
+          <Heading
+            size={{ initial: "8", md: "9" }}
+            weight="medium"
+            color="gray"
+            style={{ maxWidth: "64rem" }}
+          >
+            I believe{" "}
+            <Text as="span" weight="medium" highContrast color="gray">
+              AI is a leveler
+            </Text>
+            —it lowers the barrier between an idea and something real. I believe
+            in{" "}
+            <Text as="span" weight="medium" highContrast color="gray">
+              building over talking
+            </Text>
+            , in{" "}
+            <Text as="span" weight="medium" highContrast color="gray">
+              efficiency
+            </Text>
+            , in{" "}
+            <Text as="span" weight="medium" highContrast color="gray">
+              shipping fast
+            </Text>
+            , because{" "}
+            <Text as="span" weight="medium" highContrast color="gray">
+              time matters
+            </Text>
+            . I believe AI will let more people do{" "}
+            <Text as="span" weight="medium" highContrast color="gray">
+              meaningful work
+            </Text>{" "}
+            —not just specialists.
+            <br />
+            <br />
+            <Text as="span" weight="medium" highContrast color="gray">
+              At Womp
+            </Text>
+            , I’m learning every day how design, product, and engineering fit
+            together.{" "}
+            <Text as="span" weight="medium" highContrast color="gray">
+              AI lets me move between roles
+            </Text>{" "}
+            when needed, so I can keep momentum without slowing the team down.
+            That’s why I started{" "}
+            <Text as="span" weight="medium" highContrast color="gray">
+              KookieUI
+            </Text>
+            —to make work{" "}
+            <Text as="span" weight="medium" highContrast color="gray">
+              faster and more consistent
+            </Text>
+            . We’re{" "}
+            <Text as="span" weight="medium" highContrast color="gray">
+              already using it
+            </Text>{" "}
+            in production, and I’m still figuring out how to make it better.
+          </Heading>
+        </Flex>
+      </Container>
+    </Section>
   );
 }

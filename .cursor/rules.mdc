@@ -1,0 +1,69 @@
+---
+alwaysApply: true
+---
+
+# Kookie User Interface Documentation Rules
+
+## Code Style
+
+- Use TypeScript for all new components and utilities
+- Follow the existing component patterns in the codebase
+- Use KookieUI components instead of raw HTML elements
+- Prefer padding over margins for spacing
+- Use flex or grid for layout control, tightly coupling related elements
+
+## Component Architecture
+
+- No raw HTML elements like `<div>`, `<span>`, `<section>`, `<article>`
+- Use KookieUI components like `<Box>`, `<Flex>` instead
+- No Tailwind or className usage - use atomic KookieUI props
+- Prefer atomic props over inline style objects
+- No icon sizing - icons are sized by parent components
+- No margin props inside components - spacing must be controlled externally
+- Padding allowed only in structural components (Card, Sidebar, Panel, Layout, etc.)
+- Layout logic (gap, justify, align) should not be inside component files
+- Use KookieUI layout components only - avoid 3rd-party layout primitives
+- Atomic-only style - no deep style objects unless absolutely necessary
+- Components should be atomic and focused on single responsibility
+- Avoid anonymous default exports - always name components
+- Use PascalCase for components, camelCase for variables and functions
+- Avoid logic in JSX - move conditional logic out for readability
+- Avoid unnecessary fragments - don't wrap single elements
+
+## Documentation Guidelines
+
+- Write in a direct, clear, and instructive tone
+- Focus on practical, actionable guidance with empathy for end users
+- Use concise and precise sentences
+- Provide clear rationale behind recommendations
+- Avoid overly marketing-oriented language
+- Use "we do" or "we will" instead of "may" or "shall"
+
+## Headings and Titles
+
+- Keep H2 headings to 1-3 words maximum
+- Use small, crisp, and concise titles
+- Avoid long titles that list multiple features
+- Page titles should be short summaries of what the product does
+
+## Component Documentation
+
+- Use the SpecsBlock component for component specifications
+- Follow the size variants example pattern
+- Use title case for property labels (Background, Border, Shadow, Weight)
+- Use inline Text components in MDX to avoid padding/margin issues
+- Use the project's Image component instead of raw markdown tags
+
+## Code Examples
+
+- Minimize commenting unless needed for useful information
+- Apply fixes one at a time with cleanup as you go
+- Make design changes at the token level rather than directly in component CSS
+- Explain exactly what was done after each fix
+
+## Project-Specific Rules
+
+- The design system is called "Kookie User Interface" (not "KookieUI")
+- Icons automatically inherit size from parent components
+- File watchers automatically build CSS on changes (no manual build needed)
+- Use substantive, verbose writing without meaningless sentences

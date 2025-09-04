@@ -9,12 +9,6 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter"; // Used for parsing frontmatter
-import { unified } from "unified";
-import remarkParse from "remark-parse"; // Markdown parser
-import remarkRehype from "remark-rehype"; // Converts markdown to HTML
-import remarkGfm from "remark-gfm"; // GitHub Flavored Markdown support
-import rehypeHighlight from "rehype-highlight"; // Code syntax highlighting
-import rehypeStringify from "rehype-stringify"; // Convert HTML AST to string
 
 // Define the directory where articles are stored
 const postsDirectory = path.join(process.cwd(), "content/articles");
@@ -30,7 +24,7 @@ export type Article = {
   date: string; // Publication date
   description: string; // Brief description
   tags: string[]; // Associated tags
-  content: string; // HTML content of the article
+  content: string; // MDX content of the article
 };
 
 /**
@@ -41,49 +35,27 @@ export type Article = {
  * @throws Error if the article cannot be found or parsed
  */
 export async function getPostBySlug(slug: string): Promise<Article> {
-  // Construct the full path to the markdown file
-  const fullPath = path.join(postsDirectory, `${slug}.md`);
+  // Construct the full path to the MDX file
+  const fullPath = path.join(postsDirectory, `${slug}.mdx`);
 
   // Read the file contents
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
-  // Parse frontmatter from the markdown file
+  // Parse frontmatter from the MDX file
   // This separates metadata from the content
   const { data, content } = matter(fileContents);
 
-  // Remove the first heading (title) from the content
-  const contentWithoutTitle = content.replace(/^# .*$/m, "").trim();
+  // Clean the content: remove any remaining frontmatter markers and trim
+  const cleanContent = content.trim();
 
-  // Process the markdown content into HTML using a unified processing pipeline
-  const processedContent = await unified()
-    .use(remarkParse) // Parse markdown into an AST
-    .use(remarkGfm) // Add GitHub Flavored Markdown features
-    .use(remarkRehype, {
-      allowDangerousHtml: true, // Allow HTML in markdown
-      handlers: {
-        // Ensure proper handling of headings
-        heading: (h, node) => {
-          return {
-            type: "element",
-            tagName: `h${node.depth}`,
-            properties: {},
-            children: h.all(node),
-          };
-        },
-      },
-    }) // Convert markdown AST to HTML AST
-    .use(rehypeHighlight) // Add syntax highlighting to code blocks
-    .use(rehypeStringify, { allowDangerousHtml: true }) // Convert HTML AST to string
-    .process(contentWithoutTitle);
-
-  // Return a structured Article object
+  // Return a structured Article object with MDX content
   return {
     slug,
     title: data.title,
     date: data.date,
     description: data.description || "", // Default to empty string if missing
     tags: data.tags || [], // Default to empty array if missing
-    content: processedContent.toString(),
+    content: cleanContent, // Clean MDX content without frontmatter
   };
 }
 
@@ -92,16 +64,22 @@ export async function getPostBySlug(slug: string): Promise<Article> {
  *
  * @returns An array of article metadata objects, sorted by date (newest first)
  */
-export function getAllPosts(): { slug: string; title: string; date: string; description: string; tags: string[] }[] {
-  // Get all markdown files from the posts directory
+export function getAllPosts(): {
+  slug: string;
+  title: string;
+  date: string;
+  description: string;
+  tags: string[];
+}[] {
+  // Get all MDX files from the posts directory
   const fileNames = fs.readdirSync(postsDirectory);
 
   // Process each file to extract metadata
   const allPostsData = fileNames
-    .filter((fileName) => fileName.endsWith(".md")) // Only process markdown files
+    .filter((fileName) => fileName.endsWith(".mdx")) // Only process MDX files
     .map((fileName) => {
-      // Remove the .md extension to get the slug
-      const slug = fileName.replace(/\.md$/, "");
+      // Remove the .mdx extension to get the slug
+      const slug = fileName.replace(/\.mdx$/, "");
 
       // Read the file content
       const fullPath = path.join(postsDirectory, fileName);

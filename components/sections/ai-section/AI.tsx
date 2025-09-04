@@ -27,9 +27,9 @@
 "use client";
 
 import { useChat, type Message } from "@ai-sdk/react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Input } from "@kushagradhawan/kookie-ui";
+import { Button } from "@kushagradhawan/kookie-ui";
+import { ScrollArea } from "@kushagradhawan/kookie-ui";
 import { cn } from "@/lib/utils";
 import React, { useEffect, useRef } from "react";
 import { SendHorizonal } from "lucide-react";
