@@ -11,7 +11,7 @@ The website serves as a comprehensive portfolio and personal brand platform, fea
 - **Hero Section**: Clean introduction with compelling headline and testimonials
 - **About Section**: Personal background and mission statement
 - **About Womp**: Detailed case study of Kushagra's work at Womp
-- **About KookieUI**: Showcase of the KookieUI design system project
+- **About KookieUI**: Showcase of my custom KookieUI design system library
 - **Product Philosophy**: Core beliefs and approaches to product management
 - **Leadership Approaches**: Insights on team leadership and management
 - **Building Products That Scale**: Technical and strategic insights
@@ -22,7 +22,7 @@ The website serves as a comprehensive portfolio and personal brand platform, fea
 ## Technical Stack
 
 - **Framework**: [Next.js 15](https://nextjs.org) with App Router
-- **UI Components**: [KookieUI](https://kushagradhawan.com/kookie-ui) - Custom design system
+- **UI Components**: [KookieUI](https://kushagradhawan.com/kookie-ui) - My custom design system library
 - **Styling**: Custom CSS with CSS variables and modern layout techniques
 - **Content**: MDX for rich article content
 - **Icons**: [Lucide React](https://lucide.dev)
@@ -86,7 +86,7 @@ kushagradhawan/
 
 ### Design System
 
-- **KookieUI Integration**: Custom component library
+- **KookieUI Integration**: My custom design system library
 - **Responsive Design**: Mobile-first approach
 - **Accessibility**: ARIA labels and keyboard navigation
 - **Performance**: Optimized images and lazy loading
@@ -95,7 +95,7 @@ kushagradhawan/
 
 - **Hero**: Compelling introduction with testimonials
 - **About**: Personal story and mission
-- **Case Studies**: Detailed work examples (Womp, KookieUI)
+- **Case Studies**: Detailed work examples (Womp, my KookieUI library)
 - **Philosophy**: Core product management beliefs
 - **Articles**: In-depth written content
 - **Contact**: Multiple connection methods
@@ -106,7 +106,7 @@ kushagradhawan/
 
 - **Removed Tailwind CSS**: Migrated to custom CSS with CSS variables
 - **Removed MagicUI Dependencies**: Eliminated external UI library dependencies
-- **Integrated KookieUI**: Using custom design system components
+- **Integrated KookieUI**: Using my custom design system library components
 - **Migrated to MDX**: Converted articles from Markdown to MDX format
 - **Removed AI Components**: Eliminated chat functionality and related dependencies
 - **Fixed Build Issues**: Resolved all TypeScript and import errors
