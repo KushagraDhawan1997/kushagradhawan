@@ -1,33 +1,32 @@
 # Kushagra Dhawan - Personal Website
 
-This is a personal website for Kushagra Dhawan, a product manager and designer. The site is built with Next.js, Tailwind CSS, and shadcn UI components, with a focus on social proof and testimonials to create a compelling personal brand.
+This is a personal website for Kushagra Dhawan, a product manager and designer. The site showcases his experience, philosophy, and work through a modern, clean interface built with Next.js and custom components.
 
 ## Project Overview
 
-The goal of this website is to create a personal portfolio that stands out from typical personal sites by focusing heavily on "selling" Kushagra through social proof and testimonials. The site aims to appeal to human emotions and showcase Kushagra's impact as a product leader.
+The website serves as a comprehensive portfolio and personal brand platform, featuring detailed sections about Kushagra's background, product philosophy, leadership approaches, and case studies. The site emphasizes storytelling and authentic content to connect with potential collaborators and employers.
 
-### What's Built So Far
+### Current Features
 
-- **Hero Section**: A clean, minimalist hero section with Kushagra's name and a bold headline "I build products people love."
-- **Testimonial Wall**: A grid of testimonials from colleagues and clients that highlight Kushagra's skills and impact.
-- **Visual Design**: Subtle dot pattern background with soft gradient overlay for visual interest.
-
-### Planned Structure
-
-The complete site will include:
-
-1. **Hero Section** ✅ - Bold headline with testimonial wall
-2. **About / My Mission** - Personal story and approach to product management
-3. **Case Studies / Wins** - Showcasing specific product successes and impact
-4. **Deep Dive** - More detailed information about skills and expertise
-5. **Contact / CTA** - Clear call to action to connect
+- **Hero Section**: Clean introduction with compelling headline and testimonials
+- **About Section**: Personal background and mission statement
+- **About Womp**: Detailed case study of Kushagra's work at Womp
+- **About KookieUI**: Showcase of the KookieUI design system project
+- **Product Philosophy**: Core beliefs and approaches to product management
+- **Leadership Approaches**: Insights on team leadership and management
+- **Building Products That Scale**: Technical and strategic insights
+- **Articles**: In-depth written content on various topics
+- **Contact Section**: Multiple ways to connect and collaborate
+- **FAQ Section**: Common questions and answers
 
 ## Technical Stack
 
-- **Framework**: [Next.js](https://nextjs.org)
-- **UI Components**: [shadcn UI](https://ui.shadcn.com/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com)
-- **Animation**: Motion library for subtle effects
+- **Framework**: [Next.js 15](https://nextjs.org) with App Router
+- **UI Components**: [KookieUI](https://kushagradhawan.com/kookie-ui) - Custom design system
+- **Styling**: Custom CSS with CSS variables and modern layout techniques
+- **Content**: MDX for rich article content
+- **Icons**: [Lucide React](https://lucide.dev)
+- **Deployment**: Vercel
 
 ## Getting Started
 
@@ -47,10 +46,93 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Project Structure
 
-- `app/` - Next.js app router pages and layouts
-- `components/` - Reusable React components
-  - `SocialProofHero.tsx` - The hero section with testimonials
-- `public/` - Static assets
+```
+kushagradhawan/
+├── app/                          # Next.js app router
+│   ├── articles/[slug]/         # Dynamic article pages
+│   ├── globals.css              # Global styles and CSS variables
+│   ├── layout.tsx               # Root layout component
+│   └── page.tsx                 # Homepage
+├── components/                   # React components
+│   ├── generic/                 # Reusable generic components
+│   │   ├── Navbar.tsx          # Navigation component
+│   │   └── ui/                 # Generic UI components
+│   └── sections/               # Page sections
+│       ├── about-section/      # Personal background
+│       ├── about-womp-section/ # Womp case study
+│       ├── about-kookie-ui-section/ # KookieUI showcase
+│       ├── hero-section/       # Landing hero
+│       ├── contact-section/    # Contact information
+│       ├── faq-section/        # Frequently asked questions
+│       └── articles-list-section/ # Article listings
+├── content/                     # Content files
+│   └── articles/               # MDX article content
+├── lib/                        # Utility functions
+│   ├── articles.ts            # Article processing
+│   ├── gradient.ts            # Gradient utilities
+│   └── utils.ts               # General utilities
+└── public/                     # Static assets
+    ├── logo*.png              # Brand assets
+    └── showcase/              # Project showcase images
+```
+
+## Key Features
+
+### Content Management
+
+- **MDX Articles**: Rich content with React components
+- **Dynamic Routing**: Automatic article page generation
+- **SEO Optimized**: Meta tags, sitemap, and robots.txt
+
+### Design System
+
+- **KookieUI Integration**: Custom component library
+- **Responsive Design**: Mobile-first approach
+- **Accessibility**: ARIA labels and keyboard navigation
+- **Performance**: Optimized images and lazy loading
+
+### Sections Overview
+
+- **Hero**: Compelling introduction with testimonials
+- **About**: Personal story and mission
+- **Case Studies**: Detailed work examples (Womp, KookieUI)
+- **Philosophy**: Core product management beliefs
+- **Articles**: In-depth written content
+- **Contact**: Multiple connection methods
+
+## Recent Changes
+
+### Major Refactoring (Latest)
+
+- **Removed Tailwind CSS**: Migrated to custom CSS with CSS variables
+- **Removed MagicUI Dependencies**: Eliminated external UI library dependencies
+- **Integrated KookieUI**: Using custom design system components
+- **Migrated to MDX**: Converted articles from Markdown to MDX format
+- **Removed AI Components**: Eliminated chat functionality and related dependencies
+- **Fixed Build Issues**: Resolved all TypeScript and import errors
+
+### Architecture Improvements
+
+- **Component Organization**: Better structured component hierarchy
+- **Type Safety**: Improved TypeScript coverage
+- **Performance**: Optimized bundle size and loading
+- **SEO**: Enhanced meta tags and structured data
+
+## Development Notes
+
+### Styling Approach
+
+- Uses CSS custom properties for theming
+- Flexbox and Grid for layouts (no margins as per preferences)
+- Responsive design with mobile-first approach
+- Custom animations and transitions
+
+### Content Strategy
+
+- Focus on authentic storytelling
+- Detailed case studies with real impact metrics
+- Technical depth balanced with accessibility
+- Regular content updates through MDX
 
 ## Learn More
 
