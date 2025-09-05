@@ -239,7 +239,7 @@ export function Navbar({
               src="/logo-dark-large.png"
               fallback="KD"
             />
-            <Text size="4" weight="medium">
+            <Text size="3" weight="medium">
               Kush.
             </Text>
           </Flex>
