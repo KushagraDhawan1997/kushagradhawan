@@ -22,7 +22,14 @@ import {
 import { TestimonialCard } from "../hero-section/TestimonialCard";
 import { testimonials, type Testimonial } from "../hero-section/testimonials";
 import { socialLinks, type SocialLink } from "./contactData";
-import { Linkedin, Twitter, Instagram, Mail, CalendarDays } from "lucide-react";
+import {
+  Linkedin,
+  Twitter,
+  Instagram,
+  Mail,
+  CalendarDays,
+  Github,
+} from "lucide-react";
 
 // Helper function to get the right icon for each social platform
 const getSocialIcon = (name: string) => {
@@ -33,6 +40,8 @@ const getSocialIcon = (name: string) => {
       return <Twitter />;
     case "Instagram":
       return <Instagram />;
+    case "Github":
+      return <Github />;
     default:
       return null;
   }

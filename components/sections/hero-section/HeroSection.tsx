@@ -25,6 +25,7 @@ import {
   Badge,
   Section,
   Link,
+  Tooltip,
 } from "@kushagradhawan/kookie-ui";
 import { testimonials } from "./testimonials";
 import { TestimonialCard } from "./TestimonialCard";
@@ -57,7 +58,7 @@ export function HeroSection() {
             <Heading size="9" weight="medium">
               I Build Products People Love.
             </Heading>
-            <Flex direction="column" gap="0">
+            <Flex direction="column" gap="1">
               <Text size="4" color="gray">
                 Product & Design Lead at{" "}
                 <Link target="_blank" href="https://womp.com">
@@ -65,22 +66,26 @@ export function HeroSection() {
                 </Link>
                 .
               </Text>
-              <Text size="4" color="gray">
-                <Flex align="center" gap="2">
+              <Flex align="center" gap="2">
+                <Tooltip content="This site is built using KookieUI">
                   <Text as="span" size="4" color="gray">
-                    Building KookieUI
+                    Building{" "}
+                    <Link
+                      target="_blank"
+                      href="https://github.com/KushagraDhawan1997/kookie-ui"
+                    >
+                      Kookie UI
+                    </Link>
+                    , KookieAI, KookieBlocks
                   </Text>
-                  <Flex direction="row" align="center" gap="1">
-                    <Badge highContrast>Coming Soon</Badge>
-                    <Badge highContrast color="orange">
-                      Beta
-                    </Badge>
-                  </Flex>
+                </Tooltip>
+                <Flex direction="row" align="center" gap="1">
+                  <Badge highContrast>Coming Soon</Badge>
+                  <Badge highContrast color="orange">
+                    Beta
+                  </Badge>
                 </Flex>
-                <Text as="span" size="0" color="gray">
-                  🐶 This site is built using KookieUI.
-                </Text>
-              </Text>
+              </Flex>
             </Flex>
           </Flex>
 
