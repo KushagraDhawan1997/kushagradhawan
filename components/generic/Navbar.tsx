@@ -233,26 +233,12 @@ export function Navbar({
         {/* Left side: Logo */}
         <Link href="/" aria-label="Kushagra Dhawan - Homepage">
           <Flex align="center" gap="4">
-            <Flex
-              as="span"
-              width="24px"
-              height="24px"
-              display="inline-flex"
-              align="center"
-              justify="center"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="var(--gray-a12)"
-                viewBox="0 0 256 256"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <path d="M82.34,69.66a8,8,0,0,1,0-11.32l40-40a8,8,0,0,1,11.32,0l40,40a8,8,0,0,1,0,11.32l-40,40a8,8,0,0,1-11.32,0Zm51.32,76.68a8,8,0,0,0-11.32,0l-40,40a8,8,0,0,0,0,11.32l40,40a8,8,0,0,0,11.32,0l40-40a8,8,0,0,0,0-11.32Zm104-24-40-40a8,8,0,0,0-11.32,0l-40,40a8,8,0,0,0,0,11.32l40,40a8,8,0,0,0,11.32,0l40-40A8,8,0,0,0,237.66,122.34Zm-128,0-40-40a8,8,0,0,0-11.32,0l-40,40a8,8,0,0,0,0,11.32l40,40a8,8,0,0,0,11.32,0l40-40A8,8,0,0,0,109.66,122.34Z"></path>
-              </svg>
-            </Flex>
+            <Avatar
+              src="/logo-dark-large.png"
+              fallback="KD"
+              size="2"
+              radius="full"
+            />
             {/* <Text size="4" weight="medium">
               Kush.
             </Text> */}
