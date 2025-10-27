@@ -26,18 +26,8 @@ export default function Home() {
     name: "Kushagra Dhawan",
     url: "https://kushagradhawan.com",
     jobTitle: "Product Builder and Designer",
-    knowsAbout: [
-      "Product Design",
-      "UI/UX",
-      "Design Systems",
-      "Web Development",
-      "Product Strategy",
-    ],
-    sameAs: [
-      "https://twitter.com/username",
-      "https://linkedin.com/in/username",
-      "https://github.com/username",
-    ],
+    knowsAbout: ["Product Design", "UI/UX", "Design Systems", "Web Development", "Product Strategy"],
+    sameAs: ["https://twitter.com/username", "https://linkedin.com/in/username", "https://github.com/username"],
   };
 
   // Professional Service structured data
@@ -45,19 +35,13 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "Kushagra Dhawan - Product Design Services",
-    description:
-      "Professional product design and development services specializing in creating innovative digital products and user experiences.",
+    description: "Professional product design and development services specializing in creating innovative digital products and user experiences.",
     url: "https://kushagradhawan.com",
     founder: {
       "@type": "Person",
       name: "Kushagra Dhawan",
     },
-    serviceType: [
-      "Product Design",
-      "UX Design",
-      "Design Systems",
-      "Product Strategy",
-    ],
+    serviceType: ["Product Design", "UX Design", "Design Systems", "Product Strategy"],
   };
 
   return (
@@ -80,7 +64,7 @@ export default function Home() {
       <BeliefSection />
       <AboutWompSection />
       <AboutKookieUISection />
-      <AboutKookieAISection />
+      {/* <AboutKookieAISection /> */}
       <AboutSection />
       <ProductPhilosophy />
       <StartupSolutionsSection />
