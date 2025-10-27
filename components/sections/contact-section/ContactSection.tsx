@@ -8,28 +8,11 @@
  */
 
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Card,
-  Container,
-  Flex,
-  Grid,
-  Heading,
-  IconButton,
-  Section,
-  Text,
-} from "@kushagradhawan/kookie-ui";
+import { Button, Card, Container, Flex, Grid, Heading, IconButton, Section, Text } from "@kushagradhawan/kookie-ui";
 import { TestimonialCard } from "../hero-section/TestimonialCard";
 import { testimonials, type Testimonial } from "../hero-section/testimonials";
 import { socialLinks, type SocialLink } from "./contactData";
-import {
-  Linkedin,
-  Twitter,
-  Instagram,
-  Mail,
-  CalendarDays,
-  Github,
-} from "lucide-react";
+import { Linkedin, Twitter, Instagram, Mail, CalendarDays, Github } from "lucide-react";
 
 // Helper function to get the right icon for each social platform
 const getSocialIcon = (name: string) => {
@@ -61,8 +44,7 @@ const getSocialIcon = (name: string) => {
  * @returns React component for the contact section
  */
 export function ContactSection() {
-  const [randomTestimonial, setRandomTestimonial] =
-    useState<Testimonial | null>(null);
+  const [randomTestimonial, setRandomTestimonial] = useState<Testimonial | null>(null);
 
   // Set a random testimonial on component mount
   useEffect(() => {
@@ -89,9 +71,8 @@ export function ContactSection() {
                     Say Hello.
                   </Heading>
                   <Text size="3" color="gray">
-                    Based in India and working remotely for Womp3D in the USA. I
-                    enjoy meeting like-minded professionals to discuss product
-                    design, team building, and technology trends.
+                    Based in India and working remotely for Womp3D in the USA. I enjoy meeting like-minded professionals to discuss product design, team
+                    building, and technology trends.
                   </Text>
                 </Flex>
 
@@ -110,11 +91,7 @@ export function ContactSection() {
                       </a>
                     </Button>
                     <Button size="3" asChild variant="classic" highContrast>
-                      <a
-                        href="https://calendly.com/accounts-kushagradhawan/30min"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <a href="https://calendly.com/accounts-kushagradhawan/30min" target="_blank" rel="noopener noreferrer">
                         <CalendarDays />
                         Calendly
                       </a>
@@ -122,22 +99,10 @@ export function ContactSection() {
                   </Flex>
 
                   {/* Social media icons */}
-                  <Flex gap="2" wrap="wrap">
+                  <Flex gap="1" wrap="wrap">
                     {socialLinks.map((link: SocialLink, index: number) => (
-                      <IconButton
-                        flush
-                        key={index}
-                        asChild
-                        highContrast
-                        variant="classic"
-                        size="3"
-                      >
-                        <a
-                          href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={link.name}
-                        >
+                      <IconButton key={index} asChild highContrast variant="ghost" size="3">
+                        <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.name}>
                           {getSocialIcon(link.name)}
                         </a>
                       </IconButton>

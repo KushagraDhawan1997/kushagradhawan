@@ -6,14 +6,7 @@
  * Cards can have different sizes/positions based on the testimonial's position property.
  */
 
-import {
-  Avatar,
-  Card,
-  Flex,
-  Text,
-  Dialog,
-  VisuallyHidden,
-} from "@kushagradhawan/kookie-ui";
+import { Avatar, Card, Flex, Text, Dialog, VisuallyHidden } from "@kushagradhawan/kookie-ui";
 import { type Testimonial } from "./testimonials";
 
 /**
@@ -47,13 +40,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
       <Dialog.Trigger>
         <Card size="3" variant="soft" asChild style={{ cursor: "pointer" }}>
           <button>
-            <Flex
-              direction="column"
-              justify="between"
-              height="100%"
-              gap="6"
-              p="2"
-            >
+            <Flex direction="column" justify="between" height="100%" gap="6" p="2">
               {/* Testimonial content */}
               <Text size="3" color="gray">
                 {testimonial.shortTestimonial}
@@ -62,19 +49,13 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
               {/* Author information */}
               {/* TODO: Replace with UserCard when component is ready in KookieUI */}
               <Flex align="center" gap="4">
-                <Avatar
-                  highContrast
-                  size="3"
-                  variant="classic"
-                  fallback={testimonial.author.name.charAt(0)}
-                />
+                <Avatar highContrast size="3" variant="classic" fallback={testimonial.author.name.charAt(0)} />
                 <Flex direction="column" gap="0">
                   <Text size="2" weight="medium">
                     {testimonial.author.name}
                   </Text>
                   <Text size="2" color="gray">
-                    {testimonial.author.designation} at{" "}
-                    {testimonial.author.company}
+                    {testimonial.author.designation} at {testimonial.author.company}
                   </Text>
                 </Flex>
               </Flex>
@@ -91,12 +72,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
         <Flex direction="column" gap="6">
           {/* Author information header */}
           <Flex align="center" gap="4">
-            <Avatar
-              highContrast
-              size="3"
-              variant="classic"
-              fallback={testimonial.author.name.charAt(0)}
-            />
+            <Avatar highContrast size="3" variant="classic" fallback={testimonial.author.name.charAt(0)} />
             <Flex direction="column" gap="0">
               <Text size="2" weight="medium">
                 {testimonial.author.name}

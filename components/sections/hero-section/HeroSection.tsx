@@ -87,7 +87,7 @@ export function HeroSection() {
             </Button>
             <Button asChild variant="classic" highContrast size="3">
               <a href="/articles/about-me" aria-label="Read more about Kushagra Dhawan's background and experience">
-                Case studies
+                About me
               </a>
             </Button>
           </Flex>

@@ -13,13 +13,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     h2: ({ children }) => (
       <Flex direction="column" gap="4" mb="7" mt="9">
-        <Heading as="h2" size="7" weight="medium">
+        <Heading as="h2" size="6" weight="medium">
           {children}
         </Heading>
       </Flex>
     ),
     h3: ({ children }) => (
-      <Heading as="h3" size="6" mt="9" mb="5" weight="medium">
+      <Heading as="h3" size="5" mt="9" mb="5" weight="medium">
         {children}
       </Heading>
     ),

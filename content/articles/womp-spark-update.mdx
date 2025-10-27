@@ -21,11 +21,11 @@ The workflow was always the problem. Users would come to Spark with a concept, b
 
 So we built generation directly into Spark. Now you can ask Spark to create an image, then immediately ask it to convert that image to a 3D mesh, then send that mesh to print — all in the same conversation. The content lives in your chat history, and you can iterate on it just like you would iterate on any other part of your design process.
 
-![Fish keycap generated in Spark](https://media.womp.com/images/keycap-1761127173097.png)
+{/* ![Fish keycap generated in Spark](https://media.womp.com/images/keycap-1761127173097.png) */}
 
 ## What Changed
 
-### Image Generation
+### Images
 
 Spark can now generate images using several different models, depending on what you need. For most tasks, you don't need to think about which model to use — Spark handles that. But if you want to optimize for speed or quality, the option is there.
 
@@ -33,7 +33,7 @@ Free users get access to Flux Schnell (faster generation) and Flux Dev (better q
 
 The models aren't ours — we're using off-the-shelf generation APIs. Your prompts and images aren't used to train anything. That was important to us from the start.
 
-### 3D Mesh Generation
+### 3D Meshes
 
 3D generation is where things get more interesting. You can generate 3D models from text descriptions, or you can convert any image into a 3D mesh. The key requirement is that everything Spark generates needs to be actually printable — not just theoretically, but optimized for SLA printing from the first generation.
 
@@ -41,25 +41,25 @@ Free users get access to Trellis3D, which handles most use cases well. Pro users
 
 The tricky part isn't the generation itself — it's making sure what comes out the other end will actually print. We had to make sure our models were trained specifically to meet Womp's printing requirements. A 3D model that looks good in a preview but won't print isn't helpful.
 
-### Action Buttons
+### Actions
 
 Every generated image or 3D mesh comes with a set of action buttons right in the chat. For images, you can make 3D, upscale, remove background, or import to your scene. For 3D meshes, you can add to scene, send to 3D print, view the mesh, or download it.
 
 The goal isn't to replace typing entirely. Sometimes you'll still want to describe what you want in natural language. But for common operations — "take this image and make it 3D" — a button is faster and clearer than typing out another instruction.
 
-### Credit System
+### Credits
 
 Generation costs money to run, so we built a credit system. Free users get 300 credits per day. Pro users get 12,000 credits per month. If you need more, you can buy additional credits.
 
 One credit equals $0.001, so the math is straightforward. A typical image generation costs a few credits. A 3D mesh generation costs more, usually 20-50 credits depending on the model and quality level.
 
-### Unified Chat
+### Chat
 
 All of this lives in the same chat interface. Your conversation history, your questions, your generated images and 3D meshes — they're all in one thread. You can go back and reference earlier generations. You can iterate on previous outputs.
 
 Spark also works alongside your active scene. It appears as a tab in your right sidebar when a scene is open, and you can generate content even while a scene is loading or paused. The goal was to make generation feel like a natural part of the design process, not like a separate tool you have to context-switch to.
 
-## Why This Matters for 3D Printing
+## Why This Matters
 
 The workflow problem isn't unique to Womp. Most 3D design tools require you to be an expert in both 3D modeling and whatever tool you're using. The learning curve is steep, and the tools are complex. We've been trying to lower that barrier, but generation in Spark is the first time we've had a real shortcut.
 
@@ -81,7 +81,7 @@ We increased upload limits for free users from 50MB to 150MB. Pro users still ha
 
 We don't collect your data. Spark uses third-party generation models, and your prompts, images, and 3D outputs aren't used to train anything. Your work stays yours.
 
-## Where We're Heading
+## What's Next
 
 This update isn't the end point. It's a step toward making 3D creation more accessible. We're building AI tools that will help users create 3D content without needing to master complex tools. The complexity is still there — we're just hiding it behind a more intuitive interface.
 

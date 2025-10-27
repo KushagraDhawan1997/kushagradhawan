@@ -81,11 +81,11 @@ function ThemeToggle() {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
-        <IconButton variant="classic" size="2" aria-label="Theme selector">
+        <IconButton variant="ghost" highContrast size="2" aria-label="Theme selector">
           {getThemeIcon()}
         </IconButton>
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content highContrast align="end">
+      <DropdownMenu.Content highContrast variant="soft" align="end">
         <DropdownMenu.Item onClick={() => handleThemeChange("system")}>
           <Flex align="center" gap="2">
             <Monitor />
@@ -192,7 +192,7 @@ export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLElement
 
           <Flex gap="2">
             <ThemeToggle />
-            <IconButton asChild variant="classic" highContrast>
+            <IconButton asChild variant="ghost" highContrast>
               <Link href="https://github.com/KushagraDhawan1997/kookie-ui" target="_blank">
                 <Github />
               </Link>
