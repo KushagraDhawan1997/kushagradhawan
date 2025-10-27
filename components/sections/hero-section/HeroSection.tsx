@@ -15,21 +15,10 @@
  * - Clean, minimal styling with KookieUI components
  */
 
-import {
-  Button,
-  Flex,
-  Text,
-  Heading,
-  Container,
-  Grid,
-  Badge,
-  Section,
-  Link,
-  Tooltip,
-} from "@kushagradhawan/kookie-ui";
+import { Button, Flex, Text, Heading, Container, Grid, Badge, Section, Link, Tooltip, Inset, Image } from "@kushagradhawan/kookie-ui";
 import { testimonials } from "./testimonials";
 import { TestimonialCard } from "./TestimonialCard";
-import { Mail } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
 /**
  * HeroSection Component
@@ -54,55 +43,46 @@ export function HeroSection() {
       <Container size="4">
         <Flex direction="column" gap="9" p="6">
           {/* Title and subtitle section */}
-          <Flex direction="column" gap="8">
+          <Flex direction="column" gap="6">
+            <Text size="1" color="amber" weight="medium">
+              DESIGN ENGINEER / BUILDER PM — 0→1 • REMOTE (5H EST)
+            </Text>
             <Heading size="9" weight="medium">
-              I Build Products People Love.
+              I design systems and ship fast.
             </Heading>
-            <Flex direction="column" gap="1">
-              <Text size="4" color="gray">
-                Product & Design Lead at{" "}
-                <Link target="_blank" href="https://womp.com">
-                  Womp 3D
+            <Text size="4" color="gray">
+              Product &amp; Design Lead,{" "}
+              <Link target="_blank" href="https://womp.com">
+                Womp 3D
+              </Link>{" "}
+              &bull; Building{" "}
+              <Tooltip content="This site is built using KookieUI">
+                <Link target="_blank" href="https://github.com/KushagraDhawan1997/kookie-ui">
+                  KookieUI
                 </Link>
-                .
-              </Text>
-              <Flex align="center" gap="2">
-                <Tooltip content="This site is built using KookieUI">
-                  <Text as="span" size="4" color="gray">
-                    Building{" "}
-                    <Link
-                      target="_blank"
-                      href="https://github.com/KushagraDhawan1997/kookie-ui"
-                    >
-                      Kookie UI
-                    </Link>
-                    , KookieAI, KookieBlocks
-                  </Text>
-                </Tooltip>
-                <Flex direction="row" align="center" gap="1">
-                  <Badge highContrast>Coming Soon</Badge>
-                  <Badge highContrast color="orange">
-                    Beta
-                  </Badge>
-                </Flex>
-              </Flex>
-            </Flex>
+              </Tooltip>
+              , KookieAI, KookieBlocks.
+              <br />I merge design, product, and enough code to land features fast. AI makes the work faster and simpler.
+            </Text>
           </Flex>
+
+          {/*           
+          <Inset clip="padding-box">
+            <Image src="/sample.png" alt="KookieUI" />
+          </Inset> 
+          */}
 
           {/* Call-to-action buttons */}
           <Flex direction="row" gap="2">
             <Button asChild variant="solid" size="3" highContrast>
               <a href="#contact" aria-label="Go to contact section">
-                <Mail />
-                Contact
+                <Phone />
+                Book a 15-min intro
               </a>
             </Button>
             <Button asChild variant="classic" highContrast size="3">
-              <a
-                href="/articles/about-me"
-                aria-label="Read more about Kushagra Dhawan's background and experience"
-              >
-                About Me
+              <a href="/articles/about-me" aria-label="Read more about Kushagra Dhawan's background and experience">
+                Case studies
               </a>
             </Button>
           </Flex>

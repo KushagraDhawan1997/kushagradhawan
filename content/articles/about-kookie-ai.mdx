@@ -1,0 +1,186 @@
+---
+title: "About Kookie AI"
+description: "A UX-first, desktop web product where conversations live as a branching graph of nodes — each branch can diverge, transform, or produce artifacts — giving knowledge workers and creators a powerful OS for exploring, remixing, and producing with AI."
+date: "2024-12-19"
+tags: ["AI", "Product", "UX", "Conversation"]
+---
+
+# About Kookie AI
+
+Kookie AI is a UX-first, desktop web product where conversations live as a branching graph of nodes — each branch can diverge, transform, or produce artifacts — giving knowledge workers and creators a powerful OS for exploring, remixing, and producing with AI.
+
+## The Problem with Current AI Tools
+
+Most AI tools today treat conversations as linear, scroll-based experiences. You ask a question, get an answer, ask a follow-up, and the conversation flows in one direction. This works for simple queries, but it breaks down when you're doing complex, creative work.
+
+**ChatGPT** → linear, scroll-based.  
+**LangFlow / Flowise** → dev tools for pipelines, not user-facing.  
+**BranchGPT / TalkTree** → branching chats, but no atomic tools/artifacts.
+
+## Our Differentiation
+
+**Kookie AI** → Conversation graphs (branch anywhere).  
+Atomic processing nodes (summarise, translate, extract).  
+Artifacts as first-class nodes.  
+UX-first, creative/professional user target.
+
+## Core Concept
+
+Kookie AI is a desktop-first, web-based product where conversations are not linear scrolls, but nodes in a branching graph.
+
+Each node = a conversation container (multi-turn chat) or, if left at one prompt → atomic interaction.
+
+Users can branch at any point in a conversation, creating alternate paths, explorations, or transformations.
+
+Branches can be:
+- **Conversational** (continue dialogue in a new direction)
+- **Atomic** (summarise, translate, generate artifact)
+
+👉 The product is a conversation OS: a map of knowledge, exploration, and creative outputs, not just a chat box.
+
+## Target Audience
+
+- **Knowledge workers** → researchers, analysts, consultants
+- **Creatives** → writers, designers, storytellers  
+- **Teams** → collaboration, remixing, alternative explorations
+- **Power users** of ChatGPT/Gemini who want more control and organization
+
+Not everyday casual users → this is closer to Notion / Obsidian / Figma-level power tool.
+
+## UX Principles
+
+### Canvas-First
+Pan/zoom workspace with nodes connected visually. This isn't just a chat interface — it's a workspace for thinking and creating.
+
+### Branch Anywhere
+Right-click a message → "branch from here." Unlike linear conversations, you can explore multiple directions from any point.
+
+### Chat Inside Nodes
+Rich text, markdown, code, tables, images. Each node is a full conversation container, not just a single message.
+
+### Atomic Transforms
+Branch to summary, outline, translation, etc. These aren't just prompts — they're first-class processing units that can be chained and reused.
+
+### Link / Unlink
+Reorganize nodes (detach, re-attach, cross-pollinate). You're not locked into the original conversation structure — you can evolve it as your understanding grows.
+
+### Artifacts
+Outputs (tables, docs, images) are first-class and attachable to nodes. They become part of your knowledge system, not just temporary results.
+
+👉 Users don't think in Git terms (rebase, merge). They think in stories, remixes, save points, and alternate paths.
+
+## Node Types
+
+### Conversation Node
+Multi-turn chats with memory/history. Can evolve from atomic.
+
+### Atomic Node
+One-shot transform. E.g. Summarise, Translate, Outline, Action Items, Generate Image. Can be silent (output only flows downstream).
+
+### Artifact Node
+Holds structured outputs: tables, charts, docs, images, code. Branchable for remix.
+
+👉 But technically, all nodes are the same object. It's the interaction pattern that defines whether a node is atomic or conversational.
+
+## Branching & Graph Behavior
+
+### Branching
+From any message → create new conversation node or atomic transform. Branch = "what if?" or "process this so far."
+
+### Detaching
+A branch can be promoted into an independent root. Used for restructuring, sharing, or cleaning context.
+
+### Re-attaching
+A branch can connect to a different node. Options: inherit new parent's context or just link visually for organization.
+
+👉 This creates a living, editable conversation graph: a tree that can be pruned, grafted, remixed.
+
+## Key Features
+
+### Branchable Chats
+Fork conversations at any point. Explore multiple continuations.
+
+### Atomic Branches
+- Summarise until here
+- Translate until here  
+- Extract tasks/insights
+- Format into table/JSON
+- Generate images/diagrams
+
+### Artifacts
+Outputs (tables, docs, code, visuals) become standalone nodes. Branch further from artifacts.
+
+### Search & Recall
+AI-assisted search across nodes. Semantic search for "where did I talk about X?"
+
+### Multi-Model Support
+Branch into GPT-4, Gemini, Claude from the same root. Compare outputs.
+
+## Technical Architecture
+
+**Frontend:**
+- React + Kookie UI (design system)
+- React Flow for canvas visualization
+- Rich chat renderer (markdown, code, images)
+
+**Backend:**
+- API orchestrator for OpenAI, Gemini, Anthropic
+- Postgres/Firebase for storing nodes/messages/artifacts
+- Optional vector DB (pgvector, Pinecone) for semantic recall
+
+**LLM Layer:**
+- AI-SDK for chat streaming, history, tool calling
+- Direct APIs for atomic nodes (summarise, translate, image)
+- LangChain (optional) only for advanced nodes (web search, RAG, SQL)
+
+## MVP Roadmap
+
+### Phase 1 (MVP, ~3–4 months)
+- Canvas UI with nodes/branches
+- Conversation nodes with branching
+- Atomic nodes (Summarise, Translate, Outline)
+- Artifact nodes for summaries/tables/images
+- Multi-model choice (OpenAI + Gemini)
+
+### Phase 2
+- Search across nodes
+- Detach/re-attach branches
+- Advanced atomic nodes (web search, RAG)
+- Export artifacts (MDX, CSV, DOCX)
+
+### Phase 3
+- Collaboration (shared graphs)
+- Multi-modal artifacts (audio, video)
+- Plugin ecosystem (custom atomic nodes)
+- Memory nodes (persistent knowledge)
+
+## Pricing Model
+
+**Free**
+- Limited nodes/month
+- GPT-3.5/Gemini Flash only
+
+**Pro ($15/mo)**
+- Unlimited branching
+- Access to GPT-4, Gemini Pro, Claude
+- Atomic nodes & artifacts
+- Generous token allowance
+
+**Team ($30/user/mo)**
+- Shared graphs
+- Knowledge base search
+- Advanced nodes (RAG, DB)
+
+👉 Positioned like Notion or Obsidian, not "another chatbot."
+
+## Brand & Story
+
+**Name:** Kookie AI (personal, approachable — named after your dog 🐶)
+
+**Tone:** Playful on the surface, serious power underneath
+
+**Positioning:** "Not a chatbot. A conversation OS."
+
+---
+
+*Kookie AI is currently in development. Follow along as we build the future of AI-powered conversation management.*

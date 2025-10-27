@@ -1,18 +1,5 @@
 import type { MDXComponents } from "mdx/types";
-import {
-  Heading,
-  Text,
-  Code,
-  Blockquote,
-  Link,
-  Flex,
-  Separator,
-  Box,
-  Strong,
-  Em,
-  Kbd,
-  Callout,
-} from "@kushagradhawan/kookie-ui";
+import { Heading, Text, Code, Blockquote, Link, Flex, Separator, Box, Strong, Em, Kbd, Callout, Image } from "@kushagradhawan/kookie-ui";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -125,11 +112,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 
     // Links using KookieUI defaults
     a: ({ href, children }) => (
-      <Link
-        href={href}
-        highContrast
-        target={href?.startsWith("http") ? "_blank" : undefined}
-      >
+      <Link href={href} highContrast target={href?.startsWith("http") ? "_blank" : undefined}>
         {children}
       </Link>
     ),
@@ -153,6 +136,29 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <Callout.Root>
         <Callout.Text>{children}</Callout.Text>
       </Callout.Root>
+    ),
+
+    // Video elements
+    video: ({ src, ...props }) => (
+      <Box mb="6" style={{ borderRadius: "var(--radius-4)", overflow: "hidden" }}>
+        <video
+          src={src}
+          style={{
+            width: "100%",
+            height: "auto",
+            display: "block",
+          }}
+          controls
+          {...props}
+        />
+      </Box>
+    ),
+
+    // Image elements
+    img: ({ src, alt, ...props }) => (
+      <Box asChild my="6" style={{ borderRadius: "var(--radius-4)", overflow: "hidden" }}>
+        <Image src={src} alt={alt} {...props} />
+      </Box>
     ),
 
     ...components,

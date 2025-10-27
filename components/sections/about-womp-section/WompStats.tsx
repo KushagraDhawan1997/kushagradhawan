@@ -22,7 +22,7 @@ export function WompStats() {
         <Card key={index} size="3" variant="classic">
           <Flex direction="column" gap="4" p="2" height="100%">
             {getIconComponent(stat.iconName)}
-            <Heading size="3" weight="medium">
+            <Heading size="4" weight="medium">
               {stat.value}
             </Heading>
             <Text size="3" color="gray">

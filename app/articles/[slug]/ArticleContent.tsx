@@ -1,14 +1,7 @@
 "use client";
 
 import React, { Suspense } from "react";
-import {
-  Badge,
-  Container,
-  Flex,
-  Heading,
-  Section,
-  Text,
-} from "@kushagradhawan/kookie-ui";
+import { Badge, Container, Flex, Heading, Section, Text } from "@kushagradhawan/kookie-ui";
 import { MDXProvider } from "@mdx-js/react";
 import { useMDXComponents } from "../../../mdx-components";
 interface ArticleContentProps {
@@ -33,25 +26,14 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
   const components = useMDXComponents({});
 
   // Statically map known slugs to MDX components so bundler includes them
-  const MDXBySlug: Record<
-    string,
-    React.LazyExoticComponent<React.ComponentType<any>>
-  > = {
-    "about-me": React.lazy(
-      () => import("../../../content/articles/about-me.mdx")
-    ),
-    "about-kookie-ui": React.lazy(
-      () => import("../../../content/articles/about-kookie-ui.mdx")
-    ),
-    "building-products-that-scale": React.lazy(
-      () => import("../../../content/articles/building-products-that-scale.mdx")
-    ),
-    "leadership-approaches": React.lazy(
-      () => import("../../../content/articles/leadership-approaches.mdx")
-    ),
-    "product-philosophy": React.lazy(
-      () => import("../../../content/articles/product-philosophy.mdx")
-    ),
+  const MDXBySlug: Record<string, React.LazyExoticComponent<React.ComponentType<any>>> = {
+    "about-me": React.lazy(() => import("../../../content/articles/about-me.mdx")),
+    "about-kookie-ui": React.lazy(() => import("../../../content/articles/about-kookie-ui.mdx")),
+    "about-kookie-ai": React.lazy(() => import("../../../content/articles/about-kookie-ai.mdx")),
+    "building-products-that-scale": React.lazy(() => import("../../../content/articles/building-products-that-scale.mdx")),
+    "leadership-approaches": React.lazy(() => import("../../../content/articles/leadership-approaches.mdx")),
+    "product-philosophy": React.lazy(() => import("../../../content/articles/product-philosophy.mdx")),
+    "womp-spark-update": React.lazy(() => import("../../../content/articles/womp-spark-update.mdx")),
   };
 
   const MDXContent = MDXBySlug[post.slug];

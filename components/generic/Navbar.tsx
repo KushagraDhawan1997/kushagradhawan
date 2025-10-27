@@ -1,23 +1,8 @@
 "use client";
 
 import * as React from "react";
-import {
-  useEffect,
-  useState,
-  useRef,
-  useCallback,
-  useLayoutEffect,
-} from "react";
-import {
-  Button,
-  Box,
-  Flex,
-  Avatar,
-  Text,
-  IconButton,
-  DropdownMenu,
-  useThemeContext,
-} from "@kushagradhawan/kookie-ui";
+import { useEffect, useState, useRef, useCallback, useLayoutEffect } from "react";
+import { Button, Box, Flex, Avatar, Text, IconButton, DropdownMenu, useThemeContext } from "@kushagradhawan/kookie-ui";
 import { Link as KookieLink } from "@kushagradhawan/kookie-ui";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -34,9 +19,7 @@ import { Sun, Moon, Monitor, Mail, Github } from "lucide-react";
 function ThemeToggle() {
   const { appearance, onAppearanceChange } = useThemeContext();
   const [mounted, setMounted] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState<"system" | "light" | "dark">(
-    "system"
-  );
+  const [currentTheme, setCurrentTheme] = useState<"system" | "light" | "dark">("system");
 
   // Only render after mounting to avoid hydration issues
   useEffect(() => {
@@ -47,18 +30,12 @@ function ThemeToggle() {
   useEffect(() => {
     if (!mounted) return;
 
-    const savedTheme = localStorage.getItem("kookie-theme") as
-      | "system"
-      | "light"
-      | "dark"
-      | null;
+    const savedTheme = localStorage.getItem("kookie-theme") as "system" | "light" | "dark" | null;
 
     if (savedTheme) {
       setCurrentTheme(savedTheme);
       if (savedTheme === "system") {
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         onAppearanceChange(prefersDark ? "dark" : "light");
       } else {
         onAppearanceChange(savedTheme);
@@ -66,9 +43,7 @@ function ThemeToggle() {
     } else {
       // Default to system preference
       setCurrentTheme("system");
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       onAppearanceChange(prefersDark ? "dark" : "light");
       localStorage.setItem("kookie-theme", "system");
     }
@@ -79,9 +54,7 @@ function ThemeToggle() {
     localStorage.setItem("kookie-theme", theme);
 
     if (theme === "system") {
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       onAppearanceChange(prefersDark ? "dark" : "light");
     } else {
       onAppearanceChange(theme);
@@ -142,15 +115,7 @@ function ThemeToggle() {
  * A navigation link that highlights when active and provides proper accessibility.
  * Uses standard browser scrolling when linking to page sections
  */
-function NavLink({
-  href,
-  children,
-  ariaLabel,
-}: {
-  href: string;
-  children: React.ReactNode;
-  ariaLabel?: string;
-}) {
+function NavLink({ href, children, ariaLabel }: { href: string; children: React.ReactNode; ariaLabel?: string }) {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
 
@@ -165,15 +130,7 @@ function NavLink({
   // Don't render until mounted to avoid hydration mismatch
   if (!mounted) {
     return (
-      <KookieLink
-        href={linkHref}
-        size="2"
-        weight="regular"
-        color="gray"
-        aria-label={
-          ariaLabel || (typeof children === "string" ? children : undefined)
-        }
-      >
+      <KookieLink href={linkHref} size="2" weight="regular" color="gray" aria-label={ariaLabel || (typeof children === "string" ? children : undefined)}>
         <Flex align="center" gap="2">
           {children}
         </Flex>
@@ -189,9 +146,7 @@ function NavLink({
       size="2"
       weight={isActive ? "medium" : "regular"}
       color={isActive ? undefined : "gray"}
-      aria-label={
-        ariaLabel || (typeof children === "string" ? children : undefined)
-      }
+      aria-label={ariaLabel || (typeof children === "string" ? children : undefined)}
     >
       <Flex align="center" gap="2">
         {children}
@@ -214,31 +169,17 @@ function NavLink({
  * @param props - Additional HTML attributes
  * @returns React component for the site navigation
  */
-export function Navbar({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLElement>) {
+export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
   // Get the current path to highlight active links
   const pathname = usePathname();
 
   return (
-    <Box
-      position="sticky"
-      top="0"
-      style={{ zIndex: 50 }}
-      width="100%"
-      {...props}
-    >
+    <Box position="sticky" top="0" style={{ zIndex: 50 }} width="100%" {...props}>
       <Flex width="100%" height="64px" align="center" justify="between" px="4">
         {/* Left side: Logo */}
         <Link href="/" aria-label="Kushagra Dhawan - Homepage">
           <Flex align="center" gap="4">
-            <Avatar
-              src="/logo-dark-large.png"
-              fallback="KD"
-              size="2"
-              radius="full"
-            />
+            <Avatar src="/exp-logo.svg" fallback="KD" size="2" radius="full" />
             {/* <Text size="4" weight="medium">
               Kush.
             </Text> */}
@@ -251,21 +192,12 @@ export function Navbar({
 
           <Flex gap="2">
             <ThemeToggle />
-            <IconButton asChild variant="solid" highContrast>
-              <Link
-                href="https://github.com/KushagraDhawan1997/kookie-ui"
-                target="_blank"
-              >
+            <IconButton asChild variant="classic" highContrast>
+              <Link href="https://github.com/KushagraDhawan1997/kookie-ui" target="_blank">
                 <Github />
               </Link>
             </IconButton>
-            <Button
-              size="2"
-              highContrast
-              asChild
-              variant="classic"
-              aria-label="Contact Kushagra Dhawan"
-            >
+            <Button size="2" highContrast asChild variant="classic" aria-label="Contact Kushagra Dhawan">
               <Link href={pathname === "/" ? "#contact" : "/#contact"}>
                 <Mail />
                 Contact

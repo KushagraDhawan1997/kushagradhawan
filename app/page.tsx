@@ -5,6 +5,7 @@ import { BeliefSection } from "../components/sections/belief-section";
 import { ProductPhilosophy } from "../components/sections/product-philosophy-section";
 import { StartupSolutionsSection } from "../components/sections/startup-solutions-section";
 import { AboutKookieUISection } from "@/components/sections/about-kookie-ui-section";
+import { AboutKookieAISection } from "@/components/sections/about-kookie-ai-section";
 import type { Metadata } from "next";
 
 // Enhanced metadata for home page
@@ -79,6 +80,7 @@ export default function Home() {
       <BeliefSection />
       <AboutWompSection />
       <AboutKookieUISection />
+      <AboutKookieAISection />
       <AboutSection />
       <ProductPhilosophy />
       <StartupSolutionsSection />
