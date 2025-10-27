@@ -75,9 +75,14 @@ export function HeroSection() {
           {/* Call-to-action buttons */}
           <Flex direction="row" gap="2">
             <Button asChild variant="solid" size="3" highContrast>
-              <a href="#contact" aria-label="Go to contact section">
+              <a
+                href="https://calendly.com/accounts-kushagradhawan/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Book an intro call via Calendly"
+              >
                 <Phone />
-                Book a 15-min intro
+                Book an intro call
               </a>
             </Button>
             <Button asChild variant="classic" highContrast size="3">
