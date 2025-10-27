@@ -8,7 +8,7 @@
  * The section uses a responsive layout with different designs for mobile and desktop.
  */
 
-import { Button, Container, Flex, Heading, Section, Text, Card, Link } from "@kushagradhawan/kookie-ui";
+import { Button, Container, Flex, Heading, Section, Text, Card, Link, Callout } from "@kushagradhawan/kookie-ui";
 import { WompStats, WompIllustrationGrid } from ".";
 
 /**
@@ -26,6 +26,19 @@ import { WompStats, WompIllustrationGrid } from ".";
 export function AboutWompSection() {
   return (
     <Section>
+      {/* Callout for Spark update */}
+      <Flex justify="center" pb="4">
+        <Callout.Root highContrast size="2" style={{ width: "fit-content" }}>
+          <Callout.Icon />
+          <Callout.Text>
+            Read about the{" "}
+            <Link href="/articles/womp-spark-update" target="_blank" rel="noopener noreferrer">
+              latest Womp Spark update
+            </Link>{" "}
+            — now generates images and 3D meshes directly in chat
+          </Callout.Text>
+        </Callout.Root>
+      </Flex>
       <Container size="4">
         <Card variant="classic" size="4">
           <Flex direction="column" gap="9" py="6" px={{ initial: "3", sm: "6" }}>

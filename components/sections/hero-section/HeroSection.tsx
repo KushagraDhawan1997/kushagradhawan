@@ -15,7 +15,7 @@
  * - Clean, minimal styling with KookieUI components
  */
 
-import { Button, Flex, Text, Heading, Container, Grid, Badge, Section, Link, Tooltip, Inset, Image } from "@kushagradhawan/kookie-ui";
+import { Button, Flex, Text, Heading, Container, Grid, Badge, Section, Link, Tooltip, Callout, Image } from "@kushagradhawan/kookie-ui";
 import { testimonials } from "./testimonials";
 import { TestimonialCard } from "./TestimonialCard";
 import { Mail, Phone } from "lucide-react";
