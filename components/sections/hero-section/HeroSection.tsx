@@ -16,6 +16,7 @@
  */
 
 import { Button, Flex, Text, Heading, Container, Grid, Badge, Section, Link, Tooltip, Callout, Image } from "@kushagradhawan/kookie-ui";
+import { HoverCard } from "@kushagradhawan/kookie-ui";
 import { testimonials } from "./testimonials";
 import { TestimonialCard } from "./TestimonialCard";
 import { Mail, Phone } from "lucide-react";
@@ -52,15 +53,31 @@ export function HeroSection() {
             </Heading>
             <Text size="4" color="gray">
               Product &amp; Design Lead,{" "}
-              <Link target="_blank" href="https://womp.com">
-                Womp 3D
-              </Link>{" "}
+              <HoverCard.Root>
+                <HoverCard.Trigger>
+                  <Link target="_blank" href="https://womp.com">
+                    Womp 3D
+                  </Link>
+                </HoverCard.Trigger>
+                <HoverCard.Content maxWidth="600px">
+                  <Flex direction="column" align="center">
+                    <Image src="/womp.png" alt="Womp 3D Preview" width="600" height="450" />
+                  </Flex>
+                </HoverCard.Content>
+              </HoverCard.Root>{" "}
               &bull; Building{" "}
-              <Tooltip content="This site is built using KookieUI">
-                <Link target="_blank" href="https://github.com/KushagraDhawan1997/kookie-ui">
-                  KookieUI
-                </Link>
-              </Tooltip>
+              <HoverCard.Root>
+                <HoverCard.Trigger>
+                  <Link target="_blank" href="https://github.com/KushagraDhawan1997/kookie-ui">
+                    KookieUI
+                  </Link>
+                </HoverCard.Trigger>
+                <HoverCard.Content maxWidth="600px">
+                  <Flex direction="column" align="center">
+                    <Image src="/sample.png" alt="KookieUI Preview" width="600" height="450" />
+                  </Flex>
+                </HoverCard.Content>
+              </HoverCard.Root>
               , KookieAI, KookieBlocks.
               <br />I merge design, product, and enough code to land features fast. AI makes the work faster and simpler.
             </Text>

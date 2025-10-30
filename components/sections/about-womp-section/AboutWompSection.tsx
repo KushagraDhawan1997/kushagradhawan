@@ -26,19 +26,6 @@ import { WompStats, WompIllustrationGrid } from ".";
 export function AboutWompSection() {
   return (
     <Section>
-      {/* Callout for Spark update */}
-      <Flex justify="center" pb="4">
-        <Callout.Root highContrast size="2" style={{ width: "fit-content" }}>
-          <Callout.Icon />
-          <Callout.Text>
-            Read about the{" "}
-            <Link href="/articles/womp-spark-update" target="_blank" rel="noopener noreferrer">
-              latest Womp Spark update
-            </Link>{" "}
-            — now generates images and 3D meshes directly in chat
-          </Callout.Text>
-        </Callout.Root>
-      </Flex>
       <Container size="4">
         <Card variant="classic" size="4">
           <Flex direction="column" gap="9" py="6" px={{ initial: "3", sm: "6" }}>
@@ -70,6 +57,19 @@ export function AboutWompSection() {
                 Works in the browser. No install.
               </Text>
             </Flex>
+          </Flex>
+          {/* Callout for Spark update */}
+          <Flex justify="center" pb="4">
+            <Callout.Root highContrast size="2" style={{ width: "fit-content" }}>
+              <Callout.Icon />
+              <Callout.Text>
+                Read about the{" "}
+                <Link href="/articles/womp-spark-update" target="_blank" rel="noopener noreferrer">
+                  latest Womp Spark update
+                </Link>{" "}
+                — now generates images and 3D meshes directly in chat
+              </Callout.Text>
+            </Callout.Root>
           </Flex>
         </Card>
       </Container>
