@@ -10,14 +10,18 @@ import {
   Flex,
   Grid,
   Heading,
+  RadioCards,
+  RadioGroup,
   Section,
+  Image,
   Separator,
   Text,
   VisuallyHidden,
+  AspectRatio,
 } from "@kushagradhawan/kookie-ui";
 import Link from "next/link";
 import { principles } from "./philosophyData";
-import { Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 
 // Principle card with dialog functionality for mobile
 function PrincipleCard({ principle }: { principle: (typeof principles)[0] }) {
@@ -74,33 +78,56 @@ export function ProductPhilosophy() {
   const [activePrinciple, setActivePrinciple] = useState(principles[0]);
 
   return (
-    <Section>
+    <Section
+    //  style={{ backgroundImage: "url('./background.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
+    >
       <Container size="4">
-        <Flex direction="column" gap="9" p="6">
+        <Flex direction="column" gap="9" p="6" position="relative">
+          {/* <AspectRatio ratio={16 / 10}>
+            <Image
+              src="./articles/product-philosophy.png"
+              alt="product philosophy"
+              style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "var(--radius-6)", overflow: "hidden" }}
+            />
+          </AspectRatio> */}
           {/* Header */}
+
           <Flex direction="column" gap="4">
-            <Heading size="8" weight="medium">
-              Things I've Learned (So Far)
+            <Heading size="8" weight="medium" color="gray">
+              Building at{" "}
+              <Text as="span" highContrast>
+                Womp
+              </Text>{" "}
+              has shown me firsthand what it takes to connect{" "}
+              <Text as="span" highContrast>
+                users
+              </Text>
+              ,{" "}
+              <Text as="span" highContrast>
+                technology
+              </Text>
+              , and{" "}
+              <Text as="span" highContrast>
+                business
+              </Text>
+              . These are the{" "}
+              <Text as="span" highContrast>
+                real-world principles
+              </Text>{" "}
+              that drive my work today.
             </Heading>
-            <Text size="4" color="gray">
-              Building at Womp has taught me a few things about users, tech, and
-              business. I'm still learning every day, and most of this is work
-              in progress.
-            </Text>
           </Flex>
 
           {/* Call-to-action button */}
           <Flex direction="row" gap="2">
             <Button asChild variant="solid" size="3" highContrast>
               <a href="#contact" aria-label="Go to contact section">
-                <Mail />
-                Contact
+                Lets Talk
+                <ArrowRight />
               </a>
             </Button>
             <Button asChild variant="classic" size="3" highContrast>
-              <Link href="/articles/product-philosophy">
-                Product Philosophy
-              </Link>
+              <Link href="/articles/product-philosophy">Product Philosophy</Link>
             </Button>
           </Flex>
 
@@ -114,50 +141,40 @@ export function ProductPhilosophy() {
           </Box>
 
           {/* Desktop view: sidebar + content panel */}
-          <Grid
-            display={{ initial: "none", md: "grid" }}
-            columns="360px 1fr"
-            gap="3"
-          >
+          <Grid display={{ initial: "none", md: "grid" }} columns="360px 1fr" gap="3">
             {/* Left sidebar with principles list */}
-            <Flex direction="column" gap="3">
-              {principles.map((principle, index) => (
-                <Card
-                  key={principle.title}
-                  asChild
-                  size="2"
-                  variant="soft"
-                  style={{ cursor: "pointer" }}
-                >
-                  <button
-                    onClick={() => setActivePrinciple(principle)}
-                    data-state={
-                      principle.title === activePrinciple.title
-                        ? "open"
-                        : "closed"
-                    }
-                    style={{ width: "100%", textAlign: "left" }}
-                  >
+            <RadioCards.Root
+              size="2"
+              variant="soft"
+              value={activePrinciple.title}
+              onValueChange={(value) => {
+                const principle = principles.find((p) => p.title === value);
+                if (principle) setActivePrinciple(principle);
+              }}
+            >
+              <Flex direction="column" gap="3">
+                {principles.map((principle) => (
+                  <RadioCards.Item key={principle.title} value={principle.title}>
                     <Flex direction="column" gap="1" p="3">
-                      <Heading size="2" weight="medium">
+                      <Heading size="4" weight="medium">
                         {principle.title}
                       </Heading>
-                      <Text size="2" color="gray">
+                      <Text size="3" color="gray">
                         {principle.description}
                       </Text>
                     </Flex>
-                  </button>
-                </Card>
-              ))}
-            </Flex>
+                  </RadioCards.Item>
+                ))}
+              </Flex>
+            </RadioCards.Root>
 
             {/* Right content panel */}
-            <Card size="3" variant="classic">
-              <Flex direction="column" gap="3" p="2">
-                <Heading size="4" weight="medium">
+            <Card size="3" variant="soft">
+              <Flex direction="column" gap="6" p="4">
+                <Heading size="6" weight="medium">
                   {activePrinciple.title}
                 </Heading>
-                <Text color="gray" size="3" style={{ whiteSpace: "pre-line" }}>
+                <Text size="4" color="gray" style={{ whiteSpace: "pre-line" }}>
                   {activePrinciple.expandedContent}
                 </Text>
               </Flex>
