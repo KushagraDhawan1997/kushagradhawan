@@ -41,11 +41,7 @@ export async function generateStaticParams() {
  * @param props.params.slug - The unique identifier for the article
  * @returns React component for the article page
  */
-export default async function ArticlePage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   try {
     // Get slug from params
     const { slug } = await params;
@@ -68,6 +64,8 @@ export default async function ArticlePage({
           description: post.description,
           date: post.date,
           tags: post.tags,
+          image: post.image,
+          alt: post.alt,
         }}
         formattedDate={formattedDate}
       />

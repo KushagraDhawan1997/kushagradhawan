@@ -1,8 +1,9 @@
 ---
-title: "Major Womp Spark update, now generates images and 3D meshes"
+title: "Major Womp Spark update: Now generates images and 3D meshes"
 description: "Womp Spark now generates images and 3D meshes directly in chat, expanding from an assistant to a complete creation tool for 3D printing."
 date: "2025-10-25"
 author: "Kushagra Dhawan"
+image: "/articles/article-sample.png"
 tags: ["Womp", "Product", "Update"]
 keywords:
   [
@@ -15,13 +16,19 @@ keywords:
   ]
 ---
 
+import { ArticleImage } from "@/components/generic";
+
 We've been working on expanding Womp Spark beyond its role as an assistant. We wanted to remove the friction between having an idea and having a 3D-printable object. That meant adding image and 3D mesh generation directly into the chat interface.
+
+Shipping AI at Womp was no easy win. For us, AI isn't a gimmick or an optimization. It's about making 3D creation accessible to people who never thought they could — but also not leaving behind creators who want depth, not black-box magic.
 
 The workflow was always the problem. Users would come to Spark with a concept, but to turn that concept into something physical, they had to leave the conversation, find another tool, generate content somewhere else, then figure out how to get it back into their scene. Each step added friction. Each step made it less likely they'd complete the loop from idea to object.
 
 So we built generation directly into Spark. Now you can ask Spark to create an image, then immediately ask it to convert that image to a 3D mesh, then send that mesh to print — all in the same conversation. The content lives in your chat history, and you can iterate on it just like you would iterate on any other part of your design process.
 
-{/* ![Fish keycap generated in Spark](https://media.womp.com/images/keycap-1761127173097.png) */}
+Our goal wasn't to replace the tools power users love, but to add a new path into 3D for everyone. Generate objects instantly, then use Womp's editor to compose scenes, customize, and make it your own. Some creators were frustrated with our first AI release — and we're listening. Womp's mission is easy 3D for all, not shortcuts that limit control.
+
+<ArticleImage src="/articles/spark-update/ui.png" alt="Spark UI showing image and 3D mesh generation interface" />
 
 ## What Changed
 
@@ -33,6 +40,8 @@ Free users get access to Flux Schnell (faster generation) and Flux Dev (better q
 
 The models aren't ours — we're using off-the-shelf generation APIs. Your prompts and images aren't used to train anything. That was important to us from the start.
 
+<ArticleImage src="/articles/spark-update/chat-example.png" alt="Spark UI showing image and 3D mesh generation interface" />
+
 ### 3D Meshes
 
 3D generation is where things get more interesting. You can generate 3D models from text descriptions, or you can convert any image into a 3D mesh. The key requirement is that everything Spark generates needs to be actually printable — not just theoretically, but optimized for SLA printing from the first generation.
@@ -41,11 +50,14 @@ Free users get access to Trellis3D, which handles most use cases well. Pro users
 
 The tricky part isn't the generation itself — it's making sure what comes out the other end will actually print. We had to make sure our models were trained specifically to meet Womp's printing requirements. A 3D model that looks good in a preview but won't print isn't helpful.
 
+<ArticleImage src="/articles/spark-update/3d-example.png" alt="Spark UI showing image and 3D mesh generation interface" />
+
 ### Actions
 
 Every generated image or 3D mesh comes with a set of action buttons right in the chat. For images, you can make 3D, upscale, remove background, or import to your scene. For 3D meshes, you can add to scene, send to 3D print, view the mesh, or download it.
 
 The goal isn't to replace typing entirely. Sometimes you'll still want to describe what you want in natural language. But for common operations — "take this image and make it 3D" — a button is faster and clearer than typing out another instruction.
+
 
 ### Credits
 
@@ -70,16 +82,6 @@ The recommended workflow is simple:
 4. Send it to 3D print
 
 You can go straight from text to 3D if you want, but image-to-3D tends to give more predictable results. It's also easier to iterate on a 2D image than on a 3D mesh if something doesn't look right.
-
-## Other Changes
-
-We also added some features that aren't directly about generation. You can now duplicate meshes to special primitives and vice versa. You can convert regions to meshes or special primitives for more editing control. These are workflow improvements that make it easier to work with generated content.
-
-We increased upload limits for free users from 50MB to 150MB. Pro users still have 300MB. And we fixed some bugs that were preventing access to projects inside team workspaces.
-
-## Privacy
-
-We don't collect your data. Spark uses third-party generation models, and your prompts, images, and 3D outputs aren't used to train anything. Your work stays yours.
 
 ## What's Next
 

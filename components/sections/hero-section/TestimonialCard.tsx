@@ -42,8 +42,8 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
           <button>
             <Flex direction="column" justify="between" height="100%" gap="6" p="2">
               {/* Testimonial content */}
-              <Text size="3" color="gray">
-                {testimonial.shortTestimonial}
+              <Text size="4" weight="medium">
+                "{testimonial.shortTestimonial}"
               </Text>
 
               {/* Author information */}
@@ -51,7 +51,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
               <Flex align="center" gap="4">
                 <Avatar highContrast size="3" variant="classic" fallback={testimonial.author.name.charAt(0)} />
                 <Flex direction="column" gap="0">
-                  <Text size="2" weight="medium">
+                  <Text size="3" weight="medium">
                     {testimonial.author.name}
                   </Text>
                   <Text size="2" color="gray">
@@ -70,11 +70,21 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
         </VisuallyHidden>
 
         <Flex direction="column" gap="6">
+          {/* Full testimonial text */}
+          <Text size="5" weight="medium" style={{ whiteSpace: "pre-line" }}>
+            "{testimonial.fullTestimonial}"
+          </Text>
+
+          {/* Where they worked together */}
+          <Text size="2" color="gray">
+            {testimonial.workedAt}
+          </Text>
+
           {/* Author information header */}
           <Flex align="center" gap="4">
             <Avatar highContrast size="3" variant="classic" fallback={testimonial.author.name.charAt(0)} />
             <Flex direction="column" gap="0">
-              <Text size="2" weight="medium">
+              <Text size="3" weight="medium">
                 {testimonial.author.name}
               </Text>
               <Text size="2" color="gray">
@@ -82,11 +92,6 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
               </Text>
             </Flex>
           </Flex>
-
-          {/* Full testimonial text */}
-          <Text size="3" style={{ whiteSpace: "pre-line" }}>
-            {testimonial.fullTestimonial}
-          </Text>
         </Flex>
       </Dialog.Content>
     </Dialog.Root>

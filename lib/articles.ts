@@ -25,6 +25,8 @@ export type Article = {
   description: string; // Brief description
   tags: string[]; // Associated tags
   content: string; // MDX content of the article
+  image?: string; // Header image for the article
+  alt?: string; // Alt text for the header image
 };
 
 /**
@@ -56,6 +58,8 @@ export async function getPostBySlug(slug: string): Promise<Article> {
     description: data.description || "", // Default to empty string if missing
     tags: data.tags || [], // Default to empty array if missing
     content: cleanContent, // Clean MDX content without frontmatter
+    image: data.image, // Header image (optional)
+    alt: data.alt, // Alt text for the image (optional)
   };
 }
 
@@ -70,6 +74,8 @@ export function getAllPosts(): {
   date: string;
   description: string;
   tags: string[];
+  image?: string;
+  alt?: string;
 }[] {
   // Get all MDX files from the posts directory
   const fileNames = fs.readdirSync(postsDirectory);
@@ -77,6 +83,11 @@ export function getAllPosts(): {
   // Process each file to extract metadata
   const allPostsData = fileNames
     .filter((fileName) => fileName.endsWith(".mdx")) // Only process MDX files
+    .filter((fileName) => {
+      // Exclude specific articles
+      const slug = fileName.replace(/\.mdx$/, "");
+      return slug !== "building-products-that-scale" && slug !== "about-kookie-ai" && slug !== "product-philosophy";
+    })
     .map((fileName) => {
       // Remove the .mdx extension to get the slug
       const slug = fileName.replace(/\.mdx$/, "");
@@ -95,6 +106,8 @@ export function getAllPosts(): {
         date: data.date,
         description: data.description || "",
         tags: data.tags || [],
+        image: data.image,
+        alt: data.alt,
       };
     });
 

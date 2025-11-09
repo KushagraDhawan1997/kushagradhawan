@@ -1,12 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { useEffect, useState, useRef, useCallback, useLayoutEffect } from "react";
-import { Button, Box, Flex, Avatar, Text, IconButton, DropdownMenu, useThemeContext } from "@kushagradhawan/kookie-ui";
-import { Link as KookieLink } from "@kushagradhawan/kookie-ui";
+import { useEffect, useState } from "react";
+import { Button, Box, Flex, Avatar, DropdownMenu, useThemeContext, IconButton, Link as KookieLink } from "@kushagradhawan/kookie-ui";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Sun, Moon, Monitor, Mail, Github } from "lucide-react";
+import { Sun, Moon, Monitor, Mail, ArrowRight, Check } from "lucide-react";
+import { socialLinks, type SocialLink } from "@/components/sections/contact-section/contactData";
 
 /**
  * ThemeToggle Component
@@ -85,7 +85,7 @@ function ThemeToggle() {
           {getThemeIcon()}
         </IconButton>
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content highContrast variant="soft" align="end">
+      <DropdownMenu.Content size="2" highContrast variant="soft" align="end">
         <DropdownMenu.Item onClick={() => handleThemeChange("system")}>
           <Flex align="center" gap="2">
             <Monitor />
@@ -130,7 +130,7 @@ function NavLink({ href, children, ariaLabel }: { href: string; children: React.
   // Don't render until mounted to avoid hydration mismatch
   if (!mounted) {
     return (
-      <KookieLink href={linkHref} size="2" weight="regular" color="gray" aria-label={ariaLabel || (typeof children === "string" ? children : undefined)}>
+      <KookieLink href={linkHref} size="2" weight="medium" highContrast aria-label={ariaLabel || (typeof children === "string" ? children : undefined)}>
         <Flex align="center" gap="2">
           {children}
         </Flex>
@@ -143,9 +143,10 @@ function NavLink({ href, children, ariaLabel }: { href: string; children: React.
   return (
     <KookieLink
       href={linkHref}
-      size="2"
-      weight={isActive ? "medium" : "regular"}
-      color={isActive ? undefined : "gray"}
+      size="3"
+      weight="medium"
+      highContrast
+      underline={isActive ? "always" : "none"}
       aria-label={ariaLabel || (typeof children === "string" ? children : undefined)}
     >
       <Flex align="center" gap="2">
@@ -172,6 +173,21 @@ function NavLink({ href, children, ariaLabel }: { href: string; children: React.
 export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
   // Get the current path to highlight active links
   const pathname = usePathname();
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  // Copy email to clipboard
+  const handleCopyEmail = async () => {
+    const email = "hello@kushagradhawan.design";
+    try {
+      await navigator.clipboard.writeText(email);
+      setEmailCopied(true);
+      setTimeout(() => {
+        setEmailCopied(false);
+      }, 2000);
+    } catch (err) {
+      console.error("Failed to copy email:", err);
+    }
+  };
 
   return (
     <Box position="sticky" top="0" style={{ zIndex: 50 }} width="100%" {...props}>
@@ -179,7 +195,7 @@ export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLElement
         {/* Left side: Logo */}
         <Link href="/" aria-label="Kushagra Dhawan - Homepage">
           <Flex align="center" gap="4">
-            <Avatar src="/exp-logo.svg" fallback="KD" size="2" radius="full" />
+            <Avatar src="/kushagra-logo.svg" fallback="KD" size="2" radius="full" />
             {/* <Text size="4" weight="medium">
               Kush.
             </Text> */}
@@ -188,21 +204,46 @@ export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLElement
 
         {/* Right side: Navigation links, theme toggle and contact button */}
         <Flex align="center" gap={{ initial: "4", md: "6" }}>
-          <NavLink href="/articles">Articles</NavLink>
+          <Flex gap="6" align="center">
+            {/* Social media links */}
+            {/* <Flex gap="4" wrap="wrap">
+              {socialLinks.map((link: SocialLink, index: number) => (
+                <KookieLink key={index} href={link.href} target="_blank" size="3" highContrast weight="medium">
+                  {link.name}
+                </KookieLink>
+              ))}
+            </Flex> */}
 
-          <Flex gap="2">
-            <ThemeToggle />
-            <IconButton asChild variant="ghost" highContrast>
-              <Link href="https://github.com/KushagraDhawan1997/kookie-ui" target="_blank">
-                <Github />
-              </Link>
-            </IconButton>
-            <Button size="2" highContrast asChild variant="classic" aria-label="Contact Kushagra Dhawan">
-              <Link href={pathname === "/" ? "#contact" : "/#contact"}>
-                <Mail />
-                Contact
-              </Link>
-            </Button>
+            {/* Contact buttons */}
+            <Flex gap="4" align="center">
+              <NavLink href="/articles">Articles</NavLink>
+              <Button size="3" asChild variant="solid" highContrast>
+                <Link
+                  href="/#contact"
+                  scroll={false}
+                  onClick={(e) => {
+                    // If we're not on the home page, let the navigation happen first
+                    if (pathname !== "/") {
+                      return;
+                    }
+                    // If we're on the home page, prevent default and scroll manually
+                    e.preventDefault();
+                    const contactSection = document.getElementById("contact");
+                    if (contactSection) {
+                      contactSection.scrollIntoView();
+                    }
+                  }}
+                >
+                  Contact
+                  {/* <ArrowRight /> */}
+                </Link>
+              </Button>
+              {/* <Button size="2" variant="soft" highContrast onClick={handleCopyEmail}>
+                {emailCopied ? <Check /> : <Mail />}
+                {emailCopied ? "Copied" : "Copy Email"}
+              </Button> */}
+              <ThemeToggle />
+            </Flex>
           </Flex>
         </Flex>
       </Flex>

@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
-import { Heading, Text, Code, Blockquote, Link, Flex, Separator, Box, Strong, Em, Kbd, Callout, Image } from "@kushagradhawan/kookie-ui";
+import React from "react";
+import { Heading, Text, Code, Blockquote, Link, Flex, Separator, Box, Card, Strong, Em, Kbd, Callout, Image } from "@kushagradhawan/kookie-ui";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -41,7 +42,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 
     // Text elements using KookieUI defaults
     p: ({ children }) => (
-      <Text as="p" size="3" my="3" style={{ lineHeight: "1.7" }}>
+      <Text as="p" size="4" my="3" style={{ lineHeight: "1.7" }}>
         {children}
       </Text>
     ),
@@ -51,8 +52,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <ul
         style={{
           marginBottom: "var(--space-4)",
-          marginTop: "var(--space-2)",
-          paddingLeft: "var(--space-5)",
+          marginTop: "var(--space-4)",
+          paddingLeft: "var(--space-4)",
+          marginLeft: "var(--space-4)",
           listStyle: "disc",
         }}
       >
@@ -63,8 +65,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <ol
         style={{
           marginBottom: "var(--space-4)",
-          marginTop: "var(--space-2)",
-          paddingLeft: "var(--space-5)",
+          marginTop: "var(--space-4)",
+          paddingLeft: "var(--space-4)",
+          marginLeft: "var(--space-4)",
           listStyle: "decimal",
         }}
       >
@@ -72,8 +75,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </ol>
     ),
     li: ({ children }) => (
-      <li style={{ marginBottom: "var(--space-1)", lineHeight: "1.6" }}>
-        <Text size="3">{children}</Text>
+      <li style={{ marginBottom: "var(--space-2)", paddingLeft: "var(--space-2)", lineHeight: "1.7" }}>
+        <Text size="4">{children}</Text>
       </li>
     ),
 
@@ -90,7 +93,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 
       // Regular inline code - use KookieUI styling
       return (
-        <Code size="3" color="gray" variant="ghost" highContrast>
+        <Code size="3" color="gray" variant="soft" highContrast>
           {children}
         </Code>
       );
@@ -156,9 +159,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 
     // Image elements
     img: ({ src, alt, ...props }) => (
-      <Box asChild my="6" style={{ borderRadius: "var(--radius-4)", overflow: "hidden" }}>
+      <Card my="6" variant="classic" size="2">
         <Image src={src} alt={alt} {...props} />
-      </Box>
+      </Card>
     ),
 
     ...components,

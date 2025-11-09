@@ -1,113 +1,47 @@
 ---
-title: "Product Philosophy"
-description: "I didn't set out to study product philosophy. I set out to build things. Design, engineering, product management — they were tools I had to pick up along the way, not passions in themselves."
+title: "Product Philosophy at Womp: Stay Humble, and Ship"
+description: "I learned just enough design, engineering, and product to turn ideas into things people can use."
 date: "2025-08-27"
 author: "Kushagra Dhawan"
 featured: true
-image: "/articles/philosophy-hero.jpg"
-alt: "Product philosophy for building better products through integrated disciplines"
+image: "/articles/product-philosophy.png"
+alt: "How we build products at Womp"
 canonical: "https://kushagradhawan.com/articles/product-philosophy"
-tags:
-  [
-    "product-philosophy",
-    "ai-integration",
-    "design-systems",
-    "cross-functional",
-    "product-development",
-    "engineering",
-    "design",
-  ]
-keywords:
-  [
-    "product philosophy",
-    "AI-first thinking",
-    "integrated disciplines",
-    "design systems",
-    "user value",
-    "product development",
-    "cross-functional teams",
-    "consistency",
-  ]
+tags: ["product", "ai-integration", "design-systems", "cross-functional", "product-development", "engineering", "design"]
+keywords: ["how we build", "AI-first", "cross-functional", "design systems", "KookieUI", "speed", "consistency"]
 ---
 
 import { Flex, Badge } from "@kushagradhawan/kookie-ui";
 
-I didn't set out to study product philosophy. I set out to build things. Design, engineering, product management — they were tools I had to pick up along the way, not passions in themselves.
+I build to learn. Along the way I picked up design, engineering, and product the way you pick up ingredients when you learn to cook. The goal stays the same: shorten the path from idea to something people use.
 
-It's like cooking. If your goal is to cook, you learn ingredients, recipes, and combinations. You don't study salt for the love of salt. You study it because it helps you make food. That's how design and engineering have been for me.
+This is the approach we take at [Womp](https://womp.com) and the reason I created KookieUI. 
+It’s a working set of habits that helps us move with clarity and keep the product coherent.
 
-Over time, I've collected some principles. They're not polished rules. They're lessons I've stumbled into at [Womp](https://womp.com) and through projects like <Flex as="span" direction="row" align="center" gap="1" style={{ display: "inline-flex" }}>KookieUI <Badge highContrast>Coming Soon</Badge></Flex>. They're still changing, and I'm still figuring them out.
+## AI first, creator led
 
-These principles aren't theoretical — they're practical. They're things I've learned by building products, making mistakes, and trying to do better next time. They're not about what should work in theory, but about what actually works in practice.
+AI moves the start line closer to the finish line. At Womp, it gives people a new on-ramp into 3D: generate an object in seconds, then place it, tweak it, and print it. Newcomers get momentum; experienced creators keep depth and control. Faster starts mean more cycles of taste, judgment, and intent—where the human work lives.
 
-## AI-First Thinking
+## Cross-functional ownership creates speed
 
-The first time I tried Cursor, my mind was blown.
+The person with the most context carries the work from idea to live. Graphics engineers ship the small frontend panels tied to rendering and experiments they run. Platform and backend engineers build thin UIs that sit on their services. I lead design, work in Figma, and make last-mile polish commits so frontend stays on core architecture and performance, and designers stay focused on problem-solving.
 
-I could already write code, but I'd never been a production engineer. My problem wasn't syntax, it was the polish — the production-ready layer. Learning that would have taken me years, and it would have distracted me from what I really wanted: to build products.
+Clear ownership, quick reviews, and tight feedback compress the loop. Fewer handoffs. More progress.
 
-Cursor leveled that. In my first year using it, I built around ten iOS apps. I didn't ship them, but the experience changed how I thought about building. Suddenly, the gap between having an idea and having a working product was much smaller. I could focus on the product logic instead of getting stuck on implementation details.
+## Consistency lives in KookieUI
 
-AI is a leveler. It lowers the barrier between an idea and a working product. I don't care if a solution is "pure" or not. I care if it works. That's why I believe AI isn't just a tool, but a shift in product philosophy.
+We keep the interface consistent by putting UI rules in one place. I built **KookieUI**, a Radix UI fork tuned to how we build. Product code imports components like `Button`. Tokens, states, and interactions live inside the system. When spacing or motion changes, I update KookieUI and publish a new version; frontend bumps the package and the app adopts the standard automatically.
 
-This isn't about replacing human creativity or judgment. It's about removing the friction between thinking and building. When you can iterate quickly, you can test ideas faster. When you can test ideas faster, you can learn what works and what doesn't. When you can learn quickly, you can build better products.
+This separation keeps design decisions durable and lets engineers focus on logic and performance. At our stage I act as the design engineer—writing components, setting tokens, reviewing usage, and shipping updates through the package—so polish arrives with speed.
 
-At Womp, this is where we're heading. We're building AI tools that will help users create 3D content without needing to master complex tools. Instead of asking users to learn every aspect of 3D modeling, we want to let AI handle the technical details while users focus on their creative vision. The complexity will still be there, but it will be hidden behind a more intuitive interface.
+## Ship to learn
 
-The goal isn't to eliminate complexity — it's to make it accessible. AI won't make 3D design easy, but it will make it possible for more people to participate.
+We release MVPs that cover the happy path and measure real pull. Interviews, dashboards, and usage patterns guide what grows and what stops. Reliability, performance, error handling, and smoke tests keep the bar steady. For AI-heavy areas, we preserve the quality of our generative features and help bot, maintain speed, and keep user intent clear.
 
-## Integrated Disciplines
+A recent example: **AI scene manipulation**. Today it changes materials and moves objects with a small scope by design. We’re watching sessions and interviews to decide where to scale it next.
 
-I never loved design for design's sake, or engineering for engineering's sake. I care about them because they help me build. That's why I can't see them as separate.
-
-When people think in silos, products suffer. Designers push pixels, engineers push code, and nobody asks if the user can actually use the thing. Integration matters more than collaboration. Collaboration is handing things off. Integration is sharing ownership.
-
-For me, integration isn't about doing everything myself. It's about knowing enough across disciplines to orient teams toward the same outcome. Sometimes that means me stepping into the UX layer, sometimes it means me writing code. Either way, the goal is the same: keep the product coherent.
-
-This is why I built <Flex as="span" direction="row" align="center" gap="1" style={{ display: "inline-flex" }}>KookieUI <Badge highContrast>Coming Soon</Badge></Flex>. It's not just a design system — it's a way to bridge the gap between design and engineering. When designers and engineers work with the same components, they're working toward the same outcome. The design decisions are encoded in the system, so they don't get lost in translation.
-
-The challenge is that integration requires understanding multiple disciplines well enough to spot the disconnects. You don't need to be an expert in everything, but you need to understand enough to see where the pieces don't fit together. That's what I've learned to do over time.
-
-## Speed Through Consistency
-
-Consistency sounds boring. But consistency is what gives speed.
-
-
-With <Flex as="span" direction="row" align="center" gap="1" style={{ display: "inline-flex" }}>KookieUI <Badge highContrast>Coming Soon</Badge></Flex>, we make the decision once. Designers work with me to define the component, we polish it with proper states and accessibility, and engineers just use it. If we want to change the button, we change it at the KookieUI level, and it flows through the product. Without it, small differences pile up into chaos. One designer makes a button with a red border, another with a maroon border. An engineer doesn't notice and implements both. Suddenly you have two buttons that should have been one. That's entropy.
-
-It's the 80/20 rule again. A small change in the system layer pays off everywhere. When you have consistent components, you can move faster because you're not reinventing decisions. When you have consistent patterns, you can focus on the unique aspects of each feature instead of the common ones.
-
-This isn't about creating rigid systems that can't evolve. It's about creating systems that make evolution easier. When you have a consistent foundation, you can build on top of it without worrying about whether the pieces will fit together.
-
-At Womp, this has meant that when we want to update the design of a component, we can do it once and see the change everywhere. When we want to add a new feature, we can focus on the unique aspects instead of rebuilding common patterns. The system handles the consistency, so the team can focus on the innovation.
-
-## User Value Over Elegance
-
-I don't care about technical purity. I don't care about perfect design theory. I care about the product being easier, simpler, better for the user.
-
-That's why my principles are short: less is more, easy is better, simple is better.
-
-Elegance might satisfy the builder, but value satisfies the user. A scrappy solution that ships and helps someone today is more valuable than a perfect architecture nobody ever uses. The hard part is knowing when scrappy is enough and when it's time to rebuild. I still get that wrong sometimes.
-
-This isn't about avoiding quality or cutting corners. It's about focusing on the right kind of quality. The quality that matters is the quality that users experience, not the quality that developers admire. A product can be technically perfect but still fail if it doesn't solve the user's problem.
-
-At Womp, this has meant making decisions based on user impact, not technical elegance. When we chose pixel streaming for rendering, it wasn't because it was the most elegant solution — it was because it made 3D design accessible to more people. The technical implementation is more complex, but the user experience is simpler.
-
-The challenge is balancing short-term pragmatism with long-term sustainability. Sometimes you need to ship quickly to learn what works. Sometimes you need to invest in quality to avoid technical debt. The key is being intentional about these trade-offs, not just reactive.
+I run this loop end to end—timelines, product decisions, design work, and final touches in code through KookieUI—so the team can stay deep on the hard parts while the product keeps learning.
 
 ## Closing
 
-These aren't fixed rules. They're things I've learned so far:
-
-- AI changes the baseline.
-- Integration beats silos.
-- Consistency creates speed.
-- Value matters more than elegance.
-
-At Womp, these principles are still being tested. Sometimes they hold, sometimes they don't. But they're what I fall back on when the choices get messy.
-
-I don't see myself as a philosopher of product. I see myself as someone still learning, trying to codify what works, and staying open to the possibility that tomorrow's lesson will make today's principle obsolete.
-
-The work is never done. Every project teaches me something new about what works and what doesn't. Every technology shift changes what's possible. Every team dynamic reveals new challenges and opportunities. But these principles give me a foundation to build on, even when the specifics change.
-
-That's what product philosophy is for me — not a set of rules to follow, but a set of principles to guide decisions when the path forward isn't clear.
+Start fast with AI. Turn context into speed through shared ownership. Keep pace and polish with a strong system. Ship small to find the pull. That’s how we build at Womp: fewer handoffs, tighter loops, and a product that stays clear as it grows.

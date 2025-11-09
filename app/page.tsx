@@ -6,6 +6,7 @@ import { ProductPhilosophy } from "../components/sections/product-philosophy-sec
 import { StartupSolutionsSection } from "../components/sections/startup-solutions-section";
 import { AboutKookieUISection } from "@/components/sections/about-kookie-ui-section";
 import { AboutKookieAISection } from "@/components/sections/about-kookie-ai-section";
+import { getAllPosts } from "@/lib/articles";
 import type { Metadata } from "next";
 
 // Enhanced metadata for home page
@@ -19,6 +20,9 @@ export const metadata: Metadata = {
 
 // JSON-LD structured data for SEO
 export default function Home() {
+  // Fetch all articles for the hero section
+  const posts = getAllPosts();
+
   // Person structured data
   const personJsonLd = {
     "@context": "https://schema.org",
@@ -60,12 +64,12 @@ export default function Home() {
         }}
       />
 
-      <HeroSection />
+      <HeroSection posts={posts} />
       <BeliefSection />
       <AboutWompSection />
       <AboutKookieUISection />
       {/* <AboutKookieAISection /> */}
-      <AboutSection />
+      {/* <AboutSection /> */}
       <ProductPhilosophy />
       <StartupSolutionsSection />
     </>

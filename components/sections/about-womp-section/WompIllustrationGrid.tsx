@@ -52,11 +52,7 @@ export function WompIllustrationGrid() {
   const [isMobileDevice, setIsMobileDevice] = useState(false);
 
   useEffect(() => {
-    setIsMobileDevice(
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      )
-    );
+    setIsMobileDevice(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
   }, []);
 
   // Function to get optimized path if available
@@ -89,9 +85,7 @@ export function WompIllustrationGrid() {
 
     // If it's an original path but we want to use optimized thumbnails
     if (videoPath.includes("/final/")) {
-      return videoPath
-        .replace("/final/", "/optimized/")
-        .replace(".mp4", ".jpg");
+      return videoPath.replace("/final/", "/optimized/").replace(".mp4", ".jpg");
     }
 
     return videoPath + "?poster";
@@ -157,15 +151,15 @@ function WompMediaItem({
           fill
           style={{
             objectFit: "cover",
-            filter: "grayscale(1)",
+            // filter: "grayscale(1)",
             transition: "all 0.3s ease",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.filter = "grayscale(0)";
+            // e.currentTarget.style.filter = "grayscale(0)";
             e.currentTarget.style.transform = "scale(1.05)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.filter = "grayscale(1)";
+            // e.currentTarget.style.filter = "grayscale(1)";
             e.currentTarget.style.transform = "scale(1)";
           }}
           priority={index < 1}
@@ -174,9 +168,7 @@ function WompMediaItem({
           quality={lowQuality ? 60 : 75}
           onError={() => {
             // If the optimized image fails to load, fallback to original
-            const img = document.getElementById(
-              `womp-desktop-img-${index}`
-            ) as HTMLImageElement;
+            const img = document.getElementById(`womp-desktop-img-${index}`) as HTMLImageElement;
             if (img && USE_OPTIMIZED) {
               img.src = originalMedia.path;
             }
@@ -208,17 +200,11 @@ function LazyVideo({
   const [isSafari, setIsSafari] = useState(false);
 
   // Use a lower resolution for mobile devices if available
-  const videoSrc = useFallback
-    ? originalSrc
-    : lowQuality && src.endsWith(".mp4")
-    ? `${src.replace(".mp4", "_low.mp4")}`
-    : src;
+  const videoSrc = useFallback ? originalSrc : lowQuality && src.endsWith(".mp4") ? `${src.replace(".mp4", "_low.mp4")}` : src;
 
   // Detect Safari browser
   useEffect(() => {
-    const isSafariBrowser = /^((?!chrome|android).)*safari/i.test(
-      navigator.userAgent
-    );
+    const isSafariBrowser = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     setIsSafari(isSafariBrowser);
   }, []);
 
@@ -255,10 +241,7 @@ function LazyVideo({
       // Set up error handler for Safari
       videoRef.current.onerror = () => {
         if (USE_OPTIMIZED && !useFallback) {
-          console.log(
-            "Safari: Video failed to load, using fallback:",
-            originalSrc
-          );
+          console.log("Safari: Video failed to load, using fallback:", originalSrc);
           setUseFallback(true);
           if (videoRef.current) {
             videoRef.current.src = originalSrc;
@@ -310,10 +293,7 @@ function LazyVideo({
             if (isSafari) {
               // Add a small timeout before trying again
               setTimeout(() => {
-                if (videoRef.current)
-                  videoRef.current
-                    .play()
-                    .catch((err) => console.log("Retry failed:", err));
+                if (videoRef.current) videoRef.current.play().catch((err) => console.log("Retry failed:", err));
               }, 300);
             }
           });
@@ -325,15 +305,7 @@ function LazyVideo({
         videoRef.current.pause();
       }
     }
-  }, [
-    isInView,
-    isLoaded,
-    videoSrc,
-    hasPlayed,
-    originalSrc,
-    useFallback,
-    isSafari,
-  ]);
+  }, [isInView, isLoaded, videoSrc, hasPlayed, originalSrc, useFallback, isSafari]);
 
   return (
     <>
@@ -373,16 +345,16 @@ function LazyVideo({
           height: "100%",
           width: "100%",
           objectFit: "cover",
-          filter: "grayscale(1)",
+          // filter: "grayscale(1)",
           transition: "all 0.3s ease",
           opacity: isLoaded ? 1 : 0,
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.filter = "grayscale(0)";
+          // e.currentTarget.style.filter = "grayscale(0)";
           e.currentTarget.style.transform = "scale(1.05)";
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.filter = "grayscale(1)";
+          // e.currentTarget.style.filter = "grayscale(1)";
           e.currentTarget.style.transform = "scale(1)";
         }}
       />

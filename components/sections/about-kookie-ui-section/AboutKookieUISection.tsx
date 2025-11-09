@@ -20,29 +20,19 @@ import {
   Text,
   Card,
   Link,
+  AspectRatio,
   Badge,
   VisuallyHidden,
   Inset,
   Image,
+  HoverCard,
+  Tooltip,
 } from "@kushagradhawan/kookie-ui";
 import { kookieCapabilities, type KookieCapability } from "./kookieData";
-import {
-  Palette,
-  Shield,
-  Target,
-  Layers,
-  Accessibility,
-  Sparkles,
-} from "lucide-react";
+import { Palette, Shield, Target, Layers, Accessibility, Sparkles } from "lucide-react";
 
 // Simple capability card with dialog functionality
-function KookieCapabilityCard({
-  capability,
-  icon,
-}: {
-  capability: KookieCapability;
-  icon: React.ReactNode;
-}) {
+function KookieCapabilityCard({ capability, icon }: { capability: KookieCapability; icon: React.ReactNode }) {
   return (
     <Dialog.Root>
       <Dialog.Trigger>
@@ -50,14 +40,14 @@ function KookieCapabilityCard({
           <button>
             <Flex direction="column" gap="3" height="100%" p="2">
               {icon}
-              <Flex align="center" gap="3">
-                <Heading weight="medium" size="3">
+              <Flex direction="column" gap="2">
+                <Heading weight="medium" size="4">
                   {capability.title}
                 </Heading>
+                <Text size="3" color="gray">
+                  {capability.shortDescription}
+                </Text>
               </Flex>
-              <Text size="3" color="gray">
-                {capability.shortDescription}
-              </Text>
             </Flex>
           </button>
         </Card>
@@ -67,12 +57,21 @@ function KookieCapabilityCard({
         <VisuallyHidden>
           <Dialog.Title>{capability.title}</Dialog.Title>
         </VisuallyHidden>
-
-        <Flex direction="column" gap="6">
+        <Inset clip="padding-box">
+          <AspectRatio ratio={2 / 1}>
+            <Image
+              src={capability.image}
+              alt={capability.title}
+              style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "var(--radius-4)", overflow: "hidden" }}
+            />
+          </AspectRatio>
+        </Inset>
+        <Flex direction="column" gap="4" mt="10" align="center">
+          {/* {icon} */}
           <Heading size="6" weight="medium">
             {capability.title}
           </Heading>
-          <Text size="3" style={{ whiteSpace: "pre-line" }}>
+          <Text align="center" size="4" style={{ whiteSpace: "pre-line" }}>
             {capability.expandedContent}
           </Text>
         </Flex>
@@ -107,89 +106,98 @@ export function AboutKookieUISection() {
   return (
     <Section>
       <Container size="4">
-        <Card variant="classic" size="4">
-          <Flex
-            direction="column"
-            gap="9"
-            py="6"
-            px={{ initial: "3", sm: "6" }}
-          >
-            {/* Title and subtitle */}
-            <Flex direction="column" gap="4">
-              <Flex
-                as="span"
-                width="32px"
-                height="32px"
-                display="inline-flex"
-                align="center"
-                justify="center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  fill="var(--gray-a12)"
-                  viewBox="0 0 256 256"
-                >
-                  <path d="M240,108a28,28,0,1,1-28-28A28,28,0,0,1,240,108ZM72,108a28,28,0,1,0-28,28A28,28,0,0,0,72,108ZM92,88A28,28,0,1,0,64,60,28,28,0,0,0,92,88Zm72,0a28,28,0,1,0-28-28A28,28,0,0,0,164,88Zm23.12,60.86a35.3,35.3,0,0,1-16.87-21.14,44,44,0,0,0-84.5,0A35.25,35.25,0,0,1,69,148.82,40,40,0,0,0,88,224a39.48,39.48,0,0,0,15.52-3.13,64.09,64.09,0,0,1,48.87,0,40,40,0,0,0,34.73-72Z"></path>
-                </svg>
-              </Flex>
-
-              <Flex direction="row" align="center" gap="1">
-                <Badge highContrast>Coming Soon</Badge>
-                <Badge highContrast color="orange">
-                  Beta
-                </Badge>
-              </Flex>
-
-              <Heading size="8" weight="medium">
-                <Link
-                  target="_blank"
-                  highContrast
-                  href="https://github.com/KushagraDhawan1997/kookie-ui"
-                >
-                  Kookie UI
-                </Link>
-              </Heading>
-
-              <Text size="4" color="gray">
-                KookieUI is a design system I'm building to make design rules
-                explicit. It's still a work in progress, but already helping
-                keep Womp faster and more consistent.
-              </Text>
+        <Flex direction="column" gap="9" py="6" px={{ initial: "4", sm: "6" }}>
+          {/* Title and subtitle */}
+          <Flex direction="column" align="center" gap="6">
+            <Flex direction="row" align="center" gap="1">
+              <Badge highContrast size="2">
+                Coming Soon
+              </Badge>
             </Flex>
+
+            <Heading size="8" weight="medium" align="center">
+              <HoverCard.Root>
+                <HoverCard.Trigger>
+                  <Link target="_blank" highContrast href="https://github.com/KushagraDhawan1997/kookie-ui">
+                    <Text as="span" highContrast>
+                      Kookie UI
+                    </Text>
+                  </Link>
+                </HoverCard.Trigger>
+                <HoverCard.Content maxWidth="600px">
+                  <Flex direction="column" align="center">
+                    <Image src="/sample.png" alt="KookieUI Preview" width="600" height="450" />
+                  </Flex>
+                </HoverCard.Content>
+              </HoverCard.Root>{" "}
+              <Text as="span">
+                is a{" "}
+                <Text as="span" weight="regular" color="gray" style={{ fontStyle: "italic" }}>
+                  design system
+                </Text>{" "}
+                I'm building to make{" "}
+                <Text as="span" weight="regular" color="gray" style={{ fontStyle: "italic" }}>
+                  design rules explicit
+                </Text>
+                . Although it's still in progress, it's already helping us
+                <Text as="span" weight="regular" color="gray" style={{ fontStyle: "italic" }}>
+                  {" "}
+                  ship faster
+                </Text>{" "}
+                and with{" "}
+                <Text as="span" weight="regular" color="gray" style={{ fontStyle: "italic" }}>
+                  greater consistency
+                </Text>
+                .
+              </Text>
+            </Heading>
+          </Flex>
+
+          {/* <Image src="/sample.png" alt="KookieUI" /> */}
+
+          <Flex direction="column" justify="center" align="center" gap="9">
+            {/* <Tooltip
+              content={<span style={{ display: "block", textAlign: "center", maxWidth: 240 }}>Say hello to Kookie, my inspiration for all things Kookie!</span>}
+            >
+              <Image src="/kookie-crop.png" alt="KookieUI" maxWidth="360px" style={{ backgroundPosition: "bottom" }} />
+            </Tooltip> */}
+
+            <Image src="/kookie-ui/hero.png" alt="KookieUI" width="100%" height="400px" style={{ borderRadius: "var(--radius-5)", overflow: "hidden" }} />
 
             {/* 3x2 grid of capability cards */}
-            <Grid gap="3" columns={{ initial: "1", sm: "2", md: "3" }}>
+            <Grid gap="3" columns={{ initial: "1", sm: "2", md: "3" }} style={{ position: "relative" }}>
+              {/* Gradient div */}
+              {/* <Flex
+                height="400px"
+                width="100%"
+                position="absolute"
+                style={{
+                  background: "linear-gradient(to bottom, transparent, var(--color-background))",
+                  zIndex: 100,
+                  left: "50%",
+                  top: 0,
+                  transform: "translate(-50%, -100%)",
+                }}
+              ></Flex> */}
               {kookieCapabilities.map((capability, index) => (
-                <KookieCapabilityCard
-                  key={capability.title}
-                  capability={capability}
-                  icon={capabilityIcons[index]}
-                />
+                <KookieCapabilityCard key={capability.title} capability={capability} icon={capabilityIcons[index]} />
               ))}
             </Grid>
-
-            {/* Call-to-action buttons */}
-            <Flex justify="center" gap="3">
-              <Button variant="solid" size="3" highContrast disabled>
-                Coming Soon
-              </Button>
-              <Button asChild variant="classic" size="3" highContrast>
-                <a
-                  href="/articles/about-kookie-ui"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Read about Kookie UI
-                </a>
-              </Button>
-            </Flex>
           </Flex>
-          <Inset clip="padding-box">
-            <Image src="/sample.png" alt="KookieUI" />
-          </Inset>
-        </Card>
+
+          {/* Call-to-action buttons */}
+
+          <Flex justify="center" gap="2">
+            <Button variant="solid" size="3" highContrast disabled>
+              Coming Soon
+            </Button>
+            <Button asChild variant="soft" size="3" highContrast>
+              <a href="/articles/about-kookie-ui" target="_blank" rel="noopener noreferrer">
+                Read about Kookie UI
+              </a>
+            </Button>
+          </Flex>
+        </Flex>
       </Container>
     </Section>
   );

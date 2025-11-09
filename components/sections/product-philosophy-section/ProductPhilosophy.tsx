@@ -31,7 +31,7 @@ function PrincipleCard({ principle }: { principle: (typeof principles)[0] }) {
         <Card size="3" variant="soft" asChild style={{ cursor: "pointer" }}>
           <button>
             <Flex direction="column" gap="4" height="100%" p="2">
-              <Heading weight="medium" size="3">
+              <Heading weight="medium" size="4">
                 {principle.title}
               </Heading>
               <Text size="3" color="gray">
@@ -82,7 +82,7 @@ export function ProductPhilosophy() {
     //  style={{ backgroundImage: "url('./background.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
     >
       <Container size="4">
-        <Flex direction="column" gap="9" p="6" position="relative">
+        <Flex direction="column" gap="9" py="6" px={{ initial: "4", sm: "6" }} position="relative">
           {/* <AspectRatio ratio={16 / 10}>
             <Image
               src="./articles/product-philosophy.png"
@@ -92,26 +92,29 @@ export function ProductPhilosophy() {
           </AspectRatio> */}
           {/* Header */}
 
-          <Flex direction="column" gap="4">
-            <Heading size="8" weight="medium" color="gray">
+          <Flex direction="column" align="center" gap="6">
+            <Text size="1" color="gray" weight="medium">
+              PRODUCT, DESIGN, & ENGINEERING AT WOMP 3D
+            </Text>
+            <Heading size="8" weight="medium" align="center">
               Building at{" "}
-              <Text as="span" highContrast>
+              <Text as="span" weight="regular" color="gray" style={{ fontStyle: "italic" }}>
                 Womp
               </Text>{" "}
               has shown me firsthand what it takes to connect{" "}
-              <Text as="span" highContrast>
+              <Text as="span" weight="regular" color="gray" style={{ fontStyle: "italic" }}>
                 users
               </Text>
               ,{" "}
-              <Text as="span" highContrast>
+              <Text as="span" weight="regular" color="gray" style={{ fontStyle: "italic" }}>
                 technology
               </Text>
               , and{" "}
-              <Text as="span" highContrast>
+              <Text as="span" weight="regular" color="gray" style={{ fontStyle: "italic" }}>
                 business
               </Text>
-              . These are the{" "}
-              <Text as="span" highContrast>
+              . These are some of the{" "}
+              <Text as="span" weight="regular" color="gray" style={{ fontStyle: "italic" }}>
                 real-world principles
               </Text>{" "}
               that drive my work today.
@@ -119,16 +122,16 @@ export function ProductPhilosophy() {
           </Flex>
 
           {/* Call-to-action button */}
-          <Flex direction="row" gap="2">
+          <Flex direction="row" gap="2" justify="center">
             <Button asChild variant="solid" size="3" highContrast>
               <a href="#contact" aria-label="Go to contact section">
-                Lets Talk
+                Lets talk (Calendly)
                 <ArrowRight />
               </a>
             </Button>
-            <Button asChild variant="classic" size="3" highContrast>
+            {/* <Button asChild variant="soft" size="3" highContrast>
               <Link href="/articles/product-philosophy">Product Philosophy</Link>
-            </Button>
+            </Button> */}
           </Flex>
 
           {/* Mobile view: Cards with dialogs */}
@@ -141,7 +144,7 @@ export function ProductPhilosophy() {
           </Box>
 
           {/* Desktop view: sidebar + content panel */}
-          <Grid display={{ initial: "none", md: "grid" }} columns="360px 1fr" gap="3">
+          <Grid display={{ initial: "none", md: "grid" }} columns="400px 1fr" gap="3">
             {/* Left sidebar with principles list */}
             <RadioCards.Root
               size="2"
@@ -153,15 +156,20 @@ export function ProductPhilosophy() {
               }}
             >
               <Flex direction="column" gap="3">
-                {principles.map((principle) => (
-                  <RadioCards.Item key={principle.title} value={principle.title}>
-                    <Flex direction="column" gap="1" p="3">
-                      <Heading size="4" weight="medium">
-                        {principle.title}
-                      </Heading>
-                      <Text size="3" color="gray">
-                        {principle.description}
+                {principles.map((principle, index) => (
+                  <RadioCards.Item key={principle.title} style={{ cursor: "pointer" }} value={principle.title}>
+                    <Flex direction="row" gap="4" p="3">
+                      <Text size="4" color="gray" weight="regular">
+                        {index + 1}.
                       </Text>
+                      <Flex direction="column" gap="2">
+                        <Heading size="4" weight="medium">
+                          {principle.title}
+                        </Heading>
+                        <Text size="3" color="gray">
+                          {principle.description}
+                        </Text>
+                      </Flex>
                     </Flex>
                   </RadioCards.Item>
                 ))}
@@ -169,12 +177,21 @@ export function ProductPhilosophy() {
             </RadioCards.Root>
 
             {/* Right content panel */}
-            <Card size="3" variant="soft">
-              <Flex direction="column" gap="6" p="4">
-                <Heading size="6" weight="medium">
+            <Card size="2" variant="soft">
+              <Flex
+                key={activePrinciple.title}
+                direction="column"
+                gap="6"
+                p="6"
+                style={{
+                  opacity: 0,
+                  animation: "fadeIn 0.5s ease-in-out forwards",
+                }}
+              >
+                {/* <Heading size="7" weight="medium">
                   {activePrinciple.title}
-                </Heading>
-                <Text size="4" color="gray" style={{ whiteSpace: "pre-line" }}>
+                </Heading> */}
+                <Text size="4" style={{ whiteSpace: "pre-line" }}>
                   {activePrinciple.expandedContent}
                 </Text>
               </Flex>

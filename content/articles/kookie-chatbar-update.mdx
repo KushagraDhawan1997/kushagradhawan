@@ -1,0 +1,152 @@
+---
+title: "New Component: Introducing Chatbar in KookieUI"
+description: "A composable, accessible chat input component that handles the complex parts of building AI chat interfaces while staying out of your way."
+date: "2025-11-08"
+author: "Kushagra Dhawan"
+image: "/articles/kookie-chatbar-update.png"
+alt: "KookieUI Chatbar component showcasing input, actions, and attachment handling"
+canonical: "https://kushagradhawan.com/articles/kookie-chatbar-update"
+tags: ["kookie-ui", "design-systems", "components", "ai", "chat-interface"]
+keywords:
+  [
+    "chatbar",
+    "chat input",
+    "ai interface",
+    "kookie ui",
+    "design system",
+    "component library",
+    "accessibility",
+    "text input",
+  ]
+---
+
+import { ArticleImage } from "@/components/generic";
+import { Button } from "@kushagradhawan/kookie-ui";
+import Link from "next/link";
+import { Chatbar, IconButton, Box } from "@kushagradhawan/kookie-ui";
+import { Paperclip } from "lucide-react";
+
+
+Chat interfaces are everywhere now. AI products, messaging apps, customer support tools — they all need the same basic interaction: a text input with send functionality, file attachments, and various actions. Building this well is harder than it looks.
+
+Chatbar is KookieUI's answer to that problem. It handles the input experience where users type, attach files, and submit messages. Every chat interface needs this, and now teams can use a battle-tested component instead of rebuilding it from scratch.
+
+<Box mt="9">
+    <Chatbar.Root variant="classic" size="3" sendMode="always" width="100%" minLines="2" open onOpenChange={() => {}} onSubmit={({ value, attachments }) => {
+    console.log('Message:', value);
+    console.log('Attachments:', attachments);
+    }}>
+    <Chatbar.AttachmentsRow />
+    <Chatbar.Textarea 
+        placeholder="Type a message..."
+        aria-label="Message input"
+    />
+    <Chatbar.Row>
+        <Chatbar.AttachTrigger asChild>
+        <IconButton size="3" variant="classic" aria-label="Attach file">
+            <Paperclip />
+        </IconButton>
+        </Chatbar.AttachTrigger>
+        <Chatbar.Send variant="ghost" highContrast />
+    </Chatbar.Row>
+    </Chatbar.Root>
+</Box>
+
+## The Problem
+
+Most chat interfaces start simple: a text field and a send button. But requirements grow fast:
+
+- **Multi-line input** that expands as users type, but doesn't take over the screen
+- **File attachments** with preview and removal
+- **Action buttons** that change based on context (send when there's text, stop when generating)
+- **Keyboard shortcuts** (Enter to send, Shift+Enter for new line)
+- **Disabled states** during loading without breaking the experience
+- **Placeholder management** that works with dynamic content
+- **Accessibility** for screen readers and keyboard navigation
+
+Each of these is straightforward in isolation. Together, they create edge cases that compound. File uploads break focus. Multi-line text breaks layout. Keyboard shortcuts conflict with browser defaults. Loading states need careful coordination.
+
+Teams end up building the same component over and over, each time hitting the same problems and solving them in slightly different ways. That inconsistency shows up in the product.
+
+## What It Does
+
+Chatbar handles the input layer for chat interfaces. It's a compound component built with KookieUI primitives to create a cohesive input experience with comprehensive file handling.
+
+### Core Features
+
+**Auto-expanding textarea.** Configure minimum and maximum lines with `minLines` and `maxLines`. Control expansion behavior with `expandOn` (none, focus, overflow, or both). The expansion is smooth and predictable.
+
+**Built-in file handling.** Accepts file attachments through drag-and-drop, file picker, and paste. Configure file type restrictions with `accept`, limit attachments with `maxAttachments` and `maxFileSize`. Shows previews with `AttachmentsRow`. Supports controlled and uncontrolled state.
+
+**Flexible action system.** Control send button visibility with `sendMode` (always, whenDirty, or never). Use `Chatbar.Send` or provide custom actions with `asChild`. The component adapts to your workflow.
+
+**Keyboard shortcuts that work.** Shift+Enter adds a new line. Enter behavior is configurable through the `submitOnEnter` prop on `Chatbar.Textarea` to match your users' expectations.
+
+**State management.** Supports both controlled (`value`/`onValueChange`, `attachments`/`onAttachmentsChange`) and uncontrolled state (`defaultValue`, `defaultAttachments`). Handles `disabled` and `readOnly` states. Expansion state managed via `open`/`onOpenChange`.
+
+**Accessible by default.** Requires `aria-label` or `aria-labelledby` on `Chatbar.Textarea`. Full keyboard navigation. Proper ARIA attributes including `aria-expanded`. Respects `prefers-reduced-motion`. Supports Windows High Contrast mode.
+
+### API
+
+The API is controlled and minimal. You manage the value, handle submission, and optionally manage files and actions. The component gives you complete control over state while handling all the complex interaction details.
+
+For complete API documentation, examples, and interactive demos, visit the [KookieUI Chatbar documentation](https://www.hellokookie.com/docs/chatbar/api).
+
+### How It Works
+
+Chatbar is a compound component composed of:
+- `Chatbar.Root` - Container managing state and context
+- `Chatbar.Textarea` - Multi-line input with auto-resize and paste handling
+- `Chatbar.AttachmentsRow` - Displays attached files with previews and removal
+- `Chatbar.Row` - Layout container for action buttons
+- `Chatbar.AttachTrigger` - Opens file picker (can be rendered as child via `asChild`)
+- `Chatbar.Send` - Submit button with conditional visibility based on `sendMode`
+
+The component handles focus management, scroll behavior, keyboard coordination, drag-and-drop zones, file validation, state synchronization, and accessibility. It focuses on the input layer, leaving message history, rendering, backend communication, and file storage to your application.
+
+## Why It Fits
+
+Chatbar follows the same principles as every other KookieUI component:
+
+**Compound component pattern.** Built as composable subcomponents (`Root`, `Textarea`, `AttachmentsRow`, `Row`, `AttachTrigger`, `Send`) that work together through shared context. Each piece is independently styleable while maintaining cohesion.
+
+**Patterns, not parts.** Chatbar encodes the complete pattern of how chat inputs should behave — expansion, submission, file handling, keyboard shortcuts. Teams get the full pattern with all interactions coordinated.
+
+**Unified tokens.** Supports KookieUI's size variants (1-3), color system, radius options, and material properties (solid/translucent). A size-2 Chatbar uses the same scale as other size-2 components. Variants include classic, soft, outline, surface, and ghost.
+
+**Accessible by default.** ARIA labels are required. Keyboard navigation works correctly. Screen readers announce state changes. The accessibility is built in and enforced.
+
+**Composable.** Chatbar is a controlled component that fits into your state management and layout structure.
+
+## At Womp
+
+I built Chatbar while working on Womp Spark, our AI assistant. We needed a consistent input experience across desktop and mobile, with file attachments, stop/regenerate actions, and smooth keyboard interaction.
+
+Before Chatbar, the chat input was custom-built and tightly coupled to Spark's implementation. That made it harder to iterate on the input experience without touching application logic. It also meant any improvements stayed locked inside Spark instead of benefiting other parts of Womp.
+
+With Chatbar in KookieUI:
+- The input experience evolves independently of Spark's conversation logic
+- Design updates flow automatically when we update KookieUI
+- Other parts of Womp use the same input pattern without rebuilding it
+- Testing the input behavior is isolated from testing message handling
+
+This removed a significant amount of friction from our development process.
+
+## What's Next
+
+Chatbar is stable and ready to use. A few areas I'm continuing to develop:
+
+**Voice input support.** Recording, waveform visualization, playback. Chat interfaces increasingly need audio, and Chatbar should handle it as cleanly as it handles text and files.
+
+**Enhanced file previews.** Richer attachment UI with upload progress indicators via the `status` and `progress` properties on `ChatbarAttachment`. Better image thumbnails, document metadata display, and video preview frames.
+
+**Better mobile support.** The component works on mobile, but the experience could be tighter. Better touch targets, smoother expansion, native-feeling interactions.
+
+Chatbar already handles the core use case well. These additions will make it even more capable as chat interfaces continue to evolve.
+
+## Closing
+
+The input experience is consistent across chat products. Users expect the same behavior whether they're chatting with AI, messaging a team, or talking to support. Chatbar encodes that pattern in KookieUI so teams get a tested, accessible, composable component that handles the complex details.
+
+This lets teams focus on what makes their chat experience unique instead of rebuilding input infrastructure. That's the value Chatbar brings to KookieUI.
+

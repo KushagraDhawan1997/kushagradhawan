@@ -1,7 +1,7 @@
-import { Rocket, Users, PartyPopper } from "lucide-react";
+import { Rocket, Users, Box } from "lucide-react";
 
 export type WompStat = {
-  iconName: "Rocket" | "Users" | "PartyPopper";
+  iconName: "Rocket" | "Users" | "Box";
   value: string;
   description: string;
 };
@@ -9,17 +9,17 @@ export type WompStat = {
 export const wompStats: WompStat[] = [
   {
     iconName: "Rocket",
-    value: "3+ years since launch",
-    description: "Launched publicly over three years ago; kept a steady release cadence while we learned from real creators.",
+    value: "3+ years ",
+    description: "Launched publicly over three years ago.",
   },
   {
     iconName: "Users",
     value: "600k+ users",
-    description: "Registered creators range from first-timers to pros. We optimize first-win time for beginners.",
+    description: "Registered creators, from first-timers to pros.",
   },
   {
-    iconName: "PartyPopper",
+    iconName: "Box",
     value: "150k+ projects",
-    description: "Community projects shared on Womp. We're evolving the creation → share → remix loop.",
+    description: "Community projects shared publicly on Womp.",
   },
 ];

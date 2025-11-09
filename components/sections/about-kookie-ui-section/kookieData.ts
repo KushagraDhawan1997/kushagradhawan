@@ -2,44 +2,50 @@ export type KookieCapability = {
   title: string;
   shortDescription: string;
   expandedContent: string;
+  image: string;
 };
 
 export const kookieCapabilities: KookieCapability[] = [
   {
     title: "Consistency",
-    shortDescription:
-      "Trying to make everything speak the same design language.",
+    shortDescription: "Opinionated cohesion so parts snap together predictably.",
     expandedContent:
-      "I forked Radix Themes and went through every token — spacing, typography, color, interaction — to make them consistent. The foundation was solid, but I ended up rewriting a lot to get closer to a modern, systematic approach. It's better now, but I'm still catching edge cases and cleaning up places where rules don't hold perfectly.",
+      "Kookie UI is an opinionated fork of Radix Themes focused on predictable composition, not objective superiority. Tokens are aligned so pieces fit without local fixes, and components follow the same scales and behaviors across contexts. A Card at size 1 with a Button at size 1 matches in radius, padding, and density, with no overrides. Common surfaces like Dialog or Card can expose a standard toolbar slot for titles and actions, so affordances stay consistent instead of reinventing headers.",
+    image: "/kookie-ui/palette.png",
   },
   {
     title: "Robustness",
-    shortDescription: "Built on Radix, tested in real use — still hardening.",
+    shortDescription: "Radix-grade reliability, reinforced by explicit rules.",
     expandedContent:
-      "KookieUI sits on Radix Themes and Radix Primitives, which already give it a strong backbone. I've been hardening components through actual product use, not just demos. Some parts feel dependable, others still need refinement. It's getting sturdier with every release.",
+      "Kookie builds on Radix Primitives and accessibility work, then forks at the Themes layer. That foundation makes reliability the baseline. Explicit contracts, covering placement, sizing, focus, keyboard behavior, and named slots, keep interactions steady across pages and teams. Less ad-hoc scaffolding, fewer surprises, and a system you can ship with confidence.",
+    image: "/kookie-ui/robustness.png",
   },
   {
-    title: "Intentional",
-    shortDescription: "Nothing extra. Everything has to earn its place.",
+    title: "Intent",
+    shortDescription: "Taste-driven choices; every token and prop earns its place.",
     expandedContent:
-      "I try to make sure nothing in KookieUI is accidental. Every token and component has a purpose. For example, I added a `material` prop to handle depth — not just translucency. It works across all components with theme-level control, overrides, and backward compatibility. It's a step forward, but I'm still learning where the right balance is between power and simplicity.",
+      "The visual style reflects a specific point of view. It isn't claimed to be universally better than Radix, just deliberately different. Colors, sizes, and props exist to solve real problems, not add options for their own sake. Named slots and clear defaults encourage consistent structure while leaving room to extend when products need it.",
+    image: "/kookie-ui/intent.png",
   },
   {
     title: "Foundations First",
-    shortDescription: "Start with space, color, motion — not shortcuts.",
+    shortDescription: "Aligned tokens and motion before surface polish.",
     expandedContent:
-      "I focus on the invisible rules: spacing, radius, color, shadow, motion. They bring order if done right, but chaos if skipped. I've tried to avoid \"magic numbers\" and one-off fixes. It's better than before, but there are still places where I catch myself breaking my own rules.",
+      "Size, spacing, radii, typography, and elevation are aligned so parts click together cleanly. Purposeful motion and sensible density make interfaces feel intuitive. Beyond individual components, layout patterns like Shell (Header, Rail, Panel, Sidebar, Content, Inspector, Bottom) and Split View describe where pieces live and how they adapt across breakpoints, foundations before shortcuts.",
+    image: "/kookie-ui/foundations.png",
   },
   {
-    title: "Accessible",
-    shortDescription: "Accessibility by default, not as an add-on.",
+    title: "Accessibility",
+    shortDescription: "Designed in from the start, not bolted on.",
     expandedContent:
-      "KookieUI inherits Radix's strong accessibility patterns — keyboard navigation, semantics, motion preferences. I try not to break those foundations. Most components hold up well, but I'm still testing edge cases and learning how to keep accessibility solid while adding new patterns.",
+      "Components inherit Radix's accessibility strengths: semantic structure, keyboard navigation, and respect for user settings. Contracts make focus behavior and expectations explicit, so teams don't re-solve the same details. The goal is simple: usable by everyone, consistently.",
+    image: "/kookie-ui/accessibility.png",
   },
   {
-    title: "Beautiful",
-    shortDescription: "Simple is beautiful — still learning what that means.",
+    title: "Beauty",
+    shortDescription: "Calm, opinionated aesthetics, never claiming objectivity.",
     expandedContent:
-      'I don\'t aim for flash — just clarity and balance. Subtle motion, layered depth, and small details can make interfaces feel pleasant without distraction. Sometimes I overdo it, sometimes it feels too plain. I\'m still figuring out where "simple" becomes "beautiful," but that\'s the direction.',
+      "Beauty here means clarity and restraint: gentle motion, subtle layering, and balanced type. The aesthetic reflects personal taste and is positioned as an alternative, not a verdict. The result is an interface that feels composed and welcoming, while staying practical for product work.",
+    image: "/kookie-ui/beauty.png",
   },
 ];

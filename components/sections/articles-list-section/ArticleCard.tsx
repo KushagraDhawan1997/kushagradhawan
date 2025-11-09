@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { ArticleProps } from "./ArticlesListGrid";
-import { Badge, Card, Flex, Heading, Text } from "@kushagradhawan/kookie-ui";
+import { AspectRatio, Badge, Box, Card, Flex, Heading, Image, Inset, Text } from "@kushagradhawan/kookie-ui";
 
 interface ArticleCardProps {
   post: ArticleProps;
@@ -20,24 +20,54 @@ export function ArticleCard({ post }: ArticleCardProps) {
   return (
     <Card asChild size="3" variant="soft" style={{ height: "100%" }}>
       <Link href={`/articles/${post.slug}`}>
-        <Flex direction="column" gap="4" p="4" style={{ height: "100%" }}>
-          {/* Date at top */}
-          <Text size="2" color="gray">
-            {formattedDate}
-          </Text>
+        <Flex direction="column" gap="4" p="1" style={{ height: "100%" }}>
+          {/* Article image */}
+          {post.image && (
+            <Inset clip="padding-box">
+              <AspectRatio ratio={16 / 10}>
+                <Image src={post.image} alt={post.alt || post.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              </AspectRatio>
+            </Inset>
+          )}
 
-          {/* Title */}
-          <Heading size="3" weight="medium">
-            {post.title}
-          </Heading>
+          <Flex direction="column" gap="3" p="1" pt="5" style={{ flex: 1 }}>
+            {/* Date at top */}
+            <Text size="2" color="gray">
+              {formattedDate}
+            </Text>
 
-          {/* Description */}
-          <Text size="3" color="gray" style={{ flex: 1 }}>
-            {post.description}
-          </Text>
+            {/* Title */}
+            <Heading size="4" weight="medium">
+              {post.title}
+            </Heading>
 
-          {/* Tags using Badge component */}
-          {post.tags && post.tags.length > 0 && (
+            {/* Description */}
+            <Box
+              as="div"
+              style={{
+                flex: 1,
+                minHeight: 0,
+              }}
+            >
+              <Text
+                size="4"
+                color="gray"
+                as="p"
+                style={{
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  margin: 0,
+                }}
+              >
+                {post.description}
+              </Text>
+            </Box>
+
+            {/* Tags using Badge component */}
+            {/* {post.tags && post.tags.length > 0 && (
             <Flex gap="2" wrap="wrap" mt="auto" pt="4">
               {post.tags.map((tag) => (
                 <Badge key={tag} variant="soft" highContrast size="1">
@@ -45,7 +75,8 @@ export function ArticleCard({ post }: ArticleCardProps) {
                 </Badge>
               ))}
             </Flex>
-          )}
+          )} */}
+          </Flex>
         </Flex>
       </Link>
     </Card>

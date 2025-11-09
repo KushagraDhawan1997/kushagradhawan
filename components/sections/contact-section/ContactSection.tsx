@@ -8,27 +8,11 @@
  */
 
 import React, { useEffect, useState } from "react";
-import { Button, Card, Container, Flex, Grid, Heading, IconButton, Section, Text } from "@kushagradhawan/kookie-ui";
+import { Button, Card, Container, Flex, Grid, Heading, Section, Text, Link, Separator } from "@kushagradhawan/kookie-ui";
 import { TestimonialCard } from "../hero-section/TestimonialCard";
 import { testimonials, type Testimonial } from "../hero-section/testimonials";
 import { socialLinks, type SocialLink } from "./contactData";
-import { Linkedin, Twitter, Instagram, Mail, CalendarDays, Github } from "lucide-react";
-
-// Helper function to get the right icon for each social platform
-const getSocialIcon = (name: string) => {
-  switch (name) {
-    case "LinkedIn":
-      return <Linkedin />;
-    case "X":
-      return <Twitter />;
-    case "Instagram":
-      return <Instagram />;
-    case "Github":
-      return <Github />;
-    default:
-      return null;
-  }
-};
+import { Mail, ArrowRight, Check } from "lucide-react";
 
 /**
  * ContactSection Component
@@ -45,6 +29,7 @@ const getSocialIcon = (name: string) => {
  */
 export function ContactSection() {
   const [randomTestimonial, setRandomTestimonial] = useState<Testimonial | null>(null);
+  const [emailCopied, setEmailCopied] = useState(false);
 
   // Set a random testimonial on component mount
   useEffect(() => {
@@ -52,71 +37,101 @@ export function ContactSection() {
     setRandomTestimonial(testimonials[randomIndex]);
   }, []);
 
+  // Copy email to clipboard
+  const handleCopyEmail = async () => {
+    const email = "hello@kushagradhawan.design";
+    try {
+      await navigator.clipboard.writeText(email);
+      setEmailCopied(true);
+      setTimeout(() => {
+        setEmailCopied(false);
+      }, 2000);
+    } catch (err) {
+      console.error("Failed to copy email:", err);
+    }
+  };
+
   // If no testimonial is selected yet, return loading state
   if (!randomTestimonial) return null;
 
   return (
-    <Section id="contact">
-      <Container size="2">
-        <Flex gap="4" direction="column">
-          {/* Content */}
-          <Flex direction="column" gap="6">
-            {/* Contact Card */}
-            <Card size="3" variant="classic">
-              {/* Title and subtitle */}
-              <Flex direction="column" gap="6" p="2">
-                {/*  */}
-                <Flex direction="column" gap="4">
-                  <Heading size="6" weight="medium">
-                    Say Hello.
-                  </Heading>
-                  <Text size="3" color="gray">
-                    Based in India and working remotely for Womp3D in the USA. I enjoy meeting like-minded professionals to discuss product design, team
-                    building, and technology trends.
-                  </Text>
-                </Flex>
+    <Container size="4">
+      <Section
+        id="contact"
+        style={{
+          borderTop: "1px dashed var(--gray-7)",
+        }}
+      >
+        <Flex gap="8" direction="column" align="center">
+          {/* Testimonial */}
+          {/* <TestimonialCard testimonial={randomTestimonial} /> */}
 
-                {/* Contact buttons */}
-                <Flex
-                  gap={{ initial: "6", md: "4" }}
-                  align={{ initial: "center", md: "center" }}
-                  justify="between"
-                  direction={{ initial: "column", md: "row" }}
-                >
-                  <Flex gap="2">
-                    <Button size="3" asChild variant="solid" highContrast>
-                      <a href="mailto:hello@kushagradhawan.design">
-                        <Mail />
-                        Email Me
-                      </a>
-                    </Button>
-                    <Button size="3" asChild variant="classic" highContrast>
-                      <a href="https://calendly.com/accounts-kushagradhawan/30min" target="_blank" rel="noopener noreferrer">
-                        <CalendarDays />
-                        Calendly
-                      </a>
-                    </Button>
-                  </Flex>
+          {/* Contact Card */}
+          <Flex direction="column" gap="9" py="6" px={{ initial: "4", sm: "6" }}>
+            {/* Title and subtitle */}
+            <Flex direction="column" gap="6" align="center">
+              <Text size="1" color="gray" weight="medium">
+                LET'S TALK
+              </Text>
+              <Heading size="8" weight="medium" align="center">
+                Open to new conversations. I currently work remotely from India, leading product and design at Womp3D.
+                <br />
+                <br />
+                If you want to chat about{" "}
+                <Text as="span" weight="regular" color="gray" style={{ fontStyle: "italic" }}>
+                  building products
+                </Text>
+                ,{" "}
+                <Text as="span" weight="regular" color="gray" style={{ fontStyle: "italic" }}>
+                  evolving design systems
+                </Text>
+                , or{" "}
+                <Text as="span" weight="regular" color="gray" style={{ fontStyle: "italic" }}>
+                  shipping fast
+                </Text>
+                , I’d love to chat.
+              </Heading>
+            </Flex>
 
-                  {/* Social media icons */}
-                  <Flex gap="1" wrap="wrap">
-                    {socialLinks.map((link: SocialLink, index: number) => (
-                      <IconButton key={index} asChild highContrast variant="ghost" size="3">
-                        <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.name}>
-                          {getSocialIcon(link.name)}
-                        </a>
-                      </IconButton>
-                    ))}
-                  </Flex>
-                </Flex>
+            {/* Testimonials */}
+            <Flex direction="column" align="center" gap="6">
+              {/* Responsive grid: 1 column on mobile, 3 columns on desktop */}
+              <Grid gap="3" columns={{ initial: "1", sm: "2", md: "3" }}>
+                {testimonials.map((testimonial) => (
+                  <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+                ))}
+              </Grid>
+            </Flex>
+
+            {/* Contact buttons */}
+            <Flex gap="6" align="center" justify="between" direction="column" width="100%">
+              <Flex gap="2">
+                <Button size="3" asChild variant="solid" highContrast>
+                  <a href="https://calendly.com/accounts-kushagradhawan/30min" target="_blank" rel="noopener noreferrer">
+                    Let's talk (Calendly)
+                    <ArrowRight />
+                  </a>
+                </Button>
+                <Button size="3" variant="soft" highContrast onClick={handleCopyEmail}>
+                  {emailCopied ? <Check /> : <Mail />}
+                  {emailCopied ? "Copied" : "Copy Email"}
+                </Button>
               </Flex>
-            </Card>
+
+              {/* Social media links */}
+              <Flex gap="6" wrap="wrap">
+                {socialLinks.map((link: SocialLink, index: number) => (
+                  <Link key={index} href={link.href} target="_blank" size="3" highContrast weight="medium">
+                    {link.name}
+                  </Link>
+                ))}
+              </Flex>
+            </Flex>
           </Flex>
 
-          {/* Testimonial */}
-          <TestimonialCard testimonial={randomTestimonial} />
+          {/* <Separator size="3"></Separator> */}
         </Flex>
-      </Container>
-    </Section>
+      </Section>
+    </Container>
   );
 }

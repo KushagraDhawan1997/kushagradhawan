@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@kushagradhawan/kookie-ui": "^0.1.38",
+    "@kushagradhawan/kookie-ui": "^0.1.58",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^15.5.2",
@@ -31,8 +31,8 @@
     "rehype-highlight": "^7.0.2",
     "rehype-stringify": "^10.0.1",
     "remark-frontmatter": "^5.0.0",
-    "remark-mdx-frontmatter": "^5.2.0",
     "remark-gfm": "^4.0.1",
+    "remark-mdx-frontmatter": "^5.2.0",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "sharp": "^0.34.1",
