@@ -81,7 +81,7 @@ export function ArticleImage({ src, alt, className }: ArticleImageProps) {
   return (
     <Dialog.Root>
       <Dialog.Trigger>
-        <Card mt="9" variant="classic" size="3" asChild style={{ cursor: "pointer", overflow: "hidden", padding: 0 }} className={className}>
+        <Card mt="9" variant="classic" size="2" asChild style={{ cursor: "pointer", overflow: "hidden", padding: "0" }} className={className}>
           <button aria-label={`View full size: ${alt}`}>
             <Image src={src} alt={alt} />
           </button>
