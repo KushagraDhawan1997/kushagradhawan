@@ -8,7 +8,12 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 // Generate a data URL for the SVG favicon
-const svgIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path d="M211,103.43l-70.13,28,49.47,63.61a8,8,0,1,1-12.63,9.82L128,141,78.32,204.91a8,8,0,0,1-12.63-9.82l49.47-63.61L45,103.43A8,8,0,0,1,51,88.57l69,27.61V40a8,8,0,0,1,16,0v76.18l69-27.61A8,8,0,1,1,211,103.43Z" fill="black"></path></svg>`;
+const svgIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="108" height="108" viewBox="0 0 108 108" fill="none">
+<rect x="49" y="3" width="10" height="102" rx="5" fill="#202020" stroke="white" stroke-width="2"/>
+<rect x="3" y="58" width="10" height="102" rx="5" transform="rotate(-90 3 58)" fill="#202020" stroke="white" stroke-width="2"/>
+<rect y="-1.41421" width="10" height="102" rx="5" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 86 92.5858)" fill="#202020" stroke="white" stroke-width="2"/>
+<rect x="87" y="13.4142" width="10" height="102" rx="5" transform="rotate(45 87 13.4142)" fill="#202020" stroke="white" stroke-width="2"/>
+</svg>`;
 const iconDataURL = `data:image/svg+xml;base64,${Buffer.from(svgIcon).toString("base64")}`;
 
 export const metadata: Metadata = {
@@ -50,7 +55,7 @@ export const metadata: Metadata = {
     siteName: "Kushagra Dhawan",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/kushagra-logo.svg",
         width: 1200,
         height: 630,
         alt: "Kushagra Dhawan - Product Manager and Design Lead",
@@ -61,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Kushagra Dhawan | Product Manager and Design Lead",
     description: "Technical product leader combining engineering, design, and product strategy to scale products and build high-performance teams.",
-    images: ["/og-image.jpg"],
+    images: ["/kushagra-logo.svg"],
   },
   robots: {
     index: true,
