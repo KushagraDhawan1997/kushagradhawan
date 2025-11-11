@@ -66,7 +66,7 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
               </Text>
 
               {/* Article title */}
-              <Heading size="9" weight="medium">
+              <Heading as="h1" size="9" weight="medium">
                 {post.title}
               </Heading>
 

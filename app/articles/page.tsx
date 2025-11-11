@@ -15,7 +15,7 @@ import { ArticlesListSection } from "@/components/sections/articles-list-section
  * This is used by Next.js for SEO and document head tags
  */
 export const metadata: Metadata = {
-  title: "Articles | Kushagra Dhawan",
+  title: "Articles",
   description: "Thoughts on design, development, and technology",
   alternates: {
     canonical: "/articles",

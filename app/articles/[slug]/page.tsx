@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     const imageUrl = post.image ? (post.image.startsWith("http") ? post.image : `${baseUrl}${post.image}`) : `${baseUrl}/kushagra-logo.png`;
 
     return {
-      title: `${post.title} | Kushagra Dhawan`,
+      title: { absolute: post.title },
       description: post.description || undefined,
       alternates: {
         canonical: `/articles/${post.slug}`,
@@ -87,10 +87,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
  * @param props.params.slug - The unique identifier for the article
  * @returns React component for the article page
  */
-export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ArticlePage({ params }: { params: { slug: string } }) {
   try {
     // Get slug from params
-    const { slug } = await params;
+    const { slug } = params;
 
     // Try to fetch the article data
     const post = await getPostBySlug(slug);
