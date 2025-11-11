@@ -48,7 +48,8 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://kushagradhawan.com",
     title: "Kushagra Dhawan | Product Manager and Design Lead",
-    description: "Technical product leader combining engineering, design, and product strategy to scale products and build high-performance teams.",
+    description:
+      "Product builder leading product at Womp; creator of KookieUI. Combining engineering, design, and product strategy to scale products and high-performance teams.",
     siteName: "Kushagra Dhawan",
     images: [
       {
@@ -62,7 +63,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Kushagra Dhawan | Product Manager and Design Lead",
-    description: "Technical product leader combining engineering, design, and product strategy to scale products and build high-performance teams.",
+    description:
+      "Product builder leading product at Womp; creator of KookieUI. Combining engineering, design, and product strategy to scale products and high-performance teams.",
     images: ["/articles/about-me.png"],
   },
   robots: {
