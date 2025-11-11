@@ -31,7 +31,7 @@ export default function Home() {
     url: "https://kushagradhawan.com",
     jobTitle: "Product Builder and Designer",
     knowsAbout: ["Product Design", "UI/UX", "Design Systems", "Web Development", "Product Strategy"],
-    sameAs: ["https://twitter.com/username", "https://linkedin.com/in/username", "https://github.com/username"],
+    sameAs: ["https://x.com/kushagra_dhawan", "https://www.linkedin.com/in/kushagra-dhawan/", "https://github.com/KushagraDhawan1997"],
   };
 
   // Professional Service structured data

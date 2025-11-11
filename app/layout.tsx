@@ -38,9 +38,6 @@ export const metadata: Metadata = {
   creator: "Kushagra Dhawan",
   publisher: "Kushagra Dhawan",
   metadataBase: new URL("https://kushagradhawan.com"),
-  alternates: {
-    canonical: "/",
-  },
   icons: {
     icon: iconDataURL,
     apple: iconDataURL,
@@ -55,7 +52,7 @@ export const metadata: Metadata = {
     siteName: "Kushagra Dhawan",
     images: [
       {
-        url: "/kushagra-logo.svg",
+        url: "/articles/about-me.png",
         width: 1200,
         height: 630,
         alt: "Kushagra Dhawan - Product Manager and Design Lead",
@@ -66,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Kushagra Dhawan | Product Manager and Design Lead",
     description: "Technical product leader combining engineering, design, and product strategy to scale products and build high-performance teams.",
-    images: ["/kushagra-logo.svg"],
+    images: ["/articles/about-me.png"],
   },
   robots: {
     index: true,
@@ -78,9 +75,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  verification: {
-    google: "verification_token",
   },
 };
 

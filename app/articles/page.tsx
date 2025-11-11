@@ -17,6 +17,29 @@ import { ArticlesListSection } from "@/components/sections/articles-list-section
 export const metadata: Metadata = {
   title: "Articles | Kushagra Dhawan",
   description: "Thoughts on design, development, and technology",
+  alternates: {
+    canonical: "/articles",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://kushagradhawan.com/articles",
+    title: "Articles | Kushagra Dhawan",
+    description: "Thoughts on design, development, and technology",
+    images: [
+      {
+        url: "/kushagra-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Kushagra Dhawan - Articles",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Articles | Kushagra Dhawan",
+    description: "Thoughts on design, development, and technology",
+    images: ["/kushagra-logo.png"],
+  },
 };
 
 /**
