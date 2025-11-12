@@ -1,32 +1,32 @@
 ---
-title: "Designers Should Own the Experience in Production"
+title: "Why Designers Should Own the Experience in Production"
 description: "Why the design layer should live in code, how we do it with KookieUI at Womp, and what changes day to day."
 date: "2025-11-12"
 author: "Kushagra Dhawan"
-image: "/articles/article-sample.png"
+image: "/articles/designer-owning-experience.png"
 alt: "Designers owning the experience in production with KookieUI"
 canonical: "https://kushagradhawan.com/articles/designers-own-the-experience-in-production"
 tags: ["design-systems", "design-engineering", "product", "kookie-ui", "womp"]
 keywords: ["design in code", "design engineering", "design systems", "KookieUI", "Womp", "UI patterns", "accessible components"]
 ---
 
-I think it’s time designers start owning their design in code. Users never see the Figma file. They feel the implementation. When design stops before production, deadlines and speed calls shape the details. That is the part that makes an interface feel right, and it slips.
+I think it's time designers start owning their design in code, which is to say, owning the experience in production. I'm not saying it because I want designers to do more than what they already do, but because the end user doesn't get to use their designs as-is. What users feel and interact with is the implementation of their design, which is not entirely in their control - deadlines, speed, lack of focus on details - often ends up compromising exactly what is needed for design to feel good. Users never see the Figma file. They feel the implementation. 
 
 ## Why I took this on at Womp
 
-We are a startup. We do not have a dedicated design engineer. I sit across design, product, and code, so I took responsibility for the design layer in production. UI work does not sit in a frontend queue. We can change the interface quickly and keep it consistent across what we release.
+We are a startup. We do not have a dedicated design engineer. I sit across design, product, and code, so I took responsibility for the design layer in production. UI work does not sit in a frontend queue. We can change the interface quickly and keep it consistent across what we release. 
+
+I created KookieUI to fit our way of building. The frontend imports components like Button from KookieUI, while I define their appearance, tokens, and behavior. When anything needs an update, I adjust KookieUI and publish a new version. The frontend team then updates the package, and the app adopts the new standard automatically.
 
 ## What KookieUI is
 
 KookieUI is our design system. It is large and growing. It lives next to product code and stays separate from application logic. It holds tokens, primitives, and patterns we use every day. It also carries our best practices, accessible components, and the small engineering choices that make interactions feel clean.
 
-KookieUI is a fork of Radix UI and it is open source. Radix gives us a strong baseline. We add what our products need. We focus on contrast, focus states, motion, density, theming hooks, keyboard paths, and predictable behavior across states. The goal is simple. A design layer the whole team can trust.
+KookieUI is a fork of Radix UI and it is open source. Radix gives us a strong baseline. We add what our products need. We focus on contrast, focus states, motion, density, theming hooks, keyboard paths, and predictable behavior across states.
 
 ## Where effort goes now
 
-We started by strengthening primitives like buttons, inputs, dialogs, menus, tooltips. Reliable building blocks let us move faster everywhere else.
-
-Now we are investing in pattern components that carry real work:
+We started by strengthening primitives like buttons, inputs, dialogs, menus, tooltips. Reliable building blocks let us move faster everywhere else. Now I want to invest in pattern components that carry real but less glamorous work:
 
 - App Shell for complex editor and creation flows
 - StackNav for deep, panel based navigation
