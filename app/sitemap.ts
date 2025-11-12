@@ -1,9 +1,9 @@
 import { getAllPosts } from "@/lib/articles";
 import { MetadataRoute } from "next";
 
-// Ensure Node.js runtime and static regeneration for a stable XML at /sitemap.xml
 export const runtime = "nodejs";
-export const revalidate = 60 * 60 * 24; // 24h
+// Next.js requires a numeric literal here (no expressions)
+export const revalidate = 86400; // 24h
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Base URL
