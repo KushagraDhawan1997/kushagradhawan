@@ -33,9 +33,9 @@ export async function generateStaticParams() {
 /**
  * Generate per-article metadata for SEO and social sharing
  */
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   try {
-    const { slug } = params;
+    const { slug } = await params;
     const post = await getPostBySlug(slug);
     const baseUrl = "https://kushagradhawan.com";
     const url = `${baseUrl}/articles/${post.slug}`;
@@ -87,10 +87,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
  * @param props.params.slug - The unique identifier for the article
  * @returns React component for the article page
  */
-export default async function ArticlePage({ params }: { params: { slug: string } }) {
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   try {
     // Get slug from params
-    const { slug } = params;
+    const { slug } = await params;
 
     // Try to fetch the article data
     const post = await getPostBySlug(slug);
