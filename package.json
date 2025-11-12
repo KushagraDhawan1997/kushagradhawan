@@ -10,7 +10,8 @@
     "lint": "next lint",
     "thumbs": "node scripts/generate-thumbs.mjs",
     "hero-thumbs": "node scripts/optimize-article-heroes.mjs",
-    "content-images": "node scripts/optimize-article-content.mjs"
+    "content-images": "node scripts/optimize-article-content.mjs",
+    "kookie-hero": "node scripts/optimize-kookie-ui.mjs"
   },
   "dependencies": {
     "@kushagradhawan/kookie-ui": "^0.1.58",
