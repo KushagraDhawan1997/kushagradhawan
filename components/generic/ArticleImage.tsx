@@ -78,12 +78,29 @@ export function ArticleImage({ src, alt, className }: ArticleImageProps) {
     };
   }, [dialogDimensions]);
 
+  // Derive responsive content variants if optimized WebP assets exist
+  const deriveContent = (pathStr: string) => {
+    if (!pathStr.startsWith("/articles/")) return undefined;
+    const match = pathStr.match(/^(.*)\.(png|jpg|jpeg|webp)$/i);
+    if (!match) return undefined;
+    const base = match[1];
+    return {
+      src: `${base}-content-1200.webp`,
+      srcSet: `${base}-content-800.webp 800w, ${base}-content-1200.webp 1200w`,
+    };
+  };
+
   return (
     <Dialog.Root>
       <Dialog.Trigger>
         <Card mt="9" variant="classic" size="2" asChild style={{ cursor: "pointer", overflow: "hidden", padding: "0" }} className={className}>
           <button aria-label={`View full size: ${alt}`}>
-            <Image src={src} alt={alt} />
+            <Image
+              src={deriveContent(src)?.src || src}
+              srcSet={deriveContent(src)?.srcSet}
+              sizes="(max-width: 768px) 100vw, 840px"
+              alt={alt}
+            />
           </button>
         </Card>
       </Dialog.Trigger>

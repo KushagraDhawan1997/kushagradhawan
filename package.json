@@ -7,7 +7,10 @@
     "build": "next build --no-lint",
     "deploy": "SKIP_TYPE_CHECK=true next build --no-lint",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "thumbs": "node scripts/generate-thumbs.mjs",
+    "hero-thumbs": "node scripts/optimize-article-heroes.mjs",
+    "content-images": "node scripts/optimize-article-content.mjs"
   },
   "dependencies": {
     "@kushagradhawan/kookie-ui": "^0.1.58",

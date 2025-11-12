@@ -42,6 +42,20 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
 
   const MDXContent = MDXBySlug[post.slug];
 
+  // Derive hero WebP variants for article header image
+  const deriveHero = (src?: string) => {
+    if (!src || !src.startsWith("/articles/")) return undefined;
+    const match = src.match(/^\/articles\/([^\.]+)\.(png|jpg|jpeg|webp)$/i);
+    if (!match) return undefined;
+    const base = match[1];
+    return {
+      src: `/articles/hero/${base}-hero-1600.webp`,
+      srcSet: `/articles/hero/${base}-hero-1200.webp 1200w, /articles/hero/${base}-hero-1600.webp 1600w`,
+      sizes: "(max-width: 768px) 100vw, 1200px",
+    };
+  };
+  const hero = deriveHero(post.image);
+
   return (
     <Box>
       <Container size="3">
@@ -49,7 +63,9 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
         {post.image && (
           <AspectRatio ratio={16 / 10}>
             <Image
-              src={post.image}
+              src={hero?.src || post.image}
+              srcSet={hero?.srcSet}
+              sizes={hero?.sizes}
               alt={post.alt || post.title}
               style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "var(--radius-6)", overflow: "hidden" }}
             />

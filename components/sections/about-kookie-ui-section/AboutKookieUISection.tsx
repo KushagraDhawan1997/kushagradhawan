@@ -162,7 +162,15 @@ export function AboutKookieUISection() {
               <Image src="/kookie-crop.png" alt="KookieUI" maxWidth="360px" style={{ backgroundPosition: "bottom" }} />
             </Tooltip> */}
 
-            <Image src="/kookie-ui/hero.png" alt="KookieUI" width="100%" height="400px" style={{ borderRadius: "var(--radius-5)", overflow: "hidden" }} />
+            <Image
+              src="/kookie-ui/hero-1600.webp"
+              srcSet="/kookie-ui/hero-1200.webp 1200w, /kookie-ui/hero-1600.webp 1600w"
+              sizes="(max-width: 768px) 100vw, 1200px"
+              alt="KookieUI"
+              width="100%"
+              height="400px"
+              style={{ borderRadius: "var(--radius-5)", overflow: "hidden" }}
+            />
 
             {/* 3x2 grid of capability cards */}
             <Grid gap="3" columns={{ initial: "1", sm: "2", md: "3" }} style={{ position: "relative" }}>

@@ -195,7 +195,7 @@ export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLElement
         {/* Left side: Logo */}
         <Link href="/" aria-label="Kushagra Dhawan - Homepage">
           <Flex align="center" gap="4">
-            <Avatar src="/kushagra-logo.svg" fallback="KD" size="2" radius="full" />
+            <Avatar src="/kushagra-logo.svg" fallback="KD" alt="Kushagra Dhawan" size="2" radius="full" />
             {/* <Text size="4" weight="medium">
               Kush.
             </Text> */}
