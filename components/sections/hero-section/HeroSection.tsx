@@ -75,13 +75,13 @@ export function HeroSection({ posts = [] }: HeroSectionProps) {
               Building{" "}
               <HoverCard.Root>
                 <HoverCard.Trigger>
-                  <Link target="_blank" href="https://github.com/KushagraDhawan1997/kookie-ui">
+                  <Link target="_blank" href="https://www.hellokookie.com/">
                     KookieUI
                   </Link>
                 </HoverCard.Trigger>
                 <HoverCard.Content maxWidth="600px">
                   <Flex direction="column" align="center">
-                    <Image src="/sample.png" alt="KookieUI Preview" width="600" height="450" />
+                    <Image src="/kookie-ui.png" alt="KookieUI Preview" width="600" height="450" />
                   </Flex>
                 </HoverCard.Content>
               </HoverCard.Root>

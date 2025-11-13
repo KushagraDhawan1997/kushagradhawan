@@ -118,7 +118,7 @@ export function AboutKookieUISection() {
             <Heading size="8" weight="medium" align="center">
               <HoverCard.Root>
                 <HoverCard.Trigger>
-                  <Link target="_blank" highContrast href="https://github.com/KushagraDhawan1997/kookie-ui">
+                  <Link target="_blank" highContrast href="https://www.hellokookie.com/">
                     <Text as="span" highContrast>
                       Kookie UI
                     </Text>
@@ -126,7 +126,7 @@ export function AboutKookieUISection() {
                 </HoverCard.Trigger>
                 <HoverCard.Content maxWidth="600px">
                   <Flex direction="column" align="center">
-                    <Image src="/sample.png" alt="KookieUI Preview" width="600" height="450" />
+                    <Image src="/kookie-ui.png" alt="KookieUI Preview" width="600" height="450" />
                   </Flex>
                 </HoverCard.Content>
               </HoverCard.Root>{" "}
@@ -152,8 +152,6 @@ export function AboutKookieUISection() {
               </Text>
             </Heading>
           </Flex>
-
-          {/* <Image src="/sample.png" alt="KookieUI" /> */}
 
           <Flex direction="column" justify="center" align="center" gap="9">
             {/* <Tooltip

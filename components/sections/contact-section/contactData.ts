@@ -22,7 +22,7 @@ export type SocialLink = {
  */
 export const socialLinks: SocialLink[] = [
   { name: "X", href: "https://x.com/kushagra_dhawan" },
-  { name: "Github", href: "https://github.com/KushagraDhawan1997/kookie-ui" },
+  { name: "Github", href: "https://github.com/KushagraDhawan1997" },
   { name: "LinkedIn", href: "https://www.linkedin.com/in/kushagra-dhawan" },
   {
     name: "Instagram",
