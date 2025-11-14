@@ -14,7 +14,7 @@
     "kookie-hero": "node scripts/optimize-kookie-ui.mjs"
   },
   "dependencies": {
-    "@kushagradhawan/kookie-ui": "^0.1.58",
+    "@kushagradhawan/kookie-ui": "^0.1.62",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^15.5.2",
