@@ -16,6 +16,7 @@ import sharp from "sharp";
 const ROOT_DIR = path.resolve("public/articles");
 const INPUT_EXTS = new Set([".png", ".jpg", ".jpeg", ".webp"]);
 const WIDTHS = [800, 1200];
+const FORCE = process.argv.includes("--force");
 
 async function walk(dir) {
   const out = [];
@@ -53,12 +54,11 @@ async function processImage(filePath) {
 
   for (const width of WIDTHS) {
     const outPath = `${base}-content-${width}.webp`;
-    const outTime = await fileMTime(outPath);
-    if (outTime >= inputTime) continue;
-    await sharp(filePath)
-      .resize({ width, withoutEnlargement: true })
-      .webp({ quality: 90, effort: 4, smartSubsample: true })
-      .toFile(outPath);
+    if (!FORCE) {
+      const outTime = await fileMTime(outPath);
+      if (outTime >= inputTime) continue;
+    }
+    await sharp(filePath).resize({ width, withoutEnlargement: true }).webp({ quality: 90, effort: 4, smartSubsample: true }).toFile(outPath);
     // eslint-disable-next-line no-console
     console.log(`Generated ${path.relative(process.cwd(), outPath)}`);
   }
@@ -76,5 +76,3 @@ main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-
-

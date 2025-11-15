@@ -18,6 +18,7 @@ const ARTICLES_DIR = path.resolve("public/articles");
 const THUMBS_DIR = path.join(ARTICLES_DIR, "thumbs");
 const INPUT_EXTS = new Set([".png", ".jpg", ".jpeg", ".webp"]);
 const OUTPUT_WIDTHS = [400, 800];
+const FORCE = process.argv.includes("--force");
 
 async function ensureDir(dir) {
   await fs.mkdir(dir, { recursive: true });
@@ -53,9 +54,11 @@ async function generateThumbsFor(fileName) {
   for (const width of OUTPUT_WIDTHS) {
     const outName = `${base}-thumb-${width}.webp`;
     const outPath = path.join(THUMBS_DIR, outName);
-    const outTime = await fileMTime(outPath);
-    if (outTime >= inputTime) {
-      continue; // up-to-date
+    if (!FORCE) {
+      const outTime = await fileMTime(outPath);
+      if (outTime >= inputTime) {
+        continue; // up-to-date
+      }
     }
     const pipeline = sharp(inputPath).resize({ width, withoutEnlargement: true }).webp({ quality: 90, effort: 4, smartSubsample: true });
     await pipeline.toFile(outPath);

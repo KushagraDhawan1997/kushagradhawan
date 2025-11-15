@@ -17,6 +17,7 @@ const ARTICLES_DIR = path.resolve("public/articles");
 const HERO_DIR = path.join(ARTICLES_DIR, "hero");
 const INPUT_EXTS = new Set([".png", ".jpg", ".jpeg", ".webp"]);
 const HERO_WIDTHS = [1200, 1600];
+const FORCE = process.argv.includes("--force");
 
 async function ensureDir(dir) {
   await fs.mkdir(dir, { recursive: true });
@@ -51,9 +52,11 @@ async function generateHeroesFor(fileName) {
   for (const width of HERO_WIDTHS) {
     const outName = `${base}-hero-${width}.webp`;
     const outPath = path.join(HERO_DIR, outName);
-    const outTime = await fileMTime(outPath);
-    if (outTime >= inputTime) {
-      continue; // up-to-date
+    if (!FORCE) {
+      const outTime = await fileMTime(outPath);
+      if (outTime >= inputTime) {
+        continue; // up-to-date
+      }
     }
     const pipeline = sharp(inputPath).resize({ width, withoutEnlargement: true }).webp({ quality: 90, effort: 4, smartSubsample: true });
     await pipeline.toFile(outPath);

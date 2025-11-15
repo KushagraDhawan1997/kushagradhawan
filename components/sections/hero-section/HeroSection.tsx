@@ -13,7 +13,7 @@
  * - Clean, minimal styling with KookieUI components
  */
 
-import { Button, Flex, Text, Heading, Container, Section, Link, Image, Callout } from "@kushagradhawan/kookie-ui";
+import { Button, Flex, Text, Heading, Container, Section, Link, Image, Box } from "@kushagradhawan/kookie-ui";
 import { HoverCard } from "@kushagradhawan/kookie-ui";
 import { ArrowRight } from "lucide-react";
 import { ArticlesListGrid, ArticleProps } from "@/components/sections/articles-list-section/ArticlesListGrid";
@@ -44,9 +44,12 @@ export function HeroSection({ posts = [] }: HeroSectionProps) {
   const displayedPosts = posts.slice(0, 3);
 
   return (
-    <Section>
+    <Section position="relative">
+      {/* <Box position="absolute" top="0" left="0" width="100%" height="100%" style={{ zIndex: 0, overflow: "hidden", borderRadius: "var(--radius-6)" }}>
+        <Image alt="Background" src="/background.png" width="100%" height="100%" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+      </Box> */}
       {/* Hero content - title and articles */}
-      <Container pt="8">
+      <Container pt="8" style={{ position: "relative", zIndex: 1 }}>
         <Flex direction="column" align="center" gap="9" py="6" px={{ initial: "4", sm: "6" }}>
           {/* Title and subtitle section */}
           <Flex direction="column" align="center" gap="6">
