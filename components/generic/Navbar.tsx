@@ -2,9 +2,9 @@
 
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { Button, Box, Flex, Avatar, DropdownMenu, useThemeContext, IconButton, Link as KookieLink } from "@kushagradhawan/kookie-ui";
+import { Button, Box, Flex, Avatar, DropdownMenu, useThemeContext, IconButton, Link as KookieLink, SegmentedControl } from "@kushagradhawan/kookie-ui";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { Sun, Moon, Monitor, Mail, ArrowRight, Check } from "lucide-react";
 import { socialLinks, type SocialLink } from "@/components/sections/contact-section/contactData";
 
@@ -173,7 +173,22 @@ function NavLink({ href, children, ariaLabel }: { href: string; children: React.
 export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
   // Get the current path to highlight active links
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const [emailCopied, setEmailCopied] = useState(false);
+
+  // Get view mode from URL params, default to "professional"
+  const viewMode = (searchParams.get("view") as "professional" | "personal") || "professional";
+
+  const handleViewModeChange = (value: "professional" | "personal") => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (value === "professional") {
+      params.delete("view"); // Remove param for default value
+    } else {
+      params.set("view", value);
+    }
+    router.push(`${pathname}${params.toString() ? `?${params.toString()}` : ""}`);
+  };
 
   // Copy email to clipboard
   const handleCopyEmail = async () => {
@@ -190,20 +205,51 @@ export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLElement
   };
 
   return (
-    <Box position="sticky" top="0" style={{ zIndex: 50 }} width="100%" {...props}>
-      <Flex width="100%" height="64px" align="center" justify="between" px="4">
+    <Box
+      position="sticky"
+      top="0"
+      style={{
+        zIndex: 50,
+      }}
+      width="100%"
+      {...props}
+    >
+      <Box
+        position="absolute"
+        top="0"
+        left="0"
+        right="0"
+        style={{
+          background: "linear-gradient(to bottom, var(--color-background) 0%, color-mix(in srgb, var(--color-background) 0%, transparent) 100%)",
+          height: "100%",
+          width: "100%",
+          zIndex: -1,
+          filter: "blur(2px)",
+        }}
+      />
+      <Flex width="100%" height="64px" gap="4" align="center" justify="between" px="4">
         {/* Left side: Logo */}
-        <Link href="/" aria-label="Kushagra Dhawan - Homepage">
-          <Flex align="center" gap="4">
-            <Avatar src="/kushagra-logo.svg" fallback="KD" alt="Kushagra Dhawan" size="2" radius="full" />
-            {/* <Text size="4" weight="medium">
+        <Flex width="100%">
+          <Link href="/" aria-label="Kushagra Dhawan - Homepage">
+            <Flex align="center" gap="4">
+              <Avatar src="/kushagra-logo.svg" fallback="KD" alt="Kushagra Dhawan" size="2" radius="full" />
+              {/* <Text size="4" weight="medium">
               Kush.
             </Text> */}
-          </Flex>
-        </Link>
+            </Flex>
+          </Link>
+        </Flex>
+
+        {/* Center */}
+        <Flex width="100%" justify="center">
+          <SegmentedControl.Root size="3" value={viewMode} onValueChange={(value) => handleViewModeChange(value as "professional" | "personal")}>
+            <SegmentedControl.Item value="professional">Professional</SegmentedControl.Item>
+            <SegmentedControl.Item value="personal">Personal</SegmentedControl.Item>
+          </SegmentedControl.Root>
+        </Flex>
 
         {/* Right side: Navigation links, theme toggle and contact button */}
-        <Flex align="center" gap={{ initial: "4", md: "6" }}>
+        <Flex justify="end" width="100%" align="center" gap={{ initial: "4", md: "6" }}>
           <Flex gap="6" align="center">
             {/* Social media links */}
             {/* <Flex gap="4" wrap="wrap">

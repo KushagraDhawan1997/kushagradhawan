@@ -2,7 +2,7 @@
 @import "tailwindcss/preflight.css";
 
 * {
-  /* @apply outline-1 outline-foreground/5; */
+  /* outline: solid 0.1px var(--gray-a6); */
   --font-serif: "Noto Serif", serif;
   --font-mono: "JetBrains Mono", monospace;
 }
