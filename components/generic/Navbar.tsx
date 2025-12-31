@@ -2,11 +2,12 @@
 
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { Button, Box, Flex, Avatar, DropdownMenu, useThemeContext, IconButton, Link as KookieLink, SegmentedControl } from "@kushagradhawan/kookie-ui";
+import { Button, Box, Flex, Avatar, DropdownMenu, useThemeContext, IconButton, Link as KookieLink } from "@kushagradhawan/kookie-ui";
 import Link from "next/link";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Sun, Moon, Monitor, Mail, ArrowRight, Check } from "lucide-react";
-import { socialLinks, type SocialLink } from "@/components/sections/contact-section/contactData";
+import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 
 /**
  * ThemeToggle Component
@@ -130,29 +131,27 @@ function NavLink({ href, children, ariaLabel }: { href: string; children: React.
   // Don't render until mounted to avoid hydration mismatch
   if (!mounted) {
     return (
-      <KookieLink href={linkHref} size="2" weight="medium" highContrast aria-label={ariaLabel || (typeof children === "string" ? children : undefined)}>
-        <Flex align="center" gap="2">
+      <Flex align="center" gap="2">
+        <KookieLink href={linkHref} size="2" highContrast aria-label={ariaLabel || (typeof children === "string" ? children : undefined)}>
           {children}
-        </Flex>
-      </KookieLink>
+        </KookieLink>
+      </Flex>
     );
   }
 
   const isActive = pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <KookieLink
-      href={linkHref}
-      size="3"
-      weight="medium"
-      highContrast
-      underline={isActive ? "always" : "none"}
-      aria-label={ariaLabel || (typeof children === "string" ? children : undefined)}
-    >
-      <Flex align="center" gap="2">
+    <Flex align="center" gap="2">
+      <KookieLink
+        href={linkHref}
+        size="2"
+        underline={isActive ? "always" : "none"}
+        aria-label={ariaLabel || (typeof children === "string" ? children : undefined)}
+      >
         {children}
-      </Flex>
-    </KookieLink>
+      </KookieLink>
+    </Flex>
   );
 }
 
@@ -173,22 +172,22 @@ function NavLink({ href, children, ariaLabel }: { href: string; children: React.
 export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
   // Get the current path to highlight active links
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const router = useRouter();
+  // const searchParams = useSearchParams();
+  // const router = useRouter();
   const [emailCopied, setEmailCopied] = useState(false);
 
   // Get view mode from URL params, default to "professional"
-  const viewMode = (searchParams.get("view") as "professional" | "personal") || "professional";
+  // const viewMode = (searchParams.get("view") as "professional" | "personal") || "professional";
 
-  const handleViewModeChange = (value: "professional" | "personal") => {
-    const params = new URLSearchParams(searchParams.toString());
-    if (value === "professional") {
-      params.delete("view"); // Remove param for default value
-    } else {
-      params.set("view", value);
-    }
-    router.push(`${pathname}${params.toString() ? `?${params.toString()}` : ""}`);
-  };
+  // const handleViewModeChange = (value: "professional" | "personal") => {
+  //   const params = new URLSearchParams(searchParams.toString());
+  //   if (value === "professional") {
+  //     params.delete("view"); // Remove param for default value
+  //   } else {
+  //     params.set("view", value);
+  //   }
+  //   router.push(`${pathname}${params.toString() ? `?${params.toString()}` : ""}`);
+  // };
 
   // Copy email to clipboard
   const handleCopyEmail = async () => {
@@ -206,90 +205,60 @@ export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLElement
 
   return (
     <Box
-      position="sticky"
+      position="fixed"
       top="0"
       style={{
         zIndex: 50,
+        backgroundColor: "var(--color-background)",
       }}
       width="100%"
       {...props}
     >
-      <Box
-        position="absolute"
-        top="0"
-        left="0"
-        right="0"
-        style={{
-          background: "linear-gradient(to bottom, var(--color-background) 0%, color-mix(in srgb, var(--color-background) 0%, transparent) 100%)",
-          height: "100%",
-          width: "100%",
-          zIndex: -1,
-          filter: "blur(2px)",
-        }}
-      />
       <Flex width="100%" height="64px" gap="4" align="center" justify="between" px="4">
         {/* Left side: Logo */}
-        <Flex width="100%">
+        <Flex width="100%" gap="4">
           <Link href="/" aria-label="Kushagra Dhawan - Homepage">
             <Flex align="center" gap="4">
               <Avatar src="/kushagra-logo.svg" fallback="KD" alt="Kushagra Dhawan" size="2" radius="full" />
-              {/* <Text size="4" weight="medium">
-              Kush.
-            </Text> */}
             </Flex>
           </Link>
         </Flex>
 
         {/* Center */}
-        <Flex width="100%" justify="center">
-          <SegmentedControl.Root size="3" value={viewMode} onValueChange={(value) => handleViewModeChange(value as "professional" | "personal")}>
-            <SegmentedControl.Item value="professional">Professional</SegmentedControl.Item>
+        {/* <Flex width="100%" justify="center" display={{ initial: "none", md: "flex" }}>
+          <SegmentedControl.Root size="2" value={viewMode} onValueChange={(value) => handleViewModeChange(value as "professional" | "personal")}>
+            <SegmentedControl.Item value="professional">Work</SegmentedControl.Item>
             <SegmentedControl.Item value="personal">Personal</SegmentedControl.Item>
           </SegmentedControl.Root>
-        </Flex>
+        </Flex> */}
 
         {/* Right side: Navigation links, theme toggle and contact button */}
         <Flex justify="end" width="100%" align="center" gap={{ initial: "4", md: "6" }}>
-          <Flex gap="6" align="center">
-            {/* Social media links */}
-            {/* <Flex gap="4" wrap="wrap">
-              {socialLinks.map((link: SocialLink, index: number) => (
-                <KookieLink key={index} href={link.href} target="_blank" size="3" highContrast weight="medium">
-                  {link.name}
-                </KookieLink>
-              ))}
-            </Flex> */}
-
-            {/* Contact buttons */}
-            <Flex gap="4" align="center">
-              <NavLink href="/articles">Articles</NavLink>
-              <Button size="3" asChild variant="solid" highContrast>
-                <Link
-                  href="/#contact"
-                  scroll={false}
-                  onClick={(e) => {
-                    // If we're not on the home page, let the navigation happen first
-                    if (pathname !== "/") {
-                      return;
-                    }
-                    // If we're on the home page, prevent default and scroll manually
-                    e.preventDefault();
-                    const contactSection = document.getElementById("contact");
-                    if (contactSection) {
-                      contactSection.scrollIntoView();
-                    }
-                  }}
-                >
-                  Contact
-                  {/* <ArrowRight /> */}
-                </Link>
-              </Button>
-              {/* <Button size="2" variant="soft" highContrast onClick={handleCopyEmail}>
-                {emailCopied ? <Check /> : <Mail />}
-                {emailCopied ? "Copied" : "Copy Email"}
-              </Button> */}
-              <ThemeToggle />
-            </Flex>
+          {/* Contact buttons */}
+          <Flex gap="4" align="center">
+            <NavLink href="/articles">Articles</NavLink>
+            <ThemeToggle />
+            <Button size="2" asChild variant="solid" highContrast>
+              <Link
+                href="/#contact"
+                scroll={false}
+                onClick={(e) => {
+                  // If we're not on the home page, let the navigation happen first
+                  if (pathname !== "/") {
+                    return;
+                  }
+                  // If we're on the home page, prevent default and scroll manually
+                  e.preventDefault();
+                  const contactSection = document.getElementById("contact");
+                  if (contactSection) {
+                    contactSection.scrollIntoView();
+                  }
+                }}
+              >
+                Contact
+                <HugeiconsIcon icon={ArrowUpRight01Icon} strokeWidth={1.5} />
+              </Link>
+            </Button>
           </Flex>
         </Flex>
       </Flex>

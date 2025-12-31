@@ -8,11 +8,13 @@
  */
 
 import React, { useEffect, useState } from "react";
-import { Button, Card, Container, Flex, Grid, Heading, Section, Text, Link, Separator } from "@kushagradhawan/kookie-ui";
+import { Button, Image, Container, Flex, Grid, Heading, Section, Text, Link, Separator, Tooltip, Box } from "@kushagradhawan/kookie-ui";
 import { TestimonialCard } from "../hero-section/TestimonialCard";
 import { testimonials, type Testimonial } from "../hero-section/testimonials";
 import { socialLinks, type SocialLink } from "./contactData";
-import { Mail, ArrowRight, Check } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Mail01Icon, ArrowUpRight01Icon, Tick01Icon } from "@hugeicons/core-free-icons";
+import { AIImageWithPrompt } from "@/components/generic";
 
 /**
  * ContactSection Component
@@ -55,65 +57,46 @@ export function ContactSection() {
   if (!randomTestimonial) return null;
 
   return (
-    <Container size="4">
-      <Section
-        id="contact"
-        style={{
-          borderTop: "1px dashed var(--gray-7)",
-        }}
-      >
-        <Flex gap="8" direction="column" align="center">
-          {/* Testimonial */}
-          {/* <TestimonialCard testimonial={randomTestimonial} /> */}
-
-          {/* Contact Card */}
-          <Flex direction="column" gap="9" py="6" px={{ initial: "4", sm: "6" }}>
-            {/* Title and subtitle */}
-            <Flex direction="column" gap="6" align="center">
-              <Text size="1" color="gray" weight="medium">
-                LET'S TALK
-              </Text>
-              <Heading size="8" weight="medium" align="center">
-                Open to new conversations. I currently work remotely from India, leading product and design at Womp3D.
-                <br />
-                <br />
-                If you want to chat about{" "}
-                <Text as="span" weight="regular" color="gray" style={{ fontStyle: "italic" }}>
-                  building products
+    <>
+      <Section id="contact" size="4">
+        <Container size="4">
+          <Grid columns={{ initial: "1", md: "2fr 3fr" }} align="center" gap="8" px={{ initial: "4", sm: "6" }}>
+            {/* Heading - Container size 2 */}
+            <Flex direction="column" gap="8" align={{ initial: "center", md: "start" }}>
+              <Heading size="8" weight="medium" align={{ initial: "center", md: "left" }} color="gray">
+                Open to conversations about{" "}
+                <Text as="span" weight="medium" highContrast>
+                  design
                 </Text>
                 ,{" "}
-                <Text as="span" weight="regular" color="gray" style={{ fontStyle: "italic" }}>
-                  evolving design systems
+                <Text as="span" weight="medium" highContrast>
+                  code
                 </Text>
-                , or{" "}
-                <Text as="span" weight="regular" color="gray" style={{ fontStyle: "italic" }}>
-                  shipping fast
+                ,{" "}
+                <Text as="span" weight="medium" highContrast>
+                  building products
                 </Text>
-                , I’d love to chat.
+                , and{" "}
+                <Text as="span" weight="medium" highContrast>
+                  AI
+                </Text>
+                .
               </Heading>
-            </Flex>
 
-            {/* Testimonials */}
-            <Flex direction="column" align="center" gap="6">
-              {/* Responsive grid: 1 column on mobile, 3 columns on desktop */}
-              <Grid gap="3" columns={{ initial: "1", sm: "2", md: "3" }}>
-                {testimonials.map((testimonial) => (
-                  <TestimonialCard key={testimonial.id} testimonial={testimonial} />
-                ))}
-              </Grid>
-            </Flex>
-
-            {/* Contact buttons */}
-            <Flex gap="6" align="center" justify="between" direction="column" width="100%">
+              {/* CTA buttons */}
               <Flex gap="2">
-                <Button size="3" asChild variant="solid" highContrast>
+                <Button size="2" asChild variant="solid" highContrast>
                   <a href="https://calendly.com/accounts-kushagradhawan/30min" target="_blank" rel="noopener noreferrer">
-                    Let's talk (Calendly)
-                    <ArrowRight />
+                    Calendly
+                    <HugeiconsIcon icon={ArrowUpRight01Icon} color="currentColor" />
                   </a>
                 </Button>
-                <Button size="3" variant="soft" highContrast onClick={handleCopyEmail}>
-                  {emailCopied ? <Check /> : <Mail />}
+                <Button size="2" variant="soft" highContrast onClick={handleCopyEmail}>
+                  {emailCopied ? (
+                    <HugeiconsIcon icon={Tick01Icon} color="currentColor" />
+                  ) : (
+                    <HugeiconsIcon icon={Mail01Icon} color="currentColor" />
+                  )}
                   {emailCopied ? "Copied" : "Copy Email"}
                 </Button>
               </Flex>
@@ -121,17 +104,41 @@ export function ContactSection() {
               {/* Social media links */}
               <Flex gap="6" wrap="wrap">
                 {socialLinks.map((link: SocialLink, index: number) => (
-                  <Link key={index} href={link.href} target="_blank" size="3" highContrast weight="medium">
+                  <Link key={index} href={link.href} target="_blank" size="2" underline="always">
                     {link.name}
                   </Link>
                 ))}
               </Flex>
             </Flex>
-          </Flex>
 
-          {/* <Separator size="3"></Separator> */}
-        </Flex>
+            <AIImageWithPrompt prompt="Portrait of a young man with a beard and a mustache, wearing a suit and tie, looking at the camera, smiling, in a modern office setting, professional, well-dressed, sharp focus, high-quality, clear image, natural lighting, professional portrait">
+              <Image
+                src="/articles/contact.png"
+                srcSet="/articles/contact-content-800.webp 800w, /articles/contact-content-1200.webp 1200w"
+                sizes="(max-width: 768px) 100vw, 600px"
+                alt="Contact"
+                fit="contain"
+                width="100%"
+                height="100%"
+                radius="none"
+              />
+            </AIImageWithPrompt>
+          </Grid>
+        </Container>
       </Section>
-    </Container>
+
+      {/* Testimonials Section */}
+      <Section size="4">
+        <Container size="4">
+          <Flex direction="column" align="center" gap="6" px={{ initial: "4", sm: "6" }}>
+            <Grid gap="3" columns={{ initial: "1", sm: "2", md: "3" }}>
+              {testimonials.map((testimonial) => (
+                <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+              ))}
+            </Grid>
+          </Flex>
+        </Container>
+      </Section>
+    </>
   );
 }

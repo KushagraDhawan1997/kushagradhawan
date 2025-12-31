@@ -9,32 +9,14 @@
  */
 
 import React from "react";
-import {
-  Button,
-  Container,
-  Dialog,
-  Flex,
-  Grid,
-  Heading,
-  Section,
-  Text,
-  Card,
-  Badge,
-  VisuallyHidden,
-  Inset,
-  Image,
-} from "@kushagradhawan/kookie-ui";
+import { Button, Container, Dialog, Flex, Grid, Heading, Section, Text, Card, Badge, VisuallyHidden, Inset, Image } from "@kushagradhawan/kookie-ui";
 import { kookieAiCapabilities, type KookieAiCapability } from "./kookieAiData";
 import { GitBranch, Zap, FileText, Layout, Link, Monitor } from "lucide-react";
+import { RecentArticlesSection } from "@/components/sections/recent-articles-section";
+import { ArticleProps } from "@/components/sections/articles-list-section/ArticlesListGrid";
 
 // Simple capability card with dialog functionality
-function KookieAiCapabilityCard({
-  capability,
-  icon,
-}: {
-  capability: KookieAiCapability;
-  icon: React.ReactNode;
-}) {
+function KookieAiCapabilityCard({ capability, icon }: { capability: KookieAiCapability; icon: React.ReactNode }) {
   return (
     <Dialog.Root>
       <Dialog.Trigger>
@@ -85,44 +67,23 @@ function KookieAiCapabilityCard({
  *
  * @returns React component for the Kookie AI section
  */
-export function AboutKookieAISection() {
+export function AboutKookieAISection({ posts = [] }: { posts?: ArticleProps[] }) {
   // Map capabilities to their icons
-  const capabilityIcons = [
-    <GitBranch key="conversation-graphs" size={20} />,
-    <Zap key="atomic-processing" size={20} />,
-    <FileText key="artifacts" size={20} />,
-    <Layout key="canvas-first" size={20} />,
-    <Link key="link-unlink" size={20} />,
-    <Monitor key="desktop-first" size={20} />,
-  ];
+  const getCapabilityIcon = (index: number) => {
+    const icons = [GitBranch, Zap, FileText, Layout, Link, Monitor];
+    const Icon = icons[index];
+    return Icon ? <Icon size={20} /> : null;
+  };
 
   return (
     <Section>
       <Container size="4">
         <Card variant="classic" size="4">
-          <Flex
-            direction="column"
-            gap="9"
-            py="6"
-            px={{ initial: "3", sm: "6" }}
-          >
+          <Flex direction="column" gap="9" py="6" px={{ initial: "3", sm: "6" }}>
             {/* Title and subtitle */}
             <Flex direction="column" gap="4">
-              <Flex
-                as="span"
-                width="32px"
-                height="32px"
-                display="inline-flex"
-                align="center"
-                justify="center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  fill="var(--gray-a12)"
-                  viewBox="0 0 256 256"
-                >
+              <Flex as="span" width="32px" height="32px" display="inline-flex" align="center" justify="center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="var(--gray-a12)" viewBox="0 0 256 256">
                   <path d="M240,108a28,28,0,1,1-28-28A28,28,0,0,1,240,108ZM72,108a28,28,0,1,0-28,28A28,28,0,0,0,72,108ZM92,88A28,28,0,1,0,64,60,28,28,0,0,0,92,88Zm72,0a28,28,0,1,0-28-28A28,28,0,0,0,164,88Zm23.12,60.86a35.3,35.3,0,0,1-16.87-21.14,44,44,0,0,0-84.5,0A35.25,35.25,0,0,1,69,148.82,40,40,0,0,0,88,224a39.48,39.48,0,0,0,15.52-3.13,64.09,64.09,0,0,1,48.87,0,40,40,0,0,0,34.73-72Z"></path>
                 </svg>
               </Flex>
@@ -139,22 +100,15 @@ export function AboutKookieAISection() {
               </Heading>
 
               <Text size="4" color="gray">
-                A UX-first, desktop web product where conversations live as a
-                branching graph of nodes. Each branch can diverge, transform, or
-                produce artifacts — giving knowledge workers and creators a
-                powerful OS for exploring, remixing, and producing with AI. Not
-                a chatbot. A conversation OS.
+                A UX-first, desktop web product where conversations live as a branching graph of nodes. Each branch can diverge, transform, or produce artifacts
+                — giving knowledge workers and creators a powerful OS for exploring, remixing, and producing with AI. Not a chatbot. A conversation OS.
               </Text>
             </Flex>
 
             {/* 3x2 grid of capability cards */}
             <Grid gap="3" columns={{ initial: "1", sm: "2", md: "3" }}>
               {kookieAiCapabilities.map((capability, index) => (
-                <KookieAiCapabilityCard
-                  key={capability.title}
-                  capability={capability}
-                  icon={capabilityIcons[index]}
-                />
+                <KookieAiCapabilityCard key={capability.title} capability={capability} icon={getCapabilityIcon(index)} />
               ))}
             </Grid>
 
@@ -164,11 +118,7 @@ export function AboutKookieAISection() {
                 Coming Soon
               </Button>
               <Button asChild variant="classic" size="3" highContrast>
-                <a
-                  href="/articles/about-kookie-ai"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="/articles/about-kookie-ai" target="_blank" rel="noopener noreferrer">
                   Read about Kookie AI
                 </a>
               </Button>
@@ -176,6 +126,7 @@ export function AboutKookieAISection() {
           </Flex>
         </Card>
       </Container>
+      <RecentArticlesSection posts={posts} title="Articles about Kookie AI" showCallout={false} />
     </Section>
   );
 }

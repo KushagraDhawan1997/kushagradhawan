@@ -27,6 +27,7 @@ export type Article = {
   content: string; // MDX content of the article
   image?: string; // Header image for the article
   alt?: string; // Alt text for the header image
+  imagePrompt?: string; // AI prompt used to generate the image
 };
 
 /**
@@ -60,6 +61,7 @@ export async function getPostBySlug(slug: string): Promise<Article> {
     content: cleanContent, // Clean MDX content without frontmatter
     image: data.image, // Header image (optional)
     alt: data.alt, // Alt text for the image (optional)
+    imagePrompt: data.imagePrompt, // AI prompt for the image (optional)
   };
 }
 
@@ -76,6 +78,7 @@ export function getAllPosts(): {
   tags: string[];
   image?: string;
   alt?: string;
+  imagePrompt?: string;
 }[] {
   // Get all MDX files from the posts directory
   const fileNames = fs.readdirSync(postsDirectory);
@@ -83,11 +86,6 @@ export function getAllPosts(): {
   // Process each file to extract metadata
   const allPostsData = fileNames
     .filter((fileName) => fileName.endsWith(".mdx")) // Only process MDX files
-    .filter((fileName) => {
-      // Exclude specific articles
-      const slug = fileName.replace(/\.mdx$/, "");
-      return slug !== "building-products-that-scale" && slug !== "about-kookie-ai" && slug !== "product-philosophy";
-    })
     .map((fileName) => {
       // Remove the .mdx extension to get the slug
       const slug = fileName.replace(/\.mdx$/, "");
@@ -108,8 +106,11 @@ export function getAllPosts(): {
         tags: data.tags || [],
         image: data.image,
         alt: data.alt,
+        imagePrompt: data.imagePrompt,
+        published: data.published !== false, // Default to true if not specified
       };
-    });
+    })
+    .filter((post) => post.published); // Only include published articles
 
   // Sort articles by date, newest first
   return allPostsData.sort((a, b) => {

@@ -1,13 +1,9 @@
-import { HeroSection } from "@/components/sections/hero-section";
+import { Hero } from "@/components/sections/hero-section";
 // import { AboutSection } from "@/components/sections/about-section";
-import { AboutWompSection } from "@/components/sections/about-womp-section";
-import { BeliefSection } from "@/components/sections/belief-section";
 import { ProductPhilosophy } from "@/components/sections/product-philosophy-section";
-import { StartupSolutionsSection } from "@/components/sections/startup-solutions-section";
-import { AboutKookieUISection } from "@/components/sections/about-kookie-ui-section";
 // import { AboutKookieAISection } from "@/components/sections/about-kookie-ai-section";
 import { HeroSectionPersonal } from "@/components/sections/hero-section-personal";
-import { Footer } from "@/components/ui/footer";
+import { RecentArticlesSection } from "@/components/sections/recent-articles-section";
 import { getAllPosts } from "@/lib/articles";
 import type { Metadata } from "next";
 
@@ -21,15 +17,16 @@ export const metadata: Metadata = {
 };
 
 interface HomeProps {
-  searchParams: { view?: string };
+  searchParams: Promise<{ view?: string }>;
 }
 
 // JSON-LD structured data for SEO
-export default function Home({ searchParams }: HomeProps) {
+export default async function Home({ searchParams }: HomeProps) {
   // Fetch all articles for the hero section
   const posts = getAllPosts();
   // Get view mode from URL params, default to "professional"
-  const viewMode = (searchParams.view as "professional" | "personal") || "professional";
+  const params = await searchParams;
+  const viewMode = (params.view as "professional" | "personal") || "professional";
 
   // Person structured data
   const personJsonLd = {
@@ -74,26 +71,17 @@ export default function Home({ searchParams }: HomeProps) {
 
       {viewMode === "professional" && (
         <>
-          <HeroSection posts={posts} />
-          <BeliefSection />
-          <AboutWompSection />
-          <AboutKookieUISection />
-          <ProductPhilosophy />
-          <StartupSolutionsSection />
-          <Footer />
+          <Hero />
+          <RecentArticlesSection posts={posts} />
+          {/* <ProductPhilosophy /> */}
           {/* <AboutKookieAISection /> */}
           {/* <AboutSection /> */}
         </>
       )}
       {viewMode === "personal" && (
-        <div
-        // style={{
-        //   backgroundColor: "var(--gray-6)",
-        // }}
-        >
-          {/* Personal sections will be added here later */}
+        <>
           <HeroSectionPersonal />
-        </div>
+        </>
       )}
     </>
   );

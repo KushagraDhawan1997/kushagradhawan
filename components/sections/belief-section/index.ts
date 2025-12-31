@@ -1,1 +1,0 @@
-export { BeliefSection } from "./BeliefSection";

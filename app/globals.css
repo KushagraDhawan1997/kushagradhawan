@@ -1,8 +1,10 @@
 @import "@kushagradhawan/kookie-ui/styles.css";
+@import "@kushagradhawan/kookie-blocks/styles.css";
 @import "tailwindcss/preflight.css";
 
 * {
   /* outline: solid 0.1px var(--gray-a6); */
+  --font-sans: "system-ui", sans-serif;
   --font-serif: "Noto Serif", serif;
   --font-mono: "JetBrains Mono", monospace;
 }

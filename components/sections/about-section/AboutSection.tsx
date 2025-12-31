@@ -22,7 +22,6 @@ import {
   VisuallyHidden,
 } from "@kushagradhawan/kookie-ui";
 import Link from "next/link";
-import { GlobeIllustration } from "./illustrations/GlobeIllustration";
 import { capabilities, type Capability } from "./about-section-data";
 import { Users, Target, Code2, Mail } from "lucide-react";
 
@@ -134,11 +133,9 @@ export function AboutSection() {
 
           {/* Simple 2-column grid */}
           <Grid gap="3" columns={{ initial: "1", sm: "2" }}>
-            {/* Left: Scaling Products card with globe */}
+            {/* Left: Scaling Products card */}
             {scalingProducts && (
-              <CapabilityCard capability={scalingProducts}>
-                <GlobeIllustration />
-              </CapabilityCard>
+              <CapabilityCard capability={scalingProducts} />
             )}
 
             {/* Right: Three capability cards */}

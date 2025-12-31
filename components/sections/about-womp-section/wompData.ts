@@ -7,11 +7,11 @@ export type WompStat = {
 };
 
 export const wompStats: WompStat[] = [
-  {
-    iconName: "Rocket",
-    value: "3+ years ",
-    description: "Launched publicly over three years ago.",
-  },
+  // {
+  //   iconName: "Rocket",
+  //   value: "3+ years ",
+  //   description: "Launched publicly over three years ago.",
+  // },
   {
     iconName: "Users",
     value: "600k+ users",

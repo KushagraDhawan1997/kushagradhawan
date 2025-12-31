@@ -38,7 +38,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
   return (
     <Dialog.Root>
       <Dialog.Trigger>
-        <Card size="3" variant="soft" asChild style={{ cursor: "pointer" }}>
+        <Card size="1" variant="soft" asChild style={{ cursor: "pointer" }}>
           <button>
             <Flex direction="column" justify="between" height="100%" gap="6" p="2">
               {/* Testimonial content */}
@@ -48,10 +48,10 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
 
               {/* Author information */}
               {/* TODO: Replace with UserCard when component is ready in KookieUI */}
-              <Flex align="center" gap="4">
-                <Avatar highContrast size="3" variant="classic" fallback={testimonial.author.name.charAt(0)} />
+              <Flex align="center" gap="2">
+                <Avatar highContrast size="2" variant="soft" fallback={testimonial.author.name.charAt(0)} />
                 <Flex direction="column" gap="0">
-                  <Text size="3" weight="medium">
+                  <Text size="2" weight="medium">
                     {testimonial.author.name}
                   </Text>
                   <Text size="2" color="gray">
@@ -64,7 +64,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
         </Card>
       </Dialog.Trigger>
 
-      <Dialog.Content>
+      <Dialog.Content size="1">
         <VisuallyHidden>
           <Dialog.Title>{testimonial.author.name}</Dialog.Title>
         </VisuallyHidden>
@@ -72,7 +72,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
         <Flex direction="column" gap="6">
           {/* Full testimonial text */}
           <Text size="5" weight="medium" style={{ whiteSpace: "pre-line" }}>
-            "{testimonial.fullTestimonial}"
+            {testimonial.fullTestimonial}
           </Text>
 
           {/* Where they worked together */}
@@ -82,9 +82,9 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
 
           {/* Author information header */}
           <Flex align="center" gap="4">
-            <Avatar highContrast size="3" variant="classic" fallback={testimonial.author.name.charAt(0)} />
+            <Avatar highContrast size="2" variant="soft" fallback={testimonial.author.name.charAt(0)} />
             <Flex direction="column" gap="0">
-              <Text size="3" weight="medium">
+              <Text size="2" weight="medium">
                 {testimonial.author.name}
               </Text>
               <Text size="2" color="gray">

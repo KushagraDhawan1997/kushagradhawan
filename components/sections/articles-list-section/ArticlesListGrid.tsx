@@ -9,6 +9,7 @@ export interface ArticleProps {
   tags?: string[];
   image?: string;
   alt?: string;
+  imagePrompt?: string;
 }
 
 interface ArticlesListGridProps {
@@ -17,7 +18,7 @@ interface ArticlesListGridProps {
 
 export function ArticlesListGrid({ posts }: ArticlesListGridProps) {
   return (
-    <Grid gap="3" columns={{ initial: "1", md: "2", lg: "3" }}>
+    <Grid gap="3" columns={{ initial: "1", md: "2", lg: "2" }}>
       {posts.map((post) => (
         <ArticleCard key={post.slug} post={post} />
       ))}

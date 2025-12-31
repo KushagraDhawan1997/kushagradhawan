@@ -32,7 +32,7 @@ Chat interfaces are everywhere now. AI products, messaging apps, customer suppor
 Chatbar is KookieUI's answer to that problem. It handles the input experience where users type, attach files, and submit messages. Every chat interface needs this, and now teams can use a battle-tested component instead of rebuilding it from scratch.
 
 <Box mt="9">
-    <Chatbar.Root variant="classic" size="3" sendMode="always" width="100%" minLines="2" open onOpenChange={() => {}} onSubmit={({ value, attachments }) => {
+    <Chatbar.Root variant="classic" size="2" sendMode="always" width="100%" minLines="2" open onOpenChange={() => {}} onSubmit={({ value, attachments }) => {
     console.log('Message:', value);
     console.log('Attachments:', attachments);
     }}>
@@ -43,7 +43,7 @@ Chatbar is KookieUI's answer to that problem. It handles the input experience wh
     />
     <Chatbar.Row>
         <Chatbar.AttachTrigger asChild>
-        <IconButton size="3" variant="classic" aria-label="Attach file">
+        <IconButton size="2" variant="soft" aria-label="Attach file">
             <Paperclip />
         </IconButton>
         </Chatbar.AttachTrigger>

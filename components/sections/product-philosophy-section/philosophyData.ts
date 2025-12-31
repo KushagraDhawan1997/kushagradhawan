@@ -15,27 +15,45 @@ export interface Principle {
 
 export const principles: Principle[] = [
   {
-    title: "Rethinking product with AI",
-    description: "AI opens new ways to create, and despite its shortcomings, it makes creation accessible.",
+    title: "There's a lot of value in agency",
+    description:
+      "In startups, leadership is the work of keeping the team pointed at the same goal: building something users actually want and can actually use.",
     expandedContent:
-      "Shipping AI at Womp has changed how we build. AI is complicated. Yes, it is in some ways a creative accelerator, and it absolutely makes creation more accessible—it especially makes 3D creation welcoming to anyone who wants to try. However, there are valid—very valid—concerns around it, particularly about data sourcing in generative AI. It is also true that the world has accepted it, and we want to leverage it—not because we’re afraid of being left behind (we launched AI very late), but because our mission comes first. We want to make 3D creation accessible while giving experienced creators precision and depth through Womp’s editing capabilities.\n\nOur first AI launch gave users a new on-ramp: generate 3D objects instantly, then shape them in Womp’s editor to customize, arrange, and 3D-print. We complement the pro tools people love by offering another path into 3D. We’ve heard strong feedback and we’re listening. Womp’s mission is easy 3D for everyone—speed plus control, together.",
+      "I have learned that leadership, at least in startups, is really about agency. It's being the person who assumes the responsibility of helping people stay oriented toward the same goal: build something users actually want, and can actually use. The hard part is that different disciplines approach that goal from different angles, and those don't naturally align.\n\nMy role has evolved into keeping those angles aligned. I'm never the smartest person in the room, and all I bring to the table is my ability to think across disciplines.",
   },
   {
-    title: "Owning the work across roles",
-    description: "We ship fast because the people closest to the problem own the work end to end.",
+    title: "Your users see product as a whole, and not as a sum of its parts",
+    description:
+      "Most product failures come from teams optimizing locally instead of thinking holistically around how the product feels to users.",
     expandedContent:
-      "I think we as humans were meant to build something. At our core, I believe we’re all builders, and when we create something - anything - that makes someone pause, take a breath, and smile, that’s when we truly feel happy. \n\n I think everyone in the team should be a builder. At Womp, the person with the most context takes the work from idea to launch. For example, our Graphics engineers ship their new features directly, creating small panels in a deliberately experimental way. They shouldn't be blocked by design or frontend bottlenecks. Similarly, the backend or platform teams add UI directly to their services to assist with QA in parallel. I manage the overall design, sketch out flows, and add polish so the frontend can stay focused on performance, and designers can work on solving the core problems.\n\nWe minimize handoffs and maximize ownership. Our tight cycles mean that ideas quickly become real, live features.",
+      "The biggest problem I've seen is siloed thinking: engineers think like engineers, designers think like designers, and product managers think like product managers.\n\nBut users don't think that way. They don't care who or which team made a decision. They only care whether what they're using makes sense.\n\nThis disconnect is where most product problems live. When engineers optimize but ignore usability, when designers focus on aesthetics but miss technical constraints, when product managers chase metrics but lose sight of user value, that's when products fail.",
   },
   {
-    title: "Consistency through UI",
-    description: "We aim to maintain user interface consistency by separating design from the application layer.",
+    title: "Not every solution is good or right",
+    description:
+      "The job is to choose the solution that actually works for users.",
     expandedContent:
-      "I created KookieUI to fit our way of building. The frontend imports components like Button from KookieUI, while I define their appearance, tokens, and behavior. When anything needs an update, I adjust KookieUI and publish a new version. The frontend team then updates the package, and the app adopts the new standard automatically.\n\nThis approach keeps design logic separate from application code. All design rules are centralized, so product code can focus on data flow, performance, and features. Engineers aren’t distracted by UI tweaks, and that’s exactly as it should be. Design matters and shouldn't be overlooked. If you ask someone uninterested in design to handle it, the result isn’t ideal, so don’t do it. As a startup, we can't hire for every specialized role, including a dedicated design engineer, so I took on that responsibility. Now, UI work doesn’t wait in a frontend queue. I handle component development, token management, usage reviews, and updates through the package. This leads to faster UI changes and a consistent interface across everything we release.",
+      "I hated the term “design thinking.” It felt obvious, like of course we should think about users. Who else will you build for? \n\nBut I've now come to appreciate the point. A problem can have thousands of solutions. The goal is finding the solution that actually works for users, not you personally.\n\nIf the problem is “get from point A to point B,” you could walk, run, cycle, drive, heck even ride on someone's back. They all technically solve the problem. But not equally well. We often make the mistake of not differentiating between what a “solution” is, and what a “good solution” is.",
   },
   {
-    title: "We ship to learn, to fail fast.",
-    description: "We ship MVPs on happy paths to test real demand before we invest.",
+    title: "Make it intuitive, don’t explain the confusion",
+    description:
+      "When something is hard to use, the best fix is usually to remove the friction—rather than adding tooltips to justify it.",
     expandedContent:
-      "We ship small, functional versions that cover the happy path to test if people actually want what we're building. If users engage and find value, we invest further. We gather insights through user interviews, dashboards, and usage metrics.\n\nOur main priority during these cycles is to avoid major regressions. There’s plenty of evidence for this. For example, we recently released AI scene manipulation, enabling users to change materials or move objects using natural language. Right now, the feature is very limited, partially by design, because we knew when to stop and launch. We're uncertain if it deserves further investment, so we shipped the simplest version to observe if it provides value. \n\n This is just the latest example. In fact, you could say Womp itself is an ongoing experiment—a living, evolving project shaped by constant testing. If something doesn’t work, it either gets removed or, admittedly, sometimes receives less attention than it should.",
+      "Designers sometimes see a usability problem and respond with tooltips, callouts, or alerts. But users rarely read them. And without testing, you don’t know if it helped.\n\nThis is a common pattern: when something is hard to use, the first instinct is to explain why it’s hard. But the better solution is usually to make it easier.\n\nInstead of adding a tooltip to explain a confusing button, redesign the button so it doesn’t need explanation.\n\nIf we’re adding layers of explanation, it’s often a signal we’re solving the wrong problem.",
+  },
+  {
+    title: "Emphathy beats guesswork",
+    description:
+      "Thinking like a user requires understanding their context and mental models—not “if I were a user…” imagination.",
+    expandedContent:
+      "Engineers sometimes ship prototypes without thinking about users at all. When they do, it's often the “If I were a user, I would…” logic.\n\nThat's not user thinking. That's guesswork.\n\nThinking like a user requires empathy, and yeah I know, it's a cliche at this point, but it means understanding the user’s context, constraints, and mental models.\n\nEven small choices change when you do that. If a button could go on the left or right, the effort is the same either way. But if the right placement is better UX, putting it there reduces churn later, makes the designer’s job easier, and speeds up shipping.",
+  },
+  {
+    title: "Protect team sanity",
+    description:
+      "Fast shipping isn’t worth burnout. Sustainable pace is part of the job.",
+    expandedContent:
+      "One area where I don’t compromise is team sanity. I don’t want people working overtime, stressed, or carrying unnecessary deadlines. Good work comes from people who are well-rested, focused, and engaged.\n\nWhen people are exhausted, they make worse decisions, they’re less creative, and they take shortcuts that create bigger problems later.\n\nStartups are chaotic. We still ship fast and make trade-offs. But I see it as part of my role to shield the team from noise so they can focus on solving real problems.",
   },
 ];

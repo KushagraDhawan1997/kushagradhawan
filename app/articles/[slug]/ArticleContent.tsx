@@ -4,6 +4,7 @@ import React, { Suspense } from "react";
 import { Badge, Container, Flex, Heading, Image, Inset, Section, Text, AspectRatio, Separator, Box } from "@kushagradhawan/kookie-ui";
 import { MDXProvider } from "@mdx-js/react";
 import { useMDXComponents } from "../../../mdx-components";
+import { AIImageWithPrompt } from "@/components/generic";
 interface ArticleContentProps {
   post: {
     slug: string;
@@ -13,6 +14,7 @@ interface ArticleContentProps {
     tags: string[];
     image?: string;
     alt?: string;
+    imagePrompt?: string;
   };
   formattedDate: string;
 }
@@ -38,6 +40,8 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
     "womp-spark-update": React.lazy(() => import("../../../content/articles/womp-spark-update.mdx")),
     "kookie-chatbar-update": React.lazy(() => import("../../../content/articles/kookie-chatbar-update.mdx")),
     "designers-own-the-experience-in-production": React.lazy(() => import("../../../content/articles/designers-own-the-experience-in-production.mdx")),
+    "queen-lukita-lore": React.lazy(() => import("../../../content/articles/queen-lukita-lore.mdx")),
+    "on-ai": React.lazy(() => import("../../../content/articles/on-ai.mdx")),
   };
 
   const MDXContent = MDXBySlug[post.slug];
@@ -62,13 +66,27 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
         {/* Article header image */}
         {post.image && (
           <AspectRatio ratio={16 / 10}>
-            <Image
-              src={hero?.src || post.image}
-              srcSet={hero?.srcSet}
-              sizes={hero?.sizes}
-              alt={post.alt || post.title}
-              style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "var(--radius-6)", overflow: "hidden" }}
-            />
+            {post.imagePrompt ? (
+              <AIImageWithPrompt prompt={post.imagePrompt}>
+                <Image
+                  src={hero?.src || post.image}
+                  srcSet={hero?.srcSet}
+                  sizes={hero?.sizes}
+                  alt={post.alt || post.title}
+                  radius="none"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", overflow: "hidden" }}
+                />
+              </AIImageWithPrompt>
+            ) : (
+              <Image
+                src={hero?.src || post.image}
+                srcSet={hero?.srcSet}
+                sizes={hero?.sizes}
+                alt={post.alt || post.title}
+                radius="none"
+                style={{ width: "100%", height: "100%", objectFit: "cover", overflow: "hidden" }}
+              />
+            )}
           </AspectRatio>
         )}
       </Container>

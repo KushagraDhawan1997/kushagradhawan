@@ -100,7 +100,7 @@ export function WompIllustrationGrid() {
 
   // Single responsive grid for all devices
   return (
-    <Grid gap="3" columns={{ initial: "1", sm: "2", md: "3" }}>
+    <Grid gap="1px" columns={{ initial: "1", sm: "2", md: "2" }}>
       {processedMedia.map((media, i) => (
         <WompMediaItem
           key={i}
@@ -130,11 +130,10 @@ function WompMediaItem({
     <Box
       height="100%"
       style={{
-        aspectRatio: "16/10",
+        aspectRatio: "16/9",
         width: "100%",
         overflow: "hidden",
         position: "relative",
-        borderRadius: "var(--radius-5)",
       }}
     >
       {media.type === "video" ? (

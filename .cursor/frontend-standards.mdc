@@ -1,0 +1,173 @@
+---
+alwaysApply: true
+---
+
+# Cursor Rules – Frontend Engineering Standards
+
+These rules apply to all frontend code, regardless of framework or design system.  
+Follow these conventions even if the user request does not restate them.
+
+---
+
+## 1. Architecture & Code Organization
+
+- Prefer **feature-based architecture**:
+  - Group components, hooks, utils, and API logic by _domain_, not by file type.
+- Keep components small, focused, and predictable.
+- Avoid “God components” — extract logic into hooks/utilities early.
+- Do not create deep nested folder structures — two or three levels max.
+
+### File naming
+
+- Components: **PascalCase.tsx**
+- Hooks: **useSomething.ts**
+- Utilities/types: **camelCase.ts**
+- Avoid default exports for utilities; prefer named exports.
+
+---
+
+## 2. State Management Strategy
+
+- **Server state** → managed by React Query (or framework/server loaders).
+- **Local UI state** → handled with React component state or small hooks.
+- Avoid storing server data in local state; derive it directly from queries.
+- Do not introduce global state stores unless a real cross-feature need emerges.
+
+### Avoid anti-patterns:
+
+- “Prop drilling” beyond 2–3 levels → prefer composition or a small context.
+- Multiple sources of truth for the same data.
+
+---
+
+## 3. Data Fetching & API Boundaries
+
+- All networking logic must live in an **API client layer**, not inline.
+- API responses must be typed (TS interfaces or Zod schemas).
+- Validate or transform responses at the boundary before they enter the UI.
+- Error and loading states must always be handled explicitly.
+- Never use `useEffect` to fetch data that can be handled by React Query or framework tools.
+
+---
+
+## 4. Error Handling Standards
+
+- No empty `catch` blocks.
+- Always surface a meaningful error to the user (toast, message, or UI state).
+- Log technical details to a central utility, not inline `console.log` everywhere.
+- Use React Error Boundaries for isolating failures in large UI areas.
+
+---
+
+## 5. Accessibility (A11y) Standards
+
+- All interactive elements must be:
+  - Keyboard accessible,
+  - Screen-reader friendly,
+  - Semantically correct (`button`, `a`, etc.).
+- Never use `div` or `span` as clickable elements.
+- Provide labels for all form controls.
+- Respect `prefers-reduced-motion` for animations.
+
+---
+
+## 6. Forms & Validation
+
+- Prefer **React Hook Form** (or the established library) for all non-trivial forms.
+- Validation should happen at:
+  - Schema level (Zod/Yup),
+  - UI level (input error props),
+  - And optionally server side.
+- Avoid writing complex form logic with plain `useState`.
+
+---
+
+## 7. Performance Standards
+
+- Avoid premature optimization — but write code that avoids obvious pitfalls.
+- Prefer memoization when:
+  - Passing functions/objects to memoized children,
+  - Doing heavy computations.
+- Avoid storing derived data in state — derive when needed.
+- Use `useTransition` for expensive UI updates that should remain responsive.
+- Lazy-load large modules when practical.
+
+---
+
+## 8. Routing & Navigation Standards
+
+### If Next.js:
+
+- Prefer **Server Components** for data-heavy or static content.
+- Client components are reserved for interactivity, animations, or user-driven data.
+
+### If React Router:
+
+- Co-locate loaders/actions with route components.
+- Don’t pass huge props through multiple routes — use loader data instead.
+
+---
+
+## 9. Testing Standards
+
+- Use React Testing Library for:
+  - Behavioral tests,
+  - Accessibility assertions,
+  - Integration flows.
+- Avoid snapshot tests for dynamic UI.
+- Focus tests on:
+  - critical flows,
+  - edge cases,
+  - accessibility,
+  - regressions.
+
+---
+
+## 10. Security Standards
+
+- Validate all external data before using it.
+- Escape potentially unsafe strings before inserting into HTML.
+- Never interpolate raw user input into HTML.
+- Keep all secret keys or tokens out of the frontend environment.
+
+---
+
+## 11. Code Review & Quality
+
+- PRs must be small, scoped, and clearly described.
+- Do not merge code containing:
+  - Inline styling that ignores design-system props,
+  - Manual DOM manipulation without reason,
+  - Deprecated patterns (`useEffect`-fetching, prop drilling, untyped APIs),
+  - Unnecessary complexity.
+- Always refactor code when adding features if it improves maintainability.
+
+---
+
+## 12. Logging & Monitoring
+
+- Use a centralized logging utility (e.g., `log.error`, `log.info`).
+- Never leave stray `console.log` statements.
+- Errors thrown from network/API should be traceable and formatted consistently.
+
+---
+
+## 13. Developer Experience (DX)
+
+- Follow established ESLint, prettier, and TypeScript rules at all times.
+- Maintain consistent formatting and import order.
+- Use barrel files sparingly — only when they improve clarity, not hide structure.
+- Prefer clarity over cleverness.
+
+---
+
+## 14. When In Doubt
+
+- Prefer explicit, declarative, readable code.
+- Follow the established patterns of the codebase.
+- Align with the principles of:
+  - React best practices,
+  - Kookie UI conventions,
+  - Modern frontend engineering standards.
+
+If implementing a feature contradicts these principles, adapt the solution to align with these rules instead of following the original flawed approach directly.

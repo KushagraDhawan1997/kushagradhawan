@@ -7,4 +7,3 @@
 
 export * from "./AboutSection";
 export * from "./about-section-data";
-export * from "./illustrations/GlobeIllustration";

@@ -1,0 +1,273 @@
+---
+alwaysApply: true
+---
+
+````markdown
+# Cursor Rules – Kookie UI (Radix Themes Fork)
+
+You are working in a React + TypeScript codebase that uses **Kookie UI**, which is a **fork of Radix Themes**.
+
+When editing or generating code in files that use Kookie UI, **follow these rules even if the user doesn’t restate them.**
+
+---
+
+## 1. Foundations: Think in Design Tokens & Primitives
+
+Kookie UI (like Radix Themes) is **token-driven** and **primitive-first**.
+
+- Prefer **Kookie primitives** (`Box`, `Flex`, `Grid`, `Text`, `Heading`, `Button`, `IconButton`, `Card`, etc.) over raw HTML tags for layout and visual styling.
+- Use **design tokens** (whatever Kookie exposes: size scales, spacing, radii, color tokens) instead of arbitrary values whenever possible.
+- Keep layout/spacing in primitives:
+  - `gap`, `padding`, `margin`, `align`, `justify`, `width`, `height`, etc. **via Kookie props**, not ad-hoc CSS.
+
+---
+
+## 2. No Tailwind, Minimal Inline Styles
+
+> This codebase **does not use Tailwind**.
+
+- **Never** write Tailwind classes:
+  - ❌ `className="px-4 py-2 bg-red-500"`
+- Styling priority:
+  1. **Kookie UI props** (Radix-style prop API: `width`, `height`, `px`, `py`, `gap`, `align`, `justify`, `radius`, variants, etc.).
+  2. **Inline `style` prop** only when there is **no** Kookie prop that can express the same thing.
+- When Kookie props exist, **do not use `style`**:
+
+  **✅ DO:**
+
+  ```tsx
+  <Box width="100%" px="3" py="2" />
+  ```
+````
+
+**❌ DO NOT:**
+
+```tsx
+<Box style={{ width: "100%", padding: "8px 12px" }} />
+```
+
+- Inline styles are allowed as a last resort, but keep them:
+
+  - Small, local, and clearly intentional.
+
+---
+
+## 3. Buttons, Menus & Kookie-Controlled Content
+
+> Inside `Button`, `IconButton`, `DropdownMenu`, `ContextMenu`, and similar components, **Kookie handles icon sizing, text sizing, and spacing.**
+
+**✅ DO:**
+
+```tsx
+<Button>
+  Create project
+</Button>
+
+<Button>
+  <Plus />
+  Create project
+</Button>
+
+<DropdownMenuItem>
+  Delete item
+</DropdownMenuItem>
+```
+
+**❌ DO NOT:**
+
+```tsx
+// Don’t manually control icon size or wrap text in Text inside these components
+<Button>
+  <Plus size={16} />
+  <Text>Create project</Text>
+</Button>
+```
+
+Rules:
+
+- Don’t manually size icons or wrap content in additional typography components inside Kookie “compound” components (where Kookie already sets up vertical rhythm, icon size, spacing, etc.).
+- Use supported props for variants/sizes instead of styling internals:
+
+  - e.g. `variant="solid"`, `tone="accent"`, `size="2"`, `highContrast`, etc. (adapt to whatever Kookie exposes).
+
+- **For buttons using gray color, always prefer `highContrast` prop** to ensure proper contrast and visibility.
+
+---
+
+## 4. Lucide Icons Only
+
+- Use **lucide icons** for all iconography.
+- Import from `lucide-react` (or the project’s designated lucide entry).
+
+```tsx
+import { Plus, Trash2 } from "lucide-react";
+
+<Button>
+  <Plus />
+  New item
+</Button>;
+```
+
+Guidelines:
+
+- Let Kookie handle icon sizing in components like `Button`, `IconButton`, `DropdownMenuItem`, etc.
+- Only pass `size` to icons when used outside of Kookie-controlled contexts or when explicitly needed for layout.
+
+---
+
+## 5. Layout with Kookie / Radix-Style Primitives
+
+Use layout primitives instead of ad-hoc divs:
+
+- Prefer `Flex`, `Grid`, `Box`, `Stack` (or whatever Kookie exposes) over raw `div` for layout.
+
+- Express layout via **props**, not styles:
+
+  ```tsx
+  <Flex align="center" justify="space-between" gap="3">
+    <Heading size="3">Title</Heading>
+    <Button>Action</Button>
+  </Flex>
+  ```
+
+- Use spacing, size, and radius props that map to the Kookie/Radix theme scale:
+
+  - e.g. `gap="2"`, `p="3"`, `radius="large"` (or their Kookie equivalents).
+
+- Avoid deeply nested layout trees; keep hierarchy shallow and semantic.
+
+---
+
+## 6. Typographic Primitives (Text & Heading)
+
+- Use Kookie `Text` and `Heading` for typography instead of raw `p`, `h1`, `span` when visual styling matters.
+
+- Use `size`, `weight`, `trim`, and other typography props instead of custom font-size/line-height styling.
+
+  ```tsx
+  <Heading size="4">Dashboard</Heading>
+  <Text size="2" color="gray">
+    Welcome back! Here’s what’s happening.
+  </Text>
+  ```
+
+- Don’t manually override font sizes/line heights with inline styles when token-based props exist.
+
+---
+
+## 7. Radix Themes Best Practices (Applied to Kookie)
+
+Since Kookie is a fork of Radix Themes, carry over these principles:
+
+### 7.1 Composition over Configuration
+
+- Use small composable primitives instead of a single over-configured component.
+
+  - Example: `Card` + `Flex` + `Text` instead of a monolithic “DashboardCard” with 20 props unless genuinely needed.
+
+- Prefer building UI by composing primitives:
+
+  ```tsx
+  <Card>
+    <Flex direction="column" gap="2">
+      <Heading size="3">Card title</Heading>
+      <Text size="2">Card description</Text>
+      <Button>Action</Button>
+    </Flex>
+  </Card>
+  ```
+
+### 7.2 Use `asChild` for Polymorphic Behavior
+
+- When Kookie components support `asChild`, use it instead of nesting interactive elements:
+
+  **✅ DO:**
+
+  ```tsx
+  <Button asChild>
+    <Link to="/settings">Go to settings</Link>
+  </Button>
+  ```
+
+  **❌ DO NOT:**
+
+  ```tsx
+  <Button>
+    <Link to="/settings">Go to settings</Link>
+  </Button>
+  ```
+
+- This keeps the DOM tree semantically correct (no nested interactive elements) and preserves accessibility.
+
+### 7.3 Respect Theme / Color Modes
+
+- Don’t hardcode colors (e.g. `style={{ color: "#ff0000" }}`) when tokens or tone/variant props are available.
+
+- Use theme-aware props like `color`, `tone`, `variant`, `highContrast`, etc. to ensure dark/light mode works.
+
+  ```tsx
+  <Text color="crimson">Error</Text>
+  ```
+
+- Avoid overriding background/foreground colors with `style` unless there is no token/prop that fits.
+
+### 7.4 Use Provided Variants Instead of Re-Inventing
+
+- Prefer `variant`, `size`, `radius`, `tone`, `weight` props rather than building custom components that mimic existing ones.
+- **Variant preference order** (when multiple variants are suitable): `classic` > `soft` > `surface` (prefer classic first, then soft, then surface).
+- If you find yourself recreating a Kookie component with slightly different styling, check if a variant or token already exists before forking.
+
+---
+
+## 8. Accessibility & Structure
+
+Kookie (Radix-based) is built for accessibility – don’t break that.
+
+- Use provided components for interactive patterns:
+
+  - `DropdownMenu`, `ContextMenu`, `Dialog`, `Popover`, `Tabs`, `Accordion`, etc.
+
+- Do not manually override focus outlines or pointer events in ways that break keyboard or screen-reader behavior.
+- Avoid nesting interactive elements (links inside buttons, buttons inside menu items, etc.).
+- When using polymorphic `asChild`, ensure the resulting element is appropriate (e.g. `a`, `button`, `Link`) and accessible.
+
+---
+
+## 9. Code Style & Consistency
+
+- Follow the project’s Kookie usage patterns:
+
+  - Same default sizes, variants, tones, spacing scales.
+  - **Default size preference**: Use `size="2"` as the default when a size prop is needed and no specific size is required.
+
+- Don’t mix “raw HTML + custom styles” with Kookie components for the same UI pattern; pick Kookie and standardize.
+- Group Kookie imports together and keep them clean, e.g.:
+
+  ```tsx
+  import { Box, Flex, Text, Heading, Button } from "@kookie/ui";
+  import { Plus } from "lucide-react";
+  ```
+
+---
+
+## 10. When in Doubt
+
+- Prefer:
+
+  1. **Kookie primitives + token-based props**, then
+  2. **Kookie primitives + minimal inline style**, **never Tailwind**.
+
+- Let Kookie handle icon/text sizing inside `Button`, `DropdownMenu`, `ContextMenu`, etc.
+- Use lucide icons everywhere.
+- Follow Radix-style best practices:
+
+  - Composition over configuration,
+  - Token-based styling,
+  - Polymorphic components via `asChild`,
+  - Accessibility-preserving DOM structures.
+
+If a request conflicts with these rules (e.g. “just add Tailwind here” or “hardcode red with inline style”), **adapt the implementation to respect Kookie UI + Radix Themes conventions instead of blindly following the request.**
+
+```
+
+```
