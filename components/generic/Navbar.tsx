@@ -2,10 +2,19 @@
 
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { Button, Box, Flex, Avatar, DropdownMenu, useThemeContext, IconButton, Link as KookieLink } from "@kushagradhawan/kookie-ui";
+import {
+  Button,
+  Navbar,
+  Avatar,
+  DropdownMenu,
+  useThemeContext,
+  IconButton,
+  Link as KookieLink,
+  Flex
+} from "@kushagradhawan/kookie-ui";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Sun, Moon, Monitor, Mail, ArrowRight, Check } from "lucide-react";
+import { Sun, Moon, Monitor } from "lucide-react";
 import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
@@ -156,7 +165,7 @@ function NavLink({ href, children, ariaLabel }: { href: string; children: React.
 }
 
 /**
- * Navbar Component
+ * NavbarComponent
  *
  * The main navigation component that provides:
  * - Site logo and branding
@@ -165,103 +174,58 @@ function NavLink({ href, children, ariaLabel }: { href: string; children: React.
  * - Contact button
  * - Responsive design considerations
  *
+ * Now using the Navbar component from kookie-ui!
+ *
  * @param className - Additional CSS classes for styling
  * @param props - Additional HTML attributes
  * @returns React component for the site navigation
  */
-export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
+export function NavbarComponent() {
   // Get the current path to highlight active links
   const pathname = usePathname();
-  // const searchParams = useSearchParams();
-  // const router = useRouter();
-  const [emailCopied, setEmailCopied] = useState(false);
-
-  // Get view mode from URL params, default to "professional"
-  // const viewMode = (searchParams.get("view") as "professional" | "personal") || "professional";
-
-  // const handleViewModeChange = (value: "professional" | "personal") => {
-  //   const params = new URLSearchParams(searchParams.toString());
-  //   if (value === "professional") {
-  //     params.delete("view"); // Remove param for default value
-  //   } else {
-  //     params.set("view", value);
-  //   }
-  //   router.push(`${pathname}${params.toString() ? `?${params.toString()}` : ""}`);
-  // };
-
-  // Copy email to clipboard
-  const handleCopyEmail = async () => {
-    const email = "hello@kushagradhawan.design";
-    try {
-      await navigator.clipboard.writeText(email);
-      setEmailCopied(true);
-      setTimeout(() => {
-        setEmailCopied(false);
-      }, 2000);
-    } catch (err) {
-      console.error("Failed to copy email:", err);
-    }
-  };
 
   return (
-    <Box
-      position="fixed"
-      top="0"
-      style={{
-        zIndex: 50,
-        backgroundColor: "var(--color-background)",
-      }}
-      width="100%"
-      {...props}
-    >
-      <Flex width="100%" height="64px" gap="4" align="center" justify="between" px="4">
-        {/* Left side: Logo */}
-        <Flex width="100%" gap="4">
-          <Link href="/" aria-label="Kushagra Dhawan - Homepage">
-            <Flex align="center" gap="4">
-              <Avatar src="/kushagra-logo.svg" fallback="KD" alt="Kushagra Dhawan" size="2" radius="full" />
-            </Flex>
+    <Navbar.Root position="fixed" height="64">
+      {/* Logo */}
+      <Navbar.Logo>
+        <Link href="/" aria-label="Kushagra Dhawan - Homepage">
+          <Avatar src="/kushagra-logo.svg" fallback="KD" alt="Kushagra Dhawan" size="2" radius="full" />
+        </Link>
+      </Navbar.Logo>
+
+      {/* Navigation */}
+      <Navbar.Navigation>
+        <NavLink href="/articles">Articles</NavLink>
+      </Navbar.Navigation>
+
+      {/* Actions */}
+      <Navbar.Actions>
+        <ThemeToggle />
+        <Button size="2" asChild variant="solid" highContrast>
+          <Link
+            href="/#contact"
+            scroll={false}
+            onClick={(e) => {
+              // If we're not on the home page, let the navigation happen first
+              if (pathname !== "/") {
+                return;
+              }
+              // If we're on the home page, prevent default and scroll manually
+              e.preventDefault();
+              const contactSection = document.getElementById("contact");
+              if (contactSection) {
+                contactSection.scrollIntoView();
+              }
+            }}
+          >
+            Contact
+            <HugeiconsIcon icon={ArrowUpRight01Icon} strokeWidth={1.5} />
           </Link>
-        </Flex>
-
-        {/* Center */}
-        {/* <Flex width="100%" justify="center" display={{ initial: "none", md: "flex" }}>
-          <SegmentedControl.Root size="2" value={viewMode} onValueChange={(value) => handleViewModeChange(value as "professional" | "personal")}>
-            <SegmentedControl.Item value="professional">Work</SegmentedControl.Item>
-            <SegmentedControl.Item value="personal">Personal</SegmentedControl.Item>
-          </SegmentedControl.Root>
-        </Flex> */}
-
-        {/* Right side: Navigation links, theme toggle and contact button */}
-        <Flex justify="end" width="100%" align="center" gap={{ initial: "4", md: "6" }}>
-          {/* Contact buttons */}
-          <Flex gap="4" align="center">
-            <NavLink href="/articles">Articles</NavLink>
-            <ThemeToggle />
-            <Button size="2" asChild variant="solid" highContrast>
-              <Link
-                href="/#contact"
-                scroll={false}
-                onClick={(e) => {
-                  // If we're not on the home page, let the navigation happen first
-                  if (pathname !== "/") {
-                    return;
-                  }
-                  // If we're on the home page, prevent default and scroll manually
-                  e.preventDefault();
-                  const contactSection = document.getElementById("contact");
-                  if (contactSection) {
-                    contactSection.scrollIntoView();
-                  }
-                }}
-              >
-                Contact
-                <HugeiconsIcon icon={ArrowUpRight01Icon} strokeWidth={1.5} />
-              </Link>
-            </Button>
-          </Flex>
-        </Flex>
-      </Flex>
-    </Box>
+        </Button>
+      </Navbar.Actions>
+    </Navbar.Root>
   );
 }
+
+// Export as default for backward compatibility
+export { NavbarComponent as Navbar };

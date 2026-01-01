@@ -119,7 +119,6 @@ const portfolioItems = [
     image: "/articles/kookie-blocks-hero.png",
     prompt:
       "Contemporary oil impasto palette-knife painting of a grid of chunky color swatches and spacing blocks arranged like a tactile board (tokens), warm cream + coral + muted olive palette, sand/beige textured background, thick palette-knife texture gleaming in sunlight, simplified forms, 16:9, no text.",
-    comingSoon: true,
     href: "/kookie-blocks",
   },
 ];
@@ -216,7 +215,29 @@ export function Hero() {
                     </Flex>
                   </HoverCard.Content>
                 </HoverCard.Root>
-                , KookieAI, KookieBlocks.
+                ,{" "}
+                <HoverCard.Root>
+                  <HoverCard.Trigger>
+                    <Link
+                      color="blue"
+                      target="_blank"
+                      href="https://blocks.hellokookie.com/"
+                    >
+                      KookieBlocks
+                    </Link>
+                  </HoverCard.Trigger>
+                  <HoverCard.Content maxWidth="600px">
+                    <Flex direction="column" align="center">
+                      <Image
+                        src="/kookie-blocks.png"
+                        alt="KookieBlocks Preview"
+                        width="600"
+                        height="450"
+                      />
+                    </Flex>
+                  </HoverCard.Content>
+                </HoverCard.Root>
+                , KookieAI.
               </Text>
             </Flex>
 
