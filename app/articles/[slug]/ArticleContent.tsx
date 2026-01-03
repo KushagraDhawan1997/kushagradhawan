@@ -42,6 +42,7 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
     "designers-own-the-experience-in-production": React.lazy(() => import("../../../content/articles/designers-own-the-experience-in-production.mdx")),
     "queen-lukita-lore": React.lazy(() => import("../../../content/articles/queen-lukita-lore.mdx")),
     "on-ai": React.lazy(() => import("../../../content/articles/on-ai.mdx")),
+    "kookie-blocks-streaming-markdown": React.lazy(() => import("../../../content/articles/kookie-blocks-streaming-markdown.mdx")),
   };
 
   const MDXContent = MDXBySlug[post.slug];
@@ -127,7 +128,9 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
             {MDXContent ? (
               <MDXProvider components={components}>
                 <Suspense fallback={<div>Loading article content...</div>}>
-                  <MDXContent />
+                  <Flex direction="column" gap="0">
+                    <MDXContent />
+                  </Flex>
                 </Suspense>
               </MDXProvider>
             ) : (

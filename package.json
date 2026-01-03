@@ -15,10 +15,10 @@
     "cleanup-duplicates": "node scripts/cleanup-duplicates.mjs"
   },
   "dependencies": {
-    "@hugeicons/core-free-icons": "^2.0.0",
-    "@hugeicons/react": "^1.1.1",
-    "@kushagradhawan/kookie-blocks": "^0.1.25",
-    "@kushagradhawan/kookie-ui": "^0.1.93",
+    "@hugeicons/core-free-icons": "^3.1.1",
+    "@hugeicons/react": "^1.1.4",
+    "@kushagradhawan/kookie-blocks": "^0.1.29",
+    "@kushagradhawan/kookie-ui": "^0.1.100",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^15.5.2",

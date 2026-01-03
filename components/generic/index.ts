@@ -10,3 +10,4 @@ export { HashScrollHandler } from "./HashScrollHandler";
 export { AIImageWithPrompt } from "./AIImageWithPrompt";
 export { QueenLukitaBlessing } from "./QueenLukitaBlessing";
 export { Footer } from "./footer";
+export { Testimonial } from "./testimonial";

@@ -10,7 +10,7 @@ import {
   useThemeContext,
   IconButton,
   Link as KookieLink,
-  Flex
+  Flex,
 } from "@kushagradhawan/kookie-ui";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -29,7 +29,9 @@ import { HugeiconsIcon } from "@hugeicons/react";
 function ThemeToggle() {
   const { appearance, onAppearanceChange } = useThemeContext();
   const [mounted, setMounted] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState<"system" | "light" | "dark">("system");
+  const [currentTheme, setCurrentTheme] = useState<"system" | "light" | "dark">(
+    "system"
+  );
 
   // Only render after mounting to avoid hydration issues
   useEffect(() => {
@@ -40,12 +42,18 @@ function ThemeToggle() {
   useEffect(() => {
     if (!mounted) return;
 
-    const savedTheme = localStorage.getItem("kookie-theme") as "system" | "light" | "dark" | null;
+    const savedTheme = localStorage.getItem("kookie-theme") as
+      | "system"
+      | "light"
+      | "dark"
+      | null;
 
     if (savedTheme) {
       setCurrentTheme(savedTheme);
       if (savedTheme === "system") {
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
         onAppearanceChange(prefersDark ? "dark" : "light");
       } else {
         onAppearanceChange(savedTheme);
@@ -53,7 +61,9 @@ function ThemeToggle() {
     } else {
       // Default to system preference
       setCurrentTheme("system");
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
       onAppearanceChange(prefersDark ? "dark" : "light");
       localStorage.setItem("kookie-theme", "system");
     }
@@ -64,7 +74,9 @@ function ThemeToggle() {
     localStorage.setItem("kookie-theme", theme);
 
     if (theme === "system") {
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
       onAppearanceChange(prefersDark ? "dark" : "light");
     } else {
       onAppearanceChange(theme);
@@ -91,7 +103,12 @@ function ThemeToggle() {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
-        <IconButton variant="ghost" highContrast size="2" aria-label="Theme selector">
+        <IconButton
+          variant="ghost"
+          highContrast
+          size="2"
+          aria-label="Theme selector"
+        >
           {getThemeIcon()}
         </IconButton>
       </DropdownMenu.Trigger>
@@ -125,7 +142,15 @@ function ThemeToggle() {
  * A navigation link that highlights when active and provides proper accessibility.
  * Uses standard browser scrolling when linking to page sections
  */
-function NavLink({ href, children, ariaLabel }: { href: string; children: React.ReactNode; ariaLabel?: string }) {
+function NavLink({
+  href,
+  children,
+  ariaLabel,
+}: {
+  href: string;
+  children: React.ReactNode;
+  ariaLabel?: string;
+}) {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
 
@@ -141,7 +166,14 @@ function NavLink({ href, children, ariaLabel }: { href: string; children: React.
   if (!mounted) {
     return (
       <Flex align="center" gap="2">
-        <KookieLink href={linkHref} size="2" highContrast aria-label={ariaLabel || (typeof children === "string" ? children : undefined)}>
+        <KookieLink
+          href={linkHref}
+          size="2"
+          highContrast
+          aria-label={
+            ariaLabel || (typeof children === "string" ? children : undefined)
+          }
+        >
           {children}
         </KookieLink>
       </Flex>
@@ -156,7 +188,9 @@ function NavLink({ href, children, ariaLabel }: { href: string; children: React.
         href={linkHref}
         size="2"
         underline={isActive ? "always" : "none"}
-        aria-label={ariaLabel || (typeof children === "string" ? children : undefined)}
+        aria-label={
+          ariaLabel || (typeof children === "string" ? children : undefined)
+        }
       >
         {children}
       </KookieLink>
@@ -185,11 +219,17 @@ export function NavbarComponent() {
   const pathname = usePathname();
 
   return (
-    <Navbar.Root position="fixed" height="64">
+    <Navbar.Root position="fixed" size="3">
       {/* Logo */}
       <Navbar.Logo>
         <Link href="/" aria-label="Kushagra Dhawan - Homepage">
-          <Avatar src="/kushagra-logo.svg" fallback="KD" alt="Kushagra Dhawan" size="2" radius="full" />
+          <Avatar
+            src="/kushagra-logo.svg"
+            fallback="KD"
+            alt="Kushagra Dhawan"
+            size="2"
+            radius="full"
+          />
         </Link>
       </Navbar.Logo>
 

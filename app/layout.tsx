@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Navbar } from "@/components/generic/Navbar";
+import { Navbar } from "@/components/generic/navbar";
 import { HashScrollHandler, Footer } from "@/components/generic";
 import { Box, Theme, ThemePanel } from "@kushagradhawan/kookie-ui";
 import "highlight.js/styles/github-dark.css";
@@ -134,20 +134,23 @@ export default function RootLayout({
                   name: "Kookie UI",
                   url: "https://hellokookie.com",
                   applicationCategory: "DeveloperApplication",
-                  description: "A React component library for building modern interfaces",
+                  description:
+                    "A React component library for building modern interfaces",
                 },
                 {
                   "@type": "SoftwareApplication",
                   name: "Kookie Blocks",
                   url: "https://kookieblocks.com",
                   applicationCategory: "DeveloperApplication",
-                  description: "Higher-level composed components built on Kookie UI",
+                  description:
+                    "Higher-level composed components built on Kookie UI",
                 },
                 {
                   "@type": "SoftwareApplication",
                   name: "Kookie AI",
                   applicationCategory: "DeveloperApplication",
-                  description: "Conversation graphs for knowledge workers and creators",
+                  description:
+                    "Conversation graphs for knowledge workers and creators",
                 },
               ],
             }),

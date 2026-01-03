@@ -1,1 +1,0 @@
-export { AboutKookieBlocks } from "./AboutKookieBlocks";

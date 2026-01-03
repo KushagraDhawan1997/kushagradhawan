@@ -1,4 +1,4 @@
-import { AboutKookieUI } from "@/components/sections/about-kookie-ui-section";
+import { AboutKookieUI } from "./about-kookie-ui";
 import { getAllPosts } from "@/lib/articles";
 import type { Metadata } from "next";
 
@@ -13,9 +13,13 @@ export const metadata: Metadata = {
 
 export default function KookieUIPage() {
   const posts = getAllPosts();
-  // Filter posts that have "kookie-ui" in their tags
+  // Filter posts that have "kookie-ui" or "queen-lukita" in their tags
   const kookiePosts = posts.filter((post) =>
-    post.tags.some((tag) => tag.toLowerCase() === "kookie-ui")
+    post.tags.some(
+      (tag) =>
+        tag.toLowerCase() === "kookie-ui" ||
+        tag.toLowerCase() === "queen-lukita"
+    )
   );
 
   return <AboutKookieUI posts={kookiePosts} />;

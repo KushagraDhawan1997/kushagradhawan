@@ -1,0 +1,171 @@
+---
+title: "New Component: StreamingMarkdown in Kookie Blocks"
+description: "A performance-optimized markdown renderer designed for AI streaming. Handles incomplete syntax, memoizes blocks, and renders with KookieUI components."
+date: "2026-01-04"
+author: "Kushagra Dhawan"
+image: "/articles/kookie-markdown-streaming.jpeg"
+alt: "Kookie Blocks StreamingMarkdown component rendering AI-streamed content"
+canonical: "https://kushagradhawan.com/articles/kookie-blocks-streaming-markdown"
+tags: ["kookie-blocks", "design-systems", "components", "ai", "markdown", "streaming"]
+keywords:
+  [
+    "streaming markdown",
+    "ai streaming",
+    "markdown renderer",
+    "kookie blocks",
+    "design system",
+    "react markdown",
+    "performance",
+    "memoization",
+  ]
+---
+
+import { ArticleImage } from "@/components/generic";
+import { Box, Text, Code } from "@kushagradhawan/kookie-ui";
+
+AI interfaces stream text token by token. Users see responses build in real-time, character by character. This creates a unique rendering challenge: the markdown is incomplete until the stream finishes, and the content updates dozens of times per second.
+
+StreamingMarkdown solves this problem. It handles the specific challenges of rendering AI-streamed markdown: completing unterminated syntax, memoizing blocks for performance, validating links for security, and rendering everything with KookieUI components.
+
+## The Problem
+
+Rendering streamed markdown sounds simple until you try it:
+
+- **Incomplete syntax.** Mid-stream, you might have `Here's some **bold text` without the closing `**`. Standard markdown parsers break or show raw syntax.
+- **Constant re-renders.** Every new token triggers a re-render. Parse the entire document, diff the DOM, update the view. Multiply this by 20-50 tokens per second.
+- **Security concerns.** AI can generate any markdown, including links and images. Without validation, you're rendering potentially malicious content.
+- **Inconsistent styling.** Markdown renderers output raw HTML. You need to map every element to your design system's components.
+- **Code block detection.** Is this backtick inline code or the start of a code fence? Context matters, and it's ambiguous mid-stream.
+
+Teams building AI products hit these problems immediately. Most solutions involve custom markdown parsing logic, debounced rendering, or accepting visual glitches during streaming. None of these are satisfying.
+
+## What It Does
+
+StreamingMarkdown handles the markdown rendering layer for AI-streamed content. It's built specifically for the streaming use case while remaining useful for static markdown.
+
+### Core Features
+
+**Unterminated syntax completion.** The `completeUnterminatedMarkdown` utility scans content and closes any open markdown syntax. Bold, italic, code, links, headings, code fences, all get properly terminated so the parser can handle them.
+
+```typescript
+const incomplete = "Here's some **bold text";
+const completed = completeUnterminatedMarkdown(incomplete);
+// Returns: "Here's some **bold text**"
+```
+
+**Block-level memoization.** Instead of re-rendering the entire document on every update, StreamingMarkdown parses content into blocks and memoizes each independently. When a new token arrives, only the affected block re-renders. Earlier blocks stay cached.
+
+```typescript
+const blocks = parseMarkdownIntoBlocks(content, (content) =>
+  marked.lexer(content, { gfm: true })
+);
+// Each block renders independently and memoizes its output
+```
+
+**Security hardening.** Uses `harden-react-markdown` to validate all links and images. Configurable allowed protocols (https, http, mailto, tel). Validates against a security origin. Blocks javascript: URLs and other attack vectors.
+
+**GitHub Flavored Markdown.** Full GFM support via remarkGfm: tables, strikethrough, autolinks, task lists. The syntax users expect from GitHub and other platforms.
+
+**KookieUI integration.** Every markdown element renders as a KookieUI component. Headings use the Heading component with proper sizes. Code blocks use CodeBlock with syntax highlighting. Tables use the Table component. The output matches your design system.
+
+### Props
+
+StreamingMarkdown accepts content, an ID for memoization, and an options object:
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `defaultOrigin` | `string` | `window.location.origin` | Security origin for link validation |
+| `enableBlockMemoization` | `boolean` | `true` | Enable block-level memoization |
+| `blockParser` | `function` | undefined | Custom parser for splitting content (e.g., `marked.lexer`) |
+| `components` | `object` | undefined | Override default component mappings |
+| `codeBlockCollapsible` | `boolean` | `false` | Make code blocks collapsible |
+| `imageComponent` | `function` | undefined | Custom image component |
+| `inlineCodeHighContrast` | `boolean` | `true` | High contrast for inline code |
+| `spacing` | `'compact' \| 'spacious'` | `'spacious'` | Spacing density |
+
+### How It Works
+
+The rendering pipeline:
+
+1. **Content arrives** from the stream, potentially mid-syntax
+2. **Syntax completion** closes any unterminated markdown
+3. **Block parsing** splits content into independent blocks (if parser provided)
+4. **Memoization check** determines which blocks changed
+5. **Component mapping** converts markdown elements to KookieUI components
+6. **Security validation** checks all links and images
+7. **Render** outputs the final React elements
+
+Each step is optimized for the streaming case. Syntax completion runs incrementally. Block parsing uses the provided lexer for accurate splitting. Memoization prevents unnecessary work. The result is smooth rendering even at high token rates.
+
+### Spacing Modes
+
+Two spacing modes handle different contexts:
+
+**Spacious** (default) works for documentation and articles. Generous margins between sections, clear visual hierarchy, comfortable reading experience.
+
+**Compact** works for chat interfaces. Tighter spacing that fits conversational context, reduced margins, denser information display.
+
+```typescript
+// For documentation
+<StreamingMarkdown content={content} id="doc" options={{ spacing: "spacious" }} />
+
+// For chat
+<StreamingMarkdown content={content} id="chat" options={{ spacing: "compact" }} />
+```
+
+### Utility Functions
+
+StreamingMarkdown exports utilities for custom implementations:
+
+**completeUnterminatedMarkdown(content: string): string**
+Completes unterminated syntax at the end of content. Handles headings, bold, italic, strikethrough, inline code, code fences, links, lists, and blockquotes.
+
+**parseMarkdownIntoBlocks(content: string, parser?: Function): string[]**
+Splits content into blocks using the provided parser. Returns raw content strings ready for independent rendering.
+
+**createMarkdownComponents(options: MarkdownComponentOptions): Components**
+Creates the component mapping for react-markdown. Customize spacing, code blocks, images, and more.
+
+## Why It Fits
+
+StreamingMarkdown follows Kookie Blocks principles:
+
+**Built on Kookie UI.** Every element renders as a KookieUI component. The output matches your design system without additional styling.
+
+**Patterns, not parts.** StreamingMarkdown encodes the complete pattern for rendering AI-streamed content. Syntax completion, memoization, security, and styling are all coordinated.
+
+**Performance by default.** Block memoization is enabled by default. The component does the right thing without configuration.
+
+**Composable.** Use the full component or import individual utilities. Integrate with your existing markdown setup or replace it entirely.
+
+## At Kookie AI
+
+StreamingMarkdown powers the markdown rendering in Kookie AI. Every AI response streams through this component.
+
+Before StreamingMarkdown, we had custom logic scattered across the chat interface: syntax completion hacks, manual memoization attempts, inconsistent styling between message types. The rendering worked but wasn't maintainable.
+
+With StreamingMarkdown in Kookie Blocks:
+- Rendering logic is centralized and tested
+- Performance improvements apply everywhere automatically
+- Security hardening protects all user-facing content
+- Design updates flow through when we update KookieUI
+
+The component handles thousands of messages daily. It's stable, fast, and maintainable.
+
+## What's Next
+
+StreamingMarkdown handles the core use case well. Areas I'm developing:
+
+**Enhanced code blocks.** Better language detection, copy button integration, line highlighting. Code is a significant part of AI responses and deserves attention.
+
+**Math support.** LaTeX and KaTeX rendering for technical and scientific content. Many AI use cases involve mathematical notation.
+
+**Custom block types.** Extensible block system for tool calls, citations, and other structured content that AI produces beyond standard markdown.
+
+**Streaming indicators.** Visual feedback for blocks still receiving content versus completed blocks. Users should understand what's still generating.
+
+## Closing
+
+AI products need markdown rendering that handles streaming gracefully. The content arrives incomplete, updates constantly, and needs to look right throughout. StreamingMarkdown encodes this pattern in Kookie Blocks.
+
+Teams get a tested, performant, secure component that handles the complex details. That lets them focus on the AI experience rather than rendering infrastructure. That's the value StreamingMarkdown brings to Kookie Blocks.

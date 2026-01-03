@@ -35,7 +35,11 @@ const securityHeaders = [
 const withMDX = createMDX({
   options: {
     // Use string plugin names so options remain serializable under Turbopack
-    remarkPlugins: ["remark-frontmatter", "remark-mdx-frontmatter"],
+    remarkPlugins: [
+      "remark-gfm",
+      "remark-frontmatter",
+      "remark-mdx-frontmatter",
+    ],
     rehypePlugins: [],
   },
 });

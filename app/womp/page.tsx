@@ -1,4 +1,4 @@
-import { AboutWomp } from "@/components/sections/about-womp-section";
+import { AboutWomp } from "./about-womp";
 import { getAllPosts } from "@/lib/articles";
 import type { Metadata } from "next";
 
