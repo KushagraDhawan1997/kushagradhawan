@@ -1,7 +1,7 @@
 "use client";
 
 import { ContactSection } from "@/components/sections/contact-section";
-import { Box, Container, Separator, Text } from "@kushagradhawan/kookie-ui";
+import { Avatar, Box, Container, Separator, Text } from "@kushagradhawan/kookie-ui";
 import { Footer as FooterBlock } from "@kushagradhawan/kookie-blocks";
 
 /**
@@ -18,26 +18,40 @@ export function Footer() {
       <ContactSection />
       <Separator size="4" light />
       <Container size="4">
-        <FooterBlock.Root align="center" p="6" gap="4">
-          <FooterBlock.Bottom
-            direction={{ initial: "column", md: "row" }}
-            justify="center"
-            gap={{ initial: "4", md: "6" }}
-          >
-            <FooterBlock.Legal justify={{ initial: "center", md: "start" }}>
-              <Text size="2" color="gray">
+        <FooterBlock.Root p="8" gap="8" px={{ initial: "4", sm: "6" }}>
+          <FooterBlock.Main>
+            <FooterBlock.Brand>
+              <Avatar
+                fallback="K"
+                size="3"
+                color="gray"
+                src="/kushagra-logo.svg"
+              />
+              <FooterBlock.Tagline>
                 Built with KookieUI.
-              </Text>
-            </FooterBlock.Legal>
-
-            <FooterBlock.Nav justify="center">
-              <FooterBlock.Link href="/sitemap.xml">Sitemap</FooterBlock.Link>
-            </FooterBlock.Nav>
-
-            <FooterBlock.Legal justify={{ initial: "center", md: "end" }}>
+              </FooterBlock.Tagline>
+            </FooterBlock.Brand>
+            <FooterBlock.Links>
+              <FooterBlock.LinkGroup title="Projects">
+                <FooterBlock.Link href="https://womp.com" target="_blank">
+                  Womp 3D
+                </FooterBlock.Link>
+                <FooterBlock.Link href="https://www.hellokookie.com/" target="_blank">
+                  Kookie UI
+                </FooterBlock.Link>
+                <FooterBlock.Link href="https://blocks.hellokookie.com/" target="_blank">
+                  Kookie Blocks
+                </FooterBlock.Link>
+              </FooterBlock.LinkGroup>
+            </FooterBlock.Links>
+          </FooterBlock.Main>
+          <Separator size="4" light />
+          <FooterBlock.Bottom>
+            <FooterBlock.Legal>
               <Text size="2" color="gray">
                 © {currentYear} Kushagra Dhawan.
               </Text>
+              <FooterBlock.Link href="/sitemap.xml">Sitemap</FooterBlock.Link>
             </FooterBlock.Legal>
           </FooterBlock.Bottom>
         </FooterBlock.Root>
