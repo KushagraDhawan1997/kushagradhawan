@@ -1,148 +1,49 @@
-# Kushagra Dhawan - Personal Website
+# kushagradhawan.com
 
-This is a personal website for Kushagra Dhawan, a product manager and designer. The site showcases his experience, philosophy, and work through a modern, clean interface built with Next.js and custom components.
+Personal website and portfolio for Kushagra Dhawan.
 
-## Project Overview
+## About
 
-The website serves as a comprehensive portfolio and personal brand platform, featuring detailed sections about Kushagra's background, product philosophy, leadership approaches, and case studies. The site emphasizes storytelling and authentic content to connect with potential collaborators and employers.
+I work at the intersection of design, engineering, and product. I learned just enough design to shape the experience, just enough engineering to bring ideas to life, and just enough product thinking to focus on the right problems. That's where the work becomes meaningful and the choices truly matter.
 
-### Current Features
+Currently leading product at [Womp](https://womp.com), a 3D design tool that makes 3D accessible to everyone. Previously worked at [Wishbox Studio](https://wishboxstudio.com) as a designer.
 
-- **Hero Section**: Clean introduction with compelling headline and testimonials
-- **About Section**: Personal background and mission statement
-- **About Womp**: Detailed case study of Kushagra's work at Womp
-- **About KookieUI**: Showcase of my custom KookieUI design system library
-- **Product Philosophy**: Core beliefs and approaches to product management
-- **Leadership Approaches**: Insights on team leadership and management
-- **Building Products That Scale**: Technical and strategic insights
-- **Articles**: In-depth written content on various topics
-- **Contact Section**: Multiple ways to connect and collaborate
-- **FAQ Section**: Common questions and answers
+## Projects
 
-## Technical Stack
+### Kookie UI
 
-- **Framework**: [Next.js 15](https://nextjs.org) with App Router
-- **UI Components**: [KookieUI](https://kushagradhawan.com/kookie-ui) - My custom design system library
-- **Styling**: Custom CSS with CSS variables and modern layout techniques
-- **Content**: MDX for rich article content
-- **Icons**: [Lucide React](https://lucide.dev)
-- **Deployment**: Vercel
+A React component library forked from Radix and customized for how we build at Womp. It gives us a single place for tokens, states, and interaction rules, so a change to a Button or a focus ring updates across the product with a version bump.
 
-## Getting Started
+- Website: [hellokookie.com](https://hellokookie.com)
+- GitHub: [github.com/KushagraDhawan1997/kookie-ui](https://github.com/KushagraDhawan1997/kookie-ui)
 
-First, run the development server:
+### Kookie Blocks
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Higher-level composed components built on Kookie UI. Ship documentation sites, marketing pages, and application interfaces faster with blocks like Hero, CodeBlock, StreamingMarkdown, DocsShell, and more.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Website: [kookieblocks.com](https://kookieblocks.com)
+- GitHub: [github.com/KushagraDhawan1997/kookie-blocks](https://github.com/KushagraDhawan1997/kookie-blocks)
 
-## Project Structure
+### Kookie AI
 
-```
-kushagradhawan/
-├── app/                          # Next.js app router
-│   ├── articles/[slug]/         # Dynamic article pages
-│   ├── globals.css              # Global styles and CSS variables
-│   ├── layout.tsx               # Root layout component
-│   └── page.tsx                 # Homepage
-├── components/                   # React components
-│   ├── generic/                 # Reusable generic components
-│   │   ├── Navbar.tsx          # Navigation component
-│   │   └── ui/                 # Generic UI components
-│   └── sections/               # Page sections
-│       ├── about-section/      # Personal background
-│       ├── about-womp-section/ # Womp case study
-│       ├── about-kookie-ui-section/ # KookieUI showcase
-│       ├── hero-section/       # Landing hero
-│       ├── contact-section/    # Contact information
-│       ├── faq-section/        # Frequently asked questions
-│       └── articles-list-section/ # Article listings
-├── content/                     # Content files
-│   └── articles/               # MDX article content
-├── lib/                        # Utility functions
-│   ├── articles.ts            # Article processing
-│   ├── gradient.ts            # Gradient utilities
-│   └── utils.ts               # General utilities
-└── public/                     # Static assets
-    ├── logo*.png              # Brand assets
-    └── showcase/              # Project showcase images
-```
+Conversation graphs for knowledge workers and creators.
 
-## Key Features
+- GitHub: [github.com/KushagraDhawan1997/kookie-ai](https://github.com/KushagraDhawan1997/kookie-ai)
 
-### Content Management
+## Tech Stack
 
-- **MDX Articles**: Rich content with React components
-- **Dynamic Routing**: Automatic article page generation
-- **SEO Optimized**: Meta tags, sitemap, and robots.txt
+- [Next.js 15](https://nextjs.org) with App Router
+- [Kookie UI](https://hellokookie.com) for components
+- [Kookie Blocks](https://kookieblocks.com) for content blocks
+- MDX for articles
+- Deployed on [Vercel](https://vercel.com)
 
-### Design System
+## Connect
 
-- **KookieUI Integration**: My custom design system library
-- **Responsive Design**: Mobile-first approach
-- **Accessibility**: ARIA labels and keyboard navigation
-- **Performance**: Optimized images and lazy loading
+- [Twitter/X](https://x.com/kushagra_dhawan)
+- [LinkedIn](https://linkedin.com/in/kushagra-dhawan)
+- [GitHub](https://github.com/KushagraDhawan1997)
 
-### Sections Overview
+## License
 
-- **Hero**: Compelling introduction with testimonials
-- **About**: Personal story and mission
-- **Case Studies**: Detailed work examples (Womp, my KookieUI library)
-- **Philosophy**: Core product management beliefs
-- **Articles**: In-depth written content
-- **Contact**: Multiple connection methods
-
-## Recent Changes
-
-### Major Refactoring (Latest)
-
-- **Removed Tailwind CSS**: Migrated to custom CSS with CSS variables
-- **Removed MagicUI Dependencies**: Eliminated external UI library dependencies
-- **Integrated KookieUI**: Using my custom design system library components
-- **Migrated to MDX**: Converted articles from Markdown to MDX format
-- **Removed AI Components**: Eliminated chat functionality and related dependencies
-- **Fixed Build Issues**: Resolved all TypeScript and import errors
-
-### Architecture Improvements
-
-- **Component Organization**: Better structured component hierarchy
-- **Type Safety**: Improved TypeScript coverage
-- **Performance**: Optimized bundle size and loading
-- **SEO**: Enhanced meta tags and structured data
-
-## Development Notes
-
-### Styling Approach
-
-- Uses CSS custom properties for theming
-- Flexbox and Grid for layouts (no margins as per preferences)
-- Responsive design with mobile-first approach
-- Custom animations and transitions
-
-### Content Strategy
-
-- Focus on authentic storytelling
-- Detailed case studies with real impact metrics
-- Technical depth balanced with accessibility
-- Regular content updates through MDX
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT

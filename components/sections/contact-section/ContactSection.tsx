@@ -9,8 +9,8 @@
 
 import React, { useEffect, useState } from "react";
 import { Button, Image, Container, Flex, Grid, Heading, Section, Text, Link, Separator, Tooltip, Box } from "@kushagradhawan/kookie-ui";
-import { TestimonialCard } from "../hero-section/TestimonialCard";
-import { testimonials, type Testimonial } from "../hero-section/testimonials";
+import { TestimonialCard } from "../testimonial-card";
+import { testimonials, type Testimonial } from "../testimonials";
 import { socialLinks, type SocialLink } from "./contactData";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Mail01Icon, ArrowUpRight01Icon, Tick01Icon } from "@hugeicons/core-free-icons";

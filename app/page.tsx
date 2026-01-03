@@ -1,4 +1,6 @@
-import { Hero } from "@/components/sections/hero-section";
+import { Hero } from "@/components/sections/hero";
+import { PortfolioSection } from "@/components/sections/portfolio-section";
+import { ExperienceSection } from "@/components/sections/experience-section";
 // import { AboutSection } from "@/components/sections/about-section";
 import { ProductPhilosophy } from "@/components/sections/product-philosophy-section";
 // import { AboutKookieAISection } from "@/components/sections/about-kookie-ai-section";
@@ -72,6 +74,8 @@ export default async function Home({ searchParams }: HomeProps) {
       {viewMode === "professional" && (
         <>
           <Hero />
+          <PortfolioSection />
+          <ExperienceSection />
           <RecentArticlesSection posts={posts} />
           {/* <ProductPhilosophy /> */}
           {/* <AboutKookieAISection /> */}
