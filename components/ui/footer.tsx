@@ -1,7 +1,8 @@
 "use client";
 
 import { ContactSection } from "@/components/sections/contact-section";
-import { Box, Container, Flex, Link as KookieLink, Text, Tooltip, Image, Separator } from "@kushagradhawan/kookie-ui";
+import { Box, Container, Separator, Text } from "@kushagradhawan/kookie-ui";
+import { Footer as FooterBlock } from "@kushagradhawan/kookie-blocks";
 
 /**
  * Footer component
@@ -13,34 +14,34 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer>
-      <Box mb="9">
-        <ContactSection />
-        <Separator size="4" light />
-        <Container size="4" pt="4">
-          <Flex direction="column" align="center" width="100%" px={{ initial: "4", sm: "6" }} gap="9">
-            <Flex
-              width="100%"
-              direction={{ initial: "column", md: "row" }}
-              justify="center"
-              align={{ initial: "start", md: "center" }}
-              gap={{ initial: "4", sm: "6" }}
-            >
-              <Text style={{ flex: 1, width: "100%" }} size="2" color="gray" highContrast align={{ initial: "center", sm: "left" }}>
+    <Box mb="9">
+      <ContactSection />
+      <Separator size="4" light />
+      <Container size="4">
+        <FooterBlock.Root align="center" p="6" gap="4">
+          <FooterBlock.Bottom
+            direction={{ initial: "column", md: "row" }}
+            justify="center"
+            gap={{ initial: "4", md: "6" }}
+          >
+            <FooterBlock.Legal justify={{ initial: "center", md: "start" }}>
+              <Text size="2" color="gray">
                 Built with KookieUI.
               </Text>
+            </FooterBlock.Legal>
 
-              <KookieLink style={{ flex: 1, width: "100%", textAlign: "center" }} href="/sitemap.xml" size="2" color="gray">
-                Sitemap
-              </KookieLink>
+            <FooterBlock.Nav justify="center">
+              <FooterBlock.Link href="/sitemap.xml">Sitemap</FooterBlock.Link>
+            </FooterBlock.Nav>
 
-              <Text style={{ flex: 1, width: "100%" }} size="2" color="gray" highContrast align={{ initial: "center", sm: "right" }}>
-                © {currentYear} Kushagra Dhawan. All rights reserved.
+            <FooterBlock.Legal justify={{ initial: "center", md: "end" }}>
+              <Text size="2" color="gray">
+                © {currentYear} Kushagra Dhawan.
               </Text>
-            </Flex>
-          </Flex>
-        </Container>
-      </Box>
-    </footer>
+            </FooterBlock.Legal>
+          </FooterBlock.Bottom>
+        </FooterBlock.Root>
+      </Container>
+    </Box>
   );
 }
