@@ -20,7 +20,7 @@ export function Footer() {
       <Container size="4">
         <FooterBlock.Root p="8" gap="8" px={{ initial: "4", sm: "6" }}>
           <FooterBlock.Main>
-            <FooterBlock.Brand>
+            <FooterBlock.Brand gap="4">
               <Avatar
                 fallback="K"
                 size="3"
@@ -30,6 +30,12 @@ export function Footer() {
               <FooterBlock.Tagline>
                 Built with KookieUI.
               </FooterBlock.Tagline>
+              <FooterBlock.Legal>
+                <Text size="2" color="gray">
+                  © {currentYear} Kushagra Dhawan.
+                </Text>
+                <FooterBlock.Link href="/sitemap.xml">Sitemap</FooterBlock.Link>
+              </FooterBlock.Legal>
             </FooterBlock.Brand>
             <FooterBlock.Links>
               <FooterBlock.LinkGroup title="Projects">
@@ -45,15 +51,6 @@ export function Footer() {
               </FooterBlock.LinkGroup>
             </FooterBlock.Links>
           </FooterBlock.Main>
-          <Separator size="4" light />
-          <FooterBlock.Bottom>
-            <FooterBlock.Legal>
-              <Text size="2" color="gray">
-                © {currentYear} Kushagra Dhawan.
-              </Text>
-              <FooterBlock.Link href="/sitemap.xml">Sitemap</FooterBlock.Link>
-            </FooterBlock.Legal>
-          </FooterBlock.Bottom>
         </FooterBlock.Root>
       </Container>
     </Box>
