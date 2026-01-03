@@ -28,7 +28,23 @@ export function Footer() {
                 src="/kushagra-logo.svg"
               />
               <FooterBlock.Tagline>
-                Built with KookieUI.
+                Built with{" "}
+                <FooterBlock.Link
+                  href="https://www.hellokookie.com/"
+                  target="_blank"
+                  underline="always"
+                >
+                  Kookie UI
+                </FooterBlock.Link>
+                {" + "}
+                <FooterBlock.Link
+                  href="https://blocks.hellokookie.com/"
+                  target="_blank"
+                  underline="always"
+                >
+                  Kookie Blocks
+                </FooterBlock.Link>
+                .
               </FooterBlock.Tagline>
               <FooterBlock.Legal>
                 <Text size="2" color="gray">
