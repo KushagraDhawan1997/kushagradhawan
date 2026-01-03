@@ -117,7 +117,7 @@ export default function RootLayout({
                 name: "Womp",
               },
               sameAs: [
-                "https://github.com/kushagradhawan",
+                "https://github.com/KushagraDhawan1997",
                 "https://linkedin.com/in/kushagradhawan",
                 "https://twitter.com/kushagradhawan",
               ],
