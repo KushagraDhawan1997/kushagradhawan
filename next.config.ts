@@ -45,7 +45,7 @@ const withMDX = createMDX({
 });
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  serverExternalPackages: ["shiki"],
   devIndicators: false,
   reactStrictMode: true,
   images: {
