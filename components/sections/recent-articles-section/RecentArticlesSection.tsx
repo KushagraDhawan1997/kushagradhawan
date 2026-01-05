@@ -17,8 +17,9 @@ export function RecentArticlesSection({
   title = "Sometimes, I write about things.",
   showCallout = true
 }: RecentArticlesSectionProps) {
-  // Limit to first 4 articles
-  const displayedPosts = posts.slice(0, 4);
+  // Filter out announcements and limit to first 4 articles
+  const articlesOnly = posts.filter((post) => post.category !== "announcement");
+  const displayedPosts = articlesOnly.slice(0, 4);
 
   if (displayedPosts.length === 0) {
     return null;
@@ -48,7 +49,7 @@ export function RecentArticlesSection({
 
           <ArticlesListGrid posts={displayedPosts} />
 
-          {posts.length > 4 && (
+          {articlesOnly.length > 4 && (
             <Flex justify="center">
               <Button asChild highContrast variant="soft" size="2">
                 <NextLink href="/articles">

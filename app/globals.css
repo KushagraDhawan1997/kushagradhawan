@@ -4,7 +4,7 @@
 
 * {
   /* outline: solid 0.1px var(--gray-a6); */
-  --font-sans: "system-ui", sans-serif;
+  --font-sans: "system-ui";
   --font-serif: "Noto Serif", serif;
   --font-mono: "JetBrains Mono", monospace;
 }

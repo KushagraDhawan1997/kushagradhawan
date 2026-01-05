@@ -8,6 +8,9 @@ export interface ArticlesListSectionProps {
 }
 
 export function ArticlesListSection({ posts }: ArticlesListSectionProps) {
+  const announcements = posts.filter((post) => post.category === "announcement");
+  const articles = posts.filter((post) => post.category !== "announcement");
+
   return (
     <Section>
       <Container size="4">
@@ -21,8 +24,22 @@ export function ArticlesListSection({ posts }: ArticlesListSectionProps) {
             </Heading>
           </Flex>
 
-          {posts.length > 0 ? (
-            <ArticlesListGrid posts={posts} />
+          {announcements.length > 0 && (
+            <Flex direction="column" gap="6">
+              <Heading size="5" weight="medium">
+                Announcements
+              </Heading>
+              <ArticlesListGrid posts={announcements} />
+            </Flex>
+          )}
+
+          {articles.length > 0 ? (
+            <Flex direction="column" gap="6">
+              <Heading size="5" weight="medium">
+                Articles
+              </Heading>
+              <ArticlesListGrid posts={articles} />
+            </Flex>
           ) : (
             <Flex direction="column" gap="2" align="center" py="12">
               <Heading size="4" weight="medium">

@@ -10,6 +10,7 @@ export interface ArticleProps {
   image?: string;
   alt?: string;
   imagePrompt?: string;
+  category?: "article" | "announcement";
 }
 
 interface ArticlesListGridProps {

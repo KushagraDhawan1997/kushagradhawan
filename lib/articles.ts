@@ -28,6 +28,7 @@ export type Article = {
   image?: string; // Header image for the article
   alt?: string; // Alt text for the header image
   imagePrompt?: string; // AI prompt used to generate the image
+  category?: "article" | "announcement"; // Type of content (defaults to "article")
 };
 
 /**
@@ -62,6 +63,7 @@ export async function getPostBySlug(slug: string): Promise<Article> {
     image: data.image, // Header image (optional)
     alt: data.alt, // Alt text for the image (optional)
     imagePrompt: data.imagePrompt, // AI prompt for the image (optional)
+    category: data.category || "article", // Category (defaults to "article")
   };
 }
 
@@ -79,6 +81,7 @@ export function getAllPosts(): {
   image?: string;
   alt?: string;
   imagePrompt?: string;
+  category?: "article" | "announcement";
 }[] {
   // Get all MDX files from the posts directory
   const fileNames = fs.readdirSync(postsDirectory);
@@ -107,6 +110,7 @@ export function getAllPosts(): {
         image: data.image,
         alt: data.alt,
         imagePrompt: data.imagePrompt,
+        category: data.category || "article",
         published: data.published !== false, // Default to true if not specified
       };
     })
