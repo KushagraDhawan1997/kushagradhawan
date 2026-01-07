@@ -43,6 +43,7 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
     "queen-lukita-lore": React.lazy(() => import("../../../content/articles/queen-lukita-lore.mdx")),
     "on-ai": React.lazy(() => import("../../../content/articles/on-ai.mdx")),
     "kookie-blocks-streaming-markdown": React.lazy(() => import("../../../content/articles/kookie-blocks-streaming-markdown.mdx")),
+    "about-shell": React.lazy(() => import("../../../content/articles/about-shell.mdx")),
   };
 
   const MDXContent = MDXBySlug[post.slug];

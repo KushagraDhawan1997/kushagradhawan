@@ -1,0 +1,281 @@
+---
+title: "New Component: Shell, a Layout Engine for Modern Apps"
+description: "Shell is a declarative layout engine for application chrome. Seven layout slots, responsive presentation modes, state management, and resize with persistence—all without building layout infrastructure from scratch."
+date: "2026-01-07"
+author: "Kushagra Dhawan"
+canonical: "https://kushagradhawan.com/articles/about-shell"
+category: "announcement"
+tags: ["kookie-ui", "design-systems", "components", "layout", "shell", "application-chrome"]
+keywords:
+  [
+    "shell",
+    "layout engine",
+    "application layout",
+    "sidebar",
+    "panel",
+    "kookie ui",
+    "design system",
+    "responsive layout",
+    "resize panels",
+  ]
+---
+
+import { Box, Code } from "@kushagradhawan/kookie-ui";
+
+Every application rebuilds the same layout. Sidebar on the left, maybe a header, content in the middle, perhaps an inspector panel on the right, sometimes a bottom panel for terminals or logs. Then you wire up the state—open, closed, pinned. Then responsive behavior—overlay on mobile, fixed on desktop. Then resize logic with drag handles and snap points.
+
+It's 500-1000 lines of layout code that has nothing to do with your actual product.
+
+I got tired of writing it.
+
+## What I Wanted
+
+Declare your layout, don't build it.
+
+I wanted to say "I need a sidebar that's overlay on mobile, fixed on desktop, resizable, with a thin icon-only mode" and have it work. Not wire up media queries, not manage state, not calculate positions. Just declare the intent.
+
+```tsx
+<Shell.Root>
+  <Shell.Sidebar
+    presentation={{ initial: 'overlay', md: 'fixed' }}
+    defaultState={{ initial: 'collapsed', md: 'expanded' }}
+    resizable
+  >
+    <nav>Navigation</nav>
+  </Shell.Sidebar>
+  <Shell.Content>
+    <main>Your app</main>
+  </Shell.Content>
+</Shell.Root>
+```
+
+That's what Shell does. It's a layout engine that handles the infrastructure so you can focus on what goes inside the boxes.
+
+## Seven Slots
+
+Shell provides seven layout slots:
+
+- **Header** — Fixed top bar for global navigation
+- **Rail** — Slim icon strip (think VS Code's activity bar)
+- **Panel** — Expanded navigation that pairs with Rail
+- **Sidebar** — Unified sidebar (alternative to Rail+Panel)
+- **Content** — Main content area (required)
+- **Inspector** — Right-side panel for properties, details, context
+- **Bottom** — Bottom panel for terminals, logs, output
+
+Why seven? Because these cover roughly 95% of application layouts I've seen. VS Code uses Header + Rail + Panel + Content + Bottom. Figma uses Header + Sidebar + Content + Inspector. Linear uses Sidebar + Content. Notion uses Sidebar + Content.
+
+The slots are composable. Use what you need, ignore what you don't. Shell figures out the layout math.
+
+## The Hard Decision: Composition Rules
+
+Early on, I had to decide: should Sidebar and Rail+Panel coexist?
+
+They're solving the same problem—left-side navigation—in different ways. Sidebar is a unified component with three states (collapsed, thin, expanded). Rail+Panel is a two-part system where the Rail (icon strip) and Panel (expanded nav) are separate components.
+
+Letting them coexist would create invalid states. What happens if Sidebar is expanded and Panel is also open? They'd overlap or fight for space.
+
+So Shell enforces composition rules. Sidebar OR Rail+Panel, never both. If you try to use both, you get a console warning.
+
+```tsx
+// Valid
+<Shell.Root>
+  <Shell.Sidebar>...</Shell.Sidebar>
+  <Shell.Content>...</Shell.Content>
+</Shell.Root>
+
+// Valid
+<Shell.Root>
+  <Shell.Rail>...</Shell.Rail>
+  <Shell.Panel>...</Shell.Panel>
+  <Shell.Content>...</Shell.Content>
+</Shell.Root>
+
+// Invalid — triggers warning
+<Shell.Root>
+  <Shell.Sidebar>...</Shell.Sidebar>
+  <Shell.Rail>...</Shell.Rail>
+  <Shell.Content>...</Shell.Content>
+</Shell.Root>
+```
+
+This was a deliberate constraint. Invalid states should be impossible, not just discouraged.
+
+## Three Presentation Modes
+
+How should a sidebar interact with content? It depends.
+
+**Fixed** — The sidebar takes space in the layout. When it opens, content shrinks. When it closes, content expands. This is what you want on desktop where screen space is abundant.
+
+**Overlay** — The sidebar floats above content as a modal sheet. Content doesn't move. This is what you want on mobile where you can't afford to shrink already-limited content.
+
+**Stacked** — The sidebar positions above content without a modal backdrop. For floating panels that don't demand attention.
+
+The key insight: presentation should be responsive. A sidebar that's fixed on desktop should become overlay on mobile. So Shell accepts responsive objects:
+
+```tsx
+<Shell.Sidebar
+  presentation={{ initial: 'overlay', md: 'fixed' }}
+  defaultState={{ initial: 'collapsed', md: 'expanded' }}
+>
+```
+
+This says: "On mobile, start collapsed and use overlay presentation. On medium screens and up, start expanded and use fixed presentation."
+
+The responsive behavior is colocated with the component. You're not hunting through CSS files to understand how the sidebar behaves at different breakpoints.
+
+## State Management
+
+Each pane manages its own state: open/closed, size, presentation mode. But sometimes you need to control it programmatically.
+
+Shell supports both controlled and uncontrolled patterns:
+
+```tsx
+// Uncontrolled — Shell manages state
+<Shell.Sidebar defaultState="expanded">
+
+// Controlled — You manage state
+const [state, setState] = useState<SidebarMode>('expanded');
+<Shell.Sidebar state={state} onStateChange={(s, meta) => setState(s)}>
+```
+
+For common actions, Shell provides a trigger component:
+
+```tsx
+<Shell.Trigger target="sidebar" action="toggle">
+  <MenuIcon />
+</Shell.Trigger>
+```
+
+And a hook for programmatic control:
+
+```tsx
+const shell = useShell();
+shell.togglePane('sidebar');
+shell.expandPane('inspector');
+shell.collapsePane('bottom');
+```
+
+## Resize System
+
+Resizable panels are table stakes for professional apps. But the details matter.
+
+Shell's resize system includes:
+- Drag handles with proper cursor feedback
+- Keyboard navigation (arrow keys adjust size)
+- Snap points (drag near 300px and it snaps to exactly 300px)
+- Collapse threshold (drag below minimum and it auto-collapses)
+- Size persistence (remember size across sessions via localStorage)
+
+```tsx
+<Shell.Sidebar
+  resizable
+  minSize={200}
+  maxSize={400}
+  snapPoints={[250, 350]}
+  snapTolerance={8}
+  collapseThreshold={150}
+  paneId="main-sidebar"
+>
+```
+
+When you provide `paneId`, Shell automatically creates a localStorage adapter for persistence. Sizes survive page refreshes without any additional code. If you need custom storage (database, state management), pass a `persistence` adapter with `load` and `save` methods.
+
+## The Inset Pattern
+
+Modern apps often use floating panels—sidebars with rounded corners and shadows that sit above a gray backdrop. Slack, Linear, and others use this pattern.
+
+Shell supports it with a single prop:
+
+```tsx
+<Shell.Sidebar inset>
+  <nav>Floating navigation</nav>
+</Shell.Sidebar>
+```
+
+When any pane has `inset`:
+1. Shell's body gets a gray backdrop
+2. The pane gets margin (creating gaps from edges)
+3. The pane gets rounded corners
+
+The `inset` prop handles positioning. For visual treatment (background, shadow), use the child component's styling. This separation keeps concerns clean.
+
+## What I Learned
+
+The hard part of Shell wasn't writing code. It was deciding the API surface.
+
+Every prop is a decision. Do I expose this? Do I make it the default? Do I let users override it? Each decision has downstream consequences.
+
+Some things I learned:
+
+**Defaults matter more than options.** Most users won't configure anything. The defaults need to be sensible. Sidebar defaults to overlay on mobile, fixed on desktop. That's right for 80% of cases.
+
+**Constraints enable creativity.** By enforcing composition rules, Shell prevents invalid states. Users don't have to think about what happens if Sidebar and Panel are both open. They can't be.
+
+**Responsive behavior should be colocated.** Putting `presentation={{ initial: 'overlay', md: 'fixed' }}` on the component is better than scattering media queries across CSS files. The component documents its own behavior.
+
+**State callbacks need metadata.** When `onStateChange` fires, you need to know *why*. Was it a user toggle? A responsive breakpoint change? An initialization? Shell passes a `meta` object with the reason: `init`, `toggle`, or `responsive`.
+
+## Where It's Used
+
+Shell powers:
+- Kookie Blocks documentation site
+- Kookie AI (the chat interface I'm building)
+- My personal site
+
+It's new. I'm still finding edge cases, still refining the API. But it's in production across these projects, handling real usage.
+
+## Shell + Sidebar
+
+Shell handles layout—where things go, how they resize, how they respond to breakpoints. But it doesn't handle what goes *inside* the layout slots.
+
+That's where [Sidebar](https://www.hellokookie.com/docs/sidebar) comes in. It's a separate presentational component for building navigation menus: groups, menu items, sub-menus, badges, keyboard shortcuts. It adapts between expanded (full panel) and thin (icon rail) presentations.
+
+They're designed to work together:
+
+```tsx
+<Shell.Root>
+  <Shell.Sidebar
+    presentation={{ initial: 'overlay', md: 'fixed' }}
+    defaultState={{ initial: 'collapsed', md: 'expanded' }}
+  >
+    <Sidebar.Root presentation={sidebarMode === 'thin' ? 'thin' : 'expanded'}>
+      <Sidebar.Header>
+        <Logo />
+      </Sidebar.Header>
+      <Sidebar.Content>
+        <Sidebar.Menu>
+          <Sidebar.MenuItem>
+            <Sidebar.MenuButton isActive>
+              <HomeIcon />
+              Dashboard
+            </Sidebar.MenuButton>
+          </Sidebar.MenuItem>
+        </Sidebar.Menu>
+      </Sidebar.Content>
+    </Sidebar.Root>
+  </Shell.Sidebar>
+  <Shell.Content>
+    <main>Your app</main>
+  </Shell.Content>
+</Shell.Root>
+```
+
+Shell.Sidebar manages layout state (open/closed/thin, responsive behavior, resize). Sidebar manages navigation presentation (menus, groups, active states, sub-menus).
+
+Two components, clear responsibilities, composable.
+
+## What's Next
+
+Shell + Sidebar cover layout and navigation. I'm working on:
+
+- **CommandBar** — Command palette that integrates with Shell's state
+- **NavMenu** — Horizontal navigation for headers
+
+The goal is a complete toolkit for building application interfaces. Shell is the foundation.
+
+## Closing
+
+Every application needs layout chrome. Sidebars, panels, headers, resize handles, responsive behavior—it's infrastructure that has nothing to do with what makes your product unique. Shell encodes this pattern in KookieUI so teams get tested, accessible, composable layout primitives.
+
+Teams can focus on what goes inside the boxes instead of building the boxes themselves. That's the value Shell brings to KookieUI.
