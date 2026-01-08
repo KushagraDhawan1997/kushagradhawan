@@ -7,14 +7,18 @@ import {
   Text,
   Heading,
   Section,
-  Image,
   Box,
   Grid,
   Badge,
 } from "@kushagradhawan/kookie-ui";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowUpRight01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
+import {
+  ArrowUpRight01Icon,
+  ArrowRight01Icon,
+} from "@hugeicons/core-free-icons";
 import NextLink from "next/link";
+import NextImage from "next/image";
+import { Image } from "@kushagradhawan/kookie-ui";
 import { AIImageWithPrompt } from "@/components/generic";
 
 const portfolioItems = [
@@ -61,17 +65,6 @@ const portfolioItems = [
   },
 ];
 
-function deriveContent(src: string) {
-  const match = src.match(/^\/articles\/([^\.]+)\.(png|jpg|jpeg|webp)$/i);
-  if (!match) return { src, srcSet: undefined, sizes: undefined };
-  const base = match[1];
-  return {
-    src: `/articles/${base}-content-1200.webp`,
-    srcSet: `/articles/${base}-content-800.webp 800w, /articles/${base}-content-1200.webp 1200w`,
-    sizes: "(max-width: 768px) 100vw, 400px",
-  };
-}
-
 export function PortfolioSection() {
   return (
     <Section size="4">
@@ -85,58 +78,67 @@ export function PortfolioSection() {
           {portfolioItems.map((item) => (
             <Flex key={item.id} direction="column" gap="4" align="start">
               {item.comingSoon ? (
-                <Box style={{ width: "100%", opacity: 0.6 }}>
+                <Box
+                  style={{
+                    width: "100%",
+                    opacity: 0.6,
+                    aspectRatio: "10/16",
+                    position: "relative",
+                  }}
+                >
                   {item.prompt ? (
                     <AIImageWithPrompt prompt={item.prompt}>
                       <Image
-                        src={deriveContent(item.image).src}
-                        srcSet={deriveContent(item.image).srcSet}
-                        sizes={deriveContent(item.image).sizes}
+                        as={NextImage}
+                        src={item.image}
                         alt={item.title}
-                        width="100%"
-                        height="100%"
+                        fill
                         radius="none"
-                        style={{ cursor: "default" }}
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
+                        style={{ cursor: "default", objectFit: "cover" }}
                       />
                     </AIImageWithPrompt>
                   ) : (
                     <Image
-                      src={deriveContent(item.image).src}
-                      srcSet={deriveContent(item.image).srcSet}
-                      sizes={deriveContent(item.image).sizes}
+                      as={NextImage}
+                      src={item.image}
                       alt={item.title}
-                      width="100%"
-                      height="100%"
-                      radius="none"
-                      style={{ cursor: "default" }}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
+                      style={{ cursor: "default", objectFit: "cover" }}
                     />
                   )}
                 </Box>
               ) : (
-                <NextLink href={item.href} style={{ width: "100%" }}>
+                <NextLink
+                  href={item.href}
+                  style={{
+                    width: "100%",
+                    aspectRatio: "10/16",
+                    position: "relative",
+                    display: "block",
+                  }}
+                >
                   {item.prompt ? (
                     <AIImageWithPrompt prompt={item.prompt}>
                       <Image
-                        src={deriveContent(item.image).src}
-                        srcSet={deriveContent(item.image).srcSet}
-                        sizes={deriveContent(item.image).sizes}
+                        as={NextImage}
+                        src={item.image}
                         alt={item.title}
-                        width="100%"
-                        height="100%"
+                        fill
                         radius="none"
-                        style={{ cursor: "pointer" }}
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
+                        style={{ cursor: "pointer", objectFit: "cover" }}
                       />
                     </AIImageWithPrompt>
                   ) : (
                     <Image
-                      src={deriveContent(item.image).src}
-                      srcSet={deriveContent(item.image).srcSet}
-                      sizes={deriveContent(item.image).sizes}
+                      as={NextImage}
+                      src={item.image}
                       alt={item.title}
-                      width="100%"
-                      height="100%"
-                      radius="none"
-                      style={{ cursor: "pointer" }}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
+                      style={{ cursor: "pointer", objectFit: "cover" }}
                     />
                   )}
                 </NextLink>

@@ -31,7 +31,7 @@ interface AIImageWithPromptProps {
  */
 export function AIImageWithPrompt({ prompt, children, className }: AIImageWithPromptProps) {
   return (
-    <Box position="relative" width="100%" className={className}>
+    <Box position="relative" width="100%" height="100%" className={className}>
       {children}
       <Box position="absolute" bottom="2" right="2" style={{ zIndex: 10 }}>
         <Tooltip content={prompt}>
