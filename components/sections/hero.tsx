@@ -4,21 +4,33 @@ import React from "react";
 import {
   Button,
   Flex,
-  Text,
   Container,
   Section,
   Link,
   Image,
   Avatar,
   Tooltip,
+  Callout,
 } from "@kushagradhawan/kookie-ui";
 import { HoverCard } from "@kushagradhawan/kookie-ui";
 import { Hero as HeroBlock } from "@kushagradhawan/kookie-blocks";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowUpRight01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
+import {
+  ArrowUpRight01Icon,
+  ArrowRight01Icon,
+} from "@hugeicons/core-free-icons";
 import NextLink from "next/link";
 
-export function Hero() {
+interface HeroProps {
+  latestAnnouncement: {
+    slug: string;
+    title: string;
+    date: string;
+    description: string;
+  } | null;
+}
+
+export function Hero({ latestAnnouncement }: HeroProps) {
   return (
     <Section position="relative" size="4">
       <Container size="2" style={{ position: "relative", zIndex: 1 }}>
@@ -128,6 +140,31 @@ export function Hero() {
               </NextLink>
             </Button>
           </HeroBlock.Actions>
+
+          {latestAnnouncement && (
+            <Flex justify="center" mt="4">
+              <Link
+                href={`/articles/${latestAnnouncement.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <Callout.Root
+                  highContrast
+                  variant="outline"
+                  color="gray"
+                  size="2"
+                  style={{ cursor: "pointer" }}
+                >
+                  <Callout.Text align="center">
+                    New component:{" "}
+                    <span style={{ textDecoration: "underline" }}>Shell</span>, a
+                    layout engine for modern apps
+                  </Callout.Text>
+                </Callout.Root>
+              </Link>
+            </Flex>
+          )}
         </HeroBlock.Root>
       </Container>
     </Section>

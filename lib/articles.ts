@@ -125,3 +125,30 @@ export function getAllPosts(): {
     }
   });
 }
+
+/**
+ * Retrieves the latest announcement article
+ *
+ * An announcement is defined as an article with category "announcement" and no image
+ *
+ * @returns The latest announcement or null if none exist
+ */
+export function getLatestAnnouncement(): {
+  slug: string;
+  title: string;
+  date: string;
+  description: string;
+} | null {
+  const posts = getAllPosts();
+  const announcement = posts.find(
+    (post) => post.category === "announcement" && !post.image
+  );
+  return announcement
+    ? {
+        slug: announcement.slug,
+        title: announcement.title,
+        date: announcement.date,
+        description: announcement.description,
+      }
+    : null;
+}
