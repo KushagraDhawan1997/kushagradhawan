@@ -20,6 +20,7 @@ import {
   ArrowRight01Icon,
 } from "@hugeicons/core-free-icons";
 import NextLink from "next/link";
+import NextImage from "next/image";
 
 interface HeroProps {
   latestAnnouncement: {
@@ -60,13 +61,14 @@ export function Hero({ latestAnnouncement }: HeroProps) {
                   Womp 3D
                 </Link>
               </HoverCard.Trigger>
-              <HoverCard.Content maxWidth="600px">
+              <HoverCard.Content maxWidth="600px" style={{ padding: 0 }}>
                 <Flex direction="column" align="center">
                   <Image
-                    src="/womp.png"
+                    as={NextImage}
+                    src="/hover-cards/womp.png"
                     alt="Womp 3D Preview"
-                    width="600"
-                    height="450"
+                    width={600}
+                    height={450}
                   />
                 </Flex>
               </HoverCard.Content>
@@ -82,13 +84,14 @@ export function Hero({ latestAnnouncement }: HeroProps) {
                   KookieUI
                 </Link>
               </HoverCard.Trigger>
-              <HoverCard.Content maxWidth="600px">
+              <HoverCard.Content maxWidth="600px" style={{ padding: 0 }}>
                 <Flex direction="column" align="center">
                   <Image
-                    src="/kookie-ui.png"
+                    as={NextImage}
+                    src="/hover-cards/kookie-ui.png"
                     alt="KookieUI Preview"
-                    width="600"
-                    height="450"
+                    width={600}
+                    height={450}
                   />
                 </Flex>
               </HoverCard.Content>
@@ -99,18 +102,19 @@ export function Hero({ latestAnnouncement }: HeroProps) {
                 <Link
                   color="blue"
                   target="_blank"
-                  href="https://blocks.hellokookie.com/"
+                  href="https://kookieblocks.com/"
                 >
                   KookieBlocks
                 </Link>
               </HoverCard.Trigger>
-              <HoverCard.Content maxWidth="600px">
+              <HoverCard.Content maxWidth="600px" style={{ padding: 0 }}>
                 <Flex direction="column" align="center">
                   <Image
-                    src="/kookie-blocks.png"
+                    as={NextImage}
+                    src="/hover-cards/kookie-blocks.png"
                     alt="KookieBlocks Preview"
-                    width="600"
-                    height="450"
+                    width={600}
+                    height={450}
                   />
                 </Flex>
               </HoverCard.Content>

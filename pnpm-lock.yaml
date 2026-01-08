@@ -16,10 +16,10 @@ importers:
         version: 1.1.4(react@19.2.3)
       '@kushagradhawan/kookie-blocks':
         specifier: ^0.1.38
-        version: 0.1.38(@kushagradhawan/kookie-ui@0.1.104(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 0.1.38(@kushagradhawan/kookie-ui@0.1.114(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@kushagradhawan/kookie-ui':
-        specifier: ^0.1.104
-        version: 0.1.104(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^0.1.114
+        version: 0.1.114(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@mdx-js/loader':
         specifier: ^3.1.1
         version: 3.1.1
@@ -390,8 +390,8 @@ packages:
       marked:
         optional: true
 
-  '@kushagradhawan/kookie-ui@0.1.104':
-    resolution: {integrity: sha512-HzhNT52Ak6iaweW5l1DTItrzW0Ie3uU2fYohC4AwMpwPDkI51Nlsuk9sHciCZ7LzCrrvy4xsHqcTWk12mVyVXQ==}
+  '@kushagradhawan/kookie-ui@0.1.114':
+    resolution: {integrity: sha512-Advz3S5SRXpk/ofBqTeD3aAgygw5eD9/FcEcYU1alRTpgQ2pNwlTbL6XY0BbHJ5KKDY49C4P2qI+WFkOQsKHRg==}
     engines: {node: '>=16'}
     peerDependencies:
       '@types/react': '*'
@@ -1573,32 +1573,32 @@ packages:
       vue-router:
         optional: true
 
-  '@zag-js/anatomy@1.31.1':
-    resolution: {integrity: sha512-BhIhf3Q0tRA0Jugd7AJfUBzeAb/iATBsw7KyYThMGcPWmrWssL7KWr5AB6RufzGKU7+DCb1QEhlqd4NSOJaYxQ==}
+  '@zag-js/anatomy@1.32.0':
+    resolution: {integrity: sha512-99u8VBSt5wkP9ZluIV6lR06Pvyt0AQaTGnvhZkvSmbz5U5+1XwCU0Db7Q+dcQRpM7d0p1ViWFxNVHDuuwY25Fw==}
 
-  '@zag-js/core@1.31.1':
-    resolution: {integrity: sha512-RaMJeqtjxG6k7iFD3WQnlyFJVT3yfQN+pJygAHH37GsMtiNzQQJOoesjb0LV9T27jwMXeNUzrh3MSDr1/0yVcQ==}
+  '@zag-js/core@1.32.0':
+    resolution: {integrity: sha512-aibBwyqw3saAzYBf2YHfuyOGt9kdNc4+ile3D1jbUsXiccLvGuFPP3+Ox7fULcILIiQhR0X6M+sTF17IyEMrYA==}
 
-  '@zag-js/dom-query@1.31.1':
-    resolution: {integrity: sha512-2tCZLwSfoXm62gwl0neiAN6u5VnzUhy5wHtKbX+klqGFatnca3Bm++H9+4PHMrwUWRbPg3H5N151lKFEOQhBfQ==}
+  '@zag-js/dom-query@1.32.0':
+    resolution: {integrity: sha512-12XCCV1bchIFC7wjtYim5sEqUrAddzt0eysMTbBrCuK5r6TmLecwLtxUNKIRQ8adkCn0jqecUiuNyXojaArP3g==}
 
-  '@zag-js/react@1.31.1':
-    resolution: {integrity: sha512-a7uYH+tcw1UYbcovyVBzlh6X8KztK/b1+s8sMs4Srhd24M+hZMetV94Z0bM1Km5aNAnoS4gkH3gtJjH0OphquQ==}
+  '@zag-js/react@1.32.0':
+    resolution: {integrity: sha512-oUhe6rezRnDEFIE9mlRS4UDx4iaiG9uD737TimHI2HWxdu7XNQV9+pNSyXneVLbiMsFs8w7uZN15otJbrW5LLA==}
     peerDependencies:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
 
-  '@zag-js/splitter@1.31.1':
-    resolution: {integrity: sha512-7SGBT2/xKsOzeSQEg+Otn1XV3RHrAz3jTySjBRKoEmdxubhfREqbKotbGVG65aTve11fQnmJ3Oyt3GJOeraxLA==}
+  '@zag-js/splitter@1.32.0':
+    resolution: {integrity: sha512-DP4sRqkN+JWw38fWEk3MjdcstsXdST2lJ6hYRixHQ0kYQoC0WXv9VUBlwxP2FCEJkjVojGCHjlrvyXe8/igRHA==}
 
-  '@zag-js/store@1.31.1':
-    resolution: {integrity: sha512-d5ZTRciTuXOGQ3nML15kQLaTiR1wJPxT1Fu1nN659X6Rl8DPtubYaRCZ3RCk9Kyiyg2z5HxeVqDswaDvGbM9Rg==}
+  '@zag-js/store@1.32.0':
+    resolution: {integrity: sha512-m9jvTKJB/lTC2I8NpDf+yo2XVN+ogxjiVbGsooAFTpyUAiXZY50nVc9cFcswnwFMo/GzXMk81oalyz9u65jqRQ==}
 
-  '@zag-js/types@1.31.1':
-    resolution: {integrity: sha512-mKw5DoeBjFykfUHv3ifCRjcogFTqp0aCCsmqQMfnf+J/mg2aXpAx76AXT1PYXAVVhxdP6qGXNd0mOQZDVrIlSQ==}
+  '@zag-js/types@1.32.0':
+    resolution: {integrity: sha512-9UV5mFnTgJRyFCCH9g/TIqtxxfw6FUphpe7E0AHK9+WSq3PRvflMeaRT/O6HgdWo0Rc+JN9vVwkFYyGD81uAbw==}
 
-  '@zag-js/utils@1.31.1':
-    resolution: {integrity: sha512-KLm0pmOtf4ydALbaVLboL7W98TDVxwVVLvSuvtRgV53XTjlsVopTRA5/Xmzq2NhWujDZAXv7bRV603NDgDcjSw==}
+  '@zag-js/utils@1.32.0':
+    resolution: {integrity: sha512-IRe1yFbMXBp8Q1Xp916Lq9P91s65K5KRNFZIv2EdQHRynLaT+QrPp5hmzkWoXJn8oOYd6PZeNb7K6v7vk8+k1g==}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -3800,11 +3800,11 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@kushagradhawan/kookie-blocks@0.1.38(@kushagradhawan/kookie-ui@0.1.104(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@kushagradhawan/kookie-blocks@0.1.38(@kushagradhawan/kookie-ui@0.1.114(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@hugeicons/core-free-icons': 3.1.1
       '@hugeicons/react': 1.1.4(react@19.2.3)
-      '@kushagradhawan/kookie-ui': 0.1.104(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@kushagradhawan/kookie-ui': 0.1.114(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       harden-react-markdown: 1.1.7(react-markdown@9.1.0(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
@@ -3816,12 +3816,12 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@kushagradhawan/kookie-ui@0.1.104(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@kushagradhawan/kookie-ui@0.1.114(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@radix-ui/colors': 3.0.0
       '@radix-ui/react-accordion': 1.2.12(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      '@zag-js/react': 1.31.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      '@zag-js/splitter': 1.31.1
+      '@zag-js/react': 1.32.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@zag-js/splitter': 1.32.0
       classnames: 2.5.1
       cmdk: 1.1.1(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       geist: 1.5.1(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
@@ -5025,43 +5025,43 @@ snapshots:
       next: 15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react: 19.2.3
 
-  '@zag-js/anatomy@1.31.1': {}
+  '@zag-js/anatomy@1.32.0': {}
 
-  '@zag-js/core@1.31.1':
+  '@zag-js/core@1.32.0':
     dependencies:
-      '@zag-js/dom-query': 1.31.1
-      '@zag-js/utils': 1.31.1
+      '@zag-js/dom-query': 1.32.0
+      '@zag-js/utils': 1.32.0
 
-  '@zag-js/dom-query@1.31.1':
+  '@zag-js/dom-query@1.32.0':
     dependencies:
-      '@zag-js/types': 1.31.1
+      '@zag-js/types': 1.32.0
 
-  '@zag-js/react@1.31.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@zag-js/react@1.32.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
-      '@zag-js/core': 1.31.1
-      '@zag-js/store': 1.31.1
-      '@zag-js/types': 1.31.1
-      '@zag-js/utils': 1.31.1
+      '@zag-js/core': 1.32.0
+      '@zag-js/store': 1.32.0
+      '@zag-js/types': 1.32.0
+      '@zag-js/utils': 1.32.0
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
 
-  '@zag-js/splitter@1.31.1':
+  '@zag-js/splitter@1.32.0':
     dependencies:
-      '@zag-js/anatomy': 1.31.1
-      '@zag-js/core': 1.31.1
-      '@zag-js/dom-query': 1.31.1
-      '@zag-js/types': 1.31.1
-      '@zag-js/utils': 1.31.1
+      '@zag-js/anatomy': 1.32.0
+      '@zag-js/core': 1.32.0
+      '@zag-js/dom-query': 1.32.0
+      '@zag-js/types': 1.32.0
+      '@zag-js/utils': 1.32.0
 
-  '@zag-js/store@1.31.1':
+  '@zag-js/store@1.32.0':
     dependencies:
       proxy-compare: 3.0.1
 
-  '@zag-js/types@1.31.1':
+  '@zag-js/types@1.32.0':
     dependencies:
       csstype: 3.2.3
 
-  '@zag-js/utils@1.31.1': {}
+  '@zag-js/utils@1.32.0': {}
 
   acorn-jsx@5.3.2(acorn@8.15.0):
     dependencies:
