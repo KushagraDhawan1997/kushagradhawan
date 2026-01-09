@@ -46,7 +46,7 @@ export function Footer() {
                   </FooterBlock.Link>
                   {" + "}
                   <FooterBlock.Link
-                    href="https://blocks.hellokookie.com/"
+                    href="https://kookieblocks.com/"
                     target="_blank"
                     underline="always"
                   >
@@ -76,7 +76,7 @@ export function Footer() {
                   Kookie UI
                 </FooterBlock.Link>
                 <FooterBlock.Link
-                  href="https://blocks.hellokookie.com/"
+                  href="https://kookieblocks.com/"
                   target="_blank"
                 >
                   Kookie Blocks
