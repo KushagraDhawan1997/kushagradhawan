@@ -1,0 +1,165 @@
+---
+title: "Building on Radix: Card"
+description: "Card in Kookie UI extends Radix Themes with two new variants, a material system for translucent effects, and props for edge-to-edge content. Same foundation, more flexibility."
+date: "2026-01-09"
+author: "Kushagra Dhawan"
+canonical: "https://kushagradhawan.com/articles/kookie-card"
+category: "announcement"
+tags: ["kookie-ui", "design-systems", "components", "radix", "card"]
+keywords:
+  [
+    "card",
+    "card component",
+    "kookie ui",
+    "radix themes",
+    "design system",
+    "component library",
+    "translucent",
+    "backdrop blur",
+    "glassmorphism",
+  ]
+---
+
+import { Card, Text, Heading, Flex, Box, Code, Button, Image, Inset } from "@kushagradhawan/kookie-ui";
+import { PreviewBlock } from "@kushagradhawan/kookie-blocks";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowRight01Icon, Book02Icon } from "@hugeicons/core-free-icons";
+
+export const IMAGE_URL = "https://images.unsplash.com/photo-1745613944320-1f14580bb0db?w=900&auto=format&fit=crop&q=60";
+
+Kookie UI is a fork of Radix Themes. Most components have been adjusted to fit the design language and patterns I needed.
+
+Card is one of those components.
+
+The Radix Themes Card is solid. Three variants (surface, classic, ghost), five sizes, support for `asChild` to make the whole card interactive. It handles the basics well.
+
+But I kept running into situations where it wasn't quite right. Needed a border without a background fill. Wanted translucent cards with backdrop blur. Had images that needed to fill edge-to-edge. The workarounds were getting repetitive.
+
+So I extended it.
+
+<Box mt="9">
+  <PreviewBlock
+    height="28rem"
+    showThemeToggle={false}
+    appearance="dark"
+    variant="ghost"
+    background={{
+      backgroundImage: `url(${IMAGE_URL})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  >
+    <Card variant="classic" material="translucent" size="3" style={{ maxWidth: 320 }}>
+      <Flex direction="column" gap="6">
+        <Flex direction="column" gap="3">
+          <HugeiconsIcon icon={Book02Icon} size={24} strokeWidth={1.75} />
+          <Heading size="5" weight="medium">
+            Getting Started
+          </Heading>
+          <Text size="2" color="gray">
+            Learn the fundamentals of building modern interfaces with our comprehensive guide.
+          </Text>
+        </Flex>
+        <Button variant="solid" size="2" color="gray" highContrast>
+          Read More
+          <HugeiconsIcon icon={ArrowRight01Icon} strokeWidth={1.75} />
+        </Button>
+      </Flex>
+    </Card>
+  </PreviewBlock>
+</Box>
+
+## What Changed
+
+### Two New Variants
+
+Radix gives you surface, classic, and ghost. I added **outline** and **soft**.
+
+**Outline** is transparent with a visible border. No background color, just boundaries. It's now the default because it works in more contexts without fighting the layout.
+
+```tsx
+<Card variant="outline">
+  <Text>Border only, no background fill</Text>
+</Card>
+```
+
+**Soft** is a muted background without a border. Subtle grouping when you want something between invisible (ghost) and fully bounded (outline/surface).
+
+```tsx
+<Card variant="soft">
+  <Text>Muted background, no border</Text>
+</Card>
+```
+
+### Material System
+
+Modern UIs create depth through blur, not just shadows. The `material` prop controls this.
+
+```tsx
+<Card material="translucent">
+  <Text>Backdrop blur with semi-transparent background</Text>
+</Card>
+```
+
+When `material="translucent"`, the card gets `backdrop-filter: blur()` and uses `color-mix()` for semi-transparent backgrounds. The effect is subtle but creates layering that feels lighter than drop shadows.
+
+This works at two levels. Set it on your theme and all cards inherit it. Override it per-card when you need solid backgrounds for performance or readability.
+
+Every variant handles translucency correctly. Surface, outline, classic, ghost, soft. They all adapt their colors and borders for both solid and translucent materials.
+
+### Edge-to-Edge Content
+
+Two props for content that needs to break out of the card's padding.
+
+**`inset`** removes padding but keeps the border radius. Perfect for image cards where you want the photo to fill the container but still have rounded corners.
+
+```tsx
+<Card inset>
+  <img src="/hero.jpg" alt="Full bleed image with rounded corners" />
+</Card>
+```
+
+**`flush`** is for ghost cards inside containers. It applies negative margins so the card's content aligns with the parent's edges instead of being inset by the card's own padding.
+
+```tsx
+<Card variant="ghost" flush>
+  <Text>Aligns with parent container edges</Text>
+</Card>
+```
+
+## The Full API
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `size` | `'1' \| '2' \| '3' \| '4' \| '5'` | `'1'` | Padding and spacing. Responsive. |
+| `variant` | `'surface' \| 'outline' \| 'classic' \| 'ghost' \| 'soft'` | `'outline'` | Visual style. |
+| `material` | `'solid' \| 'translucent'` | — | Backdrop blur and transparency. |
+| `inset` | `boolean` | `false` | Zero padding, keeps radius. |
+| `flush` | `boolean` | `false` | Negative margins for ghost cards. |
+| `asChild` | `boolean` | `false` | Render as child element. |
+
+## Why These Changes
+
+Every enhancement came from real usage.
+
+**Outline as default.** Surface imposes a background. In complex layouts with multiple cards, backgrounds stack and create visual noise. Outline defines boundaries without adding weight. It's a safer default.
+
+**Soft variant.** Sometimes you need subtle grouping but borders feel heavy. Ghost is invisible. Surface and outline are too pronounced. Soft fills that gap.
+
+**Material system.** Floating panels, overlays, modal-like interfaces. Translucent cards with blur create depth without the heaviness of shadows. The hierarchy feels more natural.
+
+**Inset and flush.** Image cards and ghost cards inside containers. These are common patterns. Having props for them beats repeating the same CSS overrides.
+
+## What Stayed the Same
+
+The foundation is unchanged. Card is still a styled container that wraps content. It still uses Radix's prop extraction system. It still supports `asChild` for interactive cards. It still works with margin props.
+
+If you're coming from Radix Themes, Card works the same way. The new props are additive. The variant change (outline instead of surface as default) is the only breaking difference, and it's a one-line fix if you need surface.
+
+## Closing
+
+Forking a design system creates maintenance burden. Every upstream change needs evaluation. The goal is to fork as little as possible while getting the flexibility you need.
+
+Card needed more variants, a material system, and props for edge cases. These additions let you build interfaces without fighting the component. That's the bar for extending upstream: if you're working around the component more than with it, extend it.
+
+For complete documentation and interactive examples, visit the [Kookie UI Card documentation](https://www.hellokookie.com/docs/card).
