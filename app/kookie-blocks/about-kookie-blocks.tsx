@@ -110,6 +110,7 @@ export function AboutKookieBlocks({ posts = [] }: { posts?: ArticleProps[] }) {
         posts={posts}
         title="Articles about Kookie Blocks"
         showCallout={false}
+        showAnnouncements
       />
     </>
   );

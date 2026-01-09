@@ -126,6 +126,7 @@ export function AboutKookieUI({ posts = [] }: { posts?: ArticleProps[] }) {
         posts={posts}
         title="Articles about Kookie UI"
         showCallout={false}
+        showAnnouncements
       />
     </>
   );

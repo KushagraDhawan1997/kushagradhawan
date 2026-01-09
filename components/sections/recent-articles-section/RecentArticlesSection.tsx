@@ -22,18 +22,20 @@ export interface RecentArticlesSectionProps {
   posts?: ArticleProps[];
   title?: string;
   showCallout?: boolean;
+  showAnnouncements?: boolean;
 }
 
 export function RecentArticlesSection({
   posts = [],
   title = "Sometimes, I write about things.",
   showCallout = true,
+  showAnnouncements = false,
 }: RecentArticlesSectionProps) {
-  // Filter out announcements and limit to first 4 articles
+  const announcements = posts.filter((post) => post.category === "announcement");
   const articlesOnly = posts.filter((post) => post.category !== "announcement");
   const displayedPosts = articlesOnly.slice(0, 4);
 
-  if (displayedPosts.length === 0) {
+  if (displayedPosts.length === 0 && announcements.length === 0) {
     return null;
   }
 
@@ -74,7 +76,21 @@ export function RecentArticlesSection({
             </Flex>
           )}
 
-          <ArticlesListGrid posts={displayedPosts} />
+          {showAnnouncements && announcements.length > 0 && (
+            <Flex direction="column" gap="6">
+              <Heading size="5" weight="medium">
+                Announcements
+              </Heading>
+              <ArticlesListGrid posts={announcements} />
+            </Flex>
+          )}
+
+          {displayedPosts.length > 0 && (
+            <Flex direction="column" gap="6">
+              {showAnnouncements && <Heading size="5" weight="medium">Articles</Heading>}
+              <ArticlesListGrid posts={displayedPosts} />
+            </Flex>
+          )}
 
           {articlesOnly.length > 4 && (
             <Flex justify="center">
