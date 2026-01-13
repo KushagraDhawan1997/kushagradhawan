@@ -233,7 +233,6 @@ export function AboutWomp({ posts = [] }: { posts?: ArticleProps[] }) {
       <RecentArticlesSection
         posts={posts}
         title="Articles about Womp"
-        showCallout={false}
       />
     </>
   );

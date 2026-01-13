@@ -126,7 +126,7 @@ export function AboutKookieAISection({ posts = [] }: { posts?: ArticleProps[] })
           </Flex>
         </Card>
       </Container>
-      <RecentArticlesSection posts={posts} title="Articles about Kookie AI" showCallout={false} />
+      <RecentArticlesSection posts={posts} title="Articles about Kookie AI" />
     </Section>
   );
 }

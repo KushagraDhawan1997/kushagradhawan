@@ -125,7 +125,6 @@ export function AboutKookieUI({ posts = [] }: { posts?: ArticleProps[] }) {
       <RecentArticlesSection
         posts={posts}
         title="Articles about Kookie UI"
-        showCallout={false}
         showAnnouncements
       />
     </>
