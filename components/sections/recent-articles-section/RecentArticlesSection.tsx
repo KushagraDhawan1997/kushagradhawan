@@ -3,12 +3,9 @@
 import {
   Button,
   Flex,
-  Text,
   Heading,
   Container,
   Section,
-  Link,
-  Callout,
 } from "@kushagradhawan/kookie-ui";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
@@ -21,17 +18,15 @@ import NextLink from "next/link";
 export interface RecentArticlesSectionProps {
   posts?: ArticleProps[];
   title?: string;
-  showCallout?: boolean;
   showAnnouncements?: boolean;
 }
 
 export function RecentArticlesSection({
   posts = [],
   title = "Sometimes, I write about things.",
-  showCallout = true,
   showAnnouncements = false,
 }: RecentArticlesSectionProps) {
-  const announcements = posts.filter((post) => post.category === "announcement");
+  const announcements = posts.filter((post) => post.category === "announcement").slice(0, 4);
   const articlesOnly = posts.filter((post) => post.category !== "announcement");
   const displayedPosts = articlesOnly.slice(0, 4);
 
@@ -46,35 +41,6 @@ export function RecentArticlesSection({
           <Heading align="center" size="8" weight="medium">
             {title}
           </Heading>
-
-          {/* Callout for Spark update - only show if requested */}
-          {showCallout && (
-            <Flex justify="center">
-              <Link
-                href="/articles/womp-spark-update"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: "none" }}
-              >
-                <Callout.Root
-                  highContrast
-                  variant="outline"
-                  color="gray"
-                  size="2"
-                  style={{ cursor: "pointer" }}
-                >
-                  <Callout.Text align="center">
-                    Read about the latest update to{" "}
-                    <span style={{ textDecoration: "underline" }}>
-                      Womp Spark
-                    </span>
-                    . Now generate images and 3D meshes using advanced frontier
-                    models
-                  </Callout.Text>
-                </Callout.Root>
-              </Link>
-            </Flex>
-          )}
 
           {showAnnouncements && announcements.length > 0 && (
             <Flex direction="column" gap="6">

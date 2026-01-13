@@ -161,9 +161,7 @@ export function Hero({ latestAnnouncement }: HeroProps) {
                   style={{ cursor: "pointer" }}
                 >
                   <Callout.Text align="center">
-                    New component:{" "}
-                    <span style={{ textDecoration: "underline" }}>Shell</span>, a
-                    layout engine for modern apps
+                    Read the latest → {latestAnnouncement.title}
                   </Callout.Text>
                 </Callout.Root>
               </Link>

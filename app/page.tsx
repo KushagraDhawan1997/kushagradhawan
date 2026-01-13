@@ -29,7 +29,8 @@ export default async function Home({ searchParams }: HomeProps) {
   const latestAnnouncement = getLatestAnnouncement();
   // Get view mode from URL params, default to "professional"
   const params = await searchParams;
-  const viewMode = (params.view as "professional" | "personal") || "professional";
+  const viewMode =
+    (params.view as "professional" | "personal") || "professional";
 
   // Person structured data
   const personJsonLd = {
@@ -38,8 +39,18 @@ export default async function Home({ searchParams }: HomeProps) {
     name: "Kushagra Dhawan",
     url: "https://kushagradhawan.com",
     jobTitle: "Product Builder and Designer",
-    knowsAbout: ["Product Design", "UI/UX", "Design Systems", "Web Development", "Product Strategy"],
-    sameAs: ["https://x.com/kushagra_dhawan", "https://www.linkedin.com/in/kushagra-dhawan/", "https://github.com/KushagraDhawan1997"],
+    knowsAbout: [
+      "Product Design",
+      "UI/UX",
+      "Design Systems",
+      "Web Development",
+      "Product Strategy",
+    ],
+    sameAs: [
+      "https://x.com/kushagra_dhawan",
+      "https://www.linkedin.com/in/kushagra-dhawan/",
+      "https://github.com/KushagraDhawan1997",
+    ],
   };
 
   // Professional Service structured data
@@ -47,13 +58,19 @@ export default async function Home({ searchParams }: HomeProps) {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "Kushagra Dhawan - Product Design Services",
-    description: "Professional product design and development services specializing in creating innovative digital products and user experiences.",
+    description:
+      "Professional product design and development services specializing in creating innovative digital products and user experiences.",
     url: "https://kushagradhawan.com",
     founder: {
       "@type": "Person",
       name: "Kushagra Dhawan",
     },
-    serviceType: ["Product Design", "UX Design", "Design Systems", "Product Strategy"],
+    serviceType: [
+      "Product Design",
+      "UX Design",
+      "Design Systems",
+      "Product Strategy",
+    ],
   };
 
   return (
@@ -77,7 +94,7 @@ export default async function Home({ searchParams }: HomeProps) {
           <Hero latestAnnouncement={latestAnnouncement} />
           <PortfolioSection />
           <ExperienceSection />
-          <RecentArticlesSection posts={posts} />
+          <RecentArticlesSection posts={posts} showAnnouncements />
           {/* <ProductPhilosophy /> */}
           {/* <AboutKookieAISection /> */}
           {/* <AboutSection /> */}

@@ -16,10 +16,10 @@ import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 const experiences = [
   {
     id: 1,
-    role: "Product & Design Lead",
+    role: "Product Lead & Design Engineer",
     company: "Womp 3D",
     duration: "2023 - Present (2 years)",
-    logo: null,
+    logo: "/womp-logo.avif",
     fallback: "W",
     url: "https://womp.com",
   },
@@ -28,7 +28,7 @@ const experiences = [
     role: "Design lead",
     company: "Womp 3D",
     duration: "2022 - 2023 (1 year)",
-    logo: null,
+    logo: "/womp-logo.avif",
     fallback: "W",
     url: "https://womp.com",
   },
@@ -37,7 +37,7 @@ const experiences = [
     role: "Designer",
     company: "Womp 3D",
     duration: "2021 - 2022 (1 year)",
-    logo: null,
+    logo: "/womp-logo.avif",
     fallback: "W",
     url: "https://womp.com",
   },
@@ -84,6 +84,7 @@ export function ExperienceSection() {
                       highContrast
                       color="gray"
                       src={exp.logo}
+                      fit="contain"
                     />
                     <Text size="3" weight="medium">
                       {exp.role}, {exp.company}
