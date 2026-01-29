@@ -9,8 +9,9 @@
  */
 
 import React from "react";
-import { Box, Button, Image, Container, Flex, Grid, Heading, Section, Separator, Text } from "@kushagradhawan/kookie-ui";
+import { AspectRatio, Box, Button, Image, Container, Flex, Grid, Heading, Section, Separator, Text } from "@kushagradhawan/kookie-ui";
 import Link from "next/link";
+import NextImage from "next/image";
 import { leadershipItems } from "@/components/sections/leadership-section/leadershipData";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -62,15 +63,19 @@ export function Leadership() {
               , all in one.
             </Heading>
           </Flex>
-          <Image
-            src="/articles/leadership.png"
-            srcSet="/articles/leadership-content-800.webp 800w, /articles/leadership-content-1200.webp 1200w"
-            sizes="(max-width: 768px) 100vw, 1200px"
-            alt="Leadership"
-            width="100%"
-            height="500px"
-            radius="none"
-          />
+          <Box width="100%">
+            <AspectRatio ratio={16 / 10}>
+              <Image
+                as={NextImage}
+                src="/articles/product-leadership/image.jpg"
+                alt="Leadership"
+                fill
+                radius="none"
+                sizes="(max-width: 768px) 100vw, 1200px"
+                style={{ objectFit: "cover" }}
+              />
+            </AspectRatio>
+          </Box>
 
           {/* WhyMe Grid - Key professional advantages */}
           <Flex direction="column" gap="0">

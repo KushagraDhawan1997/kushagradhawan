@@ -7,9 +7,10 @@ import {
   Heading,
   Section,
   Grid,
+  IconButton,
 } from "@kushagradhawan/kookie-ui";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
+import { ArrowUpRight01Icon, Github01Icon } from "@hugeicons/core-free-icons";
 import NextLink from "next/link";
 import NextImage from "next/image";
 import { Image } from "@kushagradhawan/kookie-ui";
@@ -22,6 +23,7 @@ const portfolioItems = [
       "Womp is a browser-based 3D modeling platform aimed to make 3D beginner-friendly and easy. Built by artists and engineers who have experienced the uphill learning curve of 3D.",
     image: "/pages/womp/image.jpg",
     href: "/womp",
+    externalLink: "https://womp.com",
   },
   {
     id: 2,
@@ -30,6 +32,7 @@ const portfolioItems = [
       "Kookie UI is a system to build consistent and scalable user interfaces. An open-source fork of Radix Themes with a fresh visual style and practical foundations.",
     image: "/pages/kookie-ui/image.jpg",
     href: "/kookie-ui",
+    github: "https://github.com/KushagraDhawan1997/kookie-ui",
   },
   {
     id: 3,
@@ -46,6 +49,7 @@ const portfolioItems = [
       "Kookie Blocks is a higher-level implementation of Kookie UI focused on creating reusable blocks for both app interfaces and marketing pages.",
     image: "/pages/kookie-blocks/image.jpg",
     href: "/kookie-blocks",
+    github: "https://github.com/KushagraDhawan1997/kookie-blocks",
   },
   {
     id: 5,
@@ -54,6 +58,7 @@ const portfolioItems = [
       "Kookie Flow is a WebGL-native node graph library for React that combines React Flow ergonomics with GPU-accelerated rendering.",
     image: "/pages/kookie-flow/image.jpg",
     href: "/kookie-flow",
+    github: "https://github.com/KushagraDhawan1997/kookie-flow",
   },
 ];
 
@@ -98,16 +103,48 @@ export function PortfolioSection() {
                 </Text>
               </Flex>
 
-              <Button asChild variant="soft" size="2" highContrast>
-                <NextLink href={item.href}>
-                  More
-                  <HugeiconsIcon
-                    icon={ArrowUpRight01Icon}
-                    size={16}
-                    color="currentColor"
-                  />
-                </NextLink>
-              </Button>
+              <Flex gap="2">
+                <Button asChild variant="soft" size="2" highContrast>
+                  <NextLink href={item.href}>
+                    More
+                    <HugeiconsIcon icon={ArrowUpRight01Icon} strokeWidth={1.75} />
+                  </NextLink>
+                </Button>
+                {item.github && (
+                  <IconButton
+                    asChild
+                    variant="soft"
+                    size="2"
+                    highContrast
+                    aria-label="GitHub"
+                  >
+                    <a
+                      href={item.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <HugeiconsIcon icon={Github01Icon} strokeWidth={1.75} />
+                    </a>
+                  </IconButton>
+                )}
+                {item.externalLink && (
+                  <Button
+                    asChild
+                    variant="soft"
+                    size="2"
+                    highContrast
+                  >
+                    <a
+                      href={item.externalLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Womp
+                      <HugeiconsIcon icon={ArrowUpRight01Icon} strokeWidth={1.75} />
+                    </a>
+                  </Button>
+                )}
+              </Flex>
             </Flex>
           ))}
         </Grid>
