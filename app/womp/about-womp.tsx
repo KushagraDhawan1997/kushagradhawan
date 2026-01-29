@@ -214,7 +214,7 @@ export function AboutWomp({ posts = [] }: { posts?: ArticleProps[] }) {
 
       <ProductPhilosophy />
 
-      <RecentArticlesSection posts={posts} title="Articles about Womp" />
+      <RecentArticlesSection posts={posts} title="Articles about Womp" showAnnouncements />
     </>
   );
 }
