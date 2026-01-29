@@ -1,10 +1,10 @@
 "use client";
 
 import React, { Suspense } from "react";
-import { Badge, Container, Flex, Heading, Image, Inset, Section, Text, AspectRatio, Separator, Box } from "@kushagradhawan/kookie-ui";
+import { Badge, Container, Flex, Heading, Image, Text, AspectRatio, Separator, Box } from "@kushagradhawan/kookie-ui";
 import { MDXProvider } from "@mdx-js/react";
 import { useMDXComponents } from "../../../mdx-components";
-import { AIImageWithPrompt } from "@/components/generic";
+import NextImage from "next/image";
 interface ArticleContentProps {
   post: {
     slug: string;
@@ -49,47 +49,21 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
 
   const MDXContent = MDXBySlug[post.slug];
 
-  // Derive hero WebP variants for article header image
-  const deriveHero = (src?: string) => {
-    if (!src || !src.startsWith("/articles/")) return undefined;
-    const match = src.match(/^\/articles\/([^\.]+)\.(png|jpg|jpeg|webp)$/i);
-    if (!match) return undefined;
-    const base = match[1];
-    return {
-      src: `/articles/hero/${base}-hero-1600.webp`,
-      srcSet: `/articles/hero/${base}-hero-1200.webp 1200w, /articles/hero/${base}-hero-1600.webp 1600w`,
-      sizes: "(max-width: 768px) 100vw, 1200px",
-    };
-  };
-  const hero = deriveHero(post.image);
-
   return (
     <Box>
       <Container size="3">
         {/* Article header image */}
         {post.image && (
           <AspectRatio ratio={16 / 10}>
-            {post.imagePrompt ? (
-              <AIImageWithPrompt prompt={post.imagePrompt}>
-                <Image
-                  src={hero?.src || post.image}
-                  srcSet={hero?.srcSet}
-                  sizes={hero?.sizes}
-                  alt={post.alt || post.title}
-                  radius="none"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", overflow: "hidden" }}
-                />
-              </AIImageWithPrompt>
-            ) : (
-              <Image
-                src={hero?.src || post.image}
-                srcSet={hero?.srcSet}
-                sizes={hero?.sizes}
-                alt={post.alt || post.title}
-                radius="none"
-                style={{ width: "100%", height: "100%", objectFit: "cover", overflow: "hidden" }}
-              />
-            )}
+            <Image
+              as={NextImage}
+              src={post.image}
+              alt={post.alt || post.title}
+              fill
+              radius="none"
+              sizes="(max-width: 768px) 100vw, 1200px"
+              style={{ objectFit: "cover" }}
+            />
           </AspectRatio>
         )}
       </Container>

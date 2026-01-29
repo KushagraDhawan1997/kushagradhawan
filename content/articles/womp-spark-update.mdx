@@ -3,8 +3,8 @@ title: "Major Womp Spark update: Now generates images and 3D meshes"
 description: "Womp Spark now generates images and 3D meshes directly in chat, expanding from an assistant to a complete creation tool for 3D printing."
 date: "2025-10-25"
 author: "Kushagra Dhawan"
-image: "/articles/womp-spark-update.png"
 tags: ["Womp", "Product", "Update"]
+category: "announcement"
 keywords:
   [
     "Womp Spark",
@@ -16,8 +16,6 @@ keywords:
   ]
 ---
 
-import { ArticleImage } from "@/components/generic";
-
 We've been working on expanding Womp Spark beyond its role as an assistant. We wanted to remove the friction between having an idea and having a 3D-printable object. That meant adding image and 3D mesh generation directly into the chat interface.
 
 Shipping AI at Womp was no easy win. For us, AI isn't a gimmick or an optimization. It's about making 3D creation accessible to people who never thought they could — but also not leaving behind creators who want depth, not black-box magic.
@@ -27,8 +25,6 @@ The workflow was always the problem. Users would come to Spark with a concept, b
 So we built generation directly into Spark. Now you can ask Spark to create an image, then immediately ask it to convert that image to a 3D mesh, then send that mesh to print — all in the same conversation. The content lives in your chat history, and you can iterate on it just like you would iterate on any other part of your design process.
 
 Our goal wasn't to replace the tools power users love, but to add a new path into 3D for everyone. Generate objects instantly, then use Womp's editor to compose scenes, customize, and make it your own. Some creators were frustrated with our first AI release — and we're listening. Womp's mission is easy 3D for all, not shortcuts that limit control.
-
-<ArticleImage src="/articles/spark-update/ui.png" alt="Spark UI showing image and 3D mesh generation interface" />
 
 ## What Changed
 
@@ -40,8 +36,6 @@ Free users get access to Flux Schnell (faster generation) and Flux Dev (better q
 
 The models aren't ours — we're using off-the-shelf generation APIs. Your prompts and images aren't used to train anything. That was important to us from the start.
 
-<ArticleImage src="/articles/spark-update/chat-example.png" alt="Spark UI showing image and 3D mesh generation interface" />
-
 ### 3D Meshes
 
 3D generation is where things get more interesting. You can generate 3D models from text descriptions, or you can convert any image into a 3D mesh. The key requirement is that everything Spark generates needs to be actually printable — not just theoretically, but optimized for SLA printing from the first generation.
@@ -49,8 +43,6 @@ The models aren't ours — we're using off-the-shelf generation APIs. Your promp
 Free users get access to Trellis3D, which handles most use cases well. Pro users can use Hunyuan3D-2, 2.5, 3 Turbo, or 3 depending on whether they want higher quality or faster output.
 
 The tricky part isn't the generation itself — it's making sure what comes out the other end will actually print. We had to make sure our models were trained specifically to meet Womp's printing requirements. A 3D model that looks good in a preview but won't print isn't helpful.
-
-<ArticleImage src="/articles/spark-update/3d-example.png" alt="Spark UI showing image and 3D mesh generation interface" />
 
 ### Actions
 

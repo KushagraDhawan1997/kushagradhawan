@@ -9,49 +9,35 @@ import {
   Text,
   Link,
   Image,
+  Box,
 } from "@kushagradhawan/kookie-ui";
 import { Hero } from "@kushagradhawan/kookie-blocks";
-import { AIImageWithPrompt, Testimonial } from "@/components/generic";
+import { Testimonial } from "@/components/generic";
+import NextImage from "next/image";
 import { RecentArticlesSection } from "@/components/sections/recent-articles-section";
 import { ArticleProps } from "@/components/sections/articles-list-section/ArticlesListGrid";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 
-function deriveContent(src: string) {
-  const match = src.match(/^\/articles\/([^\.]+)\.(png|jpg|jpeg|webp)$/i);
-  if (!match) return { src, srcSet: undefined, sizes: undefined };
-  const base = match[1];
-  return {
-    src: `/articles/${base}-content-1200.webp`,
-    srcSet: `/articles/${base}-content-800.webp 800w, /articles/${base}-content-1200.webp 1200w`,
-    sizes: "(max-width: 768px) 100vw, 800px",
-  };
-}
 
 export function AboutKookieUI({ posts = [] }: { posts?: ArticleProps[] }) {
-  const heroImage = {
-    image: "/articles/kookie-ui-hero.png",
-    prompt:
-      "Contemporary oil impasto palette-knife painting of a grid of chunky color swatches and spacing blocks arranged like a tactile board (tokens), warm cream + coral + muted olive palette, sand/beige textured background, thick palette-knife texture gleaming in sunlight, simplified forms, 16:9, no text.",
-  };
-
   return (
     <>
       <Section position="relative" size="4">
         <Container size="4" px={{ initial: "4", sm: "6" }}>
           <Hero.Root layout={{ initial: "stacked", md: "split" }} gap="12">
-            <Hero.Media style={{ flex: 1 }}>
-              <AIImageWithPrompt prompt={heroImage.prompt}>
+            <Hero.Media style={{ flex: 1, alignSelf: "stretch" }}>
+              <Box position="relative" width="100%" height="100%" minHeight="300px">
                 <Image
-                  src={deriveContent(heroImage.image).src}
-                  srcSet={deriveContent(heroImage.image).srcSet}
-                  sizes={deriveContent(heroImage.image).sizes}
-                  alt="KookieUI Hero"
-                  width="100%"
-                  height="100%"
+                  as={NextImage}
+                  src="/pages/kookie-ui/image.jpg"
+                  alt="Kookie UI Hero"
+                  fill
                   radius="none"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  style={{ objectFit: "cover" }}
                 />
-              </AIImageWithPrompt>
+              </Box>
             </Hero.Media>
 
             <Flex direction="column" gap="6" style={{ flex: 1 }}>

@@ -8,13 +8,28 @@
  */
 
 import React, { useEffect, useState } from "react";
-import { Button, Image, Container, Flex, Grid, Heading, Section, Text, Link, Separator, Tooltip, Box } from "@kushagradhawan/kookie-ui";
+import {
+  Button,
+  Image,
+  Container,
+  Flex,
+  Grid,
+  Heading,
+  Section,
+  Text,
+  Link,
+  Box,
+} from "@kushagradhawan/kookie-ui";
 import { TestimonialCard } from "../testimonial-card";
 import { testimonials, type Testimonial } from "../testimonials";
 import { socialLinks, type SocialLink } from "./contactData";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Mail01Icon, ArrowUpRight01Icon, Tick01Icon } from "@hugeicons/core-free-icons";
-import { AIImageWithPrompt } from "@/components/generic";
+import {
+  Mail01Icon,
+  ArrowUpRight01Icon,
+  Tick01Icon,
+} from "@hugeicons/core-free-icons";
+import NextImage from "next/image";
 
 /**
  * ContactSection Component
@@ -30,7 +45,8 @@ import { AIImageWithPrompt } from "@/components/generic";
  * @returns React component for the contact section
  */
 export function ContactSection() {
-  const [randomTestimonial, setRandomTestimonial] = useState<Testimonial | null>(null);
+  const [randomTestimonial, setRandomTestimonial] =
+    useState<Testimonial | null>(null);
   const [emailCopied, setEmailCopied] = useState(false);
 
   // Set a random testimonial on component mount
@@ -60,10 +76,24 @@ export function ContactSection() {
     <>
       <Section id="contact" size="4">
         <Container size="4">
-          <Grid columns={{ initial: "1", md: "2fr 3fr" }} align="center" gap="8" px={{ initial: "4", sm: "6" }}>
+          <Grid
+            columns={{ initial: "1", md: "2fr 3fr" }}
+            align="center"
+            gap="8"
+            px={{ initial: "4", sm: "6" }}
+          >
             {/* Heading - Container size 2 */}
-            <Flex direction="column" gap="8" align={{ initial: "center", md: "start" }}>
-              <Heading size="8" weight="medium" align={{ initial: "center", md: "left" }} color="gray">
+            <Flex
+              direction="column"
+              gap="8"
+              align={{ initial: "center", md: "start" }}
+            >
+              <Heading
+                size="8"
+                weight="medium"
+                align={{ initial: "center", md: "left" }}
+                color="gray"
+              >
                 Open to conversations about{" "}
                 <Text as="span" weight="medium" highContrast>
                   design
@@ -86,12 +116,24 @@ export function ContactSection() {
               {/* CTA buttons */}
               <Flex gap="2">
                 <Button size="2" asChild variant="solid" highContrast>
-                  <a href="https://calendly.com/accounts-kushagradhawan/30min" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://calendly.com/accounts-kushagradhawan/30min"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Calendly
-                    <HugeiconsIcon icon={ArrowUpRight01Icon} color="currentColor" />
+                    <HugeiconsIcon
+                      icon={ArrowUpRight01Icon}
+                      color="currentColor"
+                    />
                   </a>
                 </Button>
-                <Button size="2" variant="soft" highContrast onClick={handleCopyEmail}>
+                <Button
+                  size="2"
+                  variant="soft"
+                  highContrast
+                  onClick={handleCopyEmail}
+                >
                   {emailCopied ? (
                     <HugeiconsIcon icon={Tick01Icon} color="currentColor" />
                   ) : (
@@ -104,25 +146,34 @@ export function ContactSection() {
               {/* Social media links */}
               <Flex gap="6" wrap="wrap">
                 {socialLinks.map((link: SocialLink, index: number) => (
-                  <Link key={index} href={link.href} target="_blank" size="2" underline="always">
+                  <Link
+                    key={index}
+                    href={link.href}
+                    target="_blank"
+                    size="2"
+                    underline="always"
+                  >
                     {link.name}
                   </Link>
                 ))}
               </Flex>
             </Flex>
 
-            <AIImageWithPrompt prompt="Portrait of a young man with a beard and a mustache, wearing a suit and tie, looking at the camera, smiling, in a modern office setting, professional, well-dressed, sharp focus, high-quality, clear image, natural lighting, professional portrait">
+            <Box
+              position="relative"
+              width="100%"
+              style={{ aspectRatio: "1/1" }}
+            >
               <Image
-                src="/articles/contact.png"
-                srcSet="/articles/contact-content-800.webp 800w, /articles/contact-content-1200.webp 1200w"
-                sizes="(max-width: 768px) 100vw, 600px"
+                as={NextImage}
+                src="/sections/contact/image.jpg"
                 alt="Contact"
-                fit="contain"
-                width="100%"
-                height="100%"
+                fill
                 radius="none"
+                sizes="(max-width: 768px) 100vw, 600px"
+                style={{ objectFit: "cover" }}
               />
-            </AIImageWithPrompt>
+            </Box>
           </Grid>
         </Container>
       </Section>
@@ -130,10 +181,18 @@ export function ContactSection() {
       {/* Testimonials Section */}
       <Section size="4">
         <Container size="4">
-          <Flex direction="column" align="center" gap="6" px={{ initial: "4", sm: "6" }}>
+          <Flex
+            direction="column"
+            align="center"
+            gap="6"
+            px={{ initial: "4", sm: "6" }}
+          >
             <Grid gap="3" columns={{ initial: "1", sm: "2", md: "3" }}>
               {testimonials.map((testimonial) => (
-                <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+                <TestimonialCard
+                  key={testimonial.id}
+                  testimonial={testimonial}
+                />
               ))}
             </Grid>
           </Flex>

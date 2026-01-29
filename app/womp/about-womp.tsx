@@ -16,7 +16,8 @@ import {
   Separator,
 } from "@kushagradhawan/kookie-ui";
 import { Hero } from "@kushagradhawan/kookie-blocks";
-import { AIImageWithPrompt, Testimonial } from "@/components/generic";
+import { Testimonial } from "@/components/generic";
+import NextImage from "next/image";
 import { WompIllustrationGrid } from "./womp-illustrations-grid";
 import { ProductPhilosophy } from "@/components/sections/product-philosophy-section";
 import { Leadership } from "@/components/sections/leadership-section";
@@ -43,17 +44,6 @@ const wompStats: WompStat[] = [
     description: "Community projects shared publicly on Womp.",
   },
 ];
-
-function deriveContent(src: string) {
-  const match = src.match(/^\/articles\/([^\.]+)\.(png|jpg|jpeg|webp)$/i);
-  if (!match) return { src, srcSet: undefined, sizes: undefined };
-  const base = match[1];
-  return {
-    src: `/articles/${base}-content-1200.webp`,
-    srcSet: `/articles/${base}-content-800.webp 800w, /articles/${base}-content-1200.webp 1200w`,
-    sizes: "(max-width: 768px) 100vw, 800px",
-  };
-}
 
 function WompStats() {
   const getIconComponent = (iconName: string) => {
@@ -124,29 +114,23 @@ function WompStats() {
 }
 
 export function AboutWomp({ posts = [] }: { posts?: ArticleProps[] }) {
-  const heroImage = {
-    image: "/articles/womp-hero.png",
-    prompt:
-      "Contemporary oil impasto palette-knife painting of a totem stack of 3D primitives (cube, sphere, cylinder, cone) floating slightly above a surface, warm cream + coral + Womp-orange accents with terracotta shadows, sage-green textured color-field background, thick glossy paint ridges catching sunlight, simplified forms, clean negative space, vertical 2:3, no text, no logos.",
-  };
-
   return (
     <>
       <Section position="relative" size="4">
         <Container size="4" px={{ initial: "4", sm: "6" }}>
           <Hero.Root layout={{ initial: "stacked", md: "split" }} gap="12">
-            <Hero.Media style={{ flex: 1 }}>
-              <AIImageWithPrompt prompt={heroImage.prompt}>
+            <Hero.Media style={{ flex: 1, alignSelf: "stretch" }}>
+              <Box position="relative" width="100%" height="100%" minHeight="300px">
                 <Image
-                  src={deriveContent(heroImage.image).src}
-                  srcSet={deriveContent(heroImage.image).srcSet}
-                  sizes={deriveContent(heroImage.image).sizes}
+                  as={NextImage}
+                  src="/pages/womp/image.jpg"
                   alt="Womp Hero"
-                  width="100%"
-                  height="100%"
+                  fill
                   radius="none"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  style={{ objectFit: "cover" }}
                 />
-              </AIImageWithPrompt>
+              </Box>
             </Hero.Media>
 
             <Flex direction="column" gap="6" style={{ flex: 1 }}>
@@ -230,10 +214,7 @@ export function AboutWomp({ posts = [] }: { posts?: ArticleProps[] }) {
 
       <ProductPhilosophy />
 
-      <RecentArticlesSection
-        posts={posts}
-        title="Articles about Womp"
-      />
+      <RecentArticlesSection posts={posts} title="Articles about Womp" />
     </>
   );
 }
