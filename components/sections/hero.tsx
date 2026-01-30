@@ -41,7 +41,7 @@ export function Hero({ latestAnnouncement }: HeroProps) {
               fallback="K"
               size="2"
               color="gray"
-              src="/kushagra-logo.svg"
+              src="/new-kushagradhawan-logo.svg"
             />
           </HeroBlock.Meta>
 

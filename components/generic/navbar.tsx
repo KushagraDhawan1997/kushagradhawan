@@ -224,7 +224,7 @@ export function NavbarComponent() {
       <Navbar.Logo>
         <Link href="/" aria-label="Kushagra Dhawan - Homepage">
           <Avatar
-            src="/kushagra-logo.svg"
+            src="/new-kushagradhawan-logo.svg"
             fallback="KD"
             alt="Kushagra Dhawan"
             size="2"

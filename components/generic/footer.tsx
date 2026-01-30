@@ -32,7 +32,7 @@ export function Footer() {
                 fallback="K"
                 size="3"
                 color="gray"
-                src="/kushagra-logo.svg"
+                src="/new-kushagradhawan-logo.svg"
               />
               <Flex direction="column" gap="4">
                 <FooterBlock.Tagline>
