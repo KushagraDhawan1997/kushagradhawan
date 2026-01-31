@@ -16,10 +16,10 @@ importers:
         version: 1.1.4(react@19.2.3)
       '@kushagradhawan/kookie-blocks':
         specifier: ^0.1.46
-        version: 0.1.47(@kushagradhawan/kookie-ui@0.1.147(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 0.1.47(@kushagradhawan/kookie-ui@0.2.3(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@kushagradhawan/kookie-ui':
-        specifier: ^0.1.147
-        version: 0.1.147(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^0.2.3
+        version: 0.2.3(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@mdx-js/loader':
         specifier: ^3.1.1
         version: 3.1.1
@@ -390,8 +390,8 @@ packages:
       marked:
         optional: true
 
-  '@kushagradhawan/kookie-ui@0.1.147':
-    resolution: {integrity: sha512-Ws/PIdBYOFaX2gR9Q+7KtJ+D9jg+7215pioYbl/BBNMWwdhPqbT8SkdAi/3xG1/irkTRIfMZIsRfKfrw3sqZuQ==}
+  '@kushagradhawan/kookie-ui@0.2.3':
+    resolution: {integrity: sha512-zLPRAXAoXHCdVjtMGoAOupbJFfe8EPdUfPYCkb6p+wdlRRJE+scHLs9yjGeP6pQVla02lCaUVjihivsR9cdIJw==}
     engines: {node: '>=16'}
     peerDependencies:
       '@types/react': '*'
@@ -3843,11 +3843,11 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@kushagradhawan/kookie-blocks@0.1.47(@kushagradhawan/kookie-ui@0.1.147(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@kushagradhawan/kookie-blocks@0.1.47(@kushagradhawan/kookie-ui@0.2.3(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@hugeicons/core-free-icons': 3.1.1
       '@hugeicons/react': 1.1.4(react@19.2.3)
-      '@kushagradhawan/kookie-ui': 0.1.147(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@kushagradhawan/kookie-ui': 0.2.3(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       harden-react-markdown: 1.1.7(react-markdown@9.1.0(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
@@ -3859,7 +3859,7 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@kushagradhawan/kookie-ui@0.1.147(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@kushagradhawan/kookie-ui@0.2.3(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@radix-ui/colors': 3.0.0
       '@radix-ui/react-accordion': 1.2.12(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
