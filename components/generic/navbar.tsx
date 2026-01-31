@@ -30,7 +30,7 @@ function ThemeToggle() {
   const { appearance, onAppearanceChange } = useThemeContext();
   const [mounted, setMounted] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<"system" | "light" | "dark">(
-    "system"
+    "system",
   );
 
   // Only render after mounting to avoid hydration issues
@@ -52,7 +52,7 @@ function ThemeToggle() {
       setCurrentTheme(savedTheme);
       if (savedTheme === "system") {
         const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
+          "(prefers-color-scheme: dark)",
         ).matches;
         onAppearanceChange(prefersDark ? "dark" : "light");
       } else {
@@ -62,7 +62,7 @@ function ThemeToggle() {
       // Default to system preference
       setCurrentTheme("system");
       const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
+        "(prefers-color-scheme: dark)",
       ).matches;
       onAppearanceChange(prefersDark ? "dark" : "light");
       localStorage.setItem("kookie-theme", "system");
@@ -75,7 +75,7 @@ function ThemeToggle() {
 
     if (theme === "system") {
       const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
+        "(prefers-color-scheme: dark)",
       ).matches;
       onAppearanceChange(prefersDark ? "dark" : "light");
     } else {
@@ -228,7 +228,6 @@ export function NavbarComponent() {
             fallback="KD"
             alt="Kushagra Dhawan"
             size="2"
-            radius="full"
           />
         </Link>
       </Navbar.Logo>
