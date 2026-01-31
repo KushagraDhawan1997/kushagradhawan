@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Generic Components Module
  *

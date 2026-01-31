@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Navbar } from "@/components/generic/navbar";
 import { HashScrollHandler, Footer } from "@/components/generic";
-import { Box, Theme, ThemePanel } from "@kushagradhawan/kookie-ui";
+import { Providers, Box } from "@/components/providers";
 import "highlight.js/styles/github-dark.css";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
@@ -158,13 +158,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <Theme
-          accentColor="gray"
-          grayColor="auto"
-          material="solid"
-          radius="medium"
-          fontFamily="sans"
-        >
+        <Providers>
           <HashScrollHandler />
           <Suspense fallback={<div style={{ height: "64px" }} />}>
             <Navbar />
@@ -175,8 +169,7 @@ export default function RootLayout({
           <Footer />
           {/* <QueenLukitaBlessing /> */}
           <Analytics />
-          <ThemePanel defaultOpen={false} />
-        </Theme>
+        </Providers>
       </body>
     </html>
   );
