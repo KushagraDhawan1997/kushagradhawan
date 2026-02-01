@@ -98,7 +98,7 @@ export function PortfolioSection() {
                 <Heading size="3" weight="medium">
                   {item.title}
                 </Heading>
-                <Text size="2" color="gray">
+                <Text size="3" color="gray">
                   {item.description}
                 </Text>
               </Flex>
