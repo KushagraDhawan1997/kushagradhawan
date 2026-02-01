@@ -6,7 +6,7 @@ import { ProductPhilosophy } from "@/components/sections/product-philosophy-sect
 // import { AboutKookieAISection } from "@/components/sections/about-kookie-ai-section";
 import { HeroSectionPersonal } from "@/components/sections/hero-section-personal";
 import { RecentArticlesSection } from "@/components/sections/recent-articles-section";
-import { getAllPosts, getLatestAnnouncement } from "@/lib/articles";
+import { getAllPosts } from "@/lib/articles";
 import type { Metadata } from "next";
 
 // Enhanced metadata for home page
@@ -26,7 +26,6 @@ interface HomeProps {
 export default async function Home({ searchParams }: HomeProps) {
   // Fetch all articles for the hero section
   const posts = getAllPosts();
-  const latestAnnouncement = getLatestAnnouncement();
   // Get view mode from URL params, default to "professional"
   const params = await searchParams;
   const viewMode =
@@ -91,7 +90,7 @@ export default async function Home({ searchParams }: HomeProps) {
 
       {viewMode === "professional" && (
         <>
-          <Hero latestAnnouncement={latestAnnouncement} />
+          <Hero />
           <PortfolioSection />
           <ExperienceSection />
           <RecentArticlesSection posts={posts} showAnnouncements />

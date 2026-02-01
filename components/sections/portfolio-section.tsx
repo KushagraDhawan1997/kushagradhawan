@@ -10,7 +10,7 @@ import {
   IconButton,
 } from "@kushagradhawan/kookie-ui";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowUpRight01Icon, Github01Icon } from "@hugeicons/core-free-icons";
+import { ArrowUpRight01Icon, GithubIcon } from "@hugeicons/core-free-icons";
 import NextLink from "next/link";
 import NextImage from "next/image";
 import { Image } from "@kushagradhawan/kookie-ui";
@@ -71,14 +71,14 @@ export function PortfolioSection() {
         gap="8"
         px={{ initial: "4", sm: "6" }}
       >
-        <Grid columns={{ initial: "1", sm: "3" }} gap="4">
+        <Grid columns={{ initial: "1", sm: "3" }} gap="2">
           {portfolioItems.map((item) => (
-            <Flex key={item.id} direction="column" gap="4" align="start">
+            <Flex key={item.id} direction="column" gap="4" align="start" py="4">
               <NextLink
                 href={item.href}
                 style={{
                   width: "100%",
-                  aspectRatio: "1/1",
+                  aspectRatio: "4/3",
                   position: "relative",
                   display: "block",
                 }}
@@ -94,7 +94,7 @@ export function PortfolioSection() {
                 />
               </NextLink>
 
-              <Flex direction="column" gap="2">
+              <Flex direction="column" gap="1">
                 <Heading size="3" weight="medium">
                   {item.title}
                 </Heading>
@@ -103,17 +103,20 @@ export function PortfolioSection() {
                 </Text>
               </Flex>
 
-              <Flex gap="2">
+              <Flex gap="2" display="none">
                 <Button asChild variant="soft" size="2" highContrast>
                   <NextLink href={item.href}>
                     More
-                    <HugeiconsIcon icon={ArrowUpRight01Icon} strokeWidth={1.75} />
+                    <HugeiconsIcon
+                      icon={ArrowUpRight01Icon}
+                      strokeWidth={1.75}
+                    />
                   </NextLink>
                 </Button>
                 {item.github && (
                   <IconButton
                     asChild
-                    variant="soft"
+                    variant="ghost"
                     size="2"
                     highContrast
                     aria-label="GitHub"
@@ -123,24 +126,22 @@ export function PortfolioSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <HugeiconsIcon icon={Github01Icon} strokeWidth={1.75} />
+                      <HugeiconsIcon icon={GithubIcon} strokeWidth={1.75} />
                     </a>
                   </IconButton>
                 )}
                 {item.externalLink && (
-                  <Button
-                    asChild
-                    variant="soft"
-                    size="2"
-                    highContrast
-                  >
+                  <Button asChild variant="soft" size="2" highContrast>
                     <a
                       href={item.externalLink}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       Womp
-                      <HugeiconsIcon icon={ArrowUpRight01Icon} strokeWidth={1.75} />
+                      <HugeiconsIcon
+                        icon={ArrowUpRight01Icon}
+                        strokeWidth={1.75}
+                      />
                     </a>
                   </Button>
                 )}

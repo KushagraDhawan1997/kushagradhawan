@@ -23,7 +23,7 @@ import NextLink from "next/link";
 import NextImage from "next/image";
 
 interface HeroProps {
-  latestAnnouncement: {
+  latestAnnouncement?: {
     slug: string;
     title: string;
     date: string;

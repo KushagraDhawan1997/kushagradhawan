@@ -162,7 +162,7 @@ export function ContactSection() {
             <Box
               position="relative"
               width="100%"
-              style={{ aspectRatio: "1/1" }}
+              style={{ aspectRatio: "3/4" }}
             >
               <Image
                 as={NextImage}
