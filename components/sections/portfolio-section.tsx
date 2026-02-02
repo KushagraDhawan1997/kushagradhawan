@@ -36,11 +36,12 @@ const portfolioItems = [
   },
   {
     id: 3,
-    title: "Kookie AI",
+    title: "Kookie Flow",
     description:
-      "Kookie AI explores how to design chat-based AI products by working within chat constraints while minimizing friction points through thoughtful UX.",
-    image: "/pages/kookie-ai/image.jpg",
-    href: "/kookie-ai",
+      "Kookie Flow is a WebGL-native node graph library for React that combines React Flow ergonomics with GPU-accelerated rendering.",
+    image: "/pages/kookie-flow/image.jpg",
+    href: "/kookie-flow",
+    github: "https://github.com/KushagraDhawan1997/kookie-flow",
   },
   {
     id: 4,
@@ -53,12 +54,11 @@ const portfolioItems = [
   },
   {
     id: 5,
-    title: "Kookie Flow",
+    title: "Kookie AI",
     description:
-      "Kookie Flow is a WebGL-native node graph library for React that combines React Flow ergonomics with GPU-accelerated rendering.",
-    image: "/pages/kookie-flow/image.jpg",
-    href: "/kookie-flow",
-    github: "https://github.com/KushagraDhawan1997/kookie-flow",
+      "Kookie AI explores how to design chat-based AI products by working within chat constraints while minimizing friction points through thoughtful UX.",
+    image: "/pages/kookie-ai/image.jpg",
+    href: "/kookie-ai",
   },
 ];
 
