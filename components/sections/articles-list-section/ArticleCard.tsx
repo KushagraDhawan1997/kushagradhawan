@@ -35,7 +35,7 @@ export function ArticleCard({ post }: ArticleCardProps) {
       {/* Article image */}
       {post.image && (
         <Inset clip="padding-box">
-          <AspectRatio ratio={16 / 10}>
+          <AspectRatio ratio={4 / 3}>
             <Image
               as={NextImage}
               src={post.image}
