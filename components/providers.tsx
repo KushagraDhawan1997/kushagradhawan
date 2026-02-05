@@ -1,15 +1,16 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
-import { Theme, ThemePanel, Box } from '@kushagradhawan/kookie-ui';
-import { WebGLImagesProvider, useReducedMotion } from '@/components/webgl';
-import { useLenisSetup } from '@/components/webgl/hooks/use-lenis';
+import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { Theme, ThemePanel, Box } from "@kushagradhawan/kookie-ui";
+import { WebGLImagesProvider, useReducedMotion } from "@/components/webgl";
+import { useLenisSetup } from "@/components/webgl/hooks/use-lenis";
 
 // Dynamic import to avoid SSR issues with Three.js
 const WebGLCanvas = dynamic(
-  () => import('@/components/webgl/webgl-canvas').then((mod) => mod.WebGLCanvas),
-  { ssr: false }
+  () =>
+    import("@/components/webgl/webgl-canvas").then((mod) => mod.WebGLCanvas),
+  { ssr: false },
 );
 
 const MOBILE_BREAKPOINT = 768;
@@ -34,8 +35,8 @@ function useIsMobile() {
     };
 
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   return isMobile;
