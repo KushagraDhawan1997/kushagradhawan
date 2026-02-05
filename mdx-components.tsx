@@ -5,7 +5,7 @@ import { WebGLImageTracker } from "@/components/webgl";
 
 // Custom MDX image with WebGL support
 function MDXImage({ src, alt, ...props }: React.ComponentProps<"img">) {
-  if (!src) return null;
+  if (!src || typeof src !== "string") return null;
 
   // Generate unique ID from src
   const id = `mdx-${src.replace(/[^a-zA-Z0-9]/g, "-")}`;
