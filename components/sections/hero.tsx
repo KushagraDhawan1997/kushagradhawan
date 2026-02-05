@@ -11,6 +11,8 @@ import {
   Avatar,
   Tooltip,
   Callout,
+  Text,
+  Heading,
 } from "@kushagradhawan/kookie-ui";
 import { HoverCard } from "@kushagradhawan/kookie-ui";
 import { Hero as HeroBlock } from "@kushagradhawan/kookie-blocks";
@@ -119,7 +121,50 @@ export function Hero({ latestAnnouncement }: HeroProps) {
                 </Flex>
               </HoverCard.Content>
             </HoverCard.Root>
-            , KookieAI.
+            ,{" "}
+            <HoverCard.Root>
+              <HoverCard.Trigger>
+                <Link
+                  color="blue"
+                  target="_blank"
+                  href="https://github.com/KushagraDhawan1997/kookie-flow"
+                >
+                  KookieFlow
+                </Link>
+              </HoverCard.Trigger>
+              <HoverCard.Content maxWidth="320px">
+                <Flex direction="column" gap="2" p="1">
+                  <Heading size="3" weight="medium">
+                    Kookie Flow
+                  </Heading>
+                  <Text size="2" color="gray">
+                    A WebGL-native node graph library for React that combines
+                    React Flow ergonomics with GPU-accelerated rendering.
+                  </Text>
+                </Flex>
+              </HoverCard.Content>
+            </HoverCard.Root>
+            ,{" "}
+            <HoverCard.Root>
+              <HoverCard.Trigger>
+                <Link color="blue" href="/kookie-ai">
+                  KookieAI
+                </Link>
+              </HoverCard.Trigger>
+              <HoverCard.Content maxWidth="320px">
+                <Flex direction="column" gap="2" p="1">
+                  <Heading size="3" weight="medium">
+                    Kookie AI
+                  </Heading>
+                  <Text size="2" color="gray">
+                    Exploring how to design chat-based AI products by working
+                    within chat constraints while minimizing friction through
+                    thoughtful UX.
+                  </Text>
+                </Flex>
+              </HoverCard.Content>
+            </HoverCard.Root>
+            .
           </HeroBlock.Description>
 
           <HeroBlock.Actions>

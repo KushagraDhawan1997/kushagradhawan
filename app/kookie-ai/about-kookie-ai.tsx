@@ -32,7 +32,7 @@ export function AboutKookieAI() {
               </Hero.Meta>
 
               <Flex direction="column" gap="4">
-                <Flex direction="row" align="center" gap="2">
+                <Flex direction="row" align="center" justify="center" gap="2">
                   <Badge highContrast>Coming Soon</Badge>
                   <Badge highContrast color="blue">
                     AI
