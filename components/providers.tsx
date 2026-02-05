@@ -73,7 +73,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       grayColor="auto"
       material="solid"
       radius="medium"
-      fontFamily="sans"
+      fontFamily="serif"
     >
       <WebGLImagesProvider enabled={webglEnabled}>
         {children}
