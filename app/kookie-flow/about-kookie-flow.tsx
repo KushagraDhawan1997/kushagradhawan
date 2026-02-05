@@ -83,6 +83,7 @@ export function AboutKookieFlow({ posts = [] }: { posts?: ArticleProps[] }) {
                     sizes="(max-width: 768px) 100vw, 1200px"
                     style={{ objectFit: "cover" }}
                     priority
+                    loading="eager"
                     decoding="async"
                   />
                 </WebGLImageTracker>

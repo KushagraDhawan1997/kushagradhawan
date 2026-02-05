@@ -108,6 +108,7 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
                 sizes="(max-width: 768px) 100vw, 1200px"
                 style={{ objectFit: "cover" }}
                 priority
+                loading="eager"
                 decoding="async"
               />
             </WebGLImageTracker>
