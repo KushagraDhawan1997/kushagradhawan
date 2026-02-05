@@ -2,6 +2,7 @@
 
 import React from "react";
 import {
+  AspectRatio,
   Button,
   Container,
   Flex,
@@ -25,6 +26,7 @@ import { RecentArticlesSection } from "@/components/sections/recent-articles-sec
 import { ArticleProps } from "@/components/sections/articles-list-section/ArticlesListGrid";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { UserGroup02Icon, DeliveryBox01Icon } from "@hugeicons/core-free-icons";
+import { WebGLImageTracker } from "@/components/webgl";
 
 type WompStat = {
   iconName: "Users" | "Box";
@@ -117,23 +119,9 @@ export function AboutWomp({ posts = [] }: { posts?: ArticleProps[] }) {
   return (
     <>
       <Section position="relative" size="4">
-        <Container size="4" px={{ initial: "4", sm: "6" }}>
-          <Hero.Root layout={{ initial: "stacked", md: "split" }} gap="12">
-            <Hero.Media style={{ flex: 1, alignSelf: "stretch" }}>
-              <Box position="relative" width="100%" height="100%" minHeight="300px">
-                <Image
-                  as={NextImage}
-                  src="/pages/womp/image.jpg"
-                  alt="Womp Hero"
-                  fill
-                  radius="none"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  style={{ objectFit: "cover" }}
-                />
-              </Box>
-            </Hero.Media>
-
-            <Flex direction="column" gap="6" style={{ flex: 1 }}>
+        <Hero.Root layout="stacked" gap="12">
+          <Container size="2">
+            <Flex direction="column" gap="6" align="center">
               <Hero.Meta>
                 <Avatar
                   fallback="K"
@@ -143,12 +131,12 @@ export function AboutWomp({ posts = [] }: { posts?: ArticleProps[] }) {
                 />
               </Hero.Meta>
 
-              <Hero.Title align="left">
+              <Hero.Title>
                 Womp is a browser-based 3D modeling platform that makes 3D
                 beginner-friendly and easy.
               </Hero.Title>
 
-              <Hero.Description align="left" color="gray">
+              <Hero.Description color="gray">
                 I lead Product & Design at{" "}
                 <HoverCard.Root>
                   <HoverCard.Trigger>
@@ -170,7 +158,7 @@ export function AboutWomp({ posts = [] }: { posts?: ArticleProps[] }) {
                 , empowering everyone to bring their ideas to life in minutes.
               </Hero.Description>
 
-              <Hero.Actions direction="column" align="start" gap="4">
+              <Hero.Actions direction="column" align="center" gap="4">
                 <Button asChild variant="solid" size="2" highContrast>
                   <a
                     href="https://womp.com"
@@ -185,8 +173,26 @@ export function AboutWomp({ posts = [] }: { posts?: ArticleProps[] }) {
                 </Text>
               </Hero.Actions>
             </Flex>
-          </Hero.Root>
-        </Container>
+          </Container>
+
+          <Hero.Media style={{ width: "100%" }}>
+            <Box px={{ initial: "4", sm: "6" }} width="100%">
+              <AspectRatio ratio={3 / 1}>
+                <WebGLImageTracker id="womp-hero" src="/pages/womp/image.jpg">
+                  <Image
+                    as={NextImage}
+                    src="/pages/womp/image.jpg"
+                    alt="Womp Hero"
+                    fill
+                    radius="none"
+                    sizes="(max-width: 768px) 100vw, 1200px"
+                    style={{ objectFit: "cover" }}
+                  />
+                </WebGLImageTracker>
+              </AspectRatio>
+            </Box>
+          </Hero.Media>
+        </Hero.Root>
       </Section>
 
       <Testimonial
@@ -197,24 +203,21 @@ export function AboutWomp({ posts = [] }: { posts?: ArticleProps[] }) {
       />
 
       <Section size="4">
-        <Container size="4">
-          <Flex
-            direction="column"
-            gap="8"
-            py="6"
-            px={{ initial: "4", sm: "6" }}
-          >
-            <WompIllustrationGrid />
-            <WompStats />
-          </Flex>
-        </Container>
+        <Flex direction="column" gap="8" py="6" px={{ initial: "4", sm: "6" }}>
+          <WompIllustrationGrid />
+          <WompStats />
+        </Flex>
       </Section>
 
       <Leadership />
 
       <ProductPhilosophy />
 
-      <RecentArticlesSection posts={posts} title="Articles about Womp" showAnnouncements />
+      <RecentArticlesSection
+        posts={posts}
+        title="Articles about Womp"
+        showAnnouncements
+      />
     </>
   );
 }

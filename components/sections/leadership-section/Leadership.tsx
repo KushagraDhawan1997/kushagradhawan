@@ -13,6 +13,7 @@ import { AspectRatio, Box, Button, Image, Container, Flex, Grid, Heading, Sectio
 import Link from "next/link";
 import NextImage from "next/image";
 import { leadershipItems } from "@/components/sections/leadership-section/leadershipData";
+import { WebGLImageTracker } from "@/components/webgl";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Briefcase01Icon,
@@ -63,17 +64,19 @@ export function Leadership() {
               , all in one.
             </Heading>
           </Flex>
-          <Box width="100%">
+          <Box width="100%" position="relative">
             <AspectRatio ratio={16 / 10}>
-              <Image
-                as={NextImage}
-                src="/articles/product-leadership/image.jpg"
-                alt="Leadership"
-                fill
-                radius="none"
-                sizes="(max-width: 768px) 100vw, 1200px"
-                style={{ objectFit: "cover" }}
-              />
+              <WebGLImageTracker id="leadership-what-i-do" src="/articles/product-leadership/image.jpg">
+                <Image
+                  as={NextImage}
+                  src="/articles/product-leadership/image.jpg"
+                  alt="Leadership"
+                  fill
+                  radius="none"
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                  style={{ objectFit: "cover" }}
+                />
+              </WebGLImageTracker>
             </AspectRatio>
           </Box>
 

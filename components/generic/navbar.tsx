@@ -219,7 +219,7 @@ export function NavbarComponent() {
   const pathname = usePathname();
 
   return (
-    <Navbar.Root position="fixed" size="3">
+    <Navbar.Root position="fixed" size="3" style={{ background: "transparent" }}>
       {/* Logo */}
       <Navbar.Logo>
         <Link href="/" aria-label="Kushagra Dhawan - Homepage">

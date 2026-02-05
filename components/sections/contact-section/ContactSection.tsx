@@ -30,6 +30,7 @@ import {
   Tick01Icon,
 } from "@hugeicons/core-free-icons";
 import NextImage from "next/image";
+import { WebGLImageTracker } from "@/components/webgl";
 
 /**
  * ContactSection Component
@@ -164,15 +165,17 @@ export function ContactSection() {
               width="100%"
               style={{ aspectRatio: "3/4" }}
             >
-              <Image
-                as={NextImage}
-                src="/sections/contact/image.jpg"
-                alt="Contact"
-                fill
-                radius="none"
-                sizes="(max-width: 768px) 100vw, 600px"
-                style={{ objectFit: "cover" }}
-              />
+              <WebGLImageTracker id="contact-image" src="/sections/contact/image.jpg">
+                <Image
+                  as={NextImage}
+                  src="/sections/contact/image.jpg"
+                  alt="Contact"
+                  fill
+                  radius="none"
+                  sizes="(max-width: 768px) 100vw, 600px"
+                  style={{ objectFit: "cover" }}
+                />
+              </WebGLImageTracker>
             </Box>
           </Grid>
         </Container>

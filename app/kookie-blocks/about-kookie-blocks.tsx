@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  AspectRatio,
   Avatar,
   Button,
   Container,
@@ -18,29 +19,16 @@ import { RecentArticlesSection } from "@/components/sections/recent-articles-sec
 import { ArticleProps } from "@/components/sections/articles-list-section/ArticlesListGrid";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
+import { WebGLImageTracker } from "@/components/webgl";
 
 
 export function AboutKookieBlocks({ posts = [] }: { posts?: ArticleProps[] }) {
   return (
     <>
       <Section position="relative" size="4">
-        <Container size="4" px={{ initial: "4", sm: "6" }}>
-          <Hero.Root layout={{ initial: "stacked", md: "split" }} gap="12">
-            <Hero.Media style={{ flex: 1, alignSelf: "stretch" }}>
-              <Box position="relative" width="100%" height="100%" minHeight="300px">
-                <Image
-                  as={NextImage}
-                  src="/pages/kookie-blocks/image.jpg"
-                  alt="Kookie Blocks Hero"
-                  fill
-                  radius="none"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  style={{ objectFit: "cover" }}
-                />
-              </Box>
-            </Hero.Media>
-
-            <Flex direction="column" gap="6" style={{ flex: 1 }}>
+        <Hero.Root layout="stacked" gap="12">
+          <Container size="2">
+            <Flex direction="column" gap="6" align="center">
               <Hero.Meta>
                 <Avatar
                   fallback="K"
@@ -50,11 +38,11 @@ export function AboutKookieBlocks({ posts = [] }: { posts?: ArticleProps[] }) {
                 />
               </Hero.Meta>
 
-              <Hero.Title align="left">
+              <Hero.Title>
                 Kookie Blocks is a higher-level implementation of Kookie UI.
               </Hero.Title>
 
-              <Hero.Description align="left" color="gray">
+              <Hero.Description color="gray">
                 Building on the foundations of{" "}
                 <Text as="span" highContrast>
                   Kookie UI
@@ -81,8 +69,26 @@ export function AboutKookieBlocks({ posts = [] }: { posts?: ArticleProps[] }) {
                 </Button>
               </Hero.Actions>
             </Flex>
-          </Hero.Root>
-        </Container>
+          </Container>
+
+          <Hero.Media style={{ width: '100%' }}>
+            <Box px={{ initial: "4", sm: "6" }} width="100%">
+              <AspectRatio ratio={3 / 1}>
+                <WebGLImageTracker id="kookie-blocks-hero" src="/pages/kookie-blocks/image.jpg">
+                  <Image
+                    as={NextImage}
+                    src="/pages/kookie-blocks/image.jpg"
+                    alt="Kookie Blocks Hero"
+                    fill
+                    radius="none"
+                    sizes="(max-width: 768px) 100vw, 1200px"
+                    style={{ objectFit: "cover" }}
+                  />
+                </WebGLImageTracker>
+              </AspectRatio>
+            </Box>
+          </Hero.Media>
+        </Hero.Root>
       </Section>
 
       <Testimonial

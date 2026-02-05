@@ -15,6 +15,7 @@ import {
 } from "@kushagradhawan/kookie-ui";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { News01Icon, Book03Icon } from "@hugeicons/core-free-icons";
+import { WebGLImageTracker } from "@/components/webgl";
 
 interface ArticleCardProps {
   post: ArticleProps;
@@ -36,15 +37,17 @@ export function ArticleCard({ post }: ArticleCardProps) {
       {post.image && (
         <Inset clip="padding-box">
           <AspectRatio ratio={4 / 3}>
-            <Image
-              as={NextImage}
-              src={post.image}
-              alt={post.alt || post.title}
-              fill
-              radius="none"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              style={{ objectFit: "cover" }}
-            />
+            <WebGLImageTracker id={`article-${post.slug}`} src={post.image}>
+              <Image
+                as={NextImage}
+                src={post.image}
+                alt={post.alt || post.title}
+                fill
+                radius="none"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                style={{ objectFit: "cover" }}
+              />
+            </WebGLImageTracker>
           </AspectRatio>
         </Inset>
       )}

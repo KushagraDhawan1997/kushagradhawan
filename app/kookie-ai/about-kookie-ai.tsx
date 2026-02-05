@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  AspectRatio,
   Avatar,
   Badge,
   Container,
@@ -12,28 +13,15 @@ import {
 } from "@kushagradhawan/kookie-ui";
 import { Hero } from "@kushagradhawan/kookie-blocks";
 import NextImage from "next/image";
+import { WebGLImageTracker } from "@/components/webgl";
 
 export function AboutKookieAI() {
   return (
     <>
       <Section position="relative" size="4">
-        <Container size="4" px={{ initial: "4", sm: "6" }}>
-          <Hero.Root layout={{ initial: "stacked", md: "split" }} gap="12">
-            <Hero.Media style={{ flex: 1, alignSelf: "stretch" }}>
-              <Box position="relative" width="100%" height="100%" minHeight="300px">
-                <Image
-                  as={NextImage}
-                  src="/pages/kookie-ai/image.jpg"
-                  alt="Kookie AI Hero"
-                  fill
-                  radius="none"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  style={{ objectFit: "cover" }}
-                />
-              </Box>
-            </Hero.Media>
-
-            <Flex direction="column" gap="6" style={{ flex: 1 }}>
+        <Hero.Root layout="stacked" gap="12">
+          <Container size="2">
+            <Flex direction="column" gap="6" align="center">
               <Hero.Meta>
                 <Avatar
                   fallback="K"
@@ -51,13 +39,13 @@ export function AboutKookieAI() {
                   </Badge>
                 </Flex>
 
-                <Hero.Title align="left">
+                <Hero.Title>
                   Kookie AI is a UX-first desktop web product where conversations
                   live as a branching graph of nodes.
                 </Hero.Title>
               </Flex>
 
-              <Hero.Description align="left" color="gray">
+              <Hero.Description color="gray">
                 Each branch can diverge, transform, or produce artifacts — giving
                 knowledge workers and creators a powerful OS for exploring,
                 remixing, and producing with AI.{" "}
@@ -66,8 +54,26 @@ export function AboutKookieAI() {
                 </Text>
               </Hero.Description>
             </Flex>
-          </Hero.Root>
-        </Container>
+          </Container>
+
+          <Hero.Media style={{ width: '100%' }}>
+            <Box px={{ initial: "4", sm: "6" }} width="100%">
+              <AspectRatio ratio={3 / 1}>
+                <WebGLImageTracker id="kookie-ai-hero" src="/pages/kookie-ai/image.jpg">
+                  <Image
+                    as={NextImage}
+                    src="/pages/kookie-ai/image.jpg"
+                    alt="Kookie AI Hero"
+                    fill
+                    radius="none"
+                    sizes="(max-width: 768px) 100vw, 1200px"
+                    style={{ objectFit: "cover" }}
+                  />
+                </WebGLImageTracker>
+              </AspectRatio>
+            </Box>
+          </Hero.Media>
+        </Hero.Root>
       </Section>
     </>
   );

@@ -14,6 +14,7 @@ import { ArrowUpRight01Icon, GithubIcon } from "@hugeicons/core-free-icons";
 import NextLink from "next/link";
 import NextImage from "next/image";
 import { Image } from "@kushagradhawan/kookie-ui";
+import { WebGLImageTracker } from "@/components/webgl";
 
 const portfolioItems = [
   {
@@ -71,7 +72,7 @@ export function PortfolioSection() {
         gap="8"
         px={{ initial: "4", sm: "6" }}
       >
-        <Grid columns={{ initial: "1", sm: "3" }} gap="2">
+        <Grid columns={{ initial: "1", sm: "2" }} gap="2">
           {portfolioItems.map((item) => (
             <Flex key={item.id} direction="column" gap="4" align="start" py="4">
               <NextLink
@@ -83,15 +84,17 @@ export function PortfolioSection() {
                   display: "block",
                 }}
               >
-                <Image
-                  as={NextImage}
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  radius="none"
-                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
-                  style={{ cursor: "pointer", objectFit: "cover" }}
-                />
+                <WebGLImageTracker id={`portfolio-${item.id}`} src={item.image}>
+                  <Image
+                    as={NextImage}
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    radius="none"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
+                    style={{ cursor: "pointer", objectFit: "cover" }}
+                  />
+                </WebGLImageTracker>
               </NextLink>
 
               <Flex direction="column" gap="1">

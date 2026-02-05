@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  AspectRatio,
   Avatar,
   Button,
   Container,
@@ -17,29 +18,16 @@ import { ArticleProps } from "@/components/sections/articles-list-section/Articl
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 import NextImage from "next/image";
+import { WebGLImageTracker } from "@/components/webgl";
 
 export function AboutKookieFlow({ posts = [] }: { posts?: ArticleProps[] }) {
 
   return (
     <>
       <Section position="relative" size="4">
-        <Container size="4" px={{ initial: "4", sm: "6" }}>
-          <Hero.Root layout={{ initial: "stacked", md: "split" }} gap="12">
-            <Hero.Media style={{ flex: 1, alignSelf: "stretch" }}>
-              <Box position="relative" width="100%" height="100%" minHeight="300px">
-                <Image
-                  as={NextImage}
-                  src="/pages/kookie-flow/image.jpg"
-                  alt="Kookie Flow Hero"
-                  fill
-                  radius="none"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  style={{ objectFit: "cover" }}
-                />
-              </Box>
-            </Hero.Media>
-
-            <Flex direction="column" gap="6" style={{ flex: 1 }}>
+        <Hero.Root layout="stacked" gap="12">
+          <Container size="2">
+            <Flex direction="column" gap="6" align="center">
               <Hero.Meta>
                 <Avatar
                   fallback="K"
@@ -49,11 +37,11 @@ export function AboutKookieFlow({ posts = [] }: { posts?: ArticleProps[] }) {
                 />
               </Hero.Meta>
 
-              <Hero.Title align="left">
+              <Hero.Title>
                 Kookie Flow is a WebGL-native node graph library for React.
               </Hero.Title>
 
-              <Hero.Description align="left" color="gray">
+              <Hero.Description color="gray">
                 Combining the ergonomic design patterns of{" "}
                 <Text as="span" highContrast>
                   React Flow
@@ -80,8 +68,26 @@ export function AboutKookieFlow({ posts = [] }: { posts?: ArticleProps[] }) {
                 </Button>
               </Hero.Actions>
             </Flex>
-          </Hero.Root>
-        </Container>
+          </Container>
+
+          <Hero.Media style={{ width: '100%' }}>
+            <Box px={{ initial: "4", sm: "6" }} width="100%">
+              <AspectRatio ratio={3 / 1}>
+                <WebGLImageTracker id="kookie-flow-hero" src="/pages/kookie-flow/image.jpg">
+                  <Image
+                    as={NextImage}
+                    src="/pages/kookie-flow/image.jpg"
+                    alt="Kookie Flow Hero"
+                    fill
+                    radius="none"
+                    sizes="(max-width: 768px) 100vw, 1200px"
+                    style={{ objectFit: "cover" }}
+                  />
+                </WebGLImageTracker>
+              </AspectRatio>
+            </Box>
+          </Hero.Media>
+        </Hero.Root>
       </Section>
 
       <RecentArticlesSection

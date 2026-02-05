@@ -15,6 +15,7 @@ import {
 import { MDXProvider } from "@mdx-js/react";
 import { useMDXComponents } from "../../../mdx-components";
 import NextImage from "next/image";
+import { WebGLImageTracker } from "@/components/webgl";
 interface ArticleContentProps {
   post: {
     slug: string;
@@ -90,22 +91,27 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
 
   return (
     <Box>
-      <Container size="3">
+      <Box px={{ initial: "4", sm: "6" }}>
         {/* Article header image */}
         {post.image && (
-          <AspectRatio ratio={4 / 3}>
-            <Image
-              as={NextImage}
+          <AspectRatio ratio={3 / 1}>
+            <WebGLImageTracker
+              id={`article-hero-${post.slug}`}
               src={post.image}
-              alt={post.alt || post.title}
-              fill
-              radius="none"
-              sizes="(max-width: 768px) 100vw, 1200px"
-              style={{ objectFit: "cover" }}
-            />
+            >
+              <Image
+                as={NextImage}
+                src={post.image}
+                alt={post.alt || post.title}
+                fill
+                radius="none"
+                sizes="(max-width: 768px) 100vw, 1200px"
+                style={{ objectFit: "cover" }}
+              />
+            </WebGLImageTracker>
           </AspectRatio>
         )}
-      </Container>
+      </Box>
       <Container size="2">
         <Flex direction="column" gap="9" p="6">
           <article>
