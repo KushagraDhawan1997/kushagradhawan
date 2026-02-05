@@ -46,6 +46,7 @@ export function ArticleCard({ post }: ArticleCardProps) {
                 radius="none"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 style={{ objectFit: "cover" }}
+                decoding="async"
               />
             </WebGLImageTracker>
           </AspectRatio>

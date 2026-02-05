@@ -174,6 +174,7 @@ export function ContactSection() {
                   radius="none"
                   sizes="(max-width: 768px) 100vw, 600px"
                   style={{ objectFit: "cover" }}
+                  decoding="async"
                 />
               </WebGLImageTracker>
             </Box>

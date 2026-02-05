@@ -93,6 +93,8 @@ export function PortfolioSection() {
                     radius="none"
                     sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
                     style={{ cursor: "pointer", objectFit: "cover" }}
+                    priority={item.id <= 2}
+                    decoding="async"
                   />
                 </WebGLImageTracker>
               </NextLink>

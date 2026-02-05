@@ -75,6 +75,7 @@ export function Leadership() {
                   radius="none"
                   sizes="(max-width: 768px) 100vw, 1200px"
                   style={{ objectFit: "cover" }}
+                  decoding="async"
                 />
               </WebGLImageTracker>
             </AspectRatio>

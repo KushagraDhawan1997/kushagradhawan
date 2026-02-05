@@ -68,6 +68,8 @@ export function AboutKookieAI() {
                     radius="none"
                     sizes="(max-width: 768px) 100vw, 1200px"
                     style={{ objectFit: "cover" }}
+                    priority
+                    decoding="async"
                   />
                 </WebGLImageTracker>
               </AspectRatio>

@@ -27,6 +27,7 @@ function MDXImage({ src, alt, ...props }: React.ComponentProps<"img">) {
           fill
           sizes="(max-width: 768px) 100vw, 800px"
           style={{ objectFit: "cover", borderRadius: "var(--radius-3)" }}
+          decoding="async"
         />
       </WebGLImageTracker>
     </span>
