@@ -2,7 +2,8 @@
 
 import React from "react";
 import { Box, Tooltip, IconButton } from "@kushagradhawan/kookie-ui";
-import { Info } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { InformationCircleIcon } from "@hugeicons/core-free-icons";
 
 interface AIImageWithPromptProps {
   /**
@@ -36,7 +37,7 @@ export function AIImageWithPrompt({ prompt, children, className }: AIImageWithPr
       <Box position="absolute" bottom="2" right="2" style={{ zIndex: 10 }}>
         <Tooltip content={prompt}>
           <IconButton size="2" variant="ghost" highContrast aria-label="View AI prompt">
-            <Info size={16} />
+            <HugeiconsIcon icon={InformationCircleIcon} strokeWidth={1.75} />
           </IconButton>
         </Tooltip>
       </Box>

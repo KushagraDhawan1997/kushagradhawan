@@ -11,7 +11,15 @@
 import React from "react";
 import { Button, Container, Dialog, Flex, Grid, Heading, Section, Text, Card, Badge, VisuallyHidden, Inset, Image } from "@kushagradhawan/kookie-ui";
 import { kookieAiCapabilities, type KookieAiCapability } from "./kookieAiData";
-import { GitBranch, Zap, FileText, Layout, Link, Monitor } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import {
+  GitBranchIcon,
+  ZapIcon,
+  File01Icon,
+  DashboardSquare01Icon,
+  Link01Icon,
+  ComputerIcon,
+} from "@hugeicons/core-free-icons";
 import { RecentArticlesSection } from "@/components/sections/recent-articles-section";
 import { ArticleProps } from "@/components/sections/articles-list-section/ArticlesListGrid";
 
@@ -70,9 +78,9 @@ function KookieAiCapabilityCard({ capability, icon }: { capability: KookieAiCapa
 export function AboutKookieAISection({ posts = [] }: { posts?: ArticleProps[] }) {
   // Map capabilities to their icons
   const getCapabilityIcon = (index: number) => {
-    const icons = [GitBranch, Zap, FileText, Layout, Link, Monitor];
-    const Icon = icons[index];
-    return Icon ? <Icon size={20} /> : null;
+    const icons = [GitBranchIcon, ZapIcon, File01Icon, DashboardSquare01Icon, Link01Icon, ComputerIcon];
+    const icon = icons[index];
+    return icon ? <HugeiconsIcon icon={icon} strokeWidth={1.75} /> : null;
   };
 
   return (

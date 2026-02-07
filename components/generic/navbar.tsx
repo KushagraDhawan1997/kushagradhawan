@@ -14,8 +14,12 @@ import {
 } from "@kushagradhawan/kookie-ui";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Sun, Moon, Monitor } from "lucide-react";
-import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
+import {
+  ArrowUpRight01Icon,
+  Sun02Icon,
+  Moon02Icon,
+  ComputerIcon,
+} from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
 /**
@@ -91,12 +95,12 @@ function ThemeToggle() {
   const getThemeIcon = () => {
     switch (currentTheme) {
       case "light":
-        return <Sun />;
+        return <HugeiconsIcon icon={Sun02Icon} strokeWidth={1.75} />;
       case "dark":
-        return <Moon />;
+        return <HugeiconsIcon icon={Moon02Icon} strokeWidth={1.75} />;
       case "system":
       default:
-        return <Monitor />;
+        return <HugeiconsIcon icon={ComputerIcon} strokeWidth={1.75} />;
     }
   };
 
@@ -114,22 +118,16 @@ function ThemeToggle() {
       </DropdownMenu.Trigger>
       <DropdownMenu.Content size="2" highContrast variant="soft" align="end">
         <DropdownMenu.Item onClick={() => handleThemeChange("system")}>
-          <Flex align="center" gap="2">
-            <Monitor />
-            System
-          </Flex>
+          <HugeiconsIcon icon={ComputerIcon} strokeWidth={1.75} />
+          System
         </DropdownMenu.Item>
         <DropdownMenu.Item onClick={() => handleThemeChange("light")}>
-          <Flex align="center" gap="2">
-            <Sun />
-            Light
-          </Flex>
+          <HugeiconsIcon icon={Sun02Icon} strokeWidth={1.75} />
+          Light
         </DropdownMenu.Item>
         <DropdownMenu.Item onClick={() => handleThemeChange("dark")}>
-          <Flex align="center" gap="2">
-            <Moon />
-            Dark
-          </Flex>
+          <HugeiconsIcon icon={Moon02Icon} strokeWidth={1.75} />
+          Dark
         </DropdownMenu.Item>
       </DropdownMenu.Content>
     </DropdownMenu.Root>
@@ -219,7 +217,11 @@ export function NavbarComponent() {
   const pathname = usePathname();
 
   return (
-    <Navbar.Root position="fixed" size="3" style={{ background: "transparent" }}>
+    <Navbar.Root
+      position="fixed"
+      size="3"
+      style={{ background: "transparent" }}
+    >
       {/* Logo */}
       <Navbar.Logo>
         <Link href="/" aria-label="Kushagra Dhawan - Homepage">

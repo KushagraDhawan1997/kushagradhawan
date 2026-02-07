@@ -23,7 +23,13 @@ import {
 } from "@kushagradhawan/kookie-ui";
 import Link from "next/link";
 import { capabilities, type Capability } from "./about-section-data";
-import { Users, Target, Code2, Mail } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import {
+  UserGroup02Icon,
+  Target01Icon,
+  CodeIcon,
+  Mail01Icon,
+} from "@hugeicons/core-free-icons";
 
 // Simple capability card with dialog functionality
 function CapabilityCard({
@@ -118,7 +124,7 @@ export function AboutSection() {
           {/* Call-to-action buttons */}
           <Flex direction="row" gap="2">
             <Button variant="solid" size="3" highContrast>
-              <Mail />
+              <HugeiconsIcon icon={Mail01Icon} strokeWidth={1.75} />
               Contact
             </Button>
             <Button asChild variant="classic" size="3" highContrast>
@@ -142,19 +148,19 @@ export function AboutSection() {
             <Flex direction="column" gap="3">
               {teamLeadership && (
                 <CapabilityCard capability={teamLeadership}>
-                  <Users />
+                  <HugeiconsIcon icon={UserGroup02Icon} strokeWidth={1.75} />
                 </CapabilityCard>
               )}
 
               {productStrategy && (
                 <CapabilityCard capability={productStrategy}>
-                  <Target />
+                  <HugeiconsIcon icon={Target01Icon} strokeWidth={1.75} />
                 </CapabilityCard>
               )}
 
               {engineeringDesign && (
                 <CapabilityCard capability={engineeringDesign}>
-                  <Code2 />
+                  <HugeiconsIcon icon={CodeIcon} strokeWidth={1.75} />
                 </CapabilityCard>
               )}
             </Flex>

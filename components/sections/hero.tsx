@@ -71,6 +71,7 @@ export function Hero({ latestAnnouncement }: HeroProps) {
                     alt="Womp 3D Preview"
                     width={600}
                     height={450}
+                    loading="lazy"
                   />
                 </Flex>
               </HoverCard.Content>
@@ -94,6 +95,7 @@ export function Hero({ latestAnnouncement }: HeroProps) {
                     alt="KookieUI Preview"
                     width={600}
                     height={450}
+                    loading="lazy"
                   />
                 </Flex>
               </HoverCard.Content>
@@ -117,6 +119,7 @@ export function Hero({ latestAnnouncement }: HeroProps) {
                     alt="KookieBlocks Preview"
                     width={600}
                     height={450}
+                    loading="lazy"
                   />
                 </Flex>
               </HoverCard.Content>
