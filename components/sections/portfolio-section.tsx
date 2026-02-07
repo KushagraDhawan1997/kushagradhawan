@@ -82,15 +82,20 @@ export function PortfolioSection() {
                   aspectRatio: "4/3",
                   position: "relative",
                   display: "block",
+                  borderRadius: "var(--radius-4)",
+                  overflow: "hidden",
                 }}
               >
-                <WebGLImageTracker id={`portfolio-${item.id}`} src={item.image}>
+                <WebGLImageTracker
+                  id={`portfolio-${item.id}`}
+                  src={item.image}
+                  borderRadius={16}
+                >
                   <Image
                     as={NextImage}
                     src={item.image}
                     alt={item.title}
                     fill
-                    radius="none"
                     sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
                     style={{ cursor: "pointer", objectFit: "cover" }}
                     priority={item.id <= 2}

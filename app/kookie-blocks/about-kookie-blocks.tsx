@@ -72,15 +72,25 @@ export function AboutKookieBlocks({ posts = [] }: { posts?: ArticleProps[] }) {
           </Container>
 
           <Hero.Media style={{ width: '100%' }}>
-            <Box px={{ initial: "4", sm: "6" }} width="100%">
+            <Box
+              px={{ initial: "4", sm: "6" }}
+              width="100%"
+              style={{
+                borderRadius: "var(--radius-4)",
+                overflow: "hidden",
+              }}
+            >
               <AspectRatio ratio={3 / 1}>
-                <WebGLImageTracker id="kookie-blocks-hero" src="/pages/kookie-blocks/image.jpg">
+                <WebGLImageTracker
+                  id="kookie-blocks-hero"
+                  src="/pages/kookie-blocks/image.jpg"
+                  borderRadius={16}
+                >
                   <Image
                     as={NextImage}
                     src="/pages/kookie-blocks/image.jpg"
                     alt="Kookie Blocks Hero"
                     fill
-                    radius="none"
                     sizes="(max-width: 768px) 100vw, 1200px"
                     style={{ objectFit: "cover" }}
                     priority

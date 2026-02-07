@@ -68,9 +68,16 @@ const fragmentShader = /* glsl */ `
   uniform float uParallaxStrength;
   uniform float uHoverScale;
   uniform float uOpacity;
+  uniform float uBorderRadius;
 
   varying vec2 vUv;
   varying vec2 vScreenPos;
+
+  // Signed distance function for rounded rectangle
+  float roundedBoxSDF(vec2 centerPos, vec2 size, float radius) {
+    vec2 q = abs(centerPos) - size + radius;
+    return min(max(q.x, q.y), 0.0) + length(max(q, 0.0)) - radius;
+  }
 
   void main() {
     // Calculate aspect ratios
@@ -119,7 +126,18 @@ const fragmentShader = /* glsl */ `
     float g = texture2D(uTexture, uvG).g;
     float b = texture2D(uTexture, uvB).b;
 
-    gl_FragColor = vec4(r, g, b, uOpacity);
+    // --- Rounded corners using SDF ---
+    // Convert UV (0-1) to pixel coordinates centered at origin
+    vec2 pixelPos = (vUv - 0.5) * uContainerSize;
+    vec2 halfSize = uContainerSize * 0.5;
+
+    // Calculate distance to rounded rectangle edge
+    float dist = roundedBoxSDF(pixelPos, halfSize, uBorderRadius);
+
+    // Anti-aliased edge (1px smooth edge)
+    float alpha = 1.0 - smoothstep(-1.0, 1.0, dist);
+
+    gl_FragColor = vec4(r, g, b, uOpacity * alpha);
   }
 `;
 
@@ -160,6 +178,8 @@ function ImagePlane({ image }: ImagePlaneProps) {
         uParallaxStrength: { value: PARALLAX_STRENGTH },
         // Fade-in opacity
         uOpacity: { value: 0 },
+        // Border radius in pixels
+        uBorderRadius: { value: 0 },
       },
       vertexShader,
       fragmentShader,
@@ -260,6 +280,9 @@ function ImagePlane({ image }: ImagePlaneProps) {
       if (opacityRef.current > 0.999) opacityRef.current = 1;
     }
     material.uniforms.uOpacity.value = opacityRef.current;
+
+    // Border radius
+    material.uniforms.uBorderRadius.value = image.borderRadius;
 
     // Position calculation
     const x = bounds.left - viewportWidth / 2 + bounds.width / 2;

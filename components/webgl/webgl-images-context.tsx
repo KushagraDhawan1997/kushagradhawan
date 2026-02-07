@@ -23,11 +23,16 @@ export type RegisteredImage = {
   ref: RefObject<HTMLImageElement | null>;
   bounds: ImageBounds | null;
   textureUrl: string | null;
+  borderRadius: number;
 };
 
 type WebGLImagesContextValue = {
   getImages: () => Map<string, RegisteredImage>;
-  registerImage: (id: string, ref: RefObject<HTMLImageElement | null>) => void;
+  registerImage: (
+    id: string,
+    ref: RefObject<HTMLImageElement | null>,
+    borderRadius?: number
+  ) => void;
   unregisterImage: (id: string) => void;
   updateImageBounds: (id: string, bounds: ImageBounds) => void;
   updateTextureUrl: (id: string, url: string) => void;
@@ -110,10 +115,14 @@ export function WebGLImagesProvider({
   }, []);
 
   const registerImage = useCallback(
-    (id: string, ref: RefObject<HTMLImageElement | null>) => {
+    (
+      id: string,
+      ref: RefObject<HTMLImageElement | null>,
+      borderRadius: number = 0
+    ) => {
       // Create new Map reference so useSyncExternalStore detects change
       const newMap = new Map(imagesRef.current);
-      newMap.set(id, { id, ref, bounds: null, textureUrl: null });
+      newMap.set(id, { id, ref, bounds: null, textureUrl: null, borderRadius });
       imagesRef.current = newMap;
       notify();
     },

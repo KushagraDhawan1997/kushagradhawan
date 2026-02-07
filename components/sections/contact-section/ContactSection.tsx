@@ -163,15 +163,22 @@ export function ContactSection() {
             <Box
               position="relative"
               width="100%"
-              style={{ aspectRatio: "3/4" }}
+              style={{
+                aspectRatio: "3/4",
+                borderRadius: "var(--radius-4)",
+                overflow: "hidden",
+              }}
             >
-              <WebGLImageTracker id="contact-image" src="/sections/contact/image.jpg">
+              <WebGLImageTracker
+                id="contact-image"
+                src="/sections/contact/image.jpg"
+                borderRadius={16}
+              >
                 <Image
                   as={NextImage}
                   src="/sections/contact/image.jpg"
                   alt="Contact"
                   fill
-                  radius="none"
                   sizes="(max-width: 768px) 100vw, 600px"
                   style={{ objectFit: "cover" }}
                   decoding="async"

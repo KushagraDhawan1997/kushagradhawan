@@ -64,15 +64,25 @@ export function Leadership() {
               , all in one.
             </Heading>
           </Flex>
-          <Box width="100%" position="relative">
+          <Box
+            width="100%"
+            position="relative"
+            style={{
+              borderRadius: "var(--radius-4)",
+              overflow: "hidden",
+            }}
+          >
             <AspectRatio ratio={16 / 10}>
-              <WebGLImageTracker id="leadership-what-i-do" src="/articles/product-leadership/image.jpg">
+              <WebGLImageTracker
+                id="leadership-what-i-do"
+                src="/articles/product-leadership/image.jpg"
+                borderRadius={16}
+              >
                 <Image
                   as={NextImage}
                   src="/articles/product-leadership/image.jpg"
                   alt="Leadership"
                   fill
-                  radius="none"
                   sizes="(max-width: 768px) 100vw, 1200px"
                   style={{ objectFit: "cover" }}
                   decoding="async"

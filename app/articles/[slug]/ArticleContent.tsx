@@ -91,20 +91,26 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
 
   return (
     <Box>
-      <Box px={{ initial: "4", sm: "6" }}>
+      <Box
+        px={{ initial: "4", sm: "6" }}
+        style={{
+          borderRadius: "var(--radius-4)",
+          overflow: "hidden",
+        }}
+      >
         {/* Article header image */}
         {post.image && (
           <AspectRatio ratio={3 / 1}>
             <WebGLImageTracker
               id={`article-hero-${post.slug}`}
               src={post.image}
+              borderRadius={16}
             >
               <Image
                 as={NextImage}
                 src={post.image}
                 alt={post.alt || post.title}
                 fill
-                radius="none"
                 sizes="(max-width: 768px) 100vw, 1200px"
                 style={{ objectFit: "cover" }}
                 priority

@@ -57,15 +57,25 @@ export function AboutKookieAI() {
           </Container>
 
           <Hero.Media style={{ width: '100%' }}>
-            <Box px={{ initial: "4", sm: "6" }} width="100%">
+            <Box
+              px={{ initial: "4", sm: "6" }}
+              width="100%"
+              style={{
+                borderRadius: "var(--radius-4)",
+                overflow: "hidden",
+              }}
+            >
               <AspectRatio ratio={3 / 1}>
-                <WebGLImageTracker id="kookie-ai-hero" src="/pages/kookie-ai/image.jpg">
+                <WebGLImageTracker
+                  id="kookie-ai-hero"
+                  src="/pages/kookie-ai/image.jpg"
+                  borderRadius={16}
+                >
                   <Image
                     as={NextImage}
                     src="/pages/kookie-ai/image.jpg"
                     alt="Kookie AI Hero"
                     fill
-                    radius="none"
                     sizes="(max-width: 768px) 100vw, 1200px"
                     style={{ objectFit: "cover" }}
                     priority

@@ -35,15 +35,24 @@ export function ArticleCard({ post }: ArticleCardProps) {
     <Flex direction="column" gap="4" p="1" style={{ height: "100%" }}>
       {/* Article image */}
       {post.image && (
-        <Inset clip="padding-box">
+        <Inset
+          clip="padding-box"
+          style={{
+            borderRadius: "var(--radius-4)",
+            overflow: "hidden",
+          }}
+        >
           <AspectRatio ratio={4 / 3}>
-            <WebGLImageTracker id={`article-${post.slug}`} src={post.image}>
+            <WebGLImageTracker
+              id={`article-${post.slug}`}
+              src={post.image}
+              borderRadius={16}
+            >
               <Image
                 as={NextImage}
                 src={post.image}
                 alt={post.alt || post.title}
                 fill
-                radius="none"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 style={{ objectFit: "cover" }}
                 decoding="async"

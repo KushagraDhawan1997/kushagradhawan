@@ -9,12 +9,14 @@ type WebGLImageTrackerProps = {
   id: string;
   src: string;
   children: ReactNode;
+  borderRadius?: number;
 };
 
 export function WebGLImageTracker({
   id,
   src,
   children,
+  borderRadius = 0,
 }: WebGLImageTrackerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
@@ -28,9 +30,13 @@ export function WebGLImageTracker({
 
   // Register on mount
   useEffect(() => {
-    registerImage(id, containerRef as React.RefObject<HTMLImageElement | null>);
+    registerImage(
+      id,
+      containerRef as React.RefObject<HTMLImageElement | null>,
+      borderRadius
+    );
     return () => unregisterImage(id);
-  }, [id, registerImage, unregisterImage]);
+  }, [id, registerImage, unregisterImage, borderRadius]);
 
   // Wait for child Next.js Image to load, then use its optimized currentSrc
   useEffect(() => {
