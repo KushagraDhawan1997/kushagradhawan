@@ -155,7 +155,7 @@ export function AboutWomp({ posts = [] }: { posts?: ArticleProps[] }) {
                     </Flex>
                   </HoverCard.Content>
                 </HoverCard.Root>
-                {" "}since 2021 as their Product Lead and Design Engineer,
+                {" "}since 2021 as an independent product and design consultant,
                 empowering everyone to bring their ideas to life in minutes.
               </Hero.Description>
 

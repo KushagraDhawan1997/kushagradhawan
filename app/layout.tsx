@@ -9,11 +9,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Kushagra Dhawan | Product Manager and Design Lead",
+    default: "Kushagra Dhawan | Independent Product & Design Consultant",
     template: "%s | Kushagra Dhawan",
   },
   description:
-    "Product leader and creator of Kookie UI, Kookie Blocks, and Kookie AI. Leading product at Womp while building open-source tools for developers and designers.",
+    "Independent product and design consultant. Creator of Kookie UI, Kookie Blocks, and Kookie AI. Currently consulting with Womp 3D while building open-source tools for developers and designers.",
   keywords: [
     "Kushagra Dhawan",
     "Kookie UI",
@@ -46,24 +46,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://kushagradhawan.com",
-    title: "Kushagra Dhawan | Product Manager and Design Lead",
+    title: "Kushagra Dhawan | Independent Product & Design Consultant",
     description:
-      "Product leader at Womp. Creator of Kookie UI, Kookie Blocks, and Kookie AI — open-source tools for developers and designers.",
+      "Independent product and design consultant. Creator of Kookie UI, Kookie Blocks, and Kookie AI — open-source tools for developers and designers.",
     siteName: "Kushagra Dhawan",
     images: [
       {
         url: "/articles/about-me.png",
         width: 1200,
         height: 630,
-        alt: "Kushagra Dhawan - Product Manager and Design Lead",
+        alt: "Kushagra Dhawan - Independent Product & Design Consultant",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kushagra Dhawan | Product Manager and Design Lead",
+    title: "Kushagra Dhawan | Independent Product & Design Consultant",
     description:
-      "Product leader at Womp. Creator of Kookie UI, Kookie Blocks, and Kookie AI — open-source tools for developers and designers.",
+      "Independent product and design consultant. Creator of Kookie UI, Kookie Blocks, and Kookie AI — open-source tools for developers and designers.",
     images: ["/articles/about-me.png"],
     creator: "@kushagradhawan",
   },
@@ -111,11 +111,7 @@ export default function RootLayout({
               name: "Kushagra Dhawan",
               url: "https://kushagradhawan.com",
               image: "https://kushagradhawan.com/kushagra-logo.png",
-              jobTitle: "Product Manager and Design Lead",
-              worksFor: {
-                "@type": "Organization",
-                name: "Womp",
-              },
+              jobTitle: "Independent Product & Design Consultant",
               sameAs: [
                 "https://github.com/KushagraDhawan1997",
                 "https://linkedin.com/in/kushagradhawan",
@@ -123,7 +119,7 @@ export default function RootLayout({
               ],
               knowsAbout: [
                 "Product Management",
-                "Design Leadership",
+                "Design Systems",
                 "UI/UX Design",
                 "Software Engineering",
                 "AI Integration",

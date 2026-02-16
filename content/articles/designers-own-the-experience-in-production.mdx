@@ -1,6 +1,6 @@
 ---
 title: "Why Designers Should Own the Experience in Production"
-description: "Why the design layer should live in code, how we do it with KookieUI at Womp, and what changes day to day."
+description: "Why the design layer should live in code, how I do it with KookieUI for Womp, and what changes day to day."
 date: "2025-11-12"
 author: "Kushagra Dhawan"
 image: "/articles/designers-owning-experience-in-production/image.jpg"
@@ -10,35 +10,35 @@ tags: ["design-systems", "design-engineering", "product", "kookie-ui"]
 keywords: ["design in code", "design engineering", "design systems", "KookieUI", "Womp", "UI patterns", "accessible components"]
 ---
 
-I think it's time designers start owning their design in code, which is to say, owning the experience in production. I'm not saying it because I want designers to do more than what they already do, but because the end user doesn't get to use their designs as-is. What users feel and interact with is the implementation of their design, which is not entirely in their control - deadlines, speed, lack of focus on details - often ends up compromising exactly what is needed for design to feel good. Users never see the Figma file. They feel the implementation. 
+I think it's time designers start owning their design in code, which is to say, owning the experience in production. I'm not saying it because I want designers to do more than what they already do, but because the end user doesn't get to use their designs as-is. What users feel and interact with is the implementation of their design, which is not entirely in their control - deadlines, speed, lack of focus on details - often ends up compromising exactly what is needed for design to feel good. Users never see the Figma file. They feel the implementation.
 
-## Why I took this on at Womp
+## Why I took this on for Womp
 
-We are a startup. We do not have a dedicated design engineer. I sit across design, product, and code, so I took responsibility for the design layer in production. UI work does not sit in a frontend queue. We can change the interface quickly and keep it consistent across what we release. 
+Womp is a startup. There is no dedicated design engineer. I sit across design, product, and code, so I took responsibility for the design layer in production. UI work does not sit in a frontend queue. The team can change the interface quickly and keep it consistent across releases.
 
-I created KookieUI to fit our way of building. The frontend imports components like Button from KookieUI, while I define their appearance, tokens, and behavior. When anything needs an update, I adjust KookieUI and publish a new version. The frontend team then updates the package, and the app adopts the new standard automatically.
+I created KookieUI to fit the way the product gets built. The frontend imports components like Button from KookieUI, while I define their appearance, tokens, and behavior. When anything needs an update, I adjust KookieUI and publish a new version. The frontend team then updates the package, and the app adopts the new standard automatically.
 
 ## What KookieUI is
 
-KookieUI is our design system. It is large and growing. It lives next to product code and stays separate from application logic. It holds tokens, primitives, and patterns we use every day. It also carries our best practices, accessible components, and the small engineering choices that make interactions feel clean.
+KookieUI is the design system I built for Womp. It is large and growing. It lives next to product code and stays separate from application logic. It holds tokens, primitives, and patterns the team uses every day. It also carries best practices, accessible components, and the small engineering choices that make interactions feel clean.
 
-KookieUI is a fork of Radix UI and it is open source. Radix gives us a strong baseline. We add what our products need. We focus on contrast, focus states, motion, density, theming hooks, keyboard paths, and predictable behavior across states.
+KookieUI is a fork of Radix UI and it is open source. Radix gives a strong baseline. I add what the product needs. The focus is on contrast, focus states, motion, density, theming hooks, keyboard paths, and predictable behavior across states.
 
 ## Where effort goes now
 
-We started by strengthening primitives like buttons, inputs, dialogs, menus, tooltips. Reliable building blocks let us move faster everywhere else. Now I want to invest in pattern components that carry real but less glamorous work:
+I started by strengthening primitives like buttons, inputs, dialogs, menus, tooltips. Reliable building blocks let the team move faster everywhere else. Now I want to invest in pattern components that carry real but less glamorous work:
 
 - App Shell for complex editor and creation flows
 - StackNav for deep, panel based navigation
 - Contracts and slots that let simple pieces work in richer contexts, for example adding an optional toolbar slot to Popover so tool groups feel integrated
 
-Patterns reduce decision load and make changes flow through the product. They also let us run smaller experiments because the base holds steady.
+Patterns reduce decision load and make changes flow through the product. They also let the team run smaller experiments because the base holds steady.
 
 ## Why design belongs in production
 
 If you ask someone uninterested in design to handle design, the result is not ideal. Do not do it. The person shaping the experience should also shape the code that delivers it.
 
-Traditional handoffs solve the same problem twice. Design in Figma, cover edge cases, pass to engineering, cover code edge cases, ship, feedback, loop. When the design layer lives in code, we solve it once where the user feels it. We still review. We still test. The work sits in the right place.
+Traditional handoffs solve the same problem twice. Design in Figma, cover edge cases, pass to engineering, cover code edge cases, ship, feedback, loop. When the design layer lives in code, you solve it once where the user feels it. You still review. You still test. The work sits in the right place.
 
 ## How the layers work in practice
 
@@ -56,21 +56,21 @@ Traditional handoffs solve the same problem twice. Design in Figma, cover edge c
 - Business logic, security, and platform concerns.
 - Feature flags and tracking.
 
-## How we actually ship
+## How the work actually ships
 
-The ideal is to add new UI patterns to KookieUI first, then use them in the app. Reality is simpler. Whoever is unblocked does it. If I am deep in product work, the feature team can build the UI inside the application layer to keep moving. Later, we pull that work up into KookieUI as a pattern, give it proper contracts, add tests and docs, and replace the local version. This keeps velocity high while still growing the system.
+The ideal is to add new UI patterns to KookieUI first, then use them in the app. Reality is simpler. Whoever is unblocked does it. If I am deep in product work, the feature team can build the UI inside the application layer to keep moving. Later, that work gets pulled up into KookieUI as a pattern, given proper contracts, tests and docs, and the local version gets replaced. This keeps velocity high while still growing the system.
 
 ## What changed day to day
 
 - UI work moves without getting stuck.
 - Screens behave the same across the product.
-- We have best practices, accessible components, and well engineered parts we can rely on.
+- The team has best practices, accessible components, and well engineered parts to rely on.
 
-When shipping fast, teams often skip the details that lift an experience from a nine to a ten. Now we do that work inside KookieUI, in isolation, while engineering focuses on application logic. Both tracks move.
+When shipping fast, teams often skip the details that lift an experience from a nine to a ten. Now that work happens inside KookieUI, in isolation, while engineering focuses on application logic. Both tracks move.
 
-## How we keep the system healthy
+## How the system stays healthy
 
-We write down intent in the docs next to the code. We keep APIs clear and narrow. We avoid one off styling in features. We keep keyboard paths and focus rules visible. We add examples that match real screens, not toy cases. When a component grows too many concerns, we split it. When a token change is risky, we stage it and roll in steps.
+Intent is written down in the docs next to the code. APIs stay clear and narrow. One-off styling in features is avoided. Keyboard paths and focus rules stay visible. Examples match real screens, not toy cases. When a component grows too many concerns, it gets split. When a token change is risky, it gets staged and rolled in steps.
 
 ## If you want to try this
 
@@ -82,6 +82,4 @@ Start with a primitive or headless library. If your design team is advanced, or 
 
 ## Closing
 
-Design that feels good is design that survives the trip to production. Owning the design layer in code gives it that chance. KookieUI is how we do this at Womp. It helps us move faster and it gives us time to raise the quality where people notice it.
-
-
+Design that feels good is design that survives the trip to production. Owning the design layer in code gives it that chance. KookieUI is how I do this for Womp. It helps the team move faster and gives time to raise the quality where people notice it.

@@ -4,7 +4,7 @@
  * This file contains data for the product philosophy section of the website.
  * It includes principles that guide building products at speed using AI,
  * integrated disciplines, and consistent systems -- learned from experience
- * at Womp and embodied in KookieUI.
+ * with Womp and embodied in KookieUI.
  */
 
 export interface Principle {

@@ -6,13 +6,13 @@ Personal website and portfolio for Kushagra Dhawan.
 
 I work at the intersection of design, engineering, and product. I learned just enough design to shape the experience, just enough engineering to bring ideas to life, and just enough product thinking to focus on the right problems. That's where the work becomes meaningful and the choices truly matter.
 
-Currently leading product at [Womp](https://womp.com), a 3D design tool that makes 3D accessible to everyone. Previously worked at [Wishbox Studio](https://wishboxstudio.com) as a designer.
+Currently consulting with [Womp](https://womp.com), a 3D design tool that makes 3D accessible to everyone. Previously worked with [Wishbox Studio](https://wishboxstudio.com) as a designer.
 
 ## Projects
 
 ### Kookie UI ![Alpha](https://img.shields.io/badge/alpha-blue)
 
-A React component library forked from Radix and customized for how we build at Womp. It gives us a single place for tokens, states, and interaction rules, so a change to a Button or a focus ring updates across the product with a version bump.
+A React component library forked from Radix and customized for how I build products for clients like Womp. It provides a single place for tokens, states, and interaction rules, so a change to a Button or a focus ring updates across the product with a version bump.
 
 - Website: [hellokookie.com](https://hellokookie.com)
 - GitHub: [github.com/KushagraDhawan1997/kookie-ui](https://github.com/KushagraDhawan1997/kookie-ui)

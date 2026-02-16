@@ -37,7 +37,7 @@ export default async function Home({ searchParams }: HomeProps) {
     "@type": "Person",
     name: "Kushagra Dhawan",
     url: "https://kushagradhawan.com",
-    jobTitle: "Product Builder and Designer",
+    jobTitle: "Independent Product & Design Consultant",
     knowsAbout: [
       "Product Design",
       "UI/UX",

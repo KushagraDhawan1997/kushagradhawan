@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Kushagra Dhawan – Product Manager and Design Lead";
+export const alt = "Kushagra Dhawan – Independent Product & Design Consultant";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
