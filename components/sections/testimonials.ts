@@ -41,7 +41,7 @@ export const testimonials: Testimonial[] = [
     },
     position: "standard",
     gridArea: "t4",
-    workedAt: "Anuj has been working with me at Womp for 3 years as a Software Engineer.",
+    workedAt: "Anuj has been working with me on Womp for 3 years as a Software Engineer.",
   },
   {
     id: 5,
@@ -55,6 +55,6 @@ export const testimonials: Testimonial[] = [
     },
     position: "standard",
     gridArea: "t5",
-    workedAt: "Chanakya worked with me at Wishbox Studio and Womp as my Frontend Engineer.",
+    workedAt: "Chanakya worked with me at Wishbox Studio and on Womp as a Frontend Engineer.",
   },
 ];
