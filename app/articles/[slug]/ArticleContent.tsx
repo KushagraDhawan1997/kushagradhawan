@@ -85,6 +85,9 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
     "kookie-card": React.lazy(
       () => import("../../../content/articles/kookie-card.mdx"),
     ),
+    "kookie-avatar": React.lazy(
+      () => import("../../../content/articles/kookie-avatar.mdx"),
+    ),
   };
 
   const MDXContent = MDXBySlug[post.slug];
