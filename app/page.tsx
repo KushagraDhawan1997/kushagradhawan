@@ -54,6 +54,9 @@ export default async function Home({ searchParams }: HomeProps) {
       "https://www.producthunt.com/products/womp",
       "https://theorg.com/org/womp/org-chart/kushagra-dhawan",
       "https://rocketreach.co/kushagra-dhawan-email_335031022",
+      "https://medium.com/@kushagradhawan",
+      "https://dev.to/kushagradhawan",
+      "https://www.instagram.com/kushagra.dhawan",
     ],
   };
 

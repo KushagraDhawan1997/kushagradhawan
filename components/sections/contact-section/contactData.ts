@@ -24,6 +24,8 @@ export const socialLinks: SocialLink[] = [
   { name: "X", href: "https://x.com/kushagra_dhawan" },
   { name: "Github", href: "https://github.com/KushagraDhawan1997" },
   { name: "LinkedIn", href: "https://www.linkedin.com/in/kushagra-dhawan" },
+  { name: "Medium", href: "https://medium.com/@kushagradhawan" },
+  { name: "Dev.to", href: "https://dev.to/kushagradhawan" },
   {
     name: "Instagram",
     href: "https://www.instagram.com/kushagra.dhawan",
