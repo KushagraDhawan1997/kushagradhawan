@@ -137,7 +137,7 @@ export function AboutWomp({ posts = [] }: { posts?: ArticleProps[] }) {
               </Hero.Title>
 
               <Hero.Description color="gray">
-                I lead Product & Design at{" "}
+                I&apos;ve been consulting with{" "}
                 <HoverCard.Root>
                   <HoverCard.Trigger>
                     <Link color="blue" target="_blank" href="https://womp.com">
@@ -155,7 +155,8 @@ export function AboutWomp({ posts = [] }: { posts?: ArticleProps[] }) {
                     </Flex>
                   </HoverCard.Content>
                 </HoverCard.Root>
-                , empowering everyone to bring their ideas to life in minutes.
+                {" "}since 2021 as their Product Lead and Design Engineer,
+                empowering everyone to bring their ideas to life in minutes.
               </Hero.Description>
 
               <Hero.Actions direction="column" align="center" gap="4">

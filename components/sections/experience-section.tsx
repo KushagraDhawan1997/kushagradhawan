@@ -18,7 +18,7 @@ const experiences = [
     id: 1,
     role: "Independent Product & Design Consultant",
     company: "Womp 3D",
-    duration: "2021 - Present (4 years)",
+    duration: "2021 - Present (5 years)",
     logo: "/womp-logo.avif",
     fallback: "W",
     url: "https://womp.com",

@@ -21,7 +21,7 @@ const portfolioItems = [
     id: 1,
     title: "Womp 3D",
     description:
-      "Womp is a browser-based 3D modeling platform aimed to make 3D beginner-friendly and easy. Built by artists and engineers who have experienced the uphill learning curve of 3D.",
+      "A browser-based 3D modeling platform making 3D beginner-friendly and easy. I've been consulting with Womp since 2021 as their Product Lead and Design Engineer.",
     image: "/pages/womp/image.jpg",
     href: "/womp",
     externalLink: "https://womp.com",
