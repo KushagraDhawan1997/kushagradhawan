@@ -120,14 +120,14 @@ Chatbar follows the same principles as every other KookieUI component:
 
 ## At Womp
 
-I built Chatbar while working on Womp Spark, Womp's AI assistant. The product needed a consistent input experience across desktop and mobile, with file attachments, stop/regenerate actions, and smooth keyboard interaction.
+I built Chatbar while consulting on Womp Spark, Womp's AI assistant. Spark needed a consistent input experience across desktop and mobile, with file attachments, stop/regenerate actions, and smooth keyboard interaction.
 
-Before Chatbar, the chat input was custom-built and tightly coupled to Spark's implementation. That made it harder to iterate on the input experience without touching application logic. It also meant any improvements stayed locked inside Spark instead of benefiting other parts of Womp.
+Before Chatbar, the chat input was custom-built and tightly coupled to Spark's implementation. That made it harder for the team to iterate on the input experience without touching application logic. It also meant any improvements stayed locked inside Spark instead of being reusable across Womp's product surface.
 
 With Chatbar in KookieUI:
 - The input experience evolves independently of Spark's conversation logic
 - Design updates flow automatically when KookieUI is updated
-- Other parts of Womp use the same input pattern without rebuilding it
+- Other Womp surfaces can use the same input pattern without rebuilding it
 - Testing the input behavior is isolated from testing message handling
 
 This removed a significant amount of friction from the development process.
