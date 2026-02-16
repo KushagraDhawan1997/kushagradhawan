@@ -122,7 +122,7 @@ export function ContactSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Calendly
+                    Book a call
                     <HugeiconsIcon
                       icon={ArrowUpRight01Icon}
                       color="currentColor"

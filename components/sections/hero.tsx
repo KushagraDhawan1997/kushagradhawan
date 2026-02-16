@@ -178,7 +178,7 @@ export function Hero({ latestAnnouncement }: HeroProps) {
                 rel="noopener noreferrer"
                 aria-label="Book an intro call via Calendly"
               >
-                Calendly
+                Book a call
                 <HugeiconsIcon icon={ArrowUpRight01Icon} />
               </a>
             </Button>
