@@ -23,10 +23,10 @@ export const leadershipItems: WhyMeItem[] = [
     title: "Bring Agency",
     description: (
       <>
-        It's about caring enough to step up. If we're blocked, say with design, I will design it, and I do design it. I'm not attached to any title; I'm attached to shipping and the outcome.
+        It's about caring enough to step up. If the team is blocked, say with design, I will design it, and I do design it. I'm not attached to any title; I'm attached to shipping and the outcome.
         < br />
         <br />
-        I will do whatever is needed - big or small - to keep us moving forward.
+        I will do whatever is needed - big or small - to keep things moving forward.
       </>
     ),
   },
@@ -38,7 +38,7 @@ export const leadershipItems: WhyMeItem[] = [
         I learn best by putting things into the world. You can debate forever, but you only find the truth when a user interacts with your work.
         < br />
         <br />
-        Shipping early, even if it's rough, is the only honest way to validate that we're moving in the right direction.
+        Shipping early, even if it's rough, is the only honest way to validate that the team is moving in the right direction.
       </>
     ),
   },
