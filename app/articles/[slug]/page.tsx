@@ -122,6 +122,12 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         "@type": "Person",
         name: "Kushagra Dhawan",
         url: baseUrl,
+        jobTitle: "Independent Product & Design Consultant",
+        sameAs: [
+          "https://www.linkedin.com/in/kushagra-dhawan/",
+          "https://x.com/kushagra_dhawan",
+          "https://github.com/KushagraDhawan1997",
+        ],
       },
       publisher: {
         "@type": "Person",

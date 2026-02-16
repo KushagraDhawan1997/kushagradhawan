@@ -113,9 +113,9 @@ export default function RootLayout({
               image: "https://kushagradhawan.com/kushagra-logo.png",
               jobTitle: "Independent Product & Design Consultant",
               sameAs: [
+                "https://www.linkedin.com/in/kushagra-dhawan/",
+                "https://x.com/kushagra_dhawan",
                 "https://github.com/KushagraDhawan1997",
-                "https://linkedin.com/in/kushagradhawan",
-                "https://twitter.com/kushagradhawan",
               ],
               knowsAbout: [
                 "Product Management",
