@@ -61,6 +61,14 @@ const portfolioItems = [
     image: "/pages/kookie-ai/image.jpg",
     href: "/kookie-ai",
   },
+  {
+    id: 6,
+    title: "Services",
+    description:
+      "Independent consulting in product engineering, design systems architecture, developer tooling, and prototyping & UX systems.",
+    image: "/articles/about-me/image.jpg",
+    href: "/services",
+  },
 ];
 
 export function PortfolioSection() {

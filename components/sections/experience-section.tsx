@@ -111,8 +111,8 @@ export function ExperienceSection() {
               </a>
             </Button>
             <Button asChild variant="soft" highContrast size="2">
-              <NextLink href="/articles/about-me">
-                About me
+              <NextLink href="/services">
+                Services
                 <HugeiconsIcon icon={ArrowRight01Icon} />
               </NextLink>
             </Button>
