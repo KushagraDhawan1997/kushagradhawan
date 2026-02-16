@@ -50,7 +50,10 @@ export default async function Home({ searchParams }: HomeProps) {
       "https://x.com/kushagra_dhawan",
       "https://www.linkedin.com/in/kushagra-dhawan/",
       "https://github.com/KushagraDhawan1997",
-      "https://www.npmjs.com/~kushagradhawan",
+      "https://www.npmjs.com/package/@kushagradhawan/kookie-ui",
+      "https://www.producthunt.com/products/womp",
+      "https://theorg.com/org/womp/org-chart/kushagra-dhawan",
+      "https://rocketreach.co/kushagra-dhawan-email_335031022",
     ],
   };
 
