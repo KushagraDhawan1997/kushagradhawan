@@ -1,0 +1,213 @@
+---
+title: "Building on Radix: Avatar"
+description: "Avatar in Kookie UI extends Radix Themes with expanded sizes, new variants, material support, status indicators, badge slots, fit control, and interactive states."
+date: "2026-02-16"
+author: "Kushagra Dhawan"
+canonical: "https://kushagradhawan.com/articles/kookie-avatar"
+category: "announcement"
+tags: ["kookie-ui", "design-systems", "components", "radix", "avatar"]
+keywords:
+  [
+    "avatar",
+    "avatar component",
+    "kookie ui",
+    "radix themes",
+    "design system",
+    "component library",
+    "status indicator",
+    "badge",
+    "translucent",
+    "interactive avatar",
+  ]
+---
+
+import { Avatar, Flex, Box, Text, Heading, Code, Badge, Card } from "@kushagradhawan/kookie-ui";
+import { PreviewBlock } from "@kushagradhawan/kookie-blocks";
+
+Kookie UI is a fork of Radix Themes. Most components have been adjusted to fit the design language and patterns I needed.
+
+Avatar is one of those components.
+
+The Radix Themes Avatar is capable. Two variants (solid and soft), nine sizes, fallback initials, and image rendering. It covers the standard profile picture use case.
+
+But avatars do more than show faces. They indicate presence, carry badges, display logos that shouldn't be cropped, and sometimes need to be clickable. Each of these required workarounds that were getting repetitive.
+
+So I extended it.
+
+<Box mt="9">
+  <PreviewBlock height="12rem">
+    <Flex gap="4" align="end">
+      <Avatar
+        fallback="KD"
+        size="6"
+        variant="classic"
+        highContrast
+        status="green"
+      />
+      <Avatar
+        fallback="A"
+        size="5"
+        variant="soft"
+        color="blue"
+        status="yellow"
+      />
+      <Avatar
+        fallback="M"
+        size="4"
+        variant="surface"
+        color="crimson"
+      />
+      <Avatar
+        fallback="J"
+        size="3"
+        variant="outline"
+        color="gray"
+        highContrast
+      />
+    </Flex>
+  </PreviewBlock>
+</Box>
+
+## What Changed
+
+### Extended Size Scale
+
+Radix gives you sizes 1 through 9. I expanded the scale to 12 values.
+
+The additional sizes fill gaps at both ends. Smaller sizes for inline mentions and compact lists. Larger sizes for profile pages and hero sections. Each size maps to a consistent border radius, and two-letter fallbacks have calibrated font sizes at every step so initials never overflow or look undersized.
+
+### Three New Variants
+
+Radix gives you solid and soft. I added **classic**, **surface**, and **outline**.
+
+**Classic** provides a raised 3D surface with shadow. It follows the same visual language as other Kookie UI classic variants—subtle depth that distinguishes elements from the background.
+
+```tsx
+<Avatar fallback="KD" variant="classic" />
+```
+
+**Surface** adds a bordered background. More defined than soft, less prominent than classic. Good for list items and card contexts where you want the avatar to have clear boundaries.
+
+```tsx
+<Avatar fallback="KD" variant="surface" />
+```
+
+**Outline** renders a border with no fill. The fallback text sits on the parent background. Lightweight and works well when you need to show an avatar without adding visual weight.
+
+```tsx
+<Avatar fallback="KD" variant="outline" />
+```
+
+### Material System
+
+The `material` prop controls solid vs. translucent rendering.
+
+```tsx
+<Avatar fallback="KD" material="translucent" />
+```
+
+When `material="translucent"`, the avatar gets `backdrop-filter: blur()` for a frosted-glass effect. It automatically blends with the background behind it. This works across all variants—solid, soft, classic, surface, outline. Each adapts its colors and borders for both solid and translucent materials.
+
+Set it on your theme and all avatars inherit it. Override per-avatar when you need a solid background for readability.
+
+### Status Indicator
+
+The `status` prop renders a colored dot at the bottom-right corner.
+
+```tsx
+<Avatar fallback="KD" status="green" />
+```
+
+The dot scales automatically with the avatar size. A size-2 avatar gets a proportionally smaller indicator than a size-6. It accepts any accent color—green for online, yellow for away, gray for offline, crimson for busy. Whatever your product's presence model, the status indicator adapts.
+
+Position is fixed at bottom-right with proper overlap so the dot reads as attached to the avatar rather than floating beside it.
+
+### Badge Slot
+
+The `badge` prop accepts arbitrary React content rendered at the bottom-right corner.
+
+```tsx
+<Avatar
+  fallback="KD"
+  badge={<Badge size="1" color="red" variant="solid">3</Badge>}
+/>
+```
+
+Notification counts, verification icons, role indicators—anything that needs to sit on the avatar's corner. The slot positions content the same way as the status indicator.
+
+Badge and status are mutually exclusive. If both are provided, badge takes precedence. This avoids stacking two indicators in the same position.
+
+### Image Fit Control
+
+The `fit` prop controls `object-fit` on the avatar image.
+
+```tsx
+<Avatar src="/company-logo.svg" fallback="C" fit="contain" />
+```
+
+Default is `cover`, which crops the image to fill the circle. That's right for photos. But logos, icons, and non-square images get distorted or lose important parts when cropped.
+
+`contain` preserves the full image within the bounds. `fill`, `scale-down`, and `none` are also available for specific use cases.
+
+This came directly from building the experience section on my site, where company logos needed `fit="contain"` to display correctly.
+
+### Interactive Avatar
+
+When rendered as a `button`, `a`, or `[role="button"]` via `asChild`, avatars gain interactive states.
+
+```tsx
+<Avatar asChild fallback="KD" variant="soft">
+  <button onClick={openProfile}>Profile</button>
+</Avatar>
+```
+
+Hover brightens the image slightly. Active dims it. Focus shows a visible ring. Disabled desaturates and reduces opacity. Each variant applies appropriate interactive colors to the fallback background.
+
+The interactive detection is automatic. Render the avatar with `asChild` wrapping an interactive element, and the states activate. Disabled detection propagates from the child element—if the button is disabled, the avatar reflects it without extra props.
+
+The image states use subtle brightness and saturation filters rather than opacity changes, so photos still look natural during interaction.
+
+## The Full API
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `size` | `'1'` through `'12'` | `'3'` | Avatar dimensions. Responsive. |
+| `variant` | `'solid' \| 'soft' \| 'classic' \| 'surface' \| 'outline'` | `'soft'` | Visual style. |
+| `material` | `'solid' \| 'translucent'` | — | Backdrop blur and transparency. |
+| `status` | Accent color | — | Presence dot at bottom-right. |
+| `badge` | `ReactNode` | — | Arbitrary content at bottom-right. Overrides status. |
+| `fit` | `'cover' \| 'contain' \| 'fill' \| 'scale-down' \| 'none'` | `'cover'` | Image object-fit behavior. |
+| `fallback` | `ReactNode` | — | Content shown when image is unavailable. |
+| `asChild` | `boolean` | `false` | Render as child element. Enables interactive states. |
+
+## Why These Changes
+
+Every enhancement came from real usage.
+
+**Extended sizes.** Profile pages need large avatars. Inline mentions need tiny ones. Nine steps left gaps at both extremes. Twelve covers the range without redundancy.
+
+**Classic, surface, outline.** Solid and soft handle most cases, but cards need bordered avatars (surface), minimal contexts need no-fill avatars (outline), and elevated layouts need depth (classic). Each variant matches its equivalent on other Kookie UI components.
+
+**Material system.** Floating panels, overlays, translucent toolbars. Avatars inside these contexts should match the surrounding material. A solid avatar on a translucent card looks wrong.
+
+**Status indicator.** Every messaging, collaboration, and team tool shows presence. Wrapping avatars in relative-positioned containers with absolutely-positioned dots is repetitive. A prop handles it.
+
+**Badge slot.** Notification counts on avatars are equally common and equally repetitive to build. A render prop keeps it flexible without prescribing what the badge looks like.
+
+**Fit control.** Photos crop well. Logos don't. One prop covers both cases.
+
+**Interactive states.** Clickable avatars in user menus, profile links, and team lists need hover/focus/active/disabled feedback. The `asChild` pattern already exists—interactive styles should follow automatically.
+
+## What Stayed the Same
+
+The foundation is unchanged. Avatar is still a Radix Themes Avatar with image loading, fallback rendering, and the same color system. It still supports `asChild`. It still accepts margin props. If you're coming from Radix Themes, Avatar works the same way.
+
+The new props are additive. Existing code that uses `variant="solid"` or `variant="soft"` with sizes 1-9 is unaffected. The enhancements are available when you need them and invisible when you don't.
+
+## Closing
+
+Avatar is a small component. It shows a picture or initials in a circle. But that circle appears in dozens of places across an application—user menus, comment threads, team lists, profile pages, message headers, activity feeds. Small improvements to a frequently used component compound across every instance.
+
+Extended sizes, new variants, material support, status indicators, badge slots, fit control, and interactive states. These additions let you use avatars in more contexts without wrapping them in custom containers or override styles. That's the bar for extending upstream: if you're working around the component more than with it, extend it.
+
+For complete documentation and interactive examples, visit the [Kookie UI Avatar documentation](https://www.hellokookie.com/docs/avatar).
