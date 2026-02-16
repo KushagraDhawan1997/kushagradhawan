@@ -1,72 +1,30 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
 import { Theme, ThemePanel, Box } from "@kushagradhawan/kookie-ui";
-import { WebGLImagesProvider, useReducedMotion } from "@/components/webgl";
-import { useLenisSetup } from "@/components/webgl/hooks/use-lenis";
+import { WebGLImagesProvider } from "@/components/webgl";
 
-// Dynamic import to avoid SSR issues with Three.js
-const WebGLCanvas = dynamic(
-  () =>
-    import("@/components/webgl/webgl-canvas").then((mod) => mod.WebGLCanvas),
-  { ssr: false },
-);
-
-const MOBILE_BREAKPOINT = 768;
-
-// Detect Safari - known performance issues with WebGL + Lenis
-function useIsSafari() {
-  const [isSafari, setIsSafari] = useState(false);
-
-  useEffect(() => {
-    setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
-  }, []);
-
-  return isSafari;
-}
-
-function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  return isMobile;
-}
-
-function WebGLLayer() {
-  const isMobile = useIsMobile();
-  const isSafari = useIsSafari();
-  const prefersReducedMotion = useReducedMotion();
-
-  // Only initialize Lenis when WebGL is enabled (non-Safari, non-mobile, no reduced motion)
-  const shouldEnableWebGL = !isMobile && !isSafari && !prefersReducedMotion;
-
-  // Initialize Lenis for smooth scroll sync - only when WebGL is active
-  useLenisSetup(shouldEnableWebGL);
-
-  if (!shouldEnableWebGL) {
-    return null;
-  }
-
-  return <WebGLCanvas />;
-}
+// TODO: Re-enable WebGL
+// WebGL is globally disabled. To restore it:
+//
+// 1. Add imports:
+//    import { useState, useEffect } from "react";
+//    import dynamic from "next/dynamic";
+//    import { useReducedMotion } from "@/components/webgl";
+//    import { useLenisSetup } from "@/components/webgl/hooks/use-lenis";
+//
+// 2. Add WebGLCanvas dynamic import:
+//    const WebGLCanvas = dynamic(
+//      () => import("@/components/webgl/webgl-canvas").then((mod) => mod.WebGLCanvas),
+//      { ssr: false },
+//    );
+//
+// 3. Add detection hooks (useIsMobile, useIsSafari) and WebGLLayer component.
+//    See git history: git diff HEAD~1 -- components/providers.tsx
+//
+// 4. Change <WebGLImagesProvider enabled={false}> to enabled={webglEnabled}
+//    and render <WebGLLayer /> as a child.
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  const isMobile = useIsMobile();
-  const isSafari = useIsSafari();
-  const prefersReducedMotion = useReducedMotion();
-  // Disable WebGL on mobile, Safari (performance issues), and reduced motion
-  const webglEnabled = !isMobile && !isSafari && !prefersReducedMotion;
-
   return (
     <Theme
       accentColor="gray"
@@ -75,9 +33,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
       radius="medium"
       fontFamily="sans"
     >
-      <WebGLImagesProvider enabled={webglEnabled}>
+      <WebGLImagesProvider enabled={false}>
         {children}
-        <WebGLLayer />
       </WebGLImagesProvider>
       <ThemePanel defaultOpen={false} />
     </Theme>
