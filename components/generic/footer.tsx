@@ -66,9 +66,6 @@ export function Footer() {
             </FooterBlock.Brand>
             <FooterBlock.Links>
               <FooterBlock.LinkGroup title="Projects">
-                <FooterBlock.Link href="https://womp.com" target="_blank">
-                  Womp 3D
-                </FooterBlock.Link>
                 <FooterBlock.Link
                   href="https://www.hellokookie.com/"
                   target="_blank"
@@ -80,6 +77,9 @@ export function Footer() {
                   target="_blank"
                 >
                   Kookie Blocks
+                </FooterBlock.Link>
+                <FooterBlock.Link href="https://womp.com" target="_blank">
+                  Womp 3D
                 </FooterBlock.Link>
               </FooterBlock.LinkGroup>
             </FooterBlock.Links>
