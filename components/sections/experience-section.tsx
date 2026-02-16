@@ -55,7 +55,7 @@ export function ExperienceSection() {
             I take on select consulting projects in design systems, WebGL
             interfaces, and AI product design.
           </Heading>
-          <Flex direction="column" align="center" gap="4" width="100%">
+          <Flex direction="column" gap="4" width="100%">
             {experiences.map((exp) => (
               <React.Fragment key={exp.id}>
                 <Flex
