@@ -54,6 +54,6 @@ export const principles: Principle[] = [
     description:
       "Fast shipping isn’t worth burnout. Sustainable pace is part of the job.",
     expandedContent:
-      "One area where I don’t compromise is team sanity. I don’t want people working overtime, stressed, or carrying unnecessary deadlines. Good work comes from people who are well-rested, focused, and engaged.\n\nWhen people are exhausted, they make worse decisions, they’re less creative, and they take shortcuts that create bigger problems later.\n\nStartups are chaotic. We still ship fast and make trade-offs. But I see it as part of my role to shield the team from noise so they can focus on solving real problems.",
+      "One area where I don’t compromise is team sanity. I don’t want people working overtime, stressed, or carrying unnecessary deadlines. Good work comes from people who are well-rested, focused, and engaged.\n\nWhen people are exhausted, they make worse decisions, they’re less creative, and they take shortcuts that create bigger problems later.\n\nStartups are chaotic. The team still ships fast and makes trade-offs. But I see it as part of my role to shield the team from noise so they can focus on solving real problems.",
   },
 ];
