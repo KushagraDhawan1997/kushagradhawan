@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Womp 3D - Kushagra Dhawan",
-  description: "Leading Product & Design at Womp 3D, a browser-based 3D editor empowering everyone to bring their ideas to life in minutes.",
+  description: "Consulting with Womp 3D, a browser-based 3D editor empowering everyone to bring their ideas to life in minutes.",
   alternates: {
     canonical: "/womp",
   },

@@ -56,7 +56,98 @@ export function Hero({ latestAnnouncement }: HeroProps) {
           </HeroBlock.Title>
 
           <HeroBlock.Description color="gray">
-            Leading Product &amp; Design at{" "}
+            Building{" "}
+            <HoverCard.Root>
+              <HoverCard.Trigger>
+                <Link
+                  color="blue"
+                  target="_blank"
+                  href="https://www.hellokookie.com/"
+                >
+                  Kookie UI
+                </Link>
+              </HoverCard.Trigger>
+              <HoverCard.Content maxWidth="600px" style={{ padding: 0 }}>
+                <Flex direction="column" align="center">
+                  <Image
+                    as={NextImage}
+                    src="/hover-cards/kookie-ui.png"
+                    alt="Kookie UI Preview"
+                    width={600}
+                    height={450}
+                    loading="lazy"
+                  />
+                </Flex>
+              </HoverCard.Content>
+            </HoverCard.Root>
+            ,{" "}
+            <HoverCard.Root>
+              <HoverCard.Trigger>
+                <Link
+                  color="blue"
+                  target="_blank"
+                  href="https://kookieblocks.com/"
+                >
+                  Kookie Blocks
+                </Link>
+              </HoverCard.Trigger>
+              <HoverCard.Content maxWidth="600px" style={{ padding: 0 }}>
+                <Flex direction="column" align="center">
+                  <Image
+                    as={NextImage}
+                    src="/hover-cards/kookie-blocks.png"
+                    alt="Kookie Blocks Preview"
+                    width={600}
+                    height={450}
+                    loading="lazy"
+                  />
+                </Flex>
+              </HoverCard.Content>
+            </HoverCard.Root>
+            ,{" "}
+            <HoverCard.Root>
+              <HoverCard.Trigger>
+                <Link
+                  color="blue"
+                  target="_blank"
+                  href="https://github.com/KushagraDhawan1997/kookie-flow"
+                >
+                  Kookie Flow
+                </Link>
+              </HoverCard.Trigger>
+              <HoverCard.Content maxWidth="320px">
+                <Flex direction="column" gap="2" p="1">
+                  <Heading size="3" weight="medium">
+                    Kookie Flow
+                  </Heading>
+                  <Text size="2" color="gray">
+                    A WebGL-native node graph library for React that combines
+                    React Flow ergonomics with GPU-accelerated rendering.
+                  </Text>
+                </Flex>
+              </HoverCard.Content>
+            </HoverCard.Root>
+            , and{" "}
+            <HoverCard.Root>
+              <HoverCard.Trigger>
+                <Link color="blue" href="/kookie-ai">
+                  Kookie AI
+                </Link>
+              </HoverCard.Trigger>
+              <HoverCard.Content maxWidth="320px">
+                <Flex direction="column" gap="2" p="1">
+                  <Heading size="3" weight="medium">
+                    Kookie AI
+                  </Heading>
+                  <Text size="2" color="gray">
+                    Exploring how to design chat-based AI products by working
+                    within chat constraints while minimizing friction through
+                    thoughtful UX.
+                  </Text>
+                </Flex>
+              </HoverCard.Content>
+            </HoverCard.Root>
+            . Currently consulting with{" "}
             <HoverCard.Root>
               <HoverCard.Trigger>
                 <Link color="blue" target="_blank" href="https://womp.com">
@@ -73,97 +164,6 @@ export function Hero({ latestAnnouncement }: HeroProps) {
                     height={450}
                     loading="lazy"
                   />
-                </Flex>
-              </HoverCard.Content>
-            </HoverCard.Root>
-            . Building{" "}
-            <HoverCard.Root>
-              <HoverCard.Trigger>
-                <Link
-                  color="blue"
-                  target="_blank"
-                  href="https://www.hellokookie.com/"
-                >
-                  KookieUI
-                </Link>
-              </HoverCard.Trigger>
-              <HoverCard.Content maxWidth="600px" style={{ padding: 0 }}>
-                <Flex direction="column" align="center">
-                  <Image
-                    as={NextImage}
-                    src="/hover-cards/kookie-ui.png"
-                    alt="KookieUI Preview"
-                    width={600}
-                    height={450}
-                    loading="lazy"
-                  />
-                </Flex>
-              </HoverCard.Content>
-            </HoverCard.Root>
-            ,{" "}
-            <HoverCard.Root>
-              <HoverCard.Trigger>
-                <Link
-                  color="blue"
-                  target="_blank"
-                  href="https://kookieblocks.com/"
-                >
-                  KookieBlocks
-                </Link>
-              </HoverCard.Trigger>
-              <HoverCard.Content maxWidth="600px" style={{ padding: 0 }}>
-                <Flex direction="column" align="center">
-                  <Image
-                    as={NextImage}
-                    src="/hover-cards/kookie-blocks.png"
-                    alt="KookieBlocks Preview"
-                    width={600}
-                    height={450}
-                    loading="lazy"
-                  />
-                </Flex>
-              </HoverCard.Content>
-            </HoverCard.Root>
-            ,{" "}
-            <HoverCard.Root>
-              <HoverCard.Trigger>
-                <Link
-                  color="blue"
-                  target="_blank"
-                  href="https://github.com/KushagraDhawan1997/kookie-flow"
-                >
-                  KookieFlow
-                </Link>
-              </HoverCard.Trigger>
-              <HoverCard.Content maxWidth="320px">
-                <Flex direction="column" gap="2" p="1">
-                  <Heading size="3" weight="medium">
-                    Kookie Flow
-                  </Heading>
-                  <Text size="2" color="gray">
-                    A WebGL-native node graph library for React that combines
-                    React Flow ergonomics with GPU-accelerated rendering.
-                  </Text>
-                </Flex>
-              </HoverCard.Content>
-            </HoverCard.Root>
-            ,{" "}
-            <HoverCard.Root>
-              <HoverCard.Trigger>
-                <Link color="blue" href="/kookie-ai">
-                  KookieAI
-                </Link>
-              </HoverCard.Trigger>
-              <HoverCard.Content maxWidth="320px">
-                <Flex direction="column" gap="2" p="1">
-                  <Heading size="3" weight="medium">
-                    Kookie AI
-                  </Heading>
-                  <Text size="2" color="gray">
-                    Exploring how to design chat-based AI products by working
-                    within chat constraints while minimizing friction through
-                    thoughtful UX.
-                  </Text>
                 </Flex>
               </HoverCard.Content>
             </HoverCard.Root>
