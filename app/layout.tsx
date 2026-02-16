@@ -108,14 +108,18 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
+              "@id": "https://kushagradhawan.com/#person",
               name: "Kushagra Dhawan",
               url: "https://kushagradhawan.com",
               image: "https://kushagradhawan.com/kushagra-logo.png",
               jobTitle: "Independent Product & Design Consultant",
+              description:
+                "Independent product and design consultant. Creator of Kookie UI, Kookie Blocks, and Kookie AI.",
               sameAs: [
                 "https://www.linkedin.com/in/kushagra-dhawan/",
                 "https://x.com/kushagra_dhawan",
                 "https://github.com/KushagraDhawan1997",
+                "https://www.npmjs.com/~kushagradhawan",
               ],
               knowsAbout: [
                 "Product Management",
@@ -123,6 +127,8 @@ export default function RootLayout({
                 "UI/UX Design",
                 "Software Engineering",
                 "AI Integration",
+                "React",
+                "Open Source",
               ],
               makesOffer: [
                 {
@@ -149,6 +155,24 @@ export default function RootLayout({
                     "Conversation graphs for knowledge workers and creators",
                 },
               ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://kushagradhawan.com/#website",
+              url: "https://kushagradhawan.com",
+              name: "Kushagra Dhawan",
+              description:
+                "Independent product and design consultant. Creator of Kookie UI, Kookie Blocks, and Kookie AI.",
+              publisher: {
+                "@id": "https://kushagradhawan.com/#person",
+              },
+              inLanguage: "en-US",
             }),
           }}
         />

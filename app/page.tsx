@@ -31,10 +31,11 @@ export default async function Home({ searchParams }: HomeProps) {
   const viewMode =
     (params.view as "professional" | "personal") || "professional";
 
-  // Person structured data
+  // Person structured data — uses @id to link with layout.tsx Person entity
   const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": "https://kushagradhawan.com/#person",
     name: "Kushagra Dhawan",
     url: "https://kushagradhawan.com",
     jobTitle: "Independent Product & Design Consultant",
@@ -49,6 +50,7 @@ export default async function Home({ searchParams }: HomeProps) {
       "https://x.com/kushagra_dhawan",
       "https://www.linkedin.com/in/kushagra-dhawan/",
       "https://github.com/KushagraDhawan1997",
+      "https://www.npmjs.com/~kushagradhawan",
     ],
   };
 
@@ -59,16 +61,17 @@ export default async function Home({ searchParams }: HomeProps) {
     name: "Kushagra Dhawan - Product Design Services",
     description:
       "Professional product design and development services specializing in creating innovative digital products and user experiences.",
-    url: "https://kushagradhawan.com",
+    url: "https://kushagradhawan.com/services",
     founder: {
-      "@type": "Person",
-      name: "Kushagra Dhawan",
+      "@id": "https://kushagradhawan.com/#person",
     },
     serviceType: [
       "Product Design",
       "UX Design",
       "Design Systems",
       "Product Strategy",
+      "Design Systems Architecture",
+      "Developer Tooling",
     ],
   };
 

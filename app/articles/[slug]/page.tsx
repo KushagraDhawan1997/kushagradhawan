@@ -119,31 +119,46 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       datePublished: new Date(post.date).toISOString(),
       dateModified: new Date(post.date).toISOString(),
       author: {
-        "@type": "Person",
-        name: "Kushagra Dhawan",
-        url: baseUrl,
-        jobTitle: "Independent Product & Design Consultant",
-        sameAs: [
-          "https://www.linkedin.com/in/kushagra-dhawan/",
-          "https://x.com/kushagra_dhawan",
-          "https://github.com/KushagraDhawan1997",
-        ],
+        "@id": "https://kushagradhawan.com/#person",
       },
       publisher: {
-        "@type": "Person",
-        name: "Kushagra Dhawan",
-        url: baseUrl,
-        logo: {
-          "@type": "ImageObject",
-          url: `${baseUrl}/kushagra-logo.png`,
-        },
+        "@id": "https://kushagradhawan.com/#person",
+      },
+      isPartOf: {
+        "@id": "https://kushagradhawan.com/#website",
       },
       keywords: post.tags && post.tags.length ? post.tags.join(", ") : undefined,
+    };
+
+    const breadcrumbJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: baseUrl,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Articles",
+          item: `${baseUrl}/articles`,
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: post.title,
+          item: pageUrl,
+        },
+      ],
     };
 
     return (
       <>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
         <ArticleContent
           post={{
             slug: post.slug,
