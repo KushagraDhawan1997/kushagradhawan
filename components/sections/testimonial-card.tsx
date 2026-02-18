@@ -14,7 +14,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
         <Card size="1" variant="soft" asChild style={{ cursor: "pointer" }}>
           <button>
             <Flex direction="column" justify="between" height="100%" gap="6" p="2">
-              <Text size="4" weight="medium">
+              <Text size="3" weight="medium">
                 "{testimonial.shortTestimonial}"
               </Text>
 
@@ -40,7 +40,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
         </VisuallyHidden>
 
         <Flex direction="column" gap="6">
-          <Text size="5" weight="medium" style={{ whiteSpace: "pre-line" }}>
+          <Text size="3" weight="medium" style={{ whiteSpace: "pre-line" }}>
             {testimonial.fullTestimonial}
           </Text>
 

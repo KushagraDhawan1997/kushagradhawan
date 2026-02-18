@@ -47,7 +47,7 @@ export function QueenLukitaBlessing() {
           />
           <Flex gap="4" direction="column" align="center" justify="center" width="100%" p="4">
             <Flex direction="column" gap="2" align="center">
-              <Text size="4" weight="medium" align="left">
+              <Text size="3" weight="medium" align="left">
                 You've been blessed by Kookie, known as Queen Lukita
               </Text>
               <Text size="2" align="left" color="gray">

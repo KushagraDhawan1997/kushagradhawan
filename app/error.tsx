@@ -14,21 +14,21 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
   return (
     <Section>
       <Container size="4">
-        <Flex direction="column" gap="8" p="6" align="center">
+        <Flex direction="column" gap={{ initial: "6", sm: "8" }} p={{ initial: "4", sm: "6" }} align="center">
           <Flex direction="column" gap="4" align="center">
-            <Heading size="9" highContrast weight="medium">
+            <Heading size={{ initial: "8", sm: "9" }} highContrast weight="medium" style={{ textWrap: "balance" }}>
               Oops
             </Heading>
-            <Heading size="8" weight="medium" className={gradientText} style={{ textAlign: "center" }}>
+            <Heading size="5" weight="medium" className={gradientText} style={{ textAlign: "center", textWrap: "balance" }}>
               Something went wrong.
             </Heading>
-            <Text size="4" color="gray">
+            <Text size="3" color="gray" align="center">
               An unexpected error occurred. Please try again.
             </Text>
           </Flex>
 
           <Flex gap="2" align="center">
-            <Button size="3" highContrast onClick={reset}>
+            <Button size="2" highContrast onClick={reset}>
               Try Again
             </Button>
           </Flex>

@@ -8,6 +8,7 @@ import {
   Section,
   Grid,
   IconButton,
+  Separator,
 } from "@kushagradhawan/kookie-ui";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowUpRight01Icon, GithubIcon } from "@hugeicons/core-free-icons";
@@ -77,10 +78,16 @@ export function PortfolioSection() {
       <Flex
         direction="column"
         align="start"
-        gap="8"
+        gap="4"
         px={{ initial: "4", sm: "6" }}
       >
-        <Grid columns={{ initial: "1", sm: "2" }} gap="2">
+        <Flex direction="column" gap="2" width="100%">
+          <Heading size="3" weight="medium">
+            Projects
+          </Heading>
+          <Separator size="4"></Separator>
+        </Flex>
+        <Grid columns={{ initial: "1", sm: "2", md: "3" }} gap="4">
           {portfolioItems.map((item) => (
             <Flex key={item.id} direction="column" gap="4" align="start" py="4">
               <NextLink
@@ -90,14 +97,13 @@ export function PortfolioSection() {
                   aspectRatio: "4/3",
                   position: "relative",
                   display: "block",
-                  borderRadius: "var(--radius-4)",
                   overflow: "hidden",
                 }}
               >
                 <WebGLImageTracker
                   id={`portfolio-${item.id}`}
                   src={item.image}
-                  borderRadius={16}
+                  borderRadius={0}
                 >
                   <Image
                     as={NextImage}
@@ -106,6 +112,7 @@ export function PortfolioSection() {
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
                     style={{ cursor: "pointer", objectFit: "cover" }}
+                    radius="none"
                     priority={item.id <= 2}
                     loading={item.id <= 2 ? "eager" : "lazy"}
                     decoding="async"

@@ -219,7 +219,7 @@ export function NavbarComponent() {
   return (
     <Navbar.Root
       position="fixed"
-      size="3"
+      size="1"
       style={{ background: "transparent" }}
     >
       {/* Logo */}
@@ -240,7 +240,7 @@ export function NavbarComponent() {
       </Navbar.Navigation>
 
       {/* Actions */}
-      <Navbar.Actions>
+      <Navbar.Actions gap="1">
         <ThemeToggle />
         <Button size="2" asChild variant="solid" highContrast>
           <Link

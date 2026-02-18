@@ -57,4 +57,18 @@ export const testimonials: Testimonial[] = [
     gridArea: "t5",
     workedAt: "Chanakya worked with me at Wishbox Studio and on Womp as a Frontend Engineer.",
   },
+  {
+    id: 6,
+    shortTestimonial: "Kushagra kept the product moving forward every single day.",
+    fullTestimonial:
+      "Kushagra kept the product moving forward every single day. His ability to bridge engineering, design, and business thinking made him invaluable to the team. He always understood the full picture, which helped him make the right decisions for the product.",
+    author: {
+      name: "Praneeth Potnuru",
+      designation: "Product Designer",
+      company: "Womp",
+    },
+    position: "standard",
+    gridArea: "t6",
+    workedAt: "Praneeth worked with me at Womp as a Product Designer.",
+  },
 ];

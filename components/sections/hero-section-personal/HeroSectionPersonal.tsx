@@ -25,15 +25,15 @@ export function HeroSectionPersonal() {
 
       <Section position="relative" size="4">
         <Container size="2" style={{ position: "relative", zIndex: 1 }}>
-          <Flex direction="column" align="center" gap="8" px={{ initial: "4", sm: "6" }}>
+          <Flex direction="column" align="center" gap={{ initial: "6", sm: "8" }} px={{ initial: "4", sm: "6" }}>
             {/* Title and subtitle section */}
             <Flex direction="column" align="center" gap="6">
               <Avatar fallback="K" size="2" color="gray" src="/kushagra-logo.svg"></Avatar>
-              <Heading align="center" size="9" weight="medium">
+              <Heading align="center" size={{ initial: "8", sm: "9", lg: "10" }} weight="medium" style={{ textWrap: "balance" }}>
                 Hi. I'm Kushagra. Call me Kush.
               </Heading>
 
-              <Text align="center" size="4">
+              <Text align="center" size="3">
                 More about my life, interests, and thoughts coming soon.
               </Text>
             </Flex>
@@ -42,8 +42,8 @@ export function HeroSectionPersonal() {
       </Section>
 
       <Section position="relative" size="4">
-        <Flex direction="column" align="center" gap="8" px={{ initial: "4", sm: "6" }}>
-          <Grid columns="2" gap="1px" width="100%">
+        <Flex direction="column" align="center" gap={{ initial: "6", sm: "8" }} px={{ initial: "4", sm: "6" }}>
+          <Grid columns={{ initial: "1", sm: "2" }} gap="1px" width="100%">
             {Array.from({ length: 8 }).map((_, i) => (
               <AspectRatio key={i} ratio={16 / 9}>
                 <Image

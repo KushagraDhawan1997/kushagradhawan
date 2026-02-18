@@ -1,20 +1,17 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import NextLink from "next/link";
 import NextImage from "next/image";
 import { ArticleProps } from "./ArticlesListGrid";
 import {
   AspectRatio,
-  Card,
+  Box,
   Flex,
-  Heading,
   Image,
-  Inset,
+  Link,
   Text,
 } from "@kushagradhawan/kookie-ui";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { News01Icon, Book03Icon } from "@hugeicons/core-free-icons";
 import { WebGLImageTracker } from "@/components/webgl";
 
 interface ArticleCardProps {
@@ -22,7 +19,6 @@ interface ArticleCardProps {
 }
 
 export function ArticleCard({ post }: ArticleCardProps) {
-  // Format the date for display
   const formattedDate = new Date(post.date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -31,86 +27,58 @@ export function ArticleCard({ post }: ArticleCardProps) {
 
   const isAnnouncement = post.category === "announcement";
 
-  const content = (
-    <Flex direction="column" gap="4" p="1" style={{ height: "100%" }}>
-      {/* Article image */}
-      {post.image && (
-        <Inset
-          clip="padding-box"
-          style={{
-            borderRadius: "var(--radius-4)",
-            overflow: "hidden",
-          }}
-        >
-          <AspectRatio ratio={4 / 3}>
-            <WebGLImageTracker
-              id={`article-${post.slug}`}
-              src={post.image}
-              borderRadius={16}
-            >
-              <Image
-                as={NextImage}
-                src={post.image}
-                alt={post.alt || post.title}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                style={{ objectFit: "cover" }}
-                decoding="async"
-              />
-            </WebGLImageTracker>
-          </AspectRatio>
-        </Inset>
-      )}
-
-      <Flex direction="column" gap="4" p="1" style={{ flex: 1 }}>
-        <Flex direction="column" gap="1">
-          {/* Title */}
-          <Heading size="3" weight="medium">
-            {post.title}
-          </Heading>
-
-          {/* Description */}
-          <Text
-            size="3"
-            color="gray"
-            as="p"
-            style={{
-              display: "-webkit-box",
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: "vertical",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              margin: 0,
-            }}
-          >
-            {post.description}
-          </Text>
-        </Flex>
-
-        {/* Date and category */}
-        <Flex align="center" gap="2">
-          <HugeiconsIcon
-            icon={isAnnouncement ? News01Icon : Book03Icon}
-            size={14}
-            color="var(--gray-11)"
-          />
-          <Text size="2" color="gray">
-            {formattedDate}
-          </Text>
-        </Flex>
-      </Flex>
-    </Flex>
-  );
-
   return (
-    <Link href={`/articles/${post.slug}`}>
-      {isAnnouncement ? (
-        <Card variant="outline" style={{ height: "100%" }}>
-          {content}
-        </Card>
-      ) : (
-        content
-      )}
+    <Link asChild highContrast underline="hover">
+      <NextLink href={`/articles/${post.slug}`}>
+        <Flex
+          width="100%"
+          gap="4"
+          align={{ initial: "start", sm: "center" }}
+          direction={{ initial: "column", sm: "row" }}
+        >
+          {post.image && !isAnnouncement && (
+            <Box
+              flexShrink="0"
+              width={{ initial: "100%", sm: "240px" }}
+              style={{
+                overflow: "hidden",
+              }}
+            >
+              <AspectRatio ratio={16 / 9}>
+                <WebGLImageTracker
+                  id={`article-${post.slug}`}
+                  src={post.image}
+                  borderRadius={0}
+                >
+                  <Image
+                    as={NextImage}
+                    src={post.image}
+                    alt={post.alt || post.title}
+                    fill
+                    sizes="240px"
+                    style={{ objectFit: "cover" }}
+                    radius="none"
+                    decoding="async"
+                  />
+                </WebGLImageTracker>
+              </AspectRatio>
+            </Box>
+          )}
+          <Flex direction="column" gap="3" flexGrow="1">
+            <Flex direction="column" gap="1">
+              <Text size="3" weight="medium">
+                {post.title}
+              </Text>
+              <Text size="3" color="gray">
+                {post.description}
+              </Text>
+            </Flex>
+            <Text size="2" weight="regular" color="gray">
+              {formattedDate}
+            </Text>
+          </Flex>
+        </Flex>
+      </NextLink>
     </Link>
   );
 }

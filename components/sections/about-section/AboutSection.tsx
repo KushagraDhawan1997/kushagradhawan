@@ -65,7 +65,7 @@ function CapabilityCard({
         </VisuallyHidden>
 
         <Flex direction="column" gap="6">
-          <Heading size="6" weight="medium">
+          <Heading size="5" weight="medium">
             {capability.title}
           </Heading>
           <Text size="3" style={{ whiteSpace: "pre-line" }}>
@@ -108,13 +108,13 @@ export function AboutSection() {
   return (
     <Section>
       <Container size="4">
-        <Flex direction="column" gap="9" p="6">
+        <Flex direction="column" gap={{ initial: "6", sm: "9" }} p={{ initial: "4", sm: "6" }}>
           {/* Header with title and subtitle */}
           <Flex direction="column" gap="4">
-            <Heading size="8" weight="medium">
+            <Heading size={{ initial: "8", sm: "9" }} weight="medium" style={{ textWrap: "balance" }}>
               Shipping Products That Scale
             </Heading>
-            <Text size="4" color="gray">
+            <Text size="3" color="gray">
               I combine product strategy, design thinking, and engineering
               skills to build products that actually help people—faster, more
               consistently, and at scale.

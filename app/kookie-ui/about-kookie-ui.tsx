@@ -2,11 +2,11 @@
 
 import {
   AspectRatio,
-  Avatar,
   Button,
-  Container,
   Flex,
+  Heading,
   Section,
+  Separator,
   Text,
   Link,
   Image,
@@ -25,98 +25,104 @@ export function AboutKookieUI({ posts = [] }: { posts?: ArticleProps[] }) {
   return (
     <>
       <Section position="relative" size="4">
-        <Hero.Root layout="stacked" gap="12">
-          <Container size="2">
-            <Flex direction="column" gap="6" align="center">
-              <Hero.Meta>
-                <Avatar
-                  fallback="K"
-                  size="2"
-                  color="gray"
-                  src="/kushagra-logo.svg"
-                />
-              </Hero.Meta>
-
-              <Hero.Title>
-                Kookie UI is a design-system to build consistent and scalable
-                user interfaces.
-              </Hero.Title>
-
-              <Hero.Description color="gray">
-                An open-source fork of{" "}
-                <Text as="span" highContrast>
-                  Radix Themes
-                </Text>
-                , focused on building{" "}
-                <Text as="span" highContrast>
-                  scalable, consistent UI components
-                </Text>{" "}
-                with a fresh visual style and practical foundations.
-              </Hero.Description>
-
-              <Hero.Actions gap="2">
-                <Button variant="soft" size="2" highContrast>
-                  <a
-                    href="/articles/about-kookie-ui"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Read about Kookie UI
-                  </a>
-                  <HugeiconsIcon
-                    icon={ArrowUpRight01Icon}
-                    size={16}
-                    color="currentColor"
-                  />
-                </Button>
-                <Button asChild variant="solid" size="2" highContrast>
-                  <Link
-                    target="_blank"
-                    highContrast
-                    href="https://www.hellokookie.com/"
-                  >
-                    Kookie UI
-                    <HugeiconsIcon
-                      icon={ArrowUpRight01Icon}
-                      strokeWidth={1.5}
-                    />
-                  </Link>
-                </Button>
-              </Hero.Actions>
-            </Flex>
-          </Container>
-
-          <Hero.Media style={{ width: "100%" }}>
-            <Box
-              px={{ initial: "4", sm: "6" }}
-              width="100%"
-              style={{
-                borderRadius: "var(--radius-4)",
-                overflow: "hidden",
-              }}
+        <Flex
+          direction="column"
+          align="start"
+          gap={{ initial: "5", sm: "8" }}
+          py={{ initial: "4", sm: "6" }}
+          px={{ initial: "4", sm: "6" }}
+        >
+          <Flex direction="column" gap="2" width="100%">
+            <Heading size="3" weight="medium">
+              Kookie UI
+            </Heading>
+            <Separator size="4" />
+          </Flex>
+          <Hero.Root align="start" gap={{ initial: "6", sm: "8" }}>
+            <Hero.Title
+              size={{ initial: "8", sm: "9", lg: "10" }}
+              weight="medium"
+              align="left"
+              wrap="balance"
             >
-              <AspectRatio ratio={3 / 1}>
-                <WebGLImageTracker
-                  id="kookie-ui-hero"
-                  src="/pages/kookie-ui/image.jpg"
-                  borderRadius={16}
+              Kookie UI is a design-system to build consistent and scalable user
+              interfaces.
+            </Hero.Title>
+
+            <Hero.Description
+              size={{ initial: "3", sm: "4" }}
+              color="gray"
+              align="left"
+            >
+              An open-source fork of{" "}
+              <Text as="span" highContrast>
+                Radix Themes
+              </Text>
+              , focused on building{" "}
+              <Text as="span" highContrast>
+                scalable, consistent UI components
+              </Text>{" "}
+              with a fresh visual style and practical foundations.
+            </Hero.Description>
+
+            <Hero.Actions gap="3">
+              <Button variant="soft" size="2" highContrast>
+                <a
+                  href="/articles/about-kookie-ui"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <Image
-                    as={NextImage}
-                    src="/pages/kookie-ui/image.jpg"
-                    alt="Kookie UI Hero"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 1200px"
-                    style={{ objectFit: "cover" }}
-                    priority
-                    loading="eager"
-                    decoding="async"
-                  />
-                </WebGLImageTracker>
-              </AspectRatio>
-            </Box>
-          </Hero.Media>
-        </Hero.Root>
+                  Read about Kookie UI
+                </a>
+                <HugeiconsIcon
+                  icon={ArrowUpRight01Icon}
+                  size={16}
+                  color="currentColor"
+                />
+              </Button>
+              <Button asChild variant="solid" size="2" highContrast>
+                <Link
+                  target="_blank"
+                  highContrast
+                  href="https://www.hellokookie.com/"
+                >
+                  Kookie UI
+                  <HugeiconsIcon icon={ArrowUpRight01Icon} strokeWidth={1.5} />
+                </Link>
+              </Button>
+            </Hero.Actions>
+          </Hero.Root>
+        </Flex>
+
+        <Box
+          px={{ initial: "4", sm: "6" }}
+          width="100%"
+          mt="6"
+          style={{
+            overflow: "hidden",
+          }}
+        >
+          <AspectRatio ratio={3 / 1}>
+            <WebGLImageTracker
+              id="kookie-ui-hero"
+              src="/pages/kookie-ui/image.jpg"
+              borderRadius={0}
+            >
+              <Image
+                as={NextImage}
+                src="/pages/kookie-ui/image.jpg"
+                alt="Kookie UI Hero"
+                fill
+                sizes="(max-width: 768px) 100vw, 1200px"
+                style={{ objectFit: "cover" }}
+                radius="none"
+                priority
+                loading="eager"
+                decoding="async"
+              />
+            </WebGLImageTracker>
+          </AspectRatio>
+        </Box>
       </Section>
 
       <Testimonial

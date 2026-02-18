@@ -2,9 +2,7 @@
 
 import React from "react";
 import {
-  Box,
   Card,
-  Container,
   Flex,
   Heading,
   Section,
@@ -13,23 +11,43 @@ import {
 } from "@kushagradhawan/kookie-ui";
 import { principles } from "./philosophyData";
 
-/**
- * ProductPhilosophy - A showcase of the product methodology and guiding principles
- *
- * This section presents the core methodologies that guide product development approach,
- * structured as a vertical stack of cards. Each card contains the title, 
- * short description, and expanded content.
- */
-
 export function ProductPhilosophy() {
   return (
     <Section>
-      <Container size="4">
-        <Flex direction="column" gap="9" py="6" px={{ initial: "4", sm: "6" }} position="relative">
-          {/* Header */}
-          <Flex direction="column" align="center" gap="6">
-            <Text size="3" color="gray">Product Philosophy</Text>
-            <Heading size="8" weight="medium" align="center" color="gray">
+      <Flex
+        direction="column"
+        align="start"
+        gap={{ initial: "6", sm: "10" }}
+        py={{ initial: "4", sm: "6" }}
+        px={{ initial: "4", sm: "6" }}
+      >
+        <Flex direction="column" gap="2" width="100%">
+          <Heading size="3" weight="medium">
+            Product Philosophy
+          </Heading>
+          <Separator size="4" />
+        </Flex>
+        <Flex
+          direction={{ initial: "column", lg: "row" }}
+          gap={{ initial: "6", md: "12" }}
+          width="100%"
+          align="stretch"
+        >
+          <Flex
+            direction="column"
+            flexShrink="0"
+            maxWidth={{ initial: "100%", lg: "600px" }}
+            position={{ initial: "static", lg: "sticky" }}
+            top="96px"
+            style={{ alignSelf: "flex-start" }}
+          >
+            <Heading
+              size={{ initial: "8", sm: "9" }}
+              weight="medium"
+              align="left"
+              color="gray"
+              style={{ textWrap: "balance" }}
+            >
               Building at{" "}
               <Text as="span" weight="medium" highContrast>
                 Womp
@@ -49,20 +67,10 @@ export function ProductPhilosophy() {
               .
             </Heading>
           </Flex>
-
-          {/* Vertical Stack of Cards */}
-          <Flex direction="column" gap="8">
+          <Flex direction="column" gap={{ initial: "6", sm: "8" }} width="100%">
             {principles.map((principle, index) => (
-              <Card
-                key={principle.title}
-                size="1"
-                variant="soft"
-                style={{
-                  position: "sticky",
-                  top: `${100 + index * 0}px`,
-                }}
-              >
-                <Flex direction="column" gap="4" p="6">
+              <Card key={principle.title} size="1" variant="soft">
+                <Flex direction="column" gap="4" p={{ initial: "4", sm: "6" }}>
                   <Flex direction="column" gap="2">
                     <Flex direction="column" align="start" gap="2">
                       <Text size="2" color="gray" weight="medium">
@@ -72,14 +80,8 @@ export function ProductPhilosophy() {
                         {principle.title}
                       </Heading>
                     </Flex>
-                    {/* <Text size="4" >
-                      {principle.description}
-                    </Text> */}
                   </Flex>
-
-                  {/* <Separator size="4" /> */}
-
-                  <Text size="4" color="gray">
+                  <Text size="3" color="gray">
                     {principle.expandedContent}
                   </Text>
                 </Flex>
@@ -87,7 +89,7 @@ export function ProductPhilosophy() {
             ))}
           </Flex>
         </Flex>
-      </Container>
+      </Flex>
     </Section>
   );
 }

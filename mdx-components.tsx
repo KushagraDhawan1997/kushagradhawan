@@ -18,11 +18,10 @@ function MDXImage({ src, alt, ...props }: React.ComponentProps<"img">) {
         width: "100%",
         aspectRatio: "16/9",
         margin: "var(--space-4) 0",
-        borderRadius: "var(--radius-4)",
         overflow: "hidden",
       }}
     >
-      <WebGLImageTracker id={id} src={src} borderRadius={16}>
+      <WebGLImageTracker id={id} src={src} borderRadius={0}>
         <NextImage
           src={src}
           alt={alt || ""}

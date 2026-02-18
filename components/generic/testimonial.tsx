@@ -23,8 +23,18 @@ export function Testimonial({
   return (
     <Section size="4">
       <Container size="3" px={{ initial: "4", sm: "6" }}>
-        <Flex direction="column" align="center" justify="center" gap="6" py="6">
-          <Heading size="8" align="center" weight="medium">
+        <Flex
+          direction="column"
+          align="center"
+          justify="center"
+          gap="6"
+          py={{ initial: "4", sm: "6" }}
+        >
+          <Heading
+            size={{ initial: "6", sm: "7", lg: "8" }}
+            align="center"
+            weight="medium"
+          >
             "{quote}"
           </Heading>
           <Flex direction="column" align="center" gap="2">

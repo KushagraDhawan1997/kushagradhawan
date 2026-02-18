@@ -51,7 +51,7 @@ function KookieAiCapabilityCard({ capability, icon }: { capability: KookieAiCapa
         </VisuallyHidden>
 
         <Flex direction="column" gap="6">
-          <Heading size="6" weight="medium">
+          <Heading size="5" weight="medium">
             {capability.title}
           </Heading>
           <Text size="3" style={{ whiteSpace: "pre-line" }}>
@@ -87,7 +87,7 @@ export function AboutKookieAISection({ posts = [] }: { posts?: ArticleProps[] })
     <Section>
       <Container size="4">
         <Card variant="classic" size="4">
-          <Flex direction="column" gap="9" py="6" px={{ initial: "3", sm: "6" }}>
+          <Flex direction="column" gap={{ initial: "6", sm: "9" }} py={{ initial: "4", sm: "6" }} px={{ initial: "3", sm: "6" }}>
             {/* Title and subtitle */}
             <Flex direction="column" gap="4">
               <Flex as="span" width="32px" height="32px" display="inline-flex" align="center" justify="center">
@@ -103,11 +103,11 @@ export function AboutKookieAISection({ posts = [] }: { posts?: ArticleProps[] })
                 </Badge>
               </Flex>
 
-              <Heading size="8" weight="medium">
+              <Heading size={{ initial: "8", sm: "9" }} weight="medium" style={{ textWrap: "balance" }}>
                 Kookie AI
               </Heading>
 
-              <Text size="4" color="gray">
+              <Text size="3" color="gray">
                 A UX-first, desktop web product where conversations live as a branching graph of nodes. Each branch can diverge, transform, or produce artifacts
                 — giving knowledge workers and creators a powerful OS for exploring, remixing, and producing with AI. Not a chatbot. A conversation OS.
               </Text>

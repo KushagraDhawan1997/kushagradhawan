@@ -4,15 +4,13 @@ import React from "react";
 import {
   Button,
   Flex,
-  Container,
   Section,
   Link,
   Image,
-  Avatar,
-  Tooltip,
   Callout,
   Text,
   Heading,
+  Separator,
 } from "@kushagradhawan/kookie-ui";
 import { HoverCard } from "@kushagradhawan/kookie-ui";
 import { Hero as HeroBlock } from "@kushagradhawan/kookie-blocks";
@@ -36,30 +34,40 @@ interface HeroProps {
 export function Hero({ latestAnnouncement }: HeroProps) {
   return (
     <Section position="relative" size="4">
-      <Container size="2" style={{ position: "relative", zIndex: 1 }}>
-        <HeroBlock.Root px={{ initial: "4", sm: "6" }}>
-          <HeroBlock.Meta>
-            <Avatar
-              fallback="K"
-              size="2"
-              color="gray"
-              src="/new-kushagradhawan-logo.svg"
-            />
-          </HeroBlock.Meta>
-
-          <HeroBlock.Title>
-            I design, vibe-code
-            <Tooltip content="I actually have a computer science degree! My vibe-coding is (mostly) safe for work.">
-              <span style={{ cursor: "help", fontWeight: "bold" }}>*</span>
-            </Tooltip>
-            , lead teams, and ship.
+      <Flex
+        direction="column"
+        align="start"
+        gap={{ initial: "5", sm: "8" }}
+        py={{ initial: "4", sm: "6" }}
+        px={{ initial: "4", sm: "6" }}
+      >
+        <Flex direction="column" gap="2" width="100%">
+          <Heading size="3" weight="medium">
+            Kushagra Dhawan
+          </Heading>
+          <Separator size="4" />
+        </Flex>
+        <HeroBlock.Root align="start" gap={{ initial: "6", sm: "8" }}>
+          <HeroBlock.Title
+            size={{ initial: "8", sm: "9", lg: "10" }}
+            weight="medium"
+            align="left"
+            wrap="balance"
+          >
+            Independent Product, Design & Engineer. I build where design,
+            engineering, and product meet.
           </HeroBlock.Title>
 
-          <HeroBlock.Description color="gray">
+          <HeroBlock.Description
+            size={{ initial: "3", sm: "4" }}
+            color="gray"
+            align="left"
+          >
             Building{" "}
             <HoverCard.Root>
               <HoverCard.Trigger>
                 <Link
+                  underline="always"
                   color="blue"
                   target="_blank"
                   href="https://www.hellokookie.com/"
@@ -76,6 +84,7 @@ export function Hero({ latestAnnouncement }: HeroProps) {
                     width={600}
                     height={450}
                     loading="lazy"
+                    radius="none"
                   />
                 </Flex>
               </HoverCard.Content>
@@ -84,6 +93,7 @@ export function Hero({ latestAnnouncement }: HeroProps) {
             <HoverCard.Root>
               <HoverCard.Trigger>
                 <Link
+                  underline="always"
                   color="blue"
                   target="_blank"
                   href="https://kookieblocks.com/"
@@ -100,6 +110,7 @@ export function Hero({ latestAnnouncement }: HeroProps) {
                     width={600}
                     height={450}
                     loading="lazy"
+                    radius="none"
                   />
                 </Flex>
               </HoverCard.Content>
@@ -108,6 +119,7 @@ export function Hero({ latestAnnouncement }: HeroProps) {
             <HoverCard.Root>
               <HoverCard.Trigger>
                 <Link
+                  underline="always"
                   color="blue"
                   target="_blank"
                   href="https://github.com/KushagraDhawan1997/kookie-flow"
@@ -130,7 +142,7 @@ export function Hero({ latestAnnouncement }: HeroProps) {
             , and{" "}
             <HoverCard.Root>
               <HoverCard.Trigger>
-                <Link color="blue" href="/kookie-ai">
+                <Link underline="always" color="blue" href="/kookie-ai">
                   Kookie AI
                 </Link>
               </HoverCard.Trigger>
@@ -150,7 +162,12 @@ export function Hero({ latestAnnouncement }: HeroProps) {
             . Currently consulting with{" "}
             <HoverCard.Root>
               <HoverCard.Trigger>
-                <Link color="blue" target="_blank" href="https://womp.com">
+                <Link
+                  underline="always"
+                  color="blue"
+                  target="_blank"
+                  href="https://womp.com"
+                >
                   Womp 3D
                 </Link>
               </HoverCard.Trigger>
@@ -163,6 +180,7 @@ export function Hero({ latestAnnouncement }: HeroProps) {
                     width={600}
                     height={450}
                     loading="lazy"
+                    radius="none"
                   />
                 </Flex>
               </HoverCard.Content>
@@ -170,7 +188,7 @@ export function Hero({ latestAnnouncement }: HeroProps) {
             .
           </HeroBlock.Description>
 
-          <HeroBlock.Actions>
+          <HeroBlock.Actions gap="3">
             <Button asChild variant="solid" size="2" highContrast>
               <a
                 href="https://calendly.com/accounts-kushagradhawan/30min"
@@ -194,7 +212,7 @@ export function Hero({ latestAnnouncement }: HeroProps) {
           </HeroBlock.Actions>
 
           {latestAnnouncement && (
-            <Flex justify="center" mt="4">
+            <Flex justify="start" mt="2">
               <Link
                 href={`/articles/${latestAnnouncement.slug}`}
                 target="_blank"
@@ -208,7 +226,7 @@ export function Hero({ latestAnnouncement }: HeroProps) {
                   size="2"
                   style={{ cursor: "pointer" }}
                 >
-                  <Callout.Text align="center">
+                  <Callout.Text align="left">
                     Read the latest → {latestAnnouncement.title}
                   </Callout.Text>
                 </Callout.Root>
@@ -216,7 +234,7 @@ export function Hero({ latestAnnouncement }: HeroProps) {
             </Flex>
           )}
         </HeroBlock.Root>
-      </Container>
+      </Flex>
     </Section>
   );
 }

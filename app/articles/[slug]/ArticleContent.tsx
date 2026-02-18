@@ -97,7 +97,6 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
       <Box
         px={{ initial: "4", sm: "6" }}
         style={{
-          borderRadius: "var(--radius-4)",
           overflow: "hidden",
         }}
       >
@@ -107,7 +106,7 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
             <WebGLImageTracker
               id={`article-hero-${post.slug}`}
               src={post.image}
-              borderRadius={16}
+              borderRadius={0}
             >
               <Image
                 as={NextImage}
@@ -116,6 +115,7 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
                 fill
                 sizes="(max-width: 768px) 100vw, 1200px"
                 style={{ objectFit: "cover" }}
+                radius="none"
                 priority
                 loading="eager"
                 decoding="async"
@@ -125,17 +125,22 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
         )}
       </Box>
       <Container size="2">
-        <Flex direction="column" gap="9" p="6">
+        <Flex direction="column" gap={{ initial: "6", sm: "9" }} p={{ initial: "4", sm: "6" }}>
           <article>
             {/* Article header with title, date, and tags */}
-            <Flex direction="column" gap="6" py="8">
+            <Flex direction="column" gap="6" py={{ initial: "6", sm: "8" }}>
               {/* Publication date */}
               <Text size="2" color="gray">
                 <time dateTime={post.date}>{formattedDate}</time>
               </Text>
 
               {/* Article title */}
-              <Heading as="h1" size="9" weight="medium">
+              <Heading
+                as="h1"
+                size={{ initial: "8", sm: "9" }}
+                weight="medium"
+                style={{ textWrap: "balance" }}
+              >
                 {post.title}
               </Heading>
 
@@ -151,7 +156,7 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
               )}
 
               {/* Description */}
-              <Text size="4" color="gray">
+              <Text size={{ initial: "3", sm: "4" }} color="gray">
                 {post.description}
               </Text>
 

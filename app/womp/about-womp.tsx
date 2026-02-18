@@ -4,14 +4,12 @@ import React from "react";
 import {
   AspectRatio,
   Button,
-  Container,
   Flex,
   Heading,
   Section,
   Text,
   Image,
   Link,
-  Avatar,
   HoverCard,
   Box,
   Separator,
@@ -84,7 +82,7 @@ function WompStats() {
             direction="column"
             align="center"
             gap="3"
-            p="6"
+            p={{ initial: "4", sm: "6" }}
             height="100%"
             style={{
               flex: "1 1 0",
@@ -119,94 +117,101 @@ export function AboutWomp({ posts = [] }: { posts?: ArticleProps[] }) {
   return (
     <>
       <Section position="relative" size="4">
-        <Hero.Root layout="stacked" gap="12">
-          <Container size="2">
-            <Flex direction="column" gap="6" align="center">
-              <Hero.Meta>
-                <Avatar
-                  fallback="K"
-                  size="2"
-                  color="gray"
-                  src="/kushagra-logo.svg"
-                />
-              </Hero.Meta>
-
-              <Hero.Title>
-                Womp is a browser-based 3D modeling platform that makes 3D
-                beginner-friendly and easy.
-              </Hero.Title>
-
-              <Hero.Description color="gray">
-                I&apos;ve been consulting with{" "}
-                <HoverCard.Root>
-                  <HoverCard.Trigger>
-                    <Link color="blue" target="_blank" href="https://womp.com">
-                      Womp 3D
-                    </Link>
-                  </HoverCard.Trigger>
-                  <HoverCard.Content maxWidth="600px">
-                    <Flex direction="column" align="center">
-                      <Image
-                        src="/womp.png"
-                        alt="Womp 3D Preview"
-                        width="600"
-                        height="450"
-                      />
-                    </Flex>
-                  </HoverCard.Content>
-                </HoverCard.Root>
-                {" "}since 2021 as an independent product and design consultant,
-                empowering everyone to bring their ideas to life in minutes.
-              </Hero.Description>
-
-              <Hero.Actions direction="column" align="center" gap="4">
-                <Button asChild variant="solid" size="2" highContrast>
-                  <a
-                    href="https://womp.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Create in Womp
-                  </a>
-                </Button>
-                <Text size="2" color="gray">
-                  Works in the browser. No install.
-                </Text>
-              </Hero.Actions>
-            </Flex>
-          </Container>
-
-          <Hero.Media style={{ width: "100%" }}>
-            <Box
-              px={{ initial: "4", sm: "6" }}
-              width="100%"
-              style={{
-                borderRadius: "var(--radius-4)",
-                overflow: "hidden",
-              }}
+        <Flex
+          direction="column"
+          align="start"
+          gap={{ initial: "5", sm: "8" }}
+          py={{ initial: "4", sm: "6" }}
+          px={{ initial: "4", sm: "6" }}
+        >
+          <Flex direction="column" gap="2" width="100%">
+            <Heading size="3" weight="medium">
+              Womp 3D
+            </Heading>
+            <Separator size="4" />
+          </Flex>
+          <Hero.Root align="start" gap={{ initial: "6", sm: "8" }}>
+            <Hero.Title
+              size={{ initial: "8", sm: "9", lg: "10" }}
+              weight="medium"
+              align="left"
+              wrap="balance"
             >
-              <AspectRatio ratio={3 / 1}>
-                <WebGLImageTracker
-                  id="womp-hero"
-                  src="/pages/womp/image.jpg"
-                  borderRadius={16}
+              Womp is a browser-based 3D modeling platform that makes 3D
+              beginner-friendly and easy.
+            </Hero.Title>
+
+            <Hero.Description
+              size={{ initial: "3", sm: "4" }}
+              color="gray"
+              align="left"
+            >
+              I&apos;ve been consulting with{" "}
+              <HoverCard.Root>
+                <HoverCard.Trigger>
+                  <Link underline="always" color="blue" target="_blank" href="https://womp.com">
+                    Womp 3D
+                  </Link>
+                </HoverCard.Trigger>
+                <HoverCard.Content maxWidth="600px">
+                  <Flex direction="column" align="center">
+                    <Image
+                      src="/womp.png"
+                      alt="Womp 3D Preview"
+                      width="600"
+                      height="450"
+                      radius="none"
+                    />
+                  </Flex>
+                </HoverCard.Content>
+              </HoverCard.Root>{" "}
+              since 2021 as an independent product and design consultant,
+              empowering everyone to bring their ideas to life in minutes.
+            </Hero.Description>
+
+            <Hero.Actions gap="3">
+              <Button asChild variant="solid" size="2" highContrast>
+                <a
+                  href="https://womp.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <Image
-                    as={NextImage}
-                    src="/pages/womp/image.jpg"
-                    alt="Womp Hero"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 1200px"
-                    style={{ objectFit: "cover" }}
-                    priority
-                    loading="eager"
-                    decoding="async"
-                  />
-                </WebGLImageTracker>
-              </AspectRatio>
-            </Box>
-          </Hero.Media>
-        </Hero.Root>
+                  Create in Womp
+                </a>
+              </Button>
+            </Hero.Actions>
+          </Hero.Root>
+        </Flex>
+
+        <Box
+          px={{ initial: "4", sm: "6" }}
+          width="100%"
+          mt="6"
+          style={{
+            overflow: "hidden",
+          }}
+        >
+          <AspectRatio ratio={3 / 1}>
+            <WebGLImageTracker
+              id="womp-hero"
+              src="/pages/womp/image.jpg"
+              borderRadius={0}
+            >
+              <Image
+                as={NextImage}
+                src="/pages/womp/image.jpg"
+                alt="Womp Hero"
+                fill
+                sizes="(max-width: 768px) 100vw, 1200px"
+                style={{ objectFit: "cover" }}
+                radius="none"
+                priority
+                loading="eager"
+                decoding="async"
+              />
+            </WebGLImageTracker>
+          </AspectRatio>
+        </Box>
       </Section>
 
       <Testimonial
@@ -217,7 +222,7 @@ export function AboutWomp({ posts = [] }: { posts?: ArticleProps[] }) {
       />
 
       <Section size="4">
-        <Flex direction="column" gap="8" py="6" px={{ initial: "4", sm: "6" }}>
+        <Flex direction="column" gap={{ initial: "6", sm: "8" }} py={{ initial: "4", sm: "6" }} px={{ initial: "4", sm: "6" }}>
           <WompIllustrationGrid />
           <WompStats />
         </Flex>

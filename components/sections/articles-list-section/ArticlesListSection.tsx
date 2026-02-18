@@ -1,55 +1,96 @@
 "use client";
 
-import { Container, Flex, Heading, Section, Text } from "@kushagradhawan/kookie-ui";
+import {
+  Flex,
+  Heading,
+  Section,
+  Separator,
+  Text,
+} from "@kushagradhawan/kookie-ui";
 import { ArticlesListGrid, ArticleProps } from "./ArticlesListGrid";
 
 export interface ArticlesListSectionProps {
   posts: ArticleProps[];
 }
 
+/**
+ * Full articles listing section for the /articles route.
+ *
+ * Displays a sticky title on the left with announcements and
+ * articles on the right, matching the homepage section layout.
+ */
 export function ArticlesListSection({ posts }: ArticlesListSectionProps) {
-  const announcements = posts.filter((post) => post.category === "announcement");
+  const announcements = posts.filter(
+    (post) => post.category === "announcement",
+  );
   const articles = posts.filter((post) => post.category !== "announcement");
 
   return (
-    <Section>
-      <Container size="4">
-        <Flex direction="column" gap="9" p="6">
-          <Flex direction="column" align="center" gap="6">
-            <Text size="1" color="gray" weight="medium">
-              ARTICLES
-            </Text>
-            <Heading size="8" weight="medium" align="center" style={{ maxWidth: "64rem" }}>
-              Genuinely useful thoughts, sandwiched between the appropriate number of keywords. It&apos;s part of the game we all play.
+    <Section size="4">
+      <Flex
+        direction="column"
+        align="start"
+        gap={{ initial: "6", sm: "10" }}
+        py={{ initial: "4", sm: "6" }}
+        px={{ initial: "4", sm: "6" }}
+      >
+        <Flex direction="column" gap="2" width="100%">
+          <Heading size="3" weight="medium">
+            Articles
+          </Heading>
+          <Separator size="4" />
+        </Flex>
+        <Flex
+          direction={{ initial: "column", md: "row" }}
+          gap={{ initial: "6", md: "12" }}
+          width="100%"
+          align="stretch"
+        >
+          <Flex
+            direction="column"
+            flexShrink="0"
+            maxWidth={{ initial: "100%", md: "400px", lg: "600px" }}
+            position={{ initial: "static", md: "sticky" }}
+            top="96px"
+            style={{ alignSelf: "flex-start" }}
+          >
+            <Heading
+              align="left"
+              size={{ initial: "8", sm: "9" }}
+              weight="medium"
+              style={{ textWrap: "balance" }}
+            >
+              On product, design systems, and the craft of shipping software.
             </Heading>
           </Flex>
+          <Flex direction="column" gap={{ initial: "8", sm: "12" }} width="100%">
+            {announcements.length > 0 && (
+              <Flex direction="column" gap="6">
+                <Heading size="3" weight="medium">
+                  Announcements ({announcements.length})
+                </Heading>
+                <ArticlesListGrid posts={announcements} />
+              </Flex>
+            )}
 
-          {announcements.length > 0 && (
-            <Flex direction="column" gap="6">
-              <Heading size="5" weight="medium">
-                Announcements
-              </Heading>
-              <ArticlesListGrid posts={announcements} />
-            </Flex>
-          )}
-
-          {articles.length > 0 ? (
-            <Flex direction="column" gap="6">
-              <Heading size="5" weight="medium">
-                Articles
-              </Heading>
-              <ArticlesListGrid posts={articles} />
-            </Flex>
-          ) : (
-            <Flex direction="column" gap="2" align="center" py="12">
-              <Heading size="4" weight="medium">
-                No articles yet
-              </Heading>
-              <Text color="gray">Check back soon for new content!</Text>
-            </Flex>
-          )}
+            {articles.length > 0 ? (
+              <Flex direction="column" gap="6">
+                <Heading size="3" weight="medium">
+                  Articles ({articles.length})
+                </Heading>
+                <ArticlesListGrid posts={articles} />
+              </Flex>
+            ) : (
+              <Flex direction="column" gap="2" align="center" py={{ initial: "8", sm: "12" }}>
+                <Heading size="3" weight="medium">
+                  No articles yet
+                </Heading>
+                <Text color="gray">Check back soon for new content!</Text>
+              </Flex>
+            )}
+          </Flex>
         </Flex>
-      </Container>
+      </Flex>
     </Section>
   );
 }

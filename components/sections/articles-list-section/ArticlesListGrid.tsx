@@ -1,5 +1,6 @@
 import { ArticleCard } from "./ArticleCard";
-import { Grid } from "@kushagradhawan/kookie-ui";
+import { Flex, Separator } from "@kushagradhawan/kookie-ui";
+import React from "react";
 
 export interface ArticleProps {
   title: string;
@@ -19,10 +20,13 @@ interface ArticlesListGridProps {
 
 export function ArticlesListGrid({ posts }: ArticlesListGridProps) {
   return (
-    <Grid gap="3" columns={{ initial: "1", md: "2", lg: "2" }}>
+    <Flex direction="column" gap="4" width="100%">
       {posts.map((post) => (
-        <ArticleCard key={post.slug} post={post} />
+        <React.Fragment key={post.slug}>
+          <ArticleCard post={post} />
+          <Separator size="4" />
+        </React.Fragment>
       ))}
-    </Grid>
+    </Flex>
   );
 }
