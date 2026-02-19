@@ -14,3 +14,4 @@ export { QueenLukitaBlessing } from "./QueenLukitaBlessing";
 export { Footer } from "./footer";
 export { Navbar } from "./navbar";
 export { Testimonial } from "./testimonial";
+export { ScrollToTop } from "./scroll-to-top";

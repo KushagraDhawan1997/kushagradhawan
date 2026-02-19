@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Navbar } from "@/components/generic/navbar";
-import { HashScrollHandler, Footer } from "@/components/generic";
+import { HashScrollHandler, Footer, ScrollToTop } from "@/components/generic";
 import { Providers, Box } from "@/components/providers";
 import "highlight.js/styles/github-dark.css";
 import { Analytics } from "@vercel/analytics/next";
@@ -203,6 +203,7 @@ export default function RootLayout({
             <main>{children}</main>
           </Box>
           <Footer />
+          <ScrollToTop />
           {/* <QueenLukitaBlessing /> */}
           <Analytics />
         </Providers>

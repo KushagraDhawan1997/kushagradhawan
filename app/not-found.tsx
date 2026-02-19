@@ -2,7 +2,15 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
-import { Section, Container, Flex, Heading, Image, Button, Text } from "@kushagradhawan/kookie-ui";
+import {
+  Section,
+  Container,
+  Flex,
+  Heading,
+  Image,
+  Button,
+  Text,
+} from "@kushagradhawan/kookie-ui";
 import { getMonochromaticGradient } from "@/lib/gradient";
 
 export default function NotFound() {
@@ -13,19 +21,37 @@ export default function NotFound() {
 
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute("content", "Sorry, the page you are looking for does not exist or has been moved.");
+      metaDescription.setAttribute(
+        "content",
+        "Sorry, the page you are looking for does not exist or has been moved.",
+      );
     }
   }, []);
 
   return (
     <Section>
       <Container size="4">
-        <Flex direction="column" gap={{ initial: "6", sm: "8" }} p={{ initial: "4", sm: "6" }} align="center">
-          <Flex direction="column" gap="4" align="center">
-            <Heading size={{ initial: "8", sm: "9" }} highContrast weight="medium" style={{ textWrap: "balance" }}>
+        <Flex
+          direction="column"
+          gap={{ initial: "6", sm: "8" }}
+          p={{ initial: "4", sm: "6" }}
+          align="center"
+        >
+          <Flex direction="column" gap="6" align="center">
+            <Heading
+              size={{ initial: "7", sm: "8" }}
+              highContrast
+              weight="medium"
+              style={{ textWrap: "balance" }}
+            >
               404
             </Heading>
-            <Heading size="5" weight="medium" className={gradientText} style={{ textAlign: "center", textWrap: "balance" }}>
+            <Heading
+              size={{ initial: "8", sm: "9" }}
+              weight="medium"
+              className={gradientText}
+              style={{ textAlign: "center", textWrap: "balance" }}
+            >
               I'm lost in these memories. <br />
               Living behind my own illusion.
             </Heading>
@@ -43,7 +69,13 @@ export default function NotFound() {
               <Link href="/articles">Articles</Link>
             </Button>
           </Flex>
-          <Image src="/kookie.png" alt="KookieUI" maxWidth="320px" radius="none" style={{ backgroundPosition: "bottom" }} />
+          <Image
+            src="/kookie.png"
+            alt="KookieUI"
+            maxWidth="320px"
+            radius="none"
+            style={{ backgroundPosition: "bottom" }}
+          />
         </Flex>
       </Container>
     </Section>

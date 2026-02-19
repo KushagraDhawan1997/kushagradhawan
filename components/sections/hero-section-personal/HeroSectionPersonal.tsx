@@ -29,7 +29,7 @@ export function HeroSectionPersonal() {
             {/* Title and subtitle section */}
             <Flex direction="column" align="center" gap="6">
               <Avatar fallback="K" size="2" color="gray" src="/kushagra-logo.svg"></Avatar>
-              <Heading align="center" size={{ initial: "8", sm: "9", lg: "10" }} weight="medium" style={{ textWrap: "balance" }}>
+              <Heading align="center" size={{ initial: "8", sm: "9", lg: "10" }} weight="medium">
                 Hi. I'm Kushagra. Call me Kush.
               </Heading>
 

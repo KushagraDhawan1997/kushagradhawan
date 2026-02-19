@@ -240,7 +240,7 @@ export function NavbarComponent() {
       </Navbar.Navigation>
 
       {/* Actions */}
-      <Navbar.Actions gap="1">
+      <Navbar.Actions gap="2">
         <ThemeToggle />
         <Button size="2" asChild variant="solid" highContrast>
           <Link

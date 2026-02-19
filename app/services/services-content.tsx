@@ -74,7 +74,7 @@ export function ServicesContent() {
               size={{ initial: "8", sm: "9", lg: "10" }}
               weight="medium"
               align="left"
-              wrap="balance"
+
             >
               I take on select consulting projects for startups and product
               teams.
@@ -172,7 +172,7 @@ export function ServicesContent() {
                 weight="medium"
                 align="left"
                 color="gray"
-                style={{ textWrap: "balance" }}
+
               >
                 I bring{" "}
                 <Text as="span" weight="medium" highContrast>

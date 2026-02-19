@@ -52,7 +52,7 @@ export function Hero({ latestAnnouncement }: HeroProps) {
             size={{ initial: "8", sm: "9", lg: "10" }}
             weight="medium"
             align="left"
-            wrap="balance"
+
           >
             Independent Product, Design & Engineer. I build where design,
             engineering, and product meet.

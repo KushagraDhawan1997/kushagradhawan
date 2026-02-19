@@ -135,7 +135,7 @@ export function AboutWomp({ posts = [] }: { posts?: ArticleProps[] }) {
               size={{ initial: "8", sm: "9", lg: "10" }}
               weight="medium"
               align="left"
-              wrap="balance"
+
             >
               Womp is a browser-based 3D modeling platform that makes 3D
               beginner-friendly and easy.

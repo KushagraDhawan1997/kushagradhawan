@@ -42,7 +42,7 @@ export function AboutKookieFlow({ posts = [] }: { posts?: ArticleProps[] }) {
               size={{ initial: "8", sm: "9", lg: "10" }}
               weight="medium"
               align="left"
-              wrap="balance"
+
             >
               Kookie Flow is a WebGL-native node graph library for React.
             </Hero.Title>

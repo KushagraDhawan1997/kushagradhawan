@@ -43,7 +43,7 @@ export function AboutKookieAI() {
               size={{ initial: "8", sm: "9", lg: "10" }}
               weight="medium"
               align="left"
-              wrap="balance"
+
             >
               Kookie AI is a UX-first desktop web product where conversations
               live as a branching graph of nodes.

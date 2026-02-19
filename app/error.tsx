@@ -15,11 +15,21 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
     <Section>
       <Container size="4">
         <Flex direction="column" gap={{ initial: "6", sm: "8" }} p={{ initial: "4", sm: "6" }} align="center">
-          <Flex direction="column" gap="4" align="center">
-            <Heading size={{ initial: "8", sm: "9" }} highContrast weight="medium" style={{ textWrap: "balance" }}>
+          <Flex direction="column" gap="6" align="center">
+            <Heading
+              size={{ initial: "7", sm: "8" }}
+              highContrast
+              weight="medium"
+              style={{ textWrap: "balance" }}
+            >
               Oops
             </Heading>
-            <Heading size="5" weight="medium" className={gradientText} style={{ textAlign: "center", textWrap: "balance" }}>
+            <Heading
+              size={{ initial: "8", sm: "9" }}
+              weight="medium"
+              className={gradientText}
+              style={{ textAlign: "center", textWrap: "balance" }}
+            >
               Something went wrong.
             </Heading>
             <Text size="3" color="gray" align="center">

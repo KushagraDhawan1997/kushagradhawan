@@ -43,7 +43,7 @@ export function AboutKookieBlocks({ posts = [] }: { posts?: ArticleProps[] }) {
               size={{ initial: "8", sm: "9", lg: "10" }}
               weight="medium"
               align="left"
-              wrap="balance"
+
             >
               Kookie Blocks is a higher-level implementation of Kookie UI.
             </Hero.Title>

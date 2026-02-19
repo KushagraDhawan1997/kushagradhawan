@@ -43,7 +43,7 @@ export function AboutKookieUI({ posts = [] }: { posts?: ArticleProps[] }) {
               size={{ initial: "8", sm: "9", lg: "10" }}
               weight="medium"
               align="left"
-              wrap="balance"
+
             >
               Kookie UI is a design-system to build consistent and scalable user
               interfaces.
