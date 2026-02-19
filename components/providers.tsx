@@ -53,8 +53,9 @@ function WebGLLayer() {
   const shouldEnableWebGL =
     ENABLE_WEBGL && !isMobile && !isSafari && !prefersReducedMotion;
 
-  // Initialize Lenis for smooth scroll sync - only when WebGL is active
-  useLenisSetup(shouldEnableWebGL);
+  // Lenis runs independently of the WebGL flag so smooth scroll can be tested in isolation
+  const shouldEnableLenis = !isMobile && !isSafari && !prefersReducedMotion;
+  useLenisSetup(shouldEnableLenis);
 
   if (!shouldEnableWebGL) {
     return null;
