@@ -1,3 +1,4 @@
+import React from "react";
 import type { MDXComponents } from "mdx/types";
 import { createMarkdownComponents } from "@kushagradhawan/kookie-blocks";
 import NextImage from "next/image";
@@ -17,7 +18,7 @@ function MDXImage({ src, alt, ...props }: React.ComponentProps<"img">) {
         position: "relative",
         width: "100%",
         aspectRatio: "16/9",
-        margin: "var(--space-4) 0",
+        margin: "var(--space-8) 0",
         overflow: "hidden",
       }}
     >
@@ -36,13 +37,23 @@ function MDXImage({ src, alt, ...props }: React.ComponentProps<"img">) {
 }
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
+  const base = createMarkdownComponents({
+    spacing: "spacious",
+    codeBlockCollapsible: true,
+    inlineCodeHighContrast: true,
+  });
+
   return {
-    ...createMarkdownComponents({
-      spacing: "spacious",
-      codeBlockCollapsible: true,
-      inlineCodeHighContrast: true,
-    }),
+    ...base,
     img: MDXImage,
+    p: (props: React.ComponentProps<"p">) => {
+      const children = React.Children.toArray(props.children);
+      const hasBlockChild = children.some(
+        (child) => React.isValidElement(child) && child.type === MDXImage,
+      );
+      if (hasBlockChild) return <>{props.children}</>;
+      return base.p ? <base.p {...props} /> : <p {...props} />;
+    },
     ...components,
   };
 }
