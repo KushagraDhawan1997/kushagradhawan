@@ -1,0 +1,100 @@
+---
+title: "Kookie Blocks: Higher-Level Components for Kookie UI"
+description: "Pre-built patterns on top of Kookie UI. Same design system, one layer higher."
+date: "2026-02-20"
+author: "Kushagra Dhawan"
+featured: true
+image: "/articles/kookie-blocks/image.jpg"
+alt: "Kookie Blocks higher-level components built on Kookie UI"
+canonical: "https://kushagradhawan.com/articles/about-kookie-blocks"
+tags:
+  [
+    "kookie-blocks",
+    "kookie-ui",
+    "design-systems",
+    "components",
+    "engineering",
+    "documentation",
+    "ai",
+  ]
+keywords:
+  [
+    "component library",
+    "design system",
+    "documentation components",
+    "streaming markdown",
+    "code blocks",
+    "higher-level components",
+    "react components",
+  ]
+---
+
+Kookie Blocks is a collection of pre-built patterns on top of Kookie UI. Same design system, one layer higher.
+
+## The Gap
+
+Kookie UI gives you primitives. Buttons, cards, inputs, sidebars, shells. These are the building blocks, and they work well. But every time I started a new project, I found myself rebuilding the same patterns.
+
+Documentation sites need a shell with a sidebar, a content area, and a table of contents. The sidebar needs sections, navigation items, search. The content area needs proper typography, code blocks with syntax highlighting, component previews. The table of contents needs to track scroll position and highlight the current section.
+
+AI interfaces need streaming markdown. Rendering markdown is straightforward. Rendering markdown that's still being written is not. Incomplete syntax mid-stream. Re-renders on every token. Code blocks that flicker because the closing backticks haven't arrived yet. Bold text that breaks because the second `**` hasn't come through.
+
+Marketing pages need heroes, footers, testimonials. These aren't complex, but they take time to get right every time.
+
+I kept building these patterns from scratch. Each project started with the same work before I could get to the actual product.
+
+## The Solution
+
+Kookie Blocks is that layer between primitives and products. It takes Kookie UI's components and composes them into patterns you can use directly.
+
+The blocks fall into a few categories.
+
+**Marketing.** Hero, Footer, Testimonial. The pieces you need for a landing page. Drop them in, pass your content, done.
+
+**Application.** Page Header, Section Header, Empty State. Common UI patterns that show up in almost every app. Consistent layout, consistent spacing, consistent typography.
+
+**AI.** This is where some of the harder problems live.
+
+Markdown Components creates component mappings for react-markdown and MDX using Kookie UI components. Headings, paragraphs, code blocks, lists, tables, all styled with Kookie UI's typography and spacing. Use this utility to render markdown content that looks like it belongs in your app.
+
+Streaming Markdown handles the hard parts of rendering AI-generated content. It handles incomplete markdown gracefully during streaming. Block-level memoization means completed blocks don't re-render when new tokens arrive. The component is designed for real-time updates where content is still being written.
+
+**Documentation.** This is the most complete category.
+
+Code Block handles syntax highlighting, copy buttons, line numbers, language labels. Docs Shell provides the overall layout for a documentation site. Docs Sidebar handles navigation with sections, items, and collapsible groups. Docs Page structures content with proper spacing and typography. Table of Contents tracks scroll position and highlights the current section. Preview Block displays live component previews with customizable backgrounds, perfect for showcasing UI components in documentation.
+
+## The Interconnectedness
+
+This is the part I find interesting.
+
+Kookie UI provides Shell, a layout primitive for application frames. Kookie Blocks uses that Shell to build Docs Shell, adding the specific layout and behavior documentation sites need.
+
+Kookie UI provides Sidebar, a flexible navigation component. Kookie Blocks uses that Sidebar to build Docs Sidebar, adding documentation-specific patterns like section grouping and active state tracking.
+
+Then Kookie UI's own documentation site is built with Kookie Blocks.
+
+The libraries feed into each other. Kookie UI is the foundation. Kookie Blocks builds on it. Then Kookie UI uses Kookie Blocks for its own docs. Kookie Blocks uses Kookie Blocks for its own docs. Kookie Flow uses Kookie Blocks for its docs.
+
+When I improve something in Kookie UI, it flows up into Kookie Blocks. When I improve something in Kookie Blocks, all the documentation sites get better. When I'm building docs and notice something missing, I add it to Kookie Blocks, and every other docs site gets it too.
+
+This wasn't planned from the start. It emerged as I kept building. But it's become one of the things I like most about this setup. The system is self-reinforcing. Each piece makes the others better.
+
+## Where It's Used
+
+Kookie Blocks powers the documentation for Kookie UI, Kookie Blocks itself, and Kookie Flow. My portfolio site uses pieces of it. Kookie AI uses the streaming markdown and markdown components.
+
+Every time I build something new, the patterns go into Kookie Blocks. Every project that uses Kookie Blocks gets those patterns for free.
+
+## Still Extremely Early
+
+Everything is in alpha. The APIs are still changing. Some blocks are more complete than others. The documentation blocks are fairly mature because I've been using them heavily. The marketing blocks are newer and less tested.
+
+I'm still figuring out the right abstractions. Where should the boundaries be? How much should each block do? How flexible versus how opinionated? These questions don't have obvious answers, and I'm learning as I go.
+
+But it's already saving me time. Instead of rebuilding a docs site from scratch, I import Docs Shell and Docs Sidebar and start writing content. Instead of solving streaming markdown again, I use the component that already handles it. Instead of styling code blocks for the fifth time, I use Code Block.
+
+That's the point. Solve the pattern once, use it everywhere.
+
+[kookieblocks.com](https://kookieblocks.com)
+
+[github.com/KushagraDhawan1997/kookie-blocks](https://github.com/KushagraDhawan1997/kookie-blocks)
