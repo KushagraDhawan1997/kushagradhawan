@@ -56,7 +56,7 @@ export function ContactSection() {
           px={{ initial: "4", sm: "6" }}
         >
           <Flex direction="column" gap="2" width="100%">
-            <Heading size="3" weight="medium">
+            <Heading as="h2" size="3" weight="medium">
               Contact
             </Heading>
             <Separator size="4" />

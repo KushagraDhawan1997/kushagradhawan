@@ -61,7 +61,7 @@ const nextConfig: NextConfig = {
         hostname: "**",
       },
     ],
-    minimumCacheTTL: 60,
+    minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: true,
   },
   headers: async () => {

@@ -52,7 +52,7 @@ export function RecentArticlesSection({
         px={{ initial: "4", sm: "6" }}
       >
         <Flex direction="column" gap="2" width="100%">
-          <Heading size="3" weight="medium">
+          <Heading as="h2" size="3" weight="medium">
             Writing
           </Heading>
           <Separator size="4" />
@@ -84,7 +84,7 @@ export function RecentArticlesSection({
             <Flex direction="column" gap={{ initial: "8", sm: "12" }} width="100%">
               {showAnnouncements && announcements.length > 0 && (
                 <Flex direction="column" gap="6">
-                  <Heading size="3" weight="medium">
+                  <Heading as="h3" size="3" weight="medium">
                     Announcements ({announcements.length})
                   </Heading>
                   <ArticlesListGrid posts={announcements} />
@@ -94,7 +94,7 @@ export function RecentArticlesSection({
               {displayedPosts.length > 0 && (
                 <Flex direction="column" gap="6">
                   {showAnnouncements && (
-                    <Heading size="3" weight="medium">
+                    <Heading as="h3" size="3" weight="medium">
                       Articles ({displayedPosts.length})
                     </Heading>
                   )}
