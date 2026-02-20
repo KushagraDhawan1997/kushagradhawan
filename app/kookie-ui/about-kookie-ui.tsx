@@ -11,9 +11,9 @@ import {
   Link,
   Image,
   Box,
+  Container,
 } from "@kushagradhawan/kookie-ui";
-import { Hero } from "@kushagradhawan/kookie-blocks";
-import { Testimonial } from "@/components/generic";
+import { Hero, Testimonial } from "@kushagradhawan/kookie-blocks";
 import NextImage from "next/image";
 import { RecentArticlesSection } from "@/components/sections/recent-articles-section";
 import { ArticleProps } from "@/components/sections/articles-list-section/ArticlesListGrid";
@@ -125,12 +125,25 @@ export function AboutKookieUI({ posts = [] }: { posts?: ArticleProps[] }) {
         </Box>
       </Section>
 
-      <Testimonial
-        quote="Components like Shell in Kookie UI are a game changer for building responsive layouts. Getting responsiveness right is so difficult otherwise — Kookie UI has significantly reduced the UI load on our team."
-        author="Anuj"
-        designation="Software Engineer at Womp"
-        avatar="https://media.licdn.com/dms/image/v2/D5603AQGWSOGxFf3cCw/profile-displayphoto-shrink_400_400/B56ZSwejfaGoAg-/0/1738127590217?e=1769040000&v=beta&t=set7ygl1nzZiXozOoibgjTYfIsenO28wVGcw1dK8sCw"
-      />
+      <Section size="4">
+        <Container size="3" px={{ initial: "4", sm: "6" }}>
+          <Testimonial.Root py={{ initial: "4", sm: "6" }} align="start">
+            <Testimonial.Quote size={{ initial: "6", sm: "7", lg: "8" }} align="left">
+              Components like Shell in Kookie UI are a game changer for building responsive layouts. Getting responsiveness right is so difficult otherwise — Kookie UI has significantly reduced the UI load on our team.
+            </Testimonial.Quote>
+            <Testimonial.Author align="start">
+              <Testimonial.Avatar
+                src="https://media.licdn.com/dms/image/v2/D5603AQGWSOGxFf3cCw/profile-displayphoto-shrink_400_400/B56ZSwejfaGoAg-/0/1738127590217?e=1769040000&v=beta&t=set7ygl1nzZiXozOoibgjTYfIsenO28wVGcw1dK8sCw"
+                fallback="A"
+              />
+              <Testimonial.Details align="start">
+                <Testimonial.Name>Anuj</Testimonial.Name>
+                <Testimonial.Role>Software Engineer at Womp</Testimonial.Role>
+              </Testimonial.Details>
+            </Testimonial.Author>
+          </Testimonial.Root>
+        </Container>
+      </Section>
 
       <RecentArticlesSection
         posts={posts}

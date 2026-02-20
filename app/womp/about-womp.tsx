@@ -12,10 +12,10 @@ import {
   Link,
   HoverCard,
   Box,
+  Container,
   Separator,
 } from "@kushagradhawan/kookie-ui";
-import { Hero } from "@kushagradhawan/kookie-blocks";
-import { Testimonial } from "@/components/generic";
+import { Hero, Testimonial } from "@kushagradhawan/kookie-blocks";
 import NextImage from "next/image";
 import { WompIllustrationGrid } from "./womp-illustrations-grid";
 import { ProductPhilosophy } from "@/components/sections/product-philosophy-section";
@@ -214,12 +214,25 @@ export function AboutWomp({ posts = [] }: { posts?: ArticleProps[] }) {
         </Box>
       </Section>
 
-      <Testimonial
-        quote="Kushagra kept the product moving forward every single day. His ability to bridge engineering, design, and business thinking made him invaluable to the team. He always understood the full picture, which helped him make the right decisions for the product."
-        author="Praneeth Potnuru"
-        designation="Product Designer at Womp"
-        avatar="https://media.licdn.com/dms/image/v2/D5603AQEGLUrOCL6nKg/profile-displayphoto-scale_400_400/B56ZoR8b.fHkAg-/0/1761237648131?e=1769040000&v=beta&t=i_FXB_dNUWACyxES2kEarUrQtI_wg2MsqrBgMXquPmY"
-      />
+      <Section size="4">
+        <Container size="3" px={{ initial: "4", sm: "6" }}>
+          <Testimonial.Root py={{ initial: "4", sm: "6" }} align="start">
+            <Testimonial.Quote size={{ initial: "6", sm: "7", lg: "8" }} align="left">
+              Kushagra kept the product moving forward every single day. His ability to bridge engineering, design, and business thinking made him invaluable to the team. He always understood the full picture, which helped him make the right decisions for the product.
+            </Testimonial.Quote>
+            <Testimonial.Author align="start">
+              <Testimonial.Avatar
+                src="https://media.licdn.com/dms/image/v2/D5603AQEGLUrOCL6nKg/profile-displayphoto-scale_400_400/B56ZoR8b.fHkAg-/0/1761237648131?e=1769040000&v=beta&t=i_FXB_dNUWACyxES2kEarUrQtI_wg2MsqrBgMXquPmY"
+                fallback="P"
+              />
+              <Testimonial.Details align="start">
+                <Testimonial.Name>Praneeth Potnuru</Testimonial.Name>
+                <Testimonial.Role>Product Designer at Womp</Testimonial.Role>
+              </Testimonial.Details>
+            </Testimonial.Author>
+          </Testimonial.Root>
+        </Container>
+      </Section>
 
       <Section size="4">
         <Flex direction="column" gap={{ initial: "6", sm: "8" }} py={{ initial: "4", sm: "6" }} px={{ initial: "4", sm: "6" }}>
