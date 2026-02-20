@@ -52,7 +52,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         (child) => React.isValidElement(child) && child.type === MDXImage,
       );
       if (hasBlockChild) return <>{props.children}</>;
-      return base.p ? <base.p {...props} /> : <p {...props} />;
+      const BaseP = base.p as React.ComponentType<React.ComponentProps<"p">> | undefined;
+      return BaseP ? <BaseP {...props} /> : <p {...props} />;
     },
     ...components,
   };
