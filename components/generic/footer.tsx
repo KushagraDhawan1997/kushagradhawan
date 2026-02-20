@@ -31,6 +31,7 @@ export function Footer() {
             size="3"
             color="gray"
             src="/new-kushagradhawan-logo.svg"
+            alt="Kushagra Dhawan"
           />
           <Flex direction="column" gap="4">
             <FooterBlock.Tagline>

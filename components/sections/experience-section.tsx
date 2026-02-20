@@ -60,7 +60,7 @@ export function ExperienceSection() {
         px={{ initial: "4", sm: "6" }}
       >
         <Flex direction="column" gap="2" width="100%">
-          <Heading size="3" weight="medium">
+          <Heading as="h2" size="3" weight="medium">
             Services
           </Heading>
           <Separator size="4" />
@@ -144,6 +144,7 @@ export function ExperienceSection() {
                           color="gray"
                           src={exp.logo}
                           fit="contain"
+                          alt={`${exp.company} logo`}
                         />
                         <Flex gap="1" align="center">
                           <Text size="3" weight="medium">

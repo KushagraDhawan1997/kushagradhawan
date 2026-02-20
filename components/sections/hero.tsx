@@ -42,9 +42,9 @@ export function Hero({ latestAnnouncement }: HeroProps) {
         px={{ initial: "4", sm: "6" }}
       >
         <Flex direction="column" gap="2" width="100%">
-          <Heading size="3" weight="medium">
+          <Text as="p" size="3" weight="medium">
             Kushagra Dhawan
-          </Heading>
+          </Text>
           <Separator size="4" />
         </Flex>
         <HeroBlock.Root align="start" gap={{ initial: "6", sm: "8" }}>
