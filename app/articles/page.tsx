@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     description: "Thoughts on design, development, and technology",
     images: [
       {
-        url: "/kushagra-logo.png",
+        url: "/logos/kushagradhawan/png/kushagra.png",
         width: 1200,
         height: 630,
         alt: "Kushagra Dhawan - Articles",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Articles | Kushagra Dhawan",
     description: "Thoughts on design, development, and technology",
-    images: ["/kushagra-logo.png"],
+    images: ["/logos/kushagradhawan/png/kushagra.png"],
   },
 };
 

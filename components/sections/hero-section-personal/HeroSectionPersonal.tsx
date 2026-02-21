@@ -28,7 +28,7 @@ export function HeroSectionPersonal() {
           <Flex direction="column" align="center" gap={{ initial: "6", sm: "8" }} px={{ initial: "4", sm: "6" }}>
             {/* Title and subtitle section */}
             <Flex direction="column" align="center" gap="6">
-              <Avatar fallback="K" size="2" color="gray" src="/kushagra-logo.svg"></Avatar>
+              <Avatar fallback="K" size="2" color="gray" src="/logos/kushagradhawan/png/kushagra.png"></Avatar>
               <Heading align="center" size={{ initial: "8", sm: "9", lg: "10" }} weight="medium">
                 Hi. I'm Kushagra. Call me Kush.
               </Heading>

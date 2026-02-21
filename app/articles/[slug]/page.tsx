@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const post = await getPostBySlug(slug);
     const baseUrl = "https://kushagradhawan.com";
     const url = `${baseUrl}/articles/${post.slug}`;
-    const imageUrl = post.image ? (post.image.startsWith("http") ? post.image : `${baseUrl}${post.image}`) : `${baseUrl}/kushagra-logo.png`;
+    const imageUrl = post.image ? (post.image.startsWith("http") ? post.image : `${baseUrl}${post.image}`) : `${baseUrl}/logos/kushagradhawan/png/kushagra.png`;
 
     return {
       title: { absolute: post.title },
@@ -104,7 +104,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
     const baseUrl = "https://kushagradhawan.com";
     const pageUrl = `${baseUrl}/articles/${post.slug}`;
-    const imageUrl = post.image ? (post.image.startsWith("http") ? post.image : `${baseUrl}${post.image}`) : `${baseUrl}/kushagra-logo.png`;
+    const imageUrl = post.image ? (post.image.startsWith("http") ? post.image : `${baseUrl}${post.image}`) : `${baseUrl}/logos/kushagradhawan/png/kushagra.png`;
 
     const articleJsonLd = {
       "@context": "https://schema.org",

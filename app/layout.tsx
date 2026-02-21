@@ -121,7 +121,7 @@ export default function RootLayout({
               "@id": "https://kushagradhawan.com/#person",
               name: "Kushagra Dhawan",
               url: "https://kushagradhawan.com",
-              image: "https://kushagradhawan.com/kushagra-logo.png",
+              image: "https://kushagradhawan.com/logos/kushagradhawan/png/kushagra.png",
               jobTitle: "Independent Product & Design Consultant",
               description:
                 "Independent product and design consultant. Creator of Kookie UI, Kookie Blocks, and Kookie AI.",

@@ -215,6 +215,12 @@ function NavLink({
 export function NavbarComponent() {
   // Get the current path to highlight active links
   const pathname = usePathname();
+  const { appearance } = useThemeContext();
+
+  const logoSrc =
+    appearance === "dark"
+      ? "/logos/kushagradhawan/png/kushagra-dark.png"
+      : "/logos/kushagradhawan/png/kushagra.png";
 
   return (
     <Navbar.Root
@@ -226,10 +232,10 @@ export function NavbarComponent() {
       <Navbar.Logo>
         <Link href="/" aria-label="Kushagra Dhawan - Homepage">
           <Avatar
-            src="/new-kushagradhawan-logo.svg"
+            src={logoSrc}
             fallback="KD"
             alt="Kushagra Dhawan"
-            size="2"
+            size="3"
           />
         </Link>
       </Navbar.Logo>

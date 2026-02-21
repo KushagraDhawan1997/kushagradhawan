@@ -8,6 +8,7 @@ import {
   Flex,
   Separator,
   Text,
+  useThemeContext,
 } from "@kushagradhawan/kookie-ui";
 import { Footer as FooterBlock } from "@kushagradhawan/kookie-blocks";
 
@@ -19,18 +20,28 @@ import { Footer as FooterBlock } from "@kushagradhawan/kookie-blocks";
  */
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const { appearance } = useThemeContext();
+
+  const logoSrc =
+    appearance === "dark"
+      ? "/logos/kushagradhawan/png/kushagra-dark.png"
+      : "/logos/kushagradhawan/png/kushagra.png";
 
   return (
     <Box mb={{ initial: "6", sm: "9" }}>
       <ContactSection />
       <Separator size="4" light />
-      <FooterBlock.Root p={{ initial: "4", sm: "8" }} gap={{ initial: "6", sm: "8" }} px={{ initial: "4", sm: "6" }}>
+      <FooterBlock.Root
+        p={{ initial: "4", sm: "8" }}
+        gap={{ initial: "6", sm: "8" }}
+        px={{ initial: "4", sm: "6" }}
+      >
         <FooterBlock.Brand gap="6">
           <Avatar
             fallback="K"
-            size="3"
+            size="4"
             color="gray"
-            src="/new-kushagradhawan-logo.svg"
+            src={logoSrc}
             alt="Kushagra Dhawan"
           />
           <Flex direction="column" gap="4">
@@ -69,10 +80,7 @@ export function Footer() {
             >
               Kookie UI
             </FooterBlock.Link>
-            <FooterBlock.Link
-              href="https://kookieblocks.com/"
-              target="_blank"
-            >
+            <FooterBlock.Link href="https://kookieblocks.com/" target="_blank">
               Kookie Blocks
             </FooterBlock.Link>
             <FooterBlock.Link
