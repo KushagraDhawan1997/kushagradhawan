@@ -1,6 +1,7 @@
 "use client";
 
 import { ContactSection } from "@/components/sections/contact-section";
+import { SponsorsSection } from "@/components/sections/sponsors-section";
 import {
   Avatar,
   Box,
@@ -29,6 +30,7 @@ export function Footer() {
 
   return (
     <Box mb={{ initial: "6", sm: "9" }}>
+      <SponsorsSection />
       <ContactSection />
       <Separator size="4" light />
       <FooterBlock.Root
@@ -91,6 +93,14 @@ export function Footer() {
             </FooterBlock.Link>
             <FooterBlock.Link href="https://womp.com" target="_blank">
               Womp 3D
+            </FooterBlock.Link>
+          </FooterBlock.LinkGroup>
+          <FooterBlock.LinkGroup title="Support">
+            <FooterBlock.Link
+              href="https://github.com/sponsors/KushagraDhawan1997"
+              target="_blank"
+            >
+              GitHub Sponsors
             </FooterBlock.Link>
           </FooterBlock.LinkGroup>
         </FooterBlock.Links>
