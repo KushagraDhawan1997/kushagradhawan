@@ -3,10 +3,13 @@
 import {
   Flex,
   Heading,
+  Link as KUILink,
   Section,
   Separator,
   Text,
 } from "@kushagradhawan/kookie-ui";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 import { ArticlesListGrid, ArticleProps } from "./ArticlesListGrid";
 
 export interface ArticlesListSectionProps {
@@ -48,6 +51,7 @@ export function ArticlesListSection({ posts }: ArticlesListSectionProps) {
         >
           <Flex
             direction="column"
+            gap="8"
             flexShrink="0"
             maxWidth={{ initial: "100%", md: "400px", lg: "600px" }}
             position={{ initial: "static", md: "sticky" }}
@@ -62,6 +66,34 @@ export function ArticlesListSection({ posts }: ArticlesListSectionProps) {
             >
               On product, design systems, and the craft of shipping software.
             </Heading>
+            <Flex gap="4">
+              <KUILink
+                href="https://medium.com/@kushagradhawan"
+                target="_blank"
+                size="2"
+                highContrast
+              >
+                <Flex align="center" gap="1" asChild>
+                  <span>
+                    Medium
+                    <HugeiconsIcon icon={ArrowUpRight01Icon} size={14} />
+                  </span>
+                </Flex>
+              </KUILink>
+              <KUILink
+                href="https://dev.to/kushagradhawan"
+                target="_blank"
+                size="2"
+                highContrast
+              >
+                <Flex align="center" gap="1" asChild>
+                  <span>
+                    Dev.to
+                    <HugeiconsIcon icon={ArrowUpRight01Icon} size={14} />
+                  </span>
+                </Flex>
+              </KUILink>
+            </Flex>
           </Flex>
           <Flex direction="column" gap={{ initial: "8", sm: "12" }} width="100%">
             {announcements.length > 0 && (

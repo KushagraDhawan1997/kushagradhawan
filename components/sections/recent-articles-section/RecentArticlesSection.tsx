@@ -4,11 +4,16 @@ import {
   Button,
   Flex,
   Heading,
+  Link as KUILink,
   Section,
   Separator,
+  Text,
 } from "@kushagradhawan/kookie-ui";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
+import {
+  ArrowRight01Icon,
+  ArrowUpRight01Icon,
+} from "@hugeicons/core-free-icons";
 import {
   ArticlesListGrid,
   ArticleProps,
@@ -65,6 +70,7 @@ export function RecentArticlesSection({
         >
           <Flex
             direction="column"
+            gap="8"
             flexShrink="0"
             maxWidth={{ initial: "100%", lg: "600px" }}
             position={{ initial: "static", lg: "sticky" }}
@@ -79,6 +85,34 @@ export function RecentArticlesSection({
             >
               {title}
             </Heading>
+            <Flex gap="4">
+              <KUILink
+                href="https://medium.com/@kushagradhawan"
+                target="_blank"
+                size="2"
+                highContrast
+              >
+                <Flex align="center" gap="1" asChild>
+                  <span>
+                    Medium
+                    <HugeiconsIcon icon={ArrowUpRight01Icon} size={14} />
+                  </span>
+                </Flex>
+              </KUILink>
+              <KUILink
+                href="https://dev.to/kushagradhawan"
+                target="_blank"
+                size="2"
+                highContrast
+              >
+                <Flex align="center" gap="1" asChild>
+                  <span>
+                    Dev.to
+                    <HugeiconsIcon icon={ArrowUpRight01Icon} size={14} />
+                  </span>
+                </Flex>
+              </KUILink>
+            </Flex>
           </Flex>
           <Flex direction="column" justify="between" gap={{ initial: "6", sm: "8" }} width="100%">
             <Flex direction="column" gap={{ initial: "8", sm: "12" }} width="100%">
