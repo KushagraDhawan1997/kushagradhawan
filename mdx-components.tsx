@@ -48,8 +48,7 @@ function MDXImage({ src, alt, ...props }: React.ComponentProps<"img">) {
         size="1"
         width="fit-content"
         maxWidth="90vw"
-        overflow="hidden"
-        style={{ padding: 0 }}
+        style={{ padding: 0, overflow: "hidden" }}
       >
         <VisuallyHidden>
           <Dialog.Title>{alt || "Full size image"}</Dialog.Title>
