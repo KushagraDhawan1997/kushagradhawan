@@ -1,7 +1,7 @@
 import React from "react";
 import type { MDXComponents } from "mdx/types";
 import { createMarkdownComponents } from "@kushagradhawan/kookie-blocks";
-import { Card, Dialog, VisuallyHidden } from "@kushagradhawan/kookie-ui";
+import { Dialog, VisuallyHidden } from "@kushagradhawan/kookie-ui";
 import NextImage from "next/image";
 import { WebGLImageTracker } from "@/components/webgl";
 
@@ -15,36 +15,32 @@ function MDXImage({ src, alt, ...props }: React.ComponentProps<"img">) {
   return (
     <Dialog.Root>
       <Dialog.Trigger>
-        <Card
-          mt={{ initial: "6", sm: "9" }}
-          variant="classic"
-          size="2"
-          asChild
-          style={{ cursor: "pointer", overflow: "hidden", padding: "0" }}
+        <button
+          aria-label={`View full size: ${alt || "image"}`}
+          style={{
+            display: "block",
+            position: "relative",
+            width: "100%",
+            aspectRatio: "16/9",
+            margin: "var(--space-8) 0",
+            overflow: "hidden",
+            border: "none",
+            background: "none",
+            padding: 0,
+            cursor: "pointer",
+          }}
         >
-          <button aria-label={`View full size: ${alt || "image"}`}>
-            <span
-              style={{
-                display: "block",
-                position: "relative",
-                width: "100%",
-                aspectRatio: "16/9",
-                overflow: "hidden",
-              }}
-            >
-              <WebGLImageTracker id={id} src={src} borderRadius={0}>
-                <NextImage
-                  src={src}
-                  alt={alt || ""}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 800px"
-                  style={{ objectFit: "cover" }}
-                  decoding="async"
-                />
-              </WebGLImageTracker>
-            </span>
-          </button>
-        </Card>
+          <WebGLImageTracker id={id} src={src} borderRadius={0}>
+            <NextImage
+              src={src}
+              alt={alt || ""}
+              fill
+              sizes="(max-width: 768px) 100vw, 800px"
+              style={{ objectFit: "cover" }}
+              decoding="async"
+            />
+          </WebGLImageTracker>
+        </button>
       </Dialog.Trigger>
 
       <Dialog.Content
