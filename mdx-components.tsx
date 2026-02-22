@@ -1,7 +1,7 @@
 import React from "react";
 import type { MDXComponents } from "mdx/types";
 import { createMarkdownComponents } from "@kushagradhawan/kookie-blocks";
-import { Dialog, VisuallyHidden } from "@kushagradhawan/kookie-ui";
+import { Box, Dialog, VisuallyHidden } from "@kushagradhawan/kookie-ui";
 import NextImage from "next/image";
 import { WebGLImageTracker } from "@/components/webgl";
 
@@ -15,21 +15,21 @@ function MDXImage({ src, alt, ...props }: React.ComponentProps<"img">) {
   return (
     <Dialog.Root>
       <Dialog.Trigger>
-        <button
-          aria-label={`View full size: ${alt || "image"}`}
+        <Box
+          asChild
+          position="relative"
+          width="100%"
+          my="8"
+          overflow="hidden"
+          p="0"
           style={{
-            display: "block",
-            position: "relative",
-            width: "100%",
             aspectRatio: "16/9",
-            margin: "var(--space-8) 0",
-            overflow: "hidden",
             border: "none",
             background: "none",
-            padding: 0,
             cursor: "pointer",
           }}
         >
+          <button aria-label={`View full size: ${alt || "image"}`}>
           <WebGLImageTracker id={id} src={src} borderRadius={0}>
             <NextImage
               src={src}
@@ -40,19 +40,16 @@ function MDXImage({ src, alt, ...props }: React.ComponentProps<"img">) {
               decoding="async"
             />
           </WebGLImageTracker>
-        </button>
+          </button>
+        </Box>
       </Dialog.Trigger>
 
       <Dialog.Content
-        style={{
-          width: "90vw",
-          height: "90vh",
-          maxWidth: "90vw",
-          maxHeight: "90vh",
-          padding: 0,
-          overflow: "hidden",
-          position: "relative",
-        }}
+        size="1"
+        width="fit-content"
+        maxWidth="90vw"
+        overflow="hidden"
+        style={{ padding: 0 }}
       >
         <VisuallyHidden>
           <Dialog.Title>{alt || "Full size image"}</Dialog.Title>
@@ -60,9 +57,15 @@ function MDXImage({ src, alt, ...props }: React.ComponentProps<"img">) {
         <NextImage
           src={src}
           alt={alt || ""}
-          fill
+          width={0}
+          height={0}
           sizes="90vw"
-          style={{ objectFit: "contain" }}
+          style={{
+            width: "auto",
+            height: "auto",
+            maxWidth: "90vw",
+            maxHeight: "90vh",
+          }}
         />
       </Dialog.Content>
     </Dialog.Root>
@@ -85,7 +88,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         (child) => React.isValidElement(child) && child.type === MDXImage,
       );
       if (hasBlockChild) return <>{props.children}</>;
-      const BaseP = base.p as React.ComponentType<React.ComponentProps<"p">> | undefined;
+      const BaseP = base.p as
+        | React.ComponentType<React.ComponentProps<"p">>
+        | undefined;
       return BaseP ? <BaseP {...props} /> : <p {...props} />;
     },
     ...components,
