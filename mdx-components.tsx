@@ -1,10 +1,11 @@
 import React from "react";
 import type { MDXComponents } from "mdx/types";
 import { createMarkdownComponents } from "@kushagradhawan/kookie-blocks";
+import { Card, Dialog, VisuallyHidden } from "@kushagradhawan/kookie-ui";
 import NextImage from "next/image";
 import { WebGLImageTracker } from "@/components/webgl";
 
-// Custom MDX image with WebGL support
+// Custom MDX image with WebGL support and clickable fullscreen dialog
 function MDXImage({ src, alt, ...props }: React.ComponentProps<"img">) {
   if (!src || typeof src !== "string") return null;
 
@@ -12,27 +13,63 @@ function MDXImage({ src, alt, ...props }: React.ComponentProps<"img">) {
   const id = `mdx-${src.replace(/[^a-zA-Z0-9]/g, "-")}`;
 
   return (
-    <span
-      style={{
-        display: "block",
-        position: "relative",
-        width: "100%",
-        aspectRatio: "16/9",
-        margin: "var(--space-8) 0",
-        overflow: "hidden",
-      }}
-    >
-      <WebGLImageTracker id={id} src={src} borderRadius={0}>
+    <Dialog.Root>
+      <Dialog.Trigger>
+        <Card
+          mt={{ initial: "6", sm: "9" }}
+          variant="classic"
+          size="2"
+          asChild
+          style={{ cursor: "pointer", overflow: "hidden", padding: "0" }}
+        >
+          <button aria-label={`View full size: ${alt || "image"}`}>
+            <span
+              style={{
+                display: "block",
+                position: "relative",
+                width: "100%",
+                aspectRatio: "16/9",
+                overflow: "hidden",
+              }}
+            >
+              <WebGLImageTracker id={id} src={src} borderRadius={0}>
+                <NextImage
+                  src={src}
+                  alt={alt || ""}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 800px"
+                  style={{ objectFit: "cover" }}
+                  decoding="async"
+                />
+              </WebGLImageTracker>
+            </span>
+          </button>
+        </Card>
+      </Dialog.Trigger>
+
+      <Dialog.Content
+        style={{
+          width: "90vw",
+          height: "90vh",
+          maxWidth: "90vw",
+          maxHeight: "90vh",
+          padding: 0,
+          overflow: "hidden",
+          position: "relative",
+        }}
+      >
+        <VisuallyHidden>
+          <Dialog.Title>{alt || "Full size image"}</Dialog.Title>
+        </VisuallyHidden>
         <NextImage
           src={src}
           alt={alt || ""}
           fill
-          sizes="(max-width: 768px) 100vw, 800px"
-          style={{ objectFit: "cover" }}
-          decoding="async"
+          sizes="90vw"
+          style={{ objectFit: "contain" }}
         />
-      </WebGLImageTracker>
-    </span>
+      </Dialog.Content>
+    </Dialog.Root>
   );
 }
 
