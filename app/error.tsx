@@ -1,15 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
 import { Section, Container, Flex, Heading, Button, Text } from "@kushagradhawan/kookie-ui";
 import { getMonochromaticGradient } from "@/lib/gradient";
 
-export default function Error({ error, reset }: { error: Error; reset: () => void }) {
+export default function Error({ reset }: { error: Error; reset: () => void }) {
   const gradientText = getMonochromaticGradient();
-
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
 
   return (
     <Section>

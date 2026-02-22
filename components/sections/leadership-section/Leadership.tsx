@@ -182,7 +182,7 @@ export function Leadership() {
                       <Flex
                         direction="column"
                         gap="0"
-                        key={index}
+                        key={item.title}
                         height="100%"
                       >
                         <Flex gap="4" height="100%">

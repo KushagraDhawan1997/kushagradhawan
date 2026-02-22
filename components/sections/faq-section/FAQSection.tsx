@@ -51,7 +51,7 @@ export function FAQSection() {
         <div className="max-w-2xl w-full mx-auto">
           <Accordion.Root type="single" className="w-full">
             {faqs.map((faq, index) => (
-              <Accordion.Item key={index} value={`item-${index}`}>
+              <Accordion.Item key={faq.question} value={`item-${index}`}>
                 <Accordion.Header>
                   <Accordion.Trigger className="text-xl font-bold text-primary hover:no-underline">
                     {faq.question}

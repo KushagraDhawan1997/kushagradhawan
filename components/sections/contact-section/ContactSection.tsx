@@ -31,6 +31,7 @@ import { WebGLImageTracker } from "@/components/webgl";
  */
 export function ContactSection() {
   const [emailCopied, setEmailCopied] = useState(false);
+  const [copyFailed, setCopyFailed] = useState(false);
 
   const handleCopyEmail = async () => {
     const email = "hello@kushagradhawan.design";
@@ -40,8 +41,13 @@ export function ContactSection() {
       setTimeout(() => {
         setEmailCopied(false);
       }, 2000);
-    } catch (err) {
-      console.error("Failed to copy email:", err);
+    } catch {
+      // Clipboard API can fail in insecure contexts or when denied — fall back to mailto
+      setCopyFailed(true);
+      window.location.href = `mailto:${email}`;
+      setTimeout(() => {
+        setCopyFailed(false);
+      }, 2000);
     }
   };
 
@@ -120,14 +126,14 @@ export function ContactSection() {
                     ) : (
                       <HugeiconsIcon icon={Mail01Icon} color="currentColor" />
                     )}
-                    {emailCopied ? "Copied" : "Copy Email"}
+                    {emailCopied ? "Copied" : copyFailed ? "Opening mail..." : "Copy Email"}
                   </Button>
                 </Flex>
 
                 <Flex gap="6" wrap="wrap">
                   {socialLinks.map((link: SocialLink, index: number) => (
                     <Link
-                      key={index}
+                      key={link.href}
                       href={link.href}
                       target="_blank"
                       size="2"

@@ -77,7 +77,7 @@ function WompStats() {
       width="100%"
     >
       {wompStats.map((stat, index) => (
-        <React.Fragment key={index}>
+        <React.Fragment key={stat.value}>
           <Flex
             direction="column"
             align="center"
