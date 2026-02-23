@@ -91,6 +91,10 @@ export function ArticleContent({ post, formattedDate }: ArticleContentProps) {
     "about-kookie-blocks": React.lazy(
       () => import("../../../content/articles/about-kookie-blocks.mdx"),
     ),
+    "kookie-blocks-markdown-components": React.lazy(
+      () =>
+        import("../../../content/articles/kookie-blocks-markdown-components.mdx"),
+    ),
   };
 
   const MDXContent = MDXBySlug[post.slug];

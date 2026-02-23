@@ -1,0 +1,157 @@
+---
+title: "New Component: Markdown Components in Kookie Blocks"
+description: "A factory function that maps every markdown element to KookieUI components. Headings, code, tables, lists—all rendered with your design system."
+date: "2026-02-23"
+author: "Kushagra Dhawan"
+canonical: "https://kushagradhawan.com/articles/kookie-blocks-markdown-components"
+category: "announcement"
+tags: ["kookie-blocks", "design-systems", "components", "markdown", "engineering"]
+keywords:
+  [
+    "markdown components",
+    "react markdown",
+    "mdx components",
+    "kookie blocks",
+    "design system",
+    "component mapping",
+    "typography",
+    "code blocks",
+  ]
+---
+
+import { Box, Code } from "@kushagradhawan/kookie-ui";
+
+Every project that renders markdown faces the same problem: the output doesn't match the rest of the application.
+
+Markdown renderers produce raw HTML. Headings are bare `<h1>` tags. Code blocks are unstyled `<pre>` elements. Tables use default browser styling. The rendered content looks like it belongs on a different site.
+
+The fix is always the same. Map each markdown element to a component from your design system. Headings use your Heading component. Code uses your Code component. Tables use your Table component. The mapping is straightforward, but it's tedious and error-prone, and every project does it slightly differently.
+
+`createMarkdownComponents` solves this by generating the complete mapping once, using KookieUI components throughout.
+
+## What It Does
+
+`createMarkdownComponents` is a factory function. Call it, and it returns a components object compatible with both react-markdown and MDX. Every markdown element renders as a KookieUI component.
+
+```typescript
+import { createMarkdownComponents } from "@kushagradhawan/kookie-blocks";
+
+// For react-markdown
+<ReactMarkdown components={createMarkdownComponents()}>
+  {content}
+</ReactMarkdown>
+
+// For MDX
+export function useMDXComponents(components: MDXComponents) {
+  return {
+    ...createMarkdownComponents(),
+    ...components,
+  };
+}
+```
+
+That's it. Your markdown now renders with proper typography, spacing, and design system integration.
+
+## The Mapping
+
+The function maps every standard markdown element:
+
+**Headings** use the KookieUI Heading component with a consistent visual hierarchy. H1 through H6 map to sizes 9, 7, 5, 4, 3, and 2 respectively. Each heading level has calibrated top and bottom margins that create clear visual separation between sections.
+
+**Paragraphs** use the Text component at size 3 with a 1.6 line height. Comfortable reading density for both long-form content and shorter blocks.
+
+**Code** is where the mapping gets interesting. The function distinguishes between inline and block code automatically. Short, single-line content without a language class renders as inline Code. Anything with a language class, newlines, or longer content renders as a full CodeBlock with syntax highlighting. No configuration needed—it does the right thing.
+
+```typescript
+// Inline code: rendered as KookieUI Code component
+`npm install` // short, no language → inline
+
+// Block code: rendered as CodeBlock with Shiki highlighting
+```typescript
+const x = 1;
+``` // has language → block
+```
+
+**Lists** get proper padding, line height, and margins. Ordered and unordered lists both render with consistent spacing. List items have calibrated bottom margins so items don't feel cramped.
+
+**Tables** use KookieUI's Table component. Header cells, body cells, rows—all mapped to the proper Table subcomponents. The output matches other tables in your application.
+
+**Blockquotes** render as KookieUI Blockquote components with responsive margins.
+
+**Links** use the accent color with underline decoration. They match the link styling elsewhere in your app.
+
+**Text styling** is handled too. Bold text uses medium weight via the Text component. Italic text gets the proper font style. Horizontal rules render as KookieUI Separators.
+
+**HTML elements** like `<sub>`, `<sup>`, `<br>`, `<details>`, and `<summary>` are covered. Images support a custom component override for frameworks like Next.js that need optimized image handling.
+
+## Spacing Modes
+
+Different contexts need different density. A documentation page with generous whitespace reads differently than a chat message that needs to be compact.
+
+`createMarkdownComponents` accepts a `spacing` option with two modes:
+
+**Spacious** is the default. Generous margins between headings and content. H1 gets 3rem top margin and 1.5rem bottom. H2 gets 3rem top and 0.5rem bottom. Paragraphs get 0.5rem margin. This is comfortable for documentation, articles, and long-form reading.
+
+**Compact** tightens everything. H1 gets 1.5rem top and 1rem bottom. H2 gets 2rem top and 0.375rem bottom. Paragraphs get 0rem margin. This fits conversational contexts—chat interfaces, inline previews, comment threads.
+
+```typescript
+// For documentation
+createMarkdownComponents({ spacing: "spacious" })
+
+// For chat
+createMarkdownComponents({ spacing: "compact" })
+```
+
+The spacing differences are subtle but important. Spacious mode lets content breathe. Compact mode respects that screen space is limited in conversational UIs.
+
+## Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `codeBlockCollapsible` | `boolean` | `false` | Allow code blocks to collapse |
+| `imageComponent` | `function` | `undefined` | Custom image renderer |
+| `inlineCodeHighContrast` | `boolean` | `true` | High contrast for inline code |
+| `spacing` | `'compact' \| 'spacious'` | `'spacious'` | Spacing density |
+
+## The Smart Code Detection
+
+The inline vs. block code detection deserves explanation because it handles an ambiguity in markdown rendering.
+
+When react-markdown encounters a code element, it may or may not pass an `inline` flag. Some renderers set it explicitly. Others don't. The className may or may not contain a language identifier.
+
+The detection logic:
+1. If explicitly marked `inline=true`, render inline
+2. If explicitly marked `inline=false` or has a language className, render as block
+3. If neither, check the content: single line, under 100 characters, no newlines → inline. Everything else → block.
+
+This means `` `npm install` `` renders as a small inline Code badge, while a fenced code block with a language tag renders with full syntax highlighting, copy button, and line numbers. No configuration, no edge cases where the wrong style appears.
+
+## Where It Fits
+
+`createMarkdownComponents` is the foundation that other Kookie Blocks markdown components build on.
+
+StreamingMarkdown uses it internally. When AI-streamed content renders through StreamingMarkdown, the component mapping comes from `createMarkdownComponents`. This means every element in a streamed response renders as a KookieUI component with proper styling and spacing.
+
+But you don't need StreamingMarkdown to use it. Any project that renders markdown—blog posts, documentation, README previews, help content, rich text displays—can use the component mapping directly. The function works with react-markdown, MDX, or any renderer that accepts a components object.
+
+My personal site uses it for article rendering. The Kookie Blocks documentation site uses it for docs pages. Kookie AI uses it (via StreamingMarkdown) for chat messages. Same mapping, different contexts, consistent output everywhere.
+
+## Why a Factory Function
+
+`createMarkdownComponents` is a function, not a static object. This is deliberate.
+
+A static object can't accept configuration. You'd need one object for spacious spacing and another for compact. One with collapsible code blocks and one without. The combinations multiply.
+
+A factory function generates the right mapping for your context. Call it with your options, get back exactly the components you need. The function is cheap—it returns a new object each time, but the component functions themselves are lightweight. Call it at module scope or inside `useMemo` and the mapping stays stable.
+
+```typescript
+// Module-level mapping (stable across renders)
+const docsComponents = createMarkdownComponents({ spacing: "spacious" });
+const chatComponents = createMarkdownComponents({ spacing: "compact" });
+```
+
+## Closing
+
+Rendering markdown with a design system shouldn't require maintaining a mapping file in every project. `createMarkdownComponents` generates the mapping from KookieUI components with sensible defaults and the configuration you need. One function call, full coverage, consistent styling.
+
+That's one less piece of infrastructure to maintain.
