@@ -1,0 +1,170 @@
+---
+title: "Why Shell Exists"
+description: "Shell covered what it is. This covers why I built it."
+date: "2026-02-23"
+author: "Kushagra Dhawan"
+canonical: "https://kushagradhawan.com/articles/why-shell-exists"
+tags: ["kookie-ui", "design-systems", "components", "layout", "shell", "application-chrome"]
+keywords:
+  [
+    "shell",
+    "layout engine",
+    "application layout",
+    "sidebar",
+    "panel",
+    "kookie ui",
+    "design system",
+    "responsive layout",
+    "resize panels",
+    "presentation modes",
+  ]
+---
+
+I wrote an announcement for Shell back in January. It covered what Shell is, how the slots work, the resize system, the responsive modes. What it didn't cover well is why I built it in the first place.
+
+This is that piece.
+
+## Every application rebuilds the same layout
+
+Open VS Code. There's a header, an icon rail on the left, an expandable panel next to it, the main editor area, and a bottom panel for the terminal. Open Figma. There's a header, a sidebar on the left, a canvas in the middle, and an inspector on the right. Open Linear. Sidebar, content. Open Notion. Sidebar, content.
+
+The specific arrangement varies, but the underlying structure is remarkably consistent. There are somewhere between five and seven layout zones that cover roughly 95% of application interfaces. A header. Some form of left-side navigation, whether that's a thin icon rail, an expanded panel, or a unified sidebar. The main content area. An optional right-side inspector. An optional bottom panel.
+
+Every team that builds an application ends up implementing this structure from scratch. They wire up the open/closed state for the sidebar. They write media queries so it overlays on mobile instead of pushing content. They build drag handles for resizing. They implement persistence so panel sizes survive a page refresh. They handle keyboard shortcuts to toggle panels.
+
+This is typically 500 to 1000 lines of layout code that has nothing to do with the product. It's infrastructure. And because it's infrastructure that every team writes themselves, it's infrastructure that every team gets slightly wrong in slightly different ways.
+
+## The problem with building it yourself
+
+When you roll your own application shell, a few things happen.
+
+The layout logic gets tangled with the product code. Sidebar state lives in a React context that was hastily created during a sprint. Responsive behavior is scattered across CSS files. The resize logic is a custom hook that one person wrote and nobody else fully understands. Panel sizes are stored in localStorage with keys that nobody documented.
+
+Over time, changes to the layout become expensive. Moving the inspector from the right side to the bottom means touching every component that referenced the old position. Making the sidebar collapsible means rewiring state through three layers of components. Adding a bottom panel means recalculating the layout math that was hardcoded for a three-zone layout.
+
+The layout becomes load-bearing code that nobody wants to touch. It works, it's fragile, and every change risks breaking something unrelated.
+
+I've been through this cycle multiple times. At some point I decided to stop building it from scratch and start building the abstraction.
+
+## What exists today
+
+There are a few approaches to this problem in the React ecosystem, and I studied all of them before building Shell.
+
+Mantine has an AppShell component. It provides Header, Navbar, Aside, Footer, and Main sections. The configuration lives on the parent as props, which is the right instinct. You tell AppShell how tall the header is, how wide the navbar is, and at what breakpoint it should collapse. Mantine handles the positioning math. The limitation is that Mantine gives you five fixed zones with limited flexibility in how they compose. You get a Navbar on the left and an Aside on the right, but you can't express "I want a thin icon rail paired with an expandable panel" or "I want the sidebar to switch between overlay and fixed based on viewport width." The responsive behavior is a binary collapsed/not-collapsed toggle per breakpoint rather than a full presentation mode system.
+
+Saas UI has an AppShell that wraps Chakra UI. It provides a container with sidebar, navbar, content, and footer slots. It handles the basic structure well, and the positioning logic is sound. But it's a structural container more than a layout engine. There's no built-in resize system, no presentation modes (fixed vs overlay vs stacked), and no composition rules that prevent invalid states.
+
+shadcn takes a different approach entirely. There's no shell component. There's a Sidebar component that manages its own collapsible state through a SidebarProvider context. The layout relationship between the sidebar and your main content is implicit. You're expected to wrap your main content in a SidebarInset component, and the sidebar's variant prop uses CSS selectors that reach across component boundaries to style its parent and siblings. I wrote about this in detail in my piece on Tailwind and shadcn. The sidebar's `variant="inset"` prop uses `has-[[data-variant=inset]]:bg-sidebar` to detect itself on a child and apply styles to the parent provider. A component that styles things it doesn't own creates coupling that leads to real bugs, and the GitHub issues bear that out.
+
+Then there's the most common approach, which is no abstraction at all. A flex container, some state for the sidebar, a media query or two, and ad-hoc solutions for everything else. This is what most teams ship with, and it's what I shipped with for a long time before the maintenance cost became obvious.
+
+## What I wanted
+
+I wanted a component where I declare my intent and the system handles the infrastructure.
+
+I want a sidebar that's overlay on mobile and fixed on desktop. I want it to be resizable with snap points. I want it to start expanded on desktop and collapsed on mobile. I want an inspector panel on the right that I can toggle. I want a bottom panel for logs. I want the layout to handle all the positioning math, all the state management, all the responsive behavior, and I want to focus entirely on what goes inside the boxes.
+
+That's Shell.
+
+## Seven slots and why seven
+
+Shell provides seven layout slots. Header, Rail, Panel, Sidebar, Content, Inspector, and Bottom.
+
+I arrived at seven by auditing every application I use regularly. VS Code uses what would map to Header + Rail + Panel + Content + Bottom. Figma uses Header + Sidebar + Content + Inspector. Linear uses Sidebar + Content. Notion uses Sidebar + Content. Slack uses Sidebar + Content. Discord uses Rail + Panel + Content.
+
+Seven slots cover the space. You use what you need and ignore what you don't. The Content slot is the only required one. Everything else is optional.
+
+The question I had to answer early was whether Rail + Panel and Sidebar should coexist. They're solving the same problem, left-side navigation, in two different ways. Rail + Panel is a two-part system where the icon strip and the expanded navigation are separate components. Sidebar is a unified component with collapsed, thin, and expanded states.
+
+If both were allowed simultaneously, you'd get invalid states. What happens when the Sidebar is expanded and the Panel is also open? They'd overlap or fight for space. There's no sensible layout for that combination.
+
+So Shell enforces a composition rule. You can use Sidebar, or you can use Rail + Panel, but you can't use both. If you try, you get a console warning. This was a deliberate constraint. Invalid states should be impossible to create, not merely discouraged through documentation.
+
+## Presentation modes and why they matter
+
+Most layout components treat responsive behavior as a toggle. The sidebar is open or closed, and it collapses at a breakpoint. Shell treats responsive behavior as a mode change.
+
+There are three presentation modes. Fixed means the pane takes space in the layout, so when it opens, content shrinks to make room. Overlay means the pane floats above content as a modal sheet. Stacked means the pane positions above content without a backdrop.
+
+The important part is that these modes can change based on viewport width. A sidebar that's fixed on desktop should become an overlay on mobile. On desktop you have the screen space to keep it visible alongside content. On mobile you can't afford to shrink an already small content area, so the sidebar should float above it.
+
+Shell accepts responsive objects for this.
+
+```tsx
+<Shell.Sidebar
+  defaultState={{ initial: 'collapsed', md: 'expanded' }}
+  presentation={{ initial: 'overlay', md: 'fixed' }}
+/>
+```
+
+This says "on mobile, start collapsed and use overlay presentation. On medium screens and up, start expanded and use fixed presentation." The responsive behavior is colocated with the component. You're not hunting through CSS files or media query hooks to understand how the sidebar behaves at different breakpoints. The component documents its own behavior.
+
+This is different from Mantine's approach, where you set a breakpoint and a collapsed state. Mantine gives you `collapsed: { desktop: false, mobile: true }`, which is binary. Shell gives you a presentation mode that determines how the pane interacts with content, which is a fundamentally different level of control.
+
+## Shell owns the relationship
+
+This is the design principle that ties Shell back to everything I believe about layout and spacing.
+
+In the Tailwind and shadcn article, I argued that spacing should belong to the parent, not the child. A button shouldn't carry margin. The layout component that holds the button should control the space between things.
+
+Shell applies the same principle to application chrome. The sidebar shouldn't know about the main content area's structure. The inspector shouldn't know about the sidebar. The header shouldn't need to calculate its width based on which panels are open.
+
+Shell owns all of those relationships. It knows which slots are active, how wide each one is, and what presentation mode each one is in. It does the layout math. The individual panes are just content inside the boxes that Shell creates for them.
+
+This is why shadcn's approach bothers me architecturally. When the Sidebar component's `variant="inset"` prop reaches across component boundaries to style the SidebarProvider parent and the SidebarInset sibling, you've distributed layout knowledge across three components that all need to agree on their relationship. Shell centralizes that knowledge. The Shell component is the single source of truth for how all the layout zones relate to each other.
+
+The Shell component in Kookie UI and the Sidebar component in Kookie UI have distinct, non-overlapping responsibilities. Shell handles layout, where things go, how they resize, how they respond to breakpoints. Sidebar handles navigation presentation, menus, groups, active states, sub-menus, the thin icon-only mode vs the expanded mode. Two components, clear responsibilities, composable. Neither one reaches into the other.
+
+## State management and the meta problem
+
+Each pane in Shell manages its own state. Open, closed, size, presentation mode. Shell supports both controlled and uncontrolled patterns, so you can let Shell manage everything internally or drive it from your own state.
+
+One thing I learned building this is that state callbacks need metadata. When a pane's state changes, you need to know why. Was the user clicking a toggle button? Did a responsive breakpoint trigger the change? Was it the initial render? The answer determines what you should do in response.
+
+If the sidebar closed because the user explicitly closed it, you probably want to respect that. If it closed because the viewport dropped below a breakpoint, you probably want to reopen it when the viewport grows again. If it was the initial render setting defaults, you don't want to trigger side effects at all.
+
+Shell passes a meta object with every state change that includes the reason. `init`, `toggle`, or `responsive`. This came from real usage. Without the meta, I was writing workarounds to distinguish between user-initiated and system-initiated state changes, and those workarounds were fragile.
+
+## Resize and persistence
+
+Resizable panels are expected in professional applications. The details matter more than the feature itself.
+
+Shell's resize system includes drag handles with proper cursor feedback, keyboard navigation with arrow keys, snap points that pull the edge to exact values when you drag near them, a collapse threshold that auto-collapses the pane when you drag below the minimum size, and size persistence through localStorage by default.
+
+The persistence part is worth highlighting. When you give a pane a `paneId`, Shell automatically creates a localStorage adapter that saves and restores the pane's size across sessions. No additional code. If you need custom storage, you pass a `persistence` adapter with `load` and `save` methods. Most teams I've seen either don't persist panel sizes at all, which frustrates users who resize panels constantly, or implement persistence with ad-hoc localStorage calls scattered through event handlers. Shell makes the right behavior the default.
+
+## The inset pattern
+
+Modern apps increasingly use floating panels. Sidebars with rounded corners and shadows that sit above a gray backdrop. Slack does this. Linear does this. It's a visual treatment that communicates "this panel is a tool, not a structural wall."
+
+Shell supports it with a single prop.
+
+```tsx
+<Shell.Sidebar inset>
+  {/* content */}
+</Shell.Sidebar>
+```
+
+When any pane has `inset`, Shell adds the gray backdrop to its own body, gives the pane margin to create gaps from the edges, and applies rounded corners. The `inset` prop handles positioning. For the visual treatment, background color, shadow, you use the child component's styling. This separation keeps concerns clean. Shell handles where the pane sits. You handle what it looks like.
+
+This is another example of Shell owning the layout relationship. The pane says "I'm inset" and Shell adjusts the entire layout accordingly. The pane doesn't need to know what margins to apply or how to style the backdrop. Shell does.
+
+## What I learned building it
+
+The hard part of Shell was deciding the API surface. Every prop is a decision. Do I expose this? Do I make it the default? Do I let users override it?
+
+Defaults matter more than options. Most people using Shell won't configure much. The defaults need to be sensible out of the box. Sidebar defaults to overlay on mobile and fixed on desktop. That's correct for the majority of applications.
+
+Constraints enable creativity. By enforcing that Sidebar and Rail + Panel can't coexist, Shell eliminates an entire category of invalid states. Users don't have to think about what happens in those combinations because they can't happen.
+
+Responsive behavior should be colocated. Putting `presentation={{ initial: 'overlay', md: 'fixed' }}` on the component is better than scattering media queries across stylesheets. The component becomes self-documenting.
+
+Layout infrastructure should be invisible. The value of Shell is that teams stop thinking about layout and start thinking about what goes inside the layout. The 500 to 1000 lines of layout code that every application rebuilds, Shell absorbs all of it so your product code can focus on being product code.
+
+## Where Shell is today
+
+Shell powers the Kookie Blocks documentation site, Kookie AI, and my personal site. It's in production handling real usage. I'm still finding edge cases and refining the API, but the core architecture is stable.
+
+If you're building an application and you're about to write a flex container with sidebar state and media queries and resize handles, consider whether that code is product code or infrastructure. If it's infrastructure, Shell already solved it.
+
+Shell is part of Kookie UI at hellokookie.com.
