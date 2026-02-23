@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   Flex,
   Heading,
@@ -9,7 +10,7 @@ import {
   Text,
 } from "@kushagradhawan/kookie-ui";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
+import { ArrowUpRight01Icon, ArrowDown01Icon, ArrowUp01Icon } from "@hugeicons/core-free-icons";
 import { ArticlesListGrid, ArticleProps } from "./ArticlesListGrid";
 
 export interface ArticlesListSectionProps {
@@ -22,11 +23,26 @@ export interface ArticlesListSectionProps {
  * Displays a sticky title on the left with announcements and
  * articles on the right, matching the homepage section layout.
  */
+const INITIAL_COUNT = 4;
+
 export function ArticlesListSection({ posts }: ArticlesListSectionProps) {
+  const [showAllAnnouncements, setShowAllAnnouncements] = useState(false);
+  const [showAllArticles, setShowAllArticles] = useState(false);
+
   const announcements = posts.filter(
     (post) => post.category === "announcement",
   );
   const articles = posts.filter((post) => post.category !== "announcement");
+
+  const hasMoreAnnouncements = announcements.length > INITIAL_COUNT;
+  const visibleAnnouncements = showAllAnnouncements
+    ? announcements
+    : announcements.slice(0, INITIAL_COUNT);
+
+  const hasMoreArticles = articles.length > INITIAL_COUNT;
+  const visibleArticles = showAllArticles
+    ? articles
+    : articles.slice(0, INITIAL_COUNT);
 
   return (
     <Section size="4">
@@ -101,7 +117,27 @@ export function ArticlesListSection({ posts }: ArticlesListSectionProps) {
                 <Heading size="3" weight="medium">
                   Announcements ({announcements.length})
                 </Heading>
-                <ArticlesListGrid posts={announcements} />
+                <ArticlesListGrid posts={visibleAnnouncements} />
+                {hasMoreAnnouncements && (
+                  <KUILink
+                    size="2"
+                    highContrast
+                    onClick={() => setShowAllAnnouncements((prev) => !prev)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <Flex align="center" gap="1" asChild>
+                      <span>
+                        {showAllAnnouncements
+                          ? "Show less"
+                          : `${announcements.length - INITIAL_COUNT} more`}
+                        <HugeiconsIcon
+                          icon={showAllAnnouncements ? ArrowUp01Icon : ArrowDown01Icon}
+                          size={14}
+                        />
+                      </span>
+                    </Flex>
+                  </KUILink>
+                )}
               </Flex>
             )}
 
@@ -110,7 +146,27 @@ export function ArticlesListSection({ posts }: ArticlesListSectionProps) {
                 <Heading size="3" weight="medium">
                   Articles ({articles.length})
                 </Heading>
-                <ArticlesListGrid posts={articles} />
+                <ArticlesListGrid posts={visibleArticles} />
+                {hasMoreArticles && (
+                  <KUILink
+                    size="2"
+                    highContrast
+                    onClick={() => setShowAllArticles((prev) => !prev)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <Flex align="center" gap="1" asChild>
+                      <span>
+                        {showAllArticles
+                          ? "Show less"
+                          : `${articles.length - INITIAL_COUNT} more`}
+                        <HugeiconsIcon
+                          icon={showAllArticles ? ArrowUp01Icon : ArrowDown01Icon}
+                          size={14}
+                        />
+                      </span>
+                    </Flex>
+                  </KUILink>
+                )}
               </Flex>
             ) : (
               <Flex direction="column" gap="2" align="center" py={{ initial: "8", sm: "12" }}>
