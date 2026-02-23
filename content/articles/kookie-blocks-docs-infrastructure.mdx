@@ -1,0 +1,249 @@
+---
+title: "Docs Infrastructure in Kookie Blocks"
+description: "Four components that handle the full documentation layout: DocsShell for the frame, DocsSidebar for navigation, DocsPage for content structure, and TableOfContents for scroll tracking."
+date: "2026-02-23"
+author: "Kushagra Dhawan"
+canonical: "https://kushagradhawan.com/articles/kookie-blocks-docs-infrastructure"
+category: "announcement"
+tags: ["kookie-blocks", "design-systems", "components", "documentation", "engineering"]
+keywords:
+  [
+    "documentation components",
+    "docs shell",
+    "docs sidebar",
+    "docs page",
+    "table of contents",
+    "kookie blocks",
+    "design system",
+    "documentation site",
+    "navigation",
+  ]
+---
+
+import { Box, Code } from "@kushagradhawan/kookie-ui";
+
+Every documentation site I've built has the same structure. A sidebar on the left with navigation organized into groups. A content area in the middle with a page header, body, and footer. A table of contents on the right that tracks scroll position. A responsive shell that collapses the sidebar on mobile and shows a hamburger trigger.
+
+The structure doesn't change. The navigation items change, the content changes, the branding changes. But the layout, the responsive behavior, the scroll tracking, the search filtering—that's all the same.
+
+I kept rebuilding it. So I put it in Kookie Blocks.
+
+## Four Components
+
+The docs infrastructure is four components that work together:
+
+**DocsShell** handles the overall frame. It wraps Kookie UI's Shell primitive and wires up a responsive sidebar that's fixed on desktop and overlay on mobile.
+
+**DocsSidebar** handles navigation. Groups, items, nested sub-menus, search, active state detection, icons, badges. It builds on Kookie UI's Sidebar compound component.
+
+**DocsPage** handles content layout. Two-column layout with the main content on the left and a sticky table of contents on the right. Metadata-driven header with title, description, category, and copy button.
+
+**TableOfContents** handles scroll tracking. It automatically extracts headings from the page, generates anchor IDs, and highlights the current section as the user scrolls.
+
+Together, they cover the full documentation page from shell to scroll indicator.
+
+## DocsShell
+
+DocsShell is the outermost wrapper. Pass it navigation config and it gives you a complete documentation layout.
+
+```tsx
+<DocsShell
+  navigation={navigation}
+  logo={{ src: "/logo.png", alt: "My Docs", href: "/" }}
+  headerActions={<ThemeToggle />}
+  pathname={pathname}
+  linkComponent={Link}
+>
+  {children}
+</DocsShell>
+```
+
+Under the hood, it creates a Shell.Root with a Shell.Sidebar configured for documentation use. The sidebar starts collapsed on mobile (overlay presentation) and expanded on desktop (fixed presentation). It's resizable by default. A mobile trigger button appears on small screens.
+
+DocsShell manages the thin/expanded state internally. When the user resizes the sidebar past the thin threshold, the navigation adapts—showing only icons in thin mode, full labels in expanded mode. The `sidebarToggle` prop adds an explicit toggle button in the footer.
+
+The component is opinionated about the parts that should be consistent across docs sites and flexible about the parts that differ. Navigation structure, logo, header actions, and footer content are all configurable. The responsive behavior, sidebar presentation modes, and mobile trigger are handled.
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `navigation` | `DocsNavigationConfig` | required | Navigation groups and items |
+| `logo` | `DocsLogoConfig` | — | Logo with src, alt, href, size |
+| `headerActions` | `ReactNode` | — | Header area actions (theme toggle, GitHub link) |
+| `sidebarFooter` | `ReactNode` | — | Sidebar footer content |
+| `pathname` | `string` | `''` | Current path for active state |
+| `linkComponent` | `ComponentType` | `'a'` | Router link component |
+| `sidebarResizable` | `boolean` | `true` | Allow sidebar resize |
+| `sidebarThinSize` | `number` | `80` | Width when collapsed to thin |
+| `sidebarToggle` | `boolean` | `false` | Show thin/expanded toggle |
+| `height` | `'full' \| 'auto' \| string` | — | Shell height |
+
+## DocsSidebar
+
+DocsSidebar is the navigation component inside the shell. It takes a navigation config and renders groups, items, nested sub-menus, and a search input.
+
+The navigation config is a structured object:
+
+```typescript
+const navigation: DocsNavigationConfig = {
+  groups: [
+    {
+      label: "Getting Started",
+      items: [
+        { title: "Introduction", href: "/docs/intro", icon: BookIcon },
+        { title: "Installation", href: "/docs/install" },
+      ],
+    },
+    {
+      label: "Components",
+      items: [
+        {
+          title: "Layout",
+          href: "/docs/layout",
+          items: [
+            { title: "Shell", href: "/docs/layout/shell" },
+            { title: "Sidebar", href: "/docs/layout/sidebar" },
+          ],
+        },
+        { title: "Button", href: "/docs/button", badge: "Updated" },
+      ],
+    },
+  ],
+};
+```
+
+Items can have icons (React components, ReactNode, or HugeIcons icon objects), badges (strings or badge config objects), and nested sub-items. Nested items render as collapsible sub-menus that auto-expand when the active route is inside them.
+
+### Search
+
+DocsSidebar includes built-in search. The search input filters navigation items by title in real-time. When searching, group headers disappear and matching items appear in a flat list. In thin mode, search results appear in a popover since the sidebar is too narrow for inline results.
+
+The search is client-side and instant. No configuration needed—it works out of the box against whatever navigation you provide.
+
+### Active State
+
+Pass the current `pathname` and DocsSidebar highlights the matching item. For nested items, the parent sub-menu auto-expands when any child is active. This means deep-linking into a nested page shows the user exactly where they are in the navigation hierarchy.
+
+### Customization
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'1' \| '2'` | `'2'` | Sidebar size |
+| `variant` | `'soft' \| 'outline' \| 'surface' \| 'ghost'` | `'soft'` | Card variant |
+| `menuVariant` | `'solid' \| 'soft'` | `'soft'` | Menu item style |
+| `color` | `AccentColor` | `'gray'` | Accent color |
+
+## DocsPage
+
+DocsPage structures the content area. It creates a two-column layout: main content on the left, sticky table of contents on the right.
+
+```tsx
+<DocsPage
+  meta={{
+    title: "Shell",
+    description: "A declarative layout engine for application chrome.",
+    category: "Components",
+    source: "https://github.com/...",
+  }}
+  tableOfContents={<TableOfContents levels={[2, 3]} />}
+>
+  {/* MDX content */}
+</DocsPage>
+```
+
+When `meta` is provided, DocsPage renders a header with the page title, description, category badge, and a copy button that copies the page content as markdown. This header is consistent across every docs page without manual setup.
+
+The table of contents column is sticky and positioned on the right. On large screens, it stays visible as the user scrolls. On smaller screens, it disappears to give content the full width.
+
+### Layout Control
+
+DocsPage gives you control over spacing and layout without requiring CSS overrides:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `maxWidth` | `string \| number` | `'48rem'` | Content max width |
+| `containerSize` | `'1' \| '2' \| '3' \| '4'` | `'3'` | Container width |
+| `contentGap` | SpaceScale | `'8'` | Gap between sections |
+| `outerMargin` | SpaceScale | `'6'` | Vertical margin |
+| `padding` | SpaceScale | `'4'` | All-side padding |
+| `showFooter` | `boolean` | `false` | Show copyright footer |
+| `headerSeparator` | `boolean` | — | Separator under header |
+
+You can also pass a completely custom `header` prop that overrides the metadata-driven header. For pages that need a different layout—like a changelog or a landing page within the docs—this gives you full control while keeping the two-column structure.
+
+## TableOfContents
+
+TableOfContents is a standalone component that automatically generates navigation from page headings.
+
+```tsx
+<TableOfContents levels={[2, 3]} title="On this page" />
+```
+
+It scans the content area (marked with `data-content-area`) for heading elements at the specified levels. For each heading, it extracts the text, generates a slug-based ID (assigning it to the heading if one doesn't exist), and creates a link.
+
+### Scroll Tracking
+
+The component uses Intersection Observer to track which heading is currently in the viewport. As the user scrolls, the corresponding link in the table of contents highlights. The observer uses a root margin of `-20% 0% -35% 0%`, which means a heading is considered "active" when it's in the upper-middle portion of the viewport. This feels natural—the heading highlights before you scroll past it, not after.
+
+### Performance
+
+TableOfContents is memoized with `React.memo`. Heading extraction uses `requestAnimationFrame` for efficient DOM access. The initial extraction runs with a 100ms delay to ensure the DOM is ready after client-side rendering. The Intersection Observer is cleaned up on unmount along with any pending animation frames and timeouts.
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `levels` | `number[]` | `[2]` | Heading levels to include |
+| `title` | `string` | `'On this page'` | Title above the TOC |
+| `renderContainer` | `function` | — | Custom wrapper for TOC content |
+
+## How They Compose
+
+The four components are designed to nest:
+
+```tsx
+<DocsShell
+  navigation={navigation}
+  logo={logo}
+  pathname={pathname}
+  linkComponent={Link}
+>
+  <DocsPage
+    meta={pageMeta}
+    tableOfContents={<TableOfContents levels={[2, 3]} />}
+  >
+    <MDXContent />
+  </DocsPage>
+</DocsShell>
+```
+
+DocsShell provides the frame and sidebar. DocsPage structures the content area. TableOfContents plugs into DocsPage's right column. The navigation config drives the sidebar. The page meta drives the header. The headings drive the table of contents.
+
+Each component handles its own responsibility. DocsShell doesn't know about page headers. DocsPage doesn't know about sidebar navigation. TableOfContents doesn't know about either—it just reads headings from the DOM. You can use any of them independently if you only need part of the infrastructure.
+
+## The Interconnection with Kookie UI
+
+These components build directly on Kookie UI primitives:
+
+DocsShell uses Kookie UI's Shell component for the layout frame—Shell.Root, Shell.Sidebar, Shell.Content, Shell.Trigger. It inherits Shell's responsive presentation modes, resize system, and state management.
+
+DocsSidebar uses Kookie UI's Sidebar compound component—Sidebar.Root, Sidebar.Header, Sidebar.Content, Sidebar.Menu, Sidebar.MenuItem, Sidebar.MenuButton, Sidebar.Search, Sidebar.Group, and the sub-menu components. It inherits the thin/expanded presentation, search popover behavior, and visual styling.
+
+DocsPage uses Kookie UI's Container, Flex, Box, Text, and Link. Standard layout primitives with standard spacing props.
+
+When Kookie UI improves Shell or Sidebar, the docs components improve automatically. When I added resize support to Shell, every docs site got resizable sidebars without changing a line of application code.
+
+## Where They're Used
+
+These four components power the documentation for Kookie UI, Kookie Blocks, and Kookie Flow. Three documentation sites, same infrastructure, different navigation configs and content.
+
+When I fix a bug in DocsSidebar's search filtering, all three sites get the fix. When I add a feature to DocsPage, all three sites get it. The investment in the infrastructure compounds across every project that uses it.
+
+## Closing
+
+Documentation sites share a common structure: sidebar navigation, content area, table of contents, responsive layout. The specifics differ—navigation items, page content, branding—but the infrastructure is the same.
+
+DocsShell, DocsSidebar, DocsPage, and TableOfContents encode that infrastructure in Kookie Blocks. Four components that handle the frame, navigation, content layout, and scroll tracking. Use them together for a complete docs site or independently for the pieces you need.
+
+The result is that starting a new documentation site means writing navigation config and content, not building layout infrastructure.
