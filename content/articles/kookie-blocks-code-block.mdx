@@ -1,0 +1,179 @@
+---
+title: "New Component: CodeBlock in Kookie Blocks"
+description: "A code block component with runtime syntax highlighting via Shiki, dual-theme support, copy-to-clipboard, expand/collapse, language badges, and component previews."
+date: "2026-02-23"
+author: "Kushagra Dhawan"
+canonical: "https://kushagradhawan.com/articles/kookie-blocks-code-block"
+category: "announcement"
+tags: ["kookie-blocks", "design-systems", "components", "documentation", "engineering"]
+keywords:
+  [
+    "code block",
+    "syntax highlighting",
+    "shiki",
+    "code component",
+    "kookie blocks",
+    "design system",
+    "copy button",
+    "line numbers",
+    "documentation",
+  ]
+---
+
+import { Box, Code } from "@kushagradhawan/kookie-ui";
+
+Code blocks are everywhere in documentation, technical writing, and AI interfaces. They're also surprisingly hard to get right. Syntax highlighting, copy buttons, language labels, horizontal scrolling, dark mode support, long code that needs collapsing. Each feature is simple on its own. Together, they create a component that takes real work to build well.
+
+I built that component once. Now it's in Kookie Blocks.
+
+## Two Modes
+
+CodeBlock supports two rendering paths depending on your context.
+
+**Runtime highlighting** takes a raw code string and a language, then highlights it client-side using Shiki. This is the mode you use in dynamic contexts—AI-streamed code, user-generated content, runtime-rendered markdown.
+
+```tsx
+<CodeBlock
+  code={`const greeting = "hello world";
+console.log(greeting);`}
+  language="typescript"
+/>
+```
+
+**Build-time highlighting** takes pre-highlighted children from MDX or rehype-pretty-code. If you're building a static docs site, your build tool handles the highlighting and passes the result as children. CodeBlock wraps it with the same UI—copy button, language badge, collapse behavior—without re-highlighting.
+
+```tsx
+<CodeBlock>
+  {/* Pre-highlighted content from MDX/rehype */}
+  <pre><code className="language-typescript">...</code></pre>
+</CodeBlock>
+```
+
+You get the same component interface either way. The difference is just where the highlighting happens.
+
+## Syntax Highlighting
+
+Runtime highlighting uses Shiki, which runs TextMate grammars in the browser. The output matches what you see in VS Code—accurate tokenization across languages, not regex-based approximations.
+
+CodeBlock supports dual themes out of the box. Light mode uses One Light. Dark mode uses One Dark Pro. Both themes render simultaneously as CSS variables, so switching between light and dark mode is instant with no re-highlighting.
+
+```tsx
+<CodeBlock
+  code={sourceCode}
+  language="typescript"
+  shikiConfig={{
+    themes: {
+      light: "github-light",
+      dark: "github-dark",
+    },
+  }}
+/>
+```
+
+Override the default themes per-instance or leave them as is. The defaults work well.
+
+### Stale While Revalidate
+
+Shiki highlighting is asynchronous. The first render has to wait for the highlighting to complete. CodeBlock handles this with a stale-while-revalidate pattern.
+
+On initial load, a skeleton animation plays while Shiki processes the code. Once highlighted, the result caches. If the code updates (common in streaming contexts), CodeBlock keeps showing the previous highlighted output while the new version processes. The user never sees a flash of unstyled text or a loading skeleton for content updates—only for the initial render.
+
+This matters for streaming. When AI responses include code that builds token by token, each update triggers re-highlighting. Without stale-while-revalidate, the code block would flicker between skeleton and highlighted states dozens of times per second.
+
+## Copy to Clipboard
+
+Every code block gets a copy button. Click it, the code copies, the icon switches from a copy icon to a checkmark for two seconds, then reverts.
+
+```tsx
+<CodeBlock code={sourceCode} language="typescript" showCopy={true} />
+```
+
+The copy button extracts the raw code text regardless of which rendering mode you're using. Runtime mode copies the `code` prop. Build-time mode traverses the children to extract text. Either way, the user gets clean code on their clipboard.
+
+Hide it with `showCopy={false}` for contexts where copying doesn't make sense—like inline code previews where the surrounding page already has the code.
+
+## Language Badge
+
+A small badge in the top-left shows the language. Technical identifiers get mapped to human-readable labels: `typescript` becomes `ts`, `javascript` becomes `js`, `python` stays `python`, `dockerfile` becomes `docker`.
+
+The mapping covers common languages and their aliases. `ts`, `typescript`, and `tsx` all display correctly. Unknown languages fall back to the raw identifier uppercased.
+
+Hide it with `showLanguage={false}` when the language is obvious from context.
+
+## Expand and Collapse
+
+Long code blocks collapse by default. If the content exceeds 360 pixels in height, CodeBlock shows a gradient fade at the bottom and a chevron toggle to expand.
+
+```tsx
+<CodeBlock
+  code={longSourceCode}
+  language="typescript"
+  collapsible={true}
+  collapsedHeight={360}
+/>
+```
+
+The height measurement happens automatically. CodeBlock measures the content on mount and whenever the content changes. If it fits within the threshold, no toggle appears. If it exceeds it, the toggle shows up.
+
+When expanded, the chevron rotates and the full content is visible. Collapse it back and the gradient fade returns. The transition is smooth—the max-height animates through the ScrollArea.
+
+Disable it with `collapsible={false}` for contexts where you always want the full code visible.
+
+## Component Previews
+
+CodeBlock supports a `preview` prop for documentation contexts where you want to show a live component alongside its code.
+
+```tsx
+<CodeBlock
+  code={`<Button size="3" variant="soft">Click me</Button>`}
+  language="tsx"
+  preview={<Button size="3" variant="soft">Click me</Button>}
+  background="dots"
+/>
+```
+
+The preview renders above the code in a Card with centered content. The `background` prop controls the preview area's appearance: `"none"` for a clean background, `"dots"` for a dotted pattern, or a URL string for a custom image background.
+
+The dots background uses a radial gradient pattern with configurable size and color through `backgroundProps`. It's what the Kookie UI and Kookie Blocks documentation sites use for component showcases.
+
+## The Full API
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `code` | `string` | — | Raw code for runtime highlighting |
+| `language` | `string` | — | Language identifier |
+| `children` | `ReactNode` | — | Pre-highlighted content |
+| `showCopy` | `boolean` | `true` | Show copy button |
+| `showLanguage` | `boolean` | `true` | Show language badge |
+| `showLineNumbers` | `boolean` | `true` | Show line numbers |
+| `collapsible` | `boolean` | `true` | Allow expand/collapse |
+| `collapsedHeight` | `number` | `360` | Height threshold for collapse |
+| `file` | `string` | — | File path display |
+| `preview` | `ReactNode` | — | Component preview above code |
+| `background` | `'none' \| 'dots' \| string` | `'none'` | Preview background |
+| `backgroundProps` | `object` | — | Background customization |
+| `shikiConfig` | `ShikiConfig` | — | Shiki theme and language config |
+
+## Performance
+
+CodeBlock is built from memoized subcomponents. The outer `CodeBlock` function is a thin wrapper that routes to either `RuntimeCodeSection` or `ChildrenCodeSection`, both wrapped in `React.memo`.
+
+The `useCodeCard` hook handles expand/collapse state and copy behavior. It measures content height using a ref and `scrollHeight`, recalculating when content changes. The copy feedback timeout is cleaned up on unmount.
+
+Shiki configuration is memoized to prevent unnecessary re-highlights. The effect that runs highlighting uses a cancellation flag to handle race conditions when code updates faster than highlighting completes.
+
+For horizontal overflow, CodeBlock wraps content in a ScrollArea with hover-visible scrollbars. Long lines scroll horizontally without breaking the page layout.
+
+## Where It's Used
+
+CodeBlock is used directly in documentation for code examples and API references. It's also used internally by `createMarkdownComponents`—every fenced code block in markdown renders through CodeBlock. StreamingMarkdown uses it for code in AI responses.
+
+The Kookie UI docs, Kookie Blocks docs, and Kookie Flow docs all use CodeBlock for every code example. My personal site uses it through the markdown component mapping for article code blocks. Kookie AI uses it through StreamingMarkdown for code in chat messages.
+
+One component, many contexts. Bug fixes and improvements flow everywhere automatically.
+
+## Closing
+
+Code blocks look simple. Show some code, add some colors. But the details—dual themes, stale-while-revalidate for streaming, content measurement for collapse, text extraction for copy, language normalization for display—add up to a component worth building once and reusing.
+
+CodeBlock handles these details in Kookie Blocks so every project that displays code gets consistent, performant, feature-complete code rendering without building it from scratch.
