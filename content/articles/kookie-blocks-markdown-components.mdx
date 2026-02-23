@@ -152,6 +152,8 @@ const chatComponents = createMarkdownComponents({ spacing: "compact" });
 
 ## Closing
 
+This article is rendered with `createMarkdownComponents`. The headings, paragraphs, code blocks, tables, and links on this page all run through the same component mapping. It's the same function call that powers the Kookie UI docs, the Kookie Blocks docs, and every other piece of markdown content across my projects.
+
 Rendering markdown with a design system shouldn't require maintaining a mapping file in every project. `createMarkdownComponents` generates the mapping from KookieUI components with sensible defaults and the configuration you need. One function call, full coverage, consistent styling.
 
 That's one less piece of infrastructure to maintain.
